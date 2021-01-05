@@ -1,0 +1,21 @@
+
+exclude: [vendor, deploy_key.enc]
+
+markdown_ext : "md"
+
+highlighter: none
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+
+sass:
+  style: compact
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-environment-variables
+

@@ -1,0 +1,23 @@
+
+div.hotnews {
+        margin: 1em 2em;
+        padding: 0.5em 1em;
+        font-size: 120%;
+        border: 1px solid rgb(204,204,204);
+        text-align: left;
+}
+
+table.striped, table.striped-spaced {
+  border: 1px #e5e5ff solid;
+      border-collapse: collapse;
+}
+tr.light-stripe {
+    color: black;
+    background-color: #ffffff;
+    vertical-align: top;
+}
+tr.dark-stripe {
+    color: black;
+    background-color: #e5e5ff ;
+    vertical-align: top;
+}
