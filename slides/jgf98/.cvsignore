@@ -1,0 +1,5 @@
+# List of files (or sh(1) file name patterns) that CVS should ignore while
+# running update, import and release.
+#
+*.html          # generated HTML documents
+*.htm           # generated HTML documents
