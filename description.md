@@ -1,5 +1,5 @@
 ---
-title: What is HTCondor?
+title: HTCondor - What is HTCondor?
 ---
 <H2>
 What is HTCondor?

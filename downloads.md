@@ -1,5 +1,6 @@
 ---
-title: Downloads
+layout: default
+title: Download HTCondor
 ---
 
 <p>
