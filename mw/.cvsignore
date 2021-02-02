@@ -1,0 +1,3 @@
+# Files ignored by CVS
+mw  # already has existing CVS repository
+MW.old  # old, and has some binary files

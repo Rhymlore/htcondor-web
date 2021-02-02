@@ -1,0 +1,96 @@
+<html><head><TITLE></TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>    </H2>
+<hr>
+<DL>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>FALSE</B>
+ <DD><I>FALSE is defined as 0</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>TRUE</B>
+ <DD><I>TRUE is defined as 1</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>UNDEFINED</B>
+ <DD><I>UNDEFINED is defined as -1</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>typedef  int  <B>bool</B>
+ <DD><I>If defined ( DUMB_COMPILER ), we typedef bool to int.</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>const  int  <B>MW_MAX_WORKERS</B>
+ <DD><I>An upper limit on the number of workers -- so we can allocated arrays
+to keep statistics </I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=Introduction..html><B>Introduction.</B></A> 
+ <DD><I></I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWmessages.html><B>MWmessages</B></A> 
+ <DD><I>
+A list of the message tags that the Master-Worker application
+will send and receive</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWReturn.html><B>MWReturn</B></A> 
+ <DD><I>Possible return values from many virtual functions </I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif>#define <B>MWKey</B>
+ <DD><I>This is the "key" by which the task list can be managed.</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <B></B>
+ <DD><I>This is if you wish to have XML output.</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWTaskAdditionMode.html><B>MWTaskAdditionMode</B></A> 
+ <DD><I>The ways in which tasks may be added to the list</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWTaskRetrievalMode.html><B>MWTaskRetrievalMode</B></A> 
+ <DD><I>The ways in which tasks may be removed from the list</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWSuspensionPolicy.html><B>MWSuspensionPolicy</B></A> 
+ <DD><I>The suspension policy to use - What do we do when it happens? </I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWMachineOrderingPolicy.html><B>MWMachineOrderingPolicy</B></A> 
+ <DD><I>Tasks are always assigned to he first "IDLE" machine</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWDriver.html><B>MWDriver</B></A> 
+ <DD><I>This class is responsible for managing an application in an 
+opportunistic environment</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif><!2><A HREF="#DOC.9">MWKey</A>  <B>kflops</B>( <!1><A HREF="MWWorkerID.html">MWWorkerID</A> * )
+ <DD><I>This is the function allowing the workers to be sorted by KFlops</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif><!2><A HREF="#DOC.9">MWKey</A>  <B>benchmark_result</B>( <!1><A HREF="MWWorkerID.html">MWWorkerID</A> * )
+ <DD><I>This is the function allowing the workers to be sorted by benchmarkresult</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWStatistics.html><B>MWStatistics</B></A> 
+ <DD><I>This class serves as a holder for worker classes before they go to die</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWTask.html><B>MWTask</B></A> 
+ <DD><I>
+This the class that represents a unit of work</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWWorker.html><B>MWWorker</B></A> 
+ <DD><I>This is the worker class that performs the tasks in the
+opportunistic condor environment</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> class  <B>MWTask</B>
+ <DD><I>A forward reference; needed to define the MWWorkerID class.</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWworker_states.html><B>MWworker_states</B></A> 
+ <DD><I>
+This is a list of the states in which a worker can be</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWworker_statenames.html><B>MWworker_statenames</B></A> 
+ <DD><I>This static array is used to hold strings that represent the
+MWworker_states</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWWorkerID.html><B>MWWorkerID</B></A> 
+ <DD><I>
+This class keeps an identification of the worker application
+useful for the driver class</I>
+<DT>
+<IMG BORDER=0 SRC=icon1.gif> <A HREF=MWPrintf.html><B>MWPrintf</B></A> 
+ <DD><I></I>
+</DL>
+<A NAME="DOC.DOCU">
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P></BODY><hr>
+<A HREF="http://www.zib.de/Visual/software/doc++/index.html"><IMG BORDER=0 ALIGN=RIGHT SRC=logo.gif></A>
+<P Align=Center><I>this page has been generated automatically by doc++
+<P Align=Center>(c)opyright by <A HREF="http://www.zib.de/zoeckler/"> Malte  Z&oumlckler</A>, <A HREF="mailto:wunderling@zib.de"> Roland Wunderling </A><br>contact: <A HREF="mailto:doc++@zib.de"> doc++@zib.de </a>
