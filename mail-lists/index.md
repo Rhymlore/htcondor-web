@@ -1,4 +1,5 @@
 ---
+layout: default
 title: Mailing Lists
 ---
 <H2>HTCondor World</H2>
