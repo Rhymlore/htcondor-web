@@ -90,6 +90,13 @@ dd {
 	padding: 0;
 }
 
+pre {
+    background-color: whitesmoke;
+    padding: 15px;
+    outline: lightgray solid 1px;
+    font-family: monospace;
+}
+
 .doNotDisplay {
 	display: none !important;
 }
@@ -507,4 +514,45 @@ img.scaled {
 
 #footer a:hover {
   text-decoration: none;
+}
+
+/* ##### Quick Start ##### */
+
+.WindowsHL {
+    background-color: Yellow;
+}
+
+.WindowsHL pre {
+    background-color: Yellow;
+}
+
+.UnixHL {
+    background-color: LightGreen;
+}
+
+.UnixHL pre {
+    background-color: LightGreen;
+}
+
+.TwoColRight, .TwoColLeft {
+    width: 47%;
+    padding: 0.5em 1%;
+}
+
+.TwoColRight {
+    float: right;
+}
+
+.TwoColLeft {
+    float: left;
+}
+
+.TwoColHolder {
+     /* This causes the div to grow to contain the floating columns inside,
+     essentially "clear:both". */
+     overflow: auto;
+}
+
+.TwoColHolder H3 {
+    text-align: center;
 }
