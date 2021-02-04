@@ -37,6 +37,7 @@ jobs:
         name: Build CSL version of web pages
         if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
       - run: |
+          rm -rf built_website
           ./script/cideploy
         env:
           #NO_PUSH: 1
