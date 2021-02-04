@@ -1,5 +1,15 @@
 [
    {
+        "date" : "January 27, 2021",
+        "title" : "HTCondor Security Release: 8.9.11",
+        "news": "The HTCondor team is pleased to announce the release of HTCondor 8.9.11.\n\nThese releases contain important fixes for security issues.\nAffected users should update as soon as possible.\n\nMore details on the security issues are in the Vulnerability Reports:\n<ul>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0001.html\">HTCONDOR-2021-01</a>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0002.html\">HTCONDOR-2021-02</a>\n</ul>\n\nHTCondor binaries and source code are available from our\n<a href=\"http://htcondor.org/downloads/\">Downloads</a> page."
+   },
+   {
+        "date": "December 23, 2020",
+        "title": "Come find us on Twitter!",
+        "news": "After a long social media absence, we’ve resuscitated our Twitter acount where we’ve been posting about HTCondor news, events, philosophy and other distributed systems related banter. Come find us and chime in! <a href=\"https://twitter.com/HTCondor\" target=\"_blank\">https://twitter.com/HTCondor</a>"
+   },
+   {
       "news" : "Save the date and register now for another <a href=\"https://indico.fnal.gov/e/dHTCWorkshopFeb2020\" target=\"_blank\">Campus Workshop on distributed high-throughput computing (dHTC)</a>, February 8-9, 2021, offered by the <a href=\"https://path-cc.io/\" target=\"_blank\">Partnership to Advance Throughput computing (PATh)</a>. All campus cyberinfrastructure (CI) staff are invited to attend!<br/><br/>\n\n<b>Feb 8:</b> Training on Using and Facilitating the Use of dHTC and the Open Science Grid (OSG), 2-5pm ET. seats limited; register ASAP!<br/>\n<b>Feb 9:</b> dHTC Virtual Office Hours with breakout rooms for discussion on all things dHTC, including OSG services for campuses and CC* awards, 2-5pm ET. unlimited seats<br/><br/>\n\nWhile there is no fee for either day, <a href=\"https://indico.fnal.gov/event/46925/registrations\">registration is required</a> for participants to receive virtual meeting room details and instructions for training accounts via email. Please feel free to send any questions about the event to <a href=\"mailto:events@opensciencegrid.org\">events@opensciencegrid.org</a>.\n",
       "title" : "Campus Workshop on distributed high-throughput computing (dHTC) February 8-9, 2021",
       "date" : "December 18, 2020"
