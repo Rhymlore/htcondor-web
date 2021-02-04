@@ -2,7 +2,7 @@
    {
         "date" : "January 27, 2021",
         "title" : "HTCondor Security Release: 8.9.11",
-        "news": "The HTCondor team is pleased to announce the release of HTCondor 8.9.11.\n\nThese releases contain important fixes for security issues.\nAffected users should update as soon as possible.\n\nMore details on the security issues are in the Vulnerability Reports:\n<ul>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0001.html\">HTCONDOR-2021-01</a>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0002.html\">HTCONDOR-2021-02</a>\n</ul>\n\nHTCondor binaries and source code are available from our\n<a href=\"http://htcondor.org/downloads/\">Downloads</a> page."
+        "news": "The HTCondor team is pleased to announce the release of HTCondor 8.9.11.\n\nThese releases contain important fixes for security issues.\nAffected users should update as soon as possible.\n\nMore details on the security issues are in the Vulnerability Reports:\n<ul>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0001.html\">HTCONDOR-2021-01</a>\n</li>\n<li> <a href=\"http://htcondor.org/security/vulnerabilities/HTCONDOR-2021-0002.html\">HTCONDOR-2021-02</a>\n</li>\n</ul>\n\nHTCondor binaries and source code are available from our\n<a href=\"http://htcondor.org/downloads/\">Downloads</a> page."
    },
    {
         "date": "December 23, 2020",
