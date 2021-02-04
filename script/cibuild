@@ -1,4 +1,8 @@
 #!/bin/sh
 set -e
 
-bundle exec jekyll build
+if [[ -z "${OVERRIDE_CONFIG}" ]]; then
+  bundle exec jekyll build --config _config.yml,${OVERRIDE_CONFIG}
+else
+  bundle exec jekyll build
+fi

@@ -30,4 +30,23 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
         name: Deploy web pages on merge/push
+      - run: |
+          ./script/cibuild
+        env:
+          OVERRIDE_CONFIG: _config_csl.yml
+        name: Build CSL version of web pages
+        if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
+      - run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a "$SSH_AUTH_SOCK" > /dev/null
+          ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
+          ./script/cideploy
+        env:
+          #NO_PUSH: 1
+          TARGET_REPO: htcondor/htcondor.github.io
+          BRANCH: csl_build
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
+        name: Deploy CSL build of web pages on merge/push
 # vim:ft=yaml:sw=2:sts=2
