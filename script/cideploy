@@ -2,8 +2,8 @@
 set -x
 set -e
 
-: "${BRANCH:=master}"
-: "${TARGET_REPO=CHTC/chtc.github.io.git}"
+: "${BRANCH:=main}"
+: "${TARGET_REPO=htcondor/htcondor.github.io.git}"
 JEKYLL_OUTPUT_FOLDER=_site
 
 echo "$GITHUB_EVENT_NAME"
