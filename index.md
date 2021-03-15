@@ -32,7 +32,7 @@ div.hotnews {
     </div>
 
     <div class="half">
-        <h2>Latest News <a href="index.rss"><img src="{{ '/assets/images/rssicon.gif' | relative_url }}" alt="[RSS]"></a></h2>
+        <h2>Latest News</h2>
 
         {% for item in site.data.news limit:6 %}
             <a class="newsHeading" onclick="expandcontent(this,'nn{% increment news_ctr %}')"><span class="showstate"></span> {{ item.title }}</a>
@@ -63,7 +63,7 @@ div.hotnews {
         <h1>Software</h1>
         <ul>
             <li><a href="description.html">What is the HTCondor Software Suite (HTCSS)?</a></li>
-            <li><a href="downloads/"><strong>Downloads</strong></a> including HTCondor source and binaries for Linux, Windows, and Mac.</li>
+            <li><a href="downloads.html"><strong>Downloads</strong></a> including HTCondor source and binaries for Linux, Windows, and Mac.</li>
             <li><a href="https://htcondor.readthedocs.io/en/latest/"><strong>Documentation</strong></a> includes <strong><a
             href="manual/quickstart.html">the Quick Start Guide</a></strong> and the <a href="https://htcondor.readthedocs.io/en/latest/">HTCondor Manual</a>. Also see <a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes"><strong>HOWTO recipes</strong></a> and <a href="http://vivaldi.ll.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorSubmitFile">job submission examples</a>.</li>
             <li><a href="htcondor-support/">Support Options</a> include community and professional solutions.</li>
