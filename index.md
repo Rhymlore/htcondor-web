@@ -32,7 +32,7 @@ div.hotnews {
     </div>
 
     <div class="half">
-        <h2>Latest News</h2>
+        <h2>Latest News <a href="index.rss"><img src="/assets/images/rssicon.gif" alt="[RSS]"></a></h2>
 
         {% for item in site.data.news limit:6 %}
             <a class="newsHeading" onclick="expandcontent(this,'nn{% increment news_ctr %}')"><span class="showstate"></span> {{ item.title }}</a>

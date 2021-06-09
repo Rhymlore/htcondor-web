@@ -1,0 +1,82 @@
+pre {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+}
+
+pre em {
+    background-color: yellow;
+    color: black;
+    font-style: normal;
+}
+
+h1 {
+    text-align: center;
+}
+h2 {
+    background-color: silver;
+}
+dl {
+    list-style-type: circle;
+}
+/* Here are some ideas for making lists look a bit better. */
+
+.loose li {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+
+.loose li li {
+    margin-top: 0.5ex;
+    margin-bottom: 0.5ex;
+}
+
+.loose li p {
+    margin-top: 0.75ex;
+    margin-bottom: 0.75ex;
+}
+
+.loose pre {
+    margin-top: 0.75ex;
+    margin-bottom: 1ex;
+    padding: 0.5ex 1ex;
+}
+
+/* For tables with striping; i.e, alternating rows of light and dark background colors */
+
+table.striped, table.striped-spaced {
+    border: 1px #e5e5ff solid;
+    border-collapse: collapse;
+}
+
+tr.dark-stripe {
+    color: black;
+    background-color: #e5e5ff ;
+    vertical-align: top;
+}
+
+tr.light-stripe {
+    color: black;
+    background-color: #ffffff;
+    vertical-align: top;
+}
+
+tr.alert-stripe {
+    color: black;
+    background-color: #FF6666;
+    vertical-align: top;
+}
+
+.spaced th+th, .spaced td+td, .striped-spaced th+th, .striped-spaced td+td {
+    padding-left: 1.5em;
+}
+div.suggest {
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #ffff66;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
