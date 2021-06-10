@@ -383,6 +383,15 @@ img.scaled {
   cursor: pointer;
 }
 
+#news-container{
+  .newsDate {
+    font-style: italic;
+    color: grey;
+    margin: 0 !important;
+    padding: 0;
+  }
+}
+
 .newsDate {
   font-style: italic;
   margin: 0 !important;
