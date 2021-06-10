@@ -32,8 +32,8 @@ div.hotnews {
     </div>
 
     <div class="half">
-        <h2>Latest News</h2>
-        
+        <h2>Latest News <a href="index.rss"><img src="/assets/images/rssicon.gif" alt="[RSS]"></a></h2>
+
         {% assign news = site.news | sort | reverse %}
         {% for item in news limit:6 %}
             <a class="newsHeading" href="{{ item.url | relative_url }}">{{ item.title }}</a>
@@ -49,10 +49,6 @@ div.hotnews {
 <div class="rowOfBoxes">
 <!-- This is "hotnews" template, used for relatively short lived news we
      want to emphasize, like Condor Week.  Keep it brief and use with care. -->
-
-       <div class="hotnews">
-
-       </div>
 
 </div>
 
