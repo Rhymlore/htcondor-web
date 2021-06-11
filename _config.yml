@@ -1,9 +1,14 @@
-
+baseurl: ''
 exclude: [vendor, deploy_key.enc]
 
 markdown_ext : "md"
 
 highlighter: none
+
+collections:
+  news:
+    output: true
+    permalink: /news/:path/
 
 defaults:
   -

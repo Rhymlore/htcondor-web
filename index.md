@@ -34,10 +34,10 @@ div.hotnews {
     <div class="half">
         <h2>Latest News <a href="index.rss"><img src="/assets/images/rssicon.gif" alt="[RSS]"></a></h2>
 
-        {% for item in site.data.news limit:6 %}
-            <a class="newsHeading" onclick="expandcontent(this,'nn{% increment news_ctr %}')"><span class="showstate"></span> {{ item.title }}</a>
-            <p class="newsDate">{{ item.date }}</p>
-            <div id="nn{{ news_ctr | minus: 1 }}" class="newsSummary"> {{ item.news }}</div>
+        {% assign news = site.news | sort | reverse %}
+        {% for item in news limit:6 %}
+            <a class="newsHeading" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            <p class="newsDate">{{ item.date | date: "%B %e, %Y" }}</p>
         {% endfor %}
 
         <div class="more"><a href="new.html">More News &raquo;</a></div>
@@ -49,11 +49,6 @@ div.hotnews {
 <div class="rowOfBoxes">
 <!-- This is "hotnews" template, used for relatively short lived news we
      want to emphasize, like Condor Week.  Keep it brief and use with care. -->
-
-       <div class="hotnews">
-               <p><b>Save the Date! HTCondor Week 2021</b></p>
-               <p>HTCondor Week 2021 will be a free, virtual event taking place the week of May 24-28, 2021. Please save the dates on your calendars; we'll follow up with a detailed schedule and more information soon.</p>
-       </div>
 
 </div>
 
