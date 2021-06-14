@@ -1,4 +1,4 @@
-baseurl: /htcondor
+baseurl: ''
 exclude: [vendor, deploy_key.enc]
 
 markdown_ext : "md"
