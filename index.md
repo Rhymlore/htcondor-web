@@ -32,7 +32,7 @@ div.hotnews {
     </div>
 
     <div class="half">
-        <h2>Latest News <a href="index.rss"><img src="/assets/images/rssicon.gif" alt="[RSS]"></a></h2>
+        <h2>Latest News</h2>
 
         {% assign news = site.news | sort | reverse %}
         {% for item in news limit:6 %}
