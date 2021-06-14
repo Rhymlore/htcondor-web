@@ -10,6 +10,8 @@ title: Past HTCondor Week and European Workshop Meetings
 
 <ul>
 
+<li><a href="http://research.cs.wisc.edu/htcondor/HTCondorWeek2021">HTCondor Week 2021</a> (<a href="https://agenda.hep.wisc.edu/event/1579/other-view?view=standard">presentations and video recordings</a>)
+
 <li><a href="https://indico.cern.ch/event/936993/">European HTCondor Workshop 2020 (virtual event)</a> 
 (<a href="https://indico.cern.ch/event/936993/contributions/">presentations</a>)
 
