@@ -31,6 +31,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
         name: Deploy web pages on merge/push
       - run: |
+          rm -rf built_website
           ./script/cibuild
         env:
           OVERRIDE_CONFIG: _config_csl.yml
