@@ -1,6 +1,8 @@
 baseurl: ''
 exclude: [vendor, deploy_key.enc]
 
+google_analytics: G-C40B2GED64
+
 markdown_ext : "md"
 
 highlighter: none
