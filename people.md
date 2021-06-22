@@ -5,34 +5,35 @@ title: HTCondor - HTCondor Team
 
 <h2>HTCondor Team</h2>
 
-<p><img width="1000" src="{{ '/assets/images/team-2020.jpg' | relative_url}}" border="0"></p>
+<p><img width="1000" src="{{ '/assets/images/team-2021.jpg' | relative_url}}" border="0"></p>
 <p>
 <b>Pictured above</b> (from left to right, starting with the top row):
-Aaron Moate,
-Brian Bockelman,
-Brian Lin,
-Carl Edquist,
-Christina Koch,
-Emile Turatsinze,
-Greg Thain,
-Ian Ross,
-Jaime Frey,
-Jason Patton,
-Jess Vera,
-Josh Karpe,
-Lauren Michael,
-Mark Coatsworth,
-Matyas Selmeci,
-Miron Livny,
-Tim Cartwright,
-Tim Slauson,
-Tim Theisen,
-Todd Miller,
-Will Immendorf,
-Kent Cramer,
-Todd Tannenbaum,
-Zach Miller,
-John TJ Knoeller
+Mark Coatsworth, 
+Todd Tannenbaum, 
+Lauren Michael, 
+Brian Lin, 
+Tim Cartwright, 
+Jaime Frey, 
+Cannon Lock, 
+Matyas Selmeci, 
+Ian Ross, 
+Miron Livny, 
+Zach Miller, 
+Christina Koch, 
+Jeff Peterson, 
+John (TJ) Knoeller, 
+Greg Thain, 
+Tim Slauson, 
+Janet Stathas, 
+Brian Aydemir, 
+Aaron Moate, 
+Brian Bockelman, 
+Carl Edquist, 
+Todd Miller, 
+Emile Turatsinze, 
+Tim Theisen, 
+Jason Patton, 
+Kent Cramer
 </p>
 <p>
   We also have <a href="old-team-pictures.html">older team pictures
