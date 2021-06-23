@@ -3,6 +3,10 @@ layout: default
 title: HTCondor - Old HTCondor Team Pictures
 ---
 
+<h2>2020</h2>
+<p>The HTCondor Team at <a href="http://htcondor.org/HTCondorWeek2020/">HTCondor Week 2020</a>, May 2020.</p>
+<p class="photo"><img width="768" src="{{ '/assets/images/team-2020.jpg' | relative_url}}" alt="HTCondor Team May 2020"></p>
+
 <h2>2019</h2>
 <p>The HTCondor Team at <a href="http://htcondor.org/HTCondorWeek2019/">HTCondor Week 2019</a>, May 2019.</p>
 <p class="photo"><img width="768" src="{{ '/assets/images/team-2019.jpg' | relative_url}}" alt="HTCondor Team May 2019"></p>

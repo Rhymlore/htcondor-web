@@ -17,10 +17,16 @@ available in a variety of file formats and coloring situations</a>.
 this is roughly how the logo was created.  This is a reconstruction, not
 the original work:
 <ul>
-<li>HTC - Helvetica Neue Bold, -16% letter spacing. T is set in red and the
+<li>
+HTC - Helvetica Neue Bold, -16% letter spacing. T is set in red and the
 crossbar extended.
-<li>ondor - Helvetica Neue Light, -3.3% letter spacing
-<li>Artificially extend crossbar of the T
+</li>
+<li>
+ondor - Helvetica Neue Light, -3.3% letter spacing
+</li>
+<li>
+Artificially extend crossbar of the T
+</li>
 </ul>
 <p>Helvetica Neue Bold and Light are available on modern Mac OS X
 computers.  It's not usually present on Windows or Linux.
