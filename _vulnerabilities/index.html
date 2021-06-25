@@ -1,0 +1,20 @@
+---
+layout: default
+permalink: /security/vulnerabilities/
+---
+
+<h1>
+    HTCondor Vulnerability Reports
+</h1>
+<hr>
+<dl>
+{% assign vulnerabilities = site.vulnerabilities | reverse %}
+{% for page in vulnerabilities %}
+    {% if page.title != "Index" %}
+        <dt><a href="{{ page.url | relative_url }}">{{ page.title }}</a></dt>
+        <dd>
+            {{ page.summary }}
+        </dd>
+    {% endif %}
+{% endfor %}
+</dl>
