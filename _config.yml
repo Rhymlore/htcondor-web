@@ -1,5 +1,5 @@
 baseurl: ''
-exclude: [vendor, deploy_key.enc, _news]
+exclude: [vendor, deploy_key.enc]
 
 google_analytics: G-EGBLHC1HJP
 
@@ -20,7 +20,7 @@ defaults:
       layout: "default"
 
 sass:
-  style: compact
+  style: compressed
 
 plugins:
   - jekyll-redirect-from
