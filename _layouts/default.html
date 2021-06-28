@@ -6,8 +6,7 @@
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <meta name="description" content="HTCondor Homepage">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript"></script>
-        <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
+        {% include js_imports.html %}
         <link href="{{ '/assets/css/style.css' | relative_url }}" media="screen, tv, projection" title="Default" rel="stylesheet">
         {% if site.google_analytics and jekyll.environment == 'production' %}
         {% include analytics.html %}
