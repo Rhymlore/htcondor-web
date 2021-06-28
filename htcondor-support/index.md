@@ -24,7 +24,7 @@ Please <b>do not</b> post a message to both htcondor-users and htcondor-admin
 at the the same time.
 </p>
 
-<HR NOSHADE><br>
+<HR NOSHADE>
 
 
 <h2>Fee-based Support for HTCondor</h2>

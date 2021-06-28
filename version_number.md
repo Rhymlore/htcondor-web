@@ -1,9 +1,7 @@
 ---
-layout: default
-title: HTCondor - Version Numbering Scheme
+layout: subpage
+title: Version Numbering Scheme
 ---
-
-<h2>Version Numbering Scheme for HTCondor</h2>
 
 <p>There will be two HTCondor versions available at any given
 time, a <strong>"stable series"</strong> version, and a

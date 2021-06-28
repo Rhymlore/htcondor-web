@@ -11,9 +11,10 @@ $container-max-widths: (
 
 @import 'bootstrap/bootstrap-grid';
 @import 'bootstrap/bootstrap-utilities';
+@import 'bootstrap/bootstrap-reboot';
 @import 'bootstrap/navbar';
 @import 'bootstrap/nav';
-@import 'bootstrap/bootstrap';
 @import 'bootstrap/transitions';
+@import 'bootstrap/alert';
 @import "custom";
 

@@ -1,11 +1,8 @@
 ---
-layout: default
-title: HTCondor - HTCondor Security
+layout: subpage
+title: HTCondor Security
 ---
 
-<h2>
-  HTCondor Security Resources
-</h2>
 <p>
 This page contains information about security policies and procedures in the HTCondor system.
 </p>
