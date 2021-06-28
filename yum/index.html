@@ -35,44 +35,62 @@ title: HTCondor YUM Repository
 
 <p><b>Note:</b> "root" user must be used to perform installation.</p>
 
-<ol>
+<ol class="mb-3">
     <li>
         Download and install the YUM repository RPM that matches your operating systems. There is a seperate repository
         for <b>Current</b> and <b>Stable</b> releases of HTCondor.
     </li>
 </ol>
 
-
-<div class="table-container mb-2">
-    <table class="striped-spaced" border="5" width="70%">
-        <thead>
-            <tr class="dark-stripe">
-                <th>OS</th>
-                <th>Current Release</th>
-                <th>Stable Release</th>
-                <th>Supported Platforms</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="light-stripe">
-                <td>Redhat Enterprise Linux 7 and compatible</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el7.noarch.rpm</td>
-                <td>x86_64</td>
-            </tr>
-            <tr class="dark-stripe">
-                <td>Redhat Enterprise Linux 8 and compatible</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el8.noarch.rpm</td>
-                <td>x86_64</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row mb-3">
+    <div class="col-12 col-md-6">
+        <h3>Redhat Enterprise Linux 8 and compatible</h3>
+        <b>Current Release</b>
+        <ul>
+            <li class="word-break-all">
+                https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm
+            </li>
+        </ul>
+        <b>Stable Release</b>
+        <ul>
+            <li class="word-break-all">
+                https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el8.noarch.rpm
+            </li>
+        </ul>
+        <b>Supported Platforms</b>
+        <ul>
+            <li>
+                x86_64
+            </li>
+        </ul>
+    </div>
+    <div class="col-12 col-md-6 border-start">
+        <h3>Redhat Enterprise Linux 7 and compatible</h3>
+        <b>Current Release</b>
+        <ul>
+            <li class="word-break-all">
+                https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm
+            </li>
+        </ul>
+        <b>Stable Release</b>
+        <ul>
+            <li class="word-break-all">
+                https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el7.noarch.rpm
+            </li>
+        </ul>
+        <b>Supported Platforms</b>
+        <ul>
+            <li>
+                x86_64
+            </li>
+        </ul>
+    </div>
 </div>
 
-<b>Example - Redhat 7: Install HTCondor's current release</b>
+<h3>Example</h3>
+<b>Redhat 7: Install HTCondor's current release</b>
 
 <pre>
-    yum install -y https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm
+    <code>yum install -y https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rp</code>
 </pre>
 
