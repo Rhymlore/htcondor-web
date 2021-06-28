@@ -1,10 +1,9 @@
 ---
-layout: default
-title: HTCondor - Publications
+layout: subpage
+title: HTCondor Support
 ---
 
-<h1 class="norm">Free Support for HTCondor</h1>
-
+<h2>Free Support for HTCondor</h2>
 <p>
 Free, community-based best effort support is available through the
 <a href="http://research.cs.wisc.edu/htcondor/mail-lists/">htcondor-users</A> 
@@ -28,7 +27,7 @@ at the the same time.
 <HR NOSHADE><br>
 
 
-<h1 class="norm">Fee-based Support for HTCondor</h1>
+<h2>Fee-based Support for HTCondor</h2>
 <p>For users who require additional support for HTCondor beyond the free
 support listed above, there are several options. 
 </p>

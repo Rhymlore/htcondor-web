@@ -1,5 +1,5 @@
 baseurl: ''
-exclude: [vendor, deploy_key.enc]
+exclude: [vendor, deploy_key.enc, _news]
 
 google_analytics: G-EGBLHC1HJP
 

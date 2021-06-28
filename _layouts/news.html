@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<div id="news-container" class="rowOfBoxes">
-    <div class="fullWidth">
+<div id="news-container" class="row">
+    <div class="col-12">
         <h1>{{ page.title }}</h1>
         <h2 class="newsDate">{{ page.date | date: "%B %e, %Y"}}</h2>
         {% if page.link %}
-            <a href="{{ page.link }}">Associated Link</a>
+        <a href="{{ page.link }}">Associated Link</a>
         {% endif %}
         <p>{{ content }}</p>
     </div>

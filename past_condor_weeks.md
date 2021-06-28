@@ -1,11 +1,7 @@
 ---
-layout: default
+layout: subpage
 title: Past HTCondor Week and European Workshop Meetings
 ---
-
-<h1>Past HTCondor Week and European Workshop Meetings</h1>
-
-
 <!-- Page body -->
 
 <ul>

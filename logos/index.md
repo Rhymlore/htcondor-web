@@ -1,10 +1,7 @@
 ---
-layout: default
-title: HTCondor - HTCondor Logos
+layout: subpage
+title: HTCondor Logos
 ---
-
-<!-- Page body -->
-<h1 class="norm">HTCondor Logos</h1>
 
 <P>
 The official HTCondor logo comes in two varieties as shown below, one including the 

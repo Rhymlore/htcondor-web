@@ -1,34 +1,48 @@
-<div id="header">
-    <div class="midHeader">
-        <div class="iconHeader">
-            <a href="{{ '/index.html' | relative_url }}"><img height="75" alt="Condor High Throughput Computing" src="{{ '/assets/images/CondorTitle.gif' | relative_url }}" style="border:0"></a>
+<script>
+    (function() {
+        var cx = '010754594835990937497:xijuwhbknew';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+<div id="header" class="mb-4" class="bg-white">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navBar navbar-expand-lg navbar-light w-100">
+                <div class="container-fluid ps-0 pe-0">
+                    <a href="{{ '/index.html' | relative_url }}"><img height="75" alt="Condor High Throughput Computing" src="{{ '/assets/images/CondorTitle.gif' | relative_url }}" style="border:0"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ '/index.html' | relative_url }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ '/new.html' | relative_url }}">News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ '/downloads.html' | relative_url }}">Downloads</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ '/publications.html' | relative_url }}">Publications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="mailto:htcondor-admin@cs.wisc.edu">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-
-        <div class="navAndSearch">
-            <div class="navBar">
-                <span class="doNotDisplay">Navigation:</span>
-                <a href="{{ '/index.html' | relative_url }}">Home</a> |
-                <a href="{{ '/new.html' | relative_url }}">News</a> |
-                <a href="{{ '/downloads.html' | relative_url }}">Download</a> |
-                <a href="{{ '/publications.html' | relative_url }}">Publications</a> |
-                <a href="mailto:htcondor-admin@cs.wisc.edu">Contact Us</a>
-            </div>
-
-            <div class="searchForm" >
-                <script>
-                (function() {
-                    var cx = '010754594835990937497:xijuwhbknew';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                })();
-                </script>
-                <gcse:searchbox-only></gcse:searchbox-only>
-            </div>
-        </div>
+    </div>
+    <div class="row">
+        <gcse:searchbox-only></gcse:searchbox-only>
     </div>
 </div>

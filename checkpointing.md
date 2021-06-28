@@ -1,11 +1,7 @@
 ---
-layout: default
-title: HTCondor - Checkpointing
+layout: subpage
+title: Checkpointing
 ---
-
-<H1>
-HTCondor Checkpointing
-</H1>
 
 <h3>Overview</h3>
 
@@ -69,6 +65,8 @@ storing checkpoints).
 <h3>Other Checkpointing Resources</h3>
 
 <UL>
-  <LI> <A HREF="http://www.cs.utk.edu/~plank/ckp.html">Checkpointing Research at the University of Tennessee</A>
+<LI>
+<A HREF="http://www.cs.utk.edu/~plank/ckp.html">Checkpointing Research at the University of Tennessee</A>
+</LI>
 </UL>
 

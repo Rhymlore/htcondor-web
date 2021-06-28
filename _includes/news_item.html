@@ -1,0 +1,10 @@
+{% assign date = item.date | date: '%s' %}
+{% assign now = 'now' | date: '%s' %}
+{% assign diff_seconds = now | minus: date %}
+{% assign diff_days = diff_seconds | divided_by: 3600 | divided_by: 24 %}
+
+<div class="event mb-1">
+  <a class="newsHeading" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+  <div class="newsDate">{{ item.date | date: "%B %e, %Y" }}</div>
+</div>
+

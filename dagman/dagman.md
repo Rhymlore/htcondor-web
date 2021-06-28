@@ -1,10 +1,7 @@
 ---
-layout: default
-title: HTCondor - Directed Acyclic Graph Manager
+layout: subpage
+title: DAGMan
 ---
-
-<!-- Page body -->
-<h2> DAGMan </h2>
 
 <p>
 DAGMan (Directed Acyclic Graph Manager) is a meta-scheduler for

@@ -1,0 +1,10 @@
+{% assign content = content | lstrip %}
+{% if content != "" %}
+<div class="row">
+    <div class="col-12">
+        <div class="hotnews p-2">
+            {{ content }}
+        </div>
+    </div>
+</div>
+{% endif %}

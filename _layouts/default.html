@@ -5,28 +5,25 @@
         <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <meta name="description" content="HTCondor Homepage">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript"></script>
+        <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
         <link href="{{ '/assets/css/style.css' | relative_url }}" media="screen, tv, projection" title="Default" rel="stylesheet">
         {% if site.google_analytics and jekyll.environment == 'production' %}
         {% include analytics.html %}
         {% endif %}
     </head>
-<body>
+<body class="bg-light">
 
     <!-- For non-visual user agents: -->
-    <div id="top"><a href="#main-copy" class="doNotDisplay doNotPrint">Skip to main content.</a></div>
-
-    <div id="container">
+    <div id="top"><a href="#main-copy" hidden>Skip to main content.</a></div>
 
     <!-- ##### Header ##### -->
-
-    {% include header.html %}
-
-    <div id="main-copy">
-        {{content}}
+    <div id="main-copy" class="container-md bg-white w-auto pt-0 pb-4">
+        {% include header.html %}
+        {{ content }}
     </div>
-
     {% include footer.html %}
 
-    </body>
+</body>
 </html>

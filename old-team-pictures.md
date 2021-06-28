@@ -1,6 +1,6 @@
 ---
-layout: default
-title: HTCondor - Old HTCondor Team Pictures
+layout: subpage
+title: Old HTCondor Team Pictures
 ---
 
 <h2>2020</h2>

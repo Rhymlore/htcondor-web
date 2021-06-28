@@ -1,9 +1,7 @@
 ---
-layout: default
-title: HTCondor - What's new with HTCondor?
+layout: subpage
+title: What's new with HTCondor?
 ---
-
-<h2>What's new with HTCondor?</h2>
 
 {% assign news = site.news | sort | reverse %}
 {% for item in news %}

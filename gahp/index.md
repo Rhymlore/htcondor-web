@@ -1,23 +1,11 @@
 ---
-layout: default
-title: HTCondor - BirdBath
+layout: subpage
+title: Grid Ascii Helper Protocol
 ---
 
-<!-- Page body -->
-<table>
-    <tr>
-        <td>
-            <P ALIGN="CENTER"><IMG SRC="{{ '/assets/images/GAHP_logo.jpg' | relative_url }}" WIDTH=225 HEIGHT=225></p>
-        </td>
-        <td>
-            <H1>Grid ASCII Helper Protocol</H1>
-        </td>
-    </tr>
-</table>
+<img src="{{ '/assets/images/GAHP_logo.jpg' | relative_url }}" align="right" height="239" />
 
-<hr>
-
-<H1>Introduction</H1>
+<H2>Introduction</H2>
 
 <P>
     The object of the Grid ASCII Helper Protocol (GAHP) is to allow the
@@ -35,7 +23,7 @@ title: HTCondor - BirdBath
 
 </P>
 
-<H1> Why GAHP? </H1>
+<H2> Why GAHP? </H2>
 
 <P>
     Although most grid and cloud services provide client libraries or
@@ -80,7 +68,7 @@ title: HTCondor - BirdBath
     remote host.
 </P>
 
-<H1>Downloads</h1>
+<H2>Downloads</H2>
 
 There are several GAHP protocols available, each designed to communicate with
 a specific remote job submission system. At the time of this writing they are:
