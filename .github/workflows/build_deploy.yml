@@ -22,7 +22,10 @@ jobs:
         if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'htcondor' }}
       # SSH key recipe from https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
       - run: |
-          rm -rf built_website
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a "$SSH_AUTH_SOCK" > /dev/null
+          ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
           ./script/cideploy
         env:
           #NO_PUSH: 1

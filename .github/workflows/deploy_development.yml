@@ -1,4 +1,4 @@
-name: Deploy Developement Site
+name: Deploy Development Site
 on:
   push:
     branches: [master]
@@ -15,7 +15,7 @@ jobs:
           bundler-cache: true
       - run: |
           ./script/cibuild
-        name: Build Developement Website
+        name: Build Development Website
       # SSH key recipe from https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
       - run: |
           mkdir -p ~/.ssh
