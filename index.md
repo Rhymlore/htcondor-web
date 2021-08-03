@@ -49,7 +49,14 @@ div.hotnews {
 <div class="rowOfBoxes">
 <!-- This is "hotnews" template, used for relatively short lived news we
      want to emphasize, like Condor Week.  Keep it brief and use with care. -->
-
+    <div class="hotnews">
+        <p><b>Save the Date! European HTCondor Workshop 2021</b></p>
+        <p>The European HTCondor Workshop 2021 will be a free virtual event 
+        taking place from Monday Sept 20 until Friday Sept 24. Please register
+        online, and we are also looking for speakers to submit abstracts:
+        <a href="https://indico.cern.ch/e/htcondor2021">https://indico.cern.ch/e/htcondor2021</a>.
+        </p>
+    </div>
 </div>
 
 <div class="rowOfBoxes dividingBorderAbove">
