@@ -10,6 +10,9 @@
         {% if site.google_analytics and jekyll.environment == 'production' %}
         {% include analytics.html %}
         {% endif %}
+        {% jekyll.environment == 'production' %}
+            <meta name="google-site-verification" content="lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ" />
+        {% endif %}
     </head>
 <body>
 
