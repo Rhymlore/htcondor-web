@@ -4,6 +4,8 @@ og_title: "HTCondor Security Release: 8.9.11"
 link: 
 date: 2021-01-27
 layout: news
+release_type: Security
+release_number: 8.9.11
 ---
 
 The HTCondor team is pleased to announce the release of HTCondor 8.9.11.  These releases contain important fixes for security issues. Affected users should update as soon as possible.  More details on the security issues are in the Vulnerability Reports: 

@@ -4,6 +4,8 @@ og_title: HTCondor 9.1.3 released!
 link: 
 date: 2021-08-19
 layout: news
+release_type: HTCondor
+release_number: 9.1.3
 ---
 
 The HTCondor team is pleased to announce the release of HTCondor 9.1.3.
