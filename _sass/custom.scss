@@ -24,3 +24,10 @@ tr.dark-stripe {
   word-break: break-all;
 }
 
+a.newsHeading {
+  text-decoration: none;
+}
+a.newsHeading:hover {
+  text-decoration: underline;
+}
+
