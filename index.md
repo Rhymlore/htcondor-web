@@ -50,10 +50,12 @@ div.hotnews {
 <!-- This is "hotnews" template, used for relatively short lived news we
      want to emphasize, like Condor Week.  Keep it brief and use with care. -->
     <div class="hotnews">
-        <p><b>Save the Date! European HTCondor Workshop 2021</b></p>
-        <p>The European HTCondor Workshop 2021 will be a free virtual event 
-        taking place from Monday Sept 20 until Friday Sept 24. Please register
-        online, and we are also looking for speakers to submit abstracts:
+        <p><b>European HTCondor Workshop 2021 is coming up, September 20-24</b></p>
+        <p>Join us next week for a free online workshop about HTCondor!
+        <b>It is still not too late to register</b> -- so if interested, please hurry up!
+        Some slots for contributed presentations are still available. Please let
+        us know about your projects, experience, plans and issues with HTCondor.
+        To register and/or submit an abstract to be a speaker, visit:
         <a href="https://indico.cern.ch/e/htcondor2021">https://indico.cern.ch/e/htcondor2021</a>.
         </p>
     </div>
