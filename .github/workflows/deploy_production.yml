@@ -1,0 +1,48 @@
+name: Deploy production version of the Website
+
+on:
+  push:
+    branches:
+      - production
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  Build-And-Deploy-Preview:
+    runs-on: ubuntu-18.04
+    env:
+      production_url:
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.HTCONDOR_ORG_DEPLOY_KEY }}
+
+      - name: Initialize GH User
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
+
+      - name: Build and Deploy
+        run: |
+          # Build the production version of website
+          JEKYLL_ENV=production bundle exec jekyll build
+
+          # Commit the build then use 'git subtree' to create a branch with just the _site contents
+          git add _site -f
+          git commit -m "Build Branch Website"
+          SPLIT_BRANCH=$(git subtree split --prefix temp-dir temp-branch)
+
+          # Merge the Build into production
+          git remote add production ${{ env.production_url }}
+          git fetch --all
+          git checkout -b current-production production/main
+          git commit --allow-empty -F ""
+          git merge $SPLIT_BRANCH -m "Merge Split Branch" --allow-unrelated-histories -X theirs
