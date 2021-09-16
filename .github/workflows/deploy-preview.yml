@@ -26,7 +26,6 @@ jobs:
 
       - name: Configure for Dev Preview
         run: |
-          rm CNAME
           sed -i "s|baseurl: ''|baseurl: '/web-preview/${{ env.BRANCH_NAME }}'|" _config.yml
           git config user.name "Automatic preview publish"
           git config user.email ""
