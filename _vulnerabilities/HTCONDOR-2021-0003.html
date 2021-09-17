@@ -1,0 +1,122 @@
+---
+title: HTCONDOR-2021-0003
+summary: |
+    Using standard command-line tools, a user with only READ access
+    to a SchedD or Collector can discover secrets that could allow them
+    to control other users jobs and/or read their data.
+---
+
+<h1>
+    <p>
+        HTCONDOR-2021-0003
+    <p>
+        <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-TBD">CVE-2021-TBD</a>
+
+</h1>
+<hr>
+<table width='100%' summary='whole page'>
+    <tr>
+        <td width='25%'><p class='h'>Summary:</p></td>
+        <td class='sv'><p class='v'>&nbsp;</p></td>
+    </tr>
+    <tr>
+        <td colspan='2' class='sv'><p>
+            Using standard command-line tools, a user with only READ access to a SchedD or Collector can discover secrets that could allow them to control other users jobs and/or read their data.
+        </p></td>
+    </tr>
+
+    <tr><td colspan='2'>
+        <br><table class='sumtable' width='100%' summary='short values'>
+        <tr>
+            <th width='20%'>Component</th>
+            <th width='20%'>Vulnerable Versions</th>
+            <th width='20%'>Platform</th>
+            <th width='20%'>Availability</th>
+            <th width='20%'>Fix Available</th>
+        </tr>
+        <tr>
+            <td class='sv'>SchedD, Collector</td>
+            <td class='sv'>All Versions</td>
+            <td class='sv'>All Platforms</td>
+            <td class='sv'>Not known to be publicly exploited</td>
+            <td class='sv'>8.8.14, 9.0.3, 9.1.1</td>
+        </tr>
+        <tr>
+            <th width='20%'>Status</th>
+            <th width='20%'>Access Required</th>
+            <th width='20%'>Host Type Required</th>
+            <th width='20%'>Effort Required</th>
+            <th width='20%'>Impact/Consequences</th>
+        </tr>
+        <tr>
+            <td class='sv'>Verified</td>
+            <td class='sv'>READ access to HTCondor daemons</td>
+            <td class='sv'>Any</td>
+            <td class='sv'>Medium</td>
+            <td class='sv'>High</td>
+        </tr>
+        <tr>
+            <th width='20%'>Fixed Date</th>
+            <th width='20%'>Credit</th>
+        </tr>
+        <tr>
+            <td class='sv'>2021-07-27</td>
+            <td class='sv'>Jaime Frey</td>
+        </tr>
+    </table>
+    </td></tr>
+    <tr>
+        <td width='25%'><p class='h'>Access Required:</p></td>
+        <td class='sv'><p class='v'>READ access to HTCondor daemons</p></td>
+    </tr>
+
+    <tr>
+        <td colspan='2' class='sv'><p>
+            An attacker need only have READ-level authorization to a vulnerable daemon.
+            This means they are able to run tools like condor_q or condor_status.  Many
+            pools do not require authentication for READ-level commands so it is likely
+            that an attacker could execute this command remotely from an untrusted
+            network, unless otherwise prevented by a firewall or other network-level
+            access controls.
+        </p></td>
+    </tr>
+    <tr>
+        <td width='25%'><p class='h'>Effort Required:</p></td>
+        <td class='sv'><p class='v'>Medium</p></td>
+    </tr>
+
+    <tr>
+        <td colspan='2' class='sv'><p>
+            An attacker would need to write custom tools and be very familiar with
+            the HTCondor wire protocols to carry out a succesful attack.
+        </p></td>
+    </tr>
+    <tr>
+        <td width='25%'><p class='h'>Impact/Consequences:</p></td>
+        <td class='sv'><p class='v'>High</p></td>
+    </tr>
+    <tr>
+        <td colspan='2' class='sv'><p>
+            This attack allows a user to control a running job submitted by
+            another user.  This could let them read that job's data and/or
+            inject their own executables into that job that would then run as
+            that user.
+        </p></td>
+    </tr>
+    <tr>
+        <td width='25%'><p class='h'>Workaround:</p></td>
+    </tr>
+    <tr>
+        <td colspan='2' class='sv'><p>
+            There is no workaround for this issue.
+        </p></td>
+    </tr>
+
+    <tr>
+        <td width='25%'><p class='h'>Full Details:</p></td>
+        <td class='sv'>
+            Embargoed until future notice.
+        </td>
+    </tr>
+
+</table>
