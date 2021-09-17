@@ -1,11 +1,11 @@
-name: Deploy Production Site
+name: Deploy Production Site on htcondor.com
 on:
   push:
     branches: [production]
   pull_request:
     branches: [production]
 jobs:
-  build-and-maybe-deploy:
+  Build-And-Deploy-Production:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -13,9 +13,13 @@ jobs:
         with:
           ruby-version: 2.6
           bundler-cache: true
-      - run: |
+
+      - name: Build Production Website
+        env:
+          OVERRIDE_CONFIG: _config_htcondor_com.yml
+        run: |
           ./script/cibuild production
-        name: Build Development Website
+
       # SSH key recipe from https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
       - run: |
           mkdir -p ~/.ssh

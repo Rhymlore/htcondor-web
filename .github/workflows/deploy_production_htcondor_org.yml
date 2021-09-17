@@ -1,4 +1,4 @@
-name: Deploy production version of the Website
+name: Deploy production version of the Website on htcondor.org
 
 on:
   push:
@@ -8,11 +8,14 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  Build-And-Deploy-Preview:
+  Build-And-Deploy-Production:
     runs-on: ubuntu-18.04
+
     env:
       CNAME: htcondor.org
       production_url: https://github.com/htcondor/htcondor.org.git
+      OVERRIDE_CONFIG: _config_htcondor_org.yml
+
     steps:
       - uses: actions/checkout@v2
 
@@ -34,7 +37,7 @@ jobs:
       - name: Build and Deploy
         run: |
           # Build the production version of website
-          JEKYLL_ENV=production bundle exec jekyll build
+          JEKYLL_ENV=production bundle exec jekyll build _config.yml,${{ env.OVERRIDE_CONFIG }}
 
           # Add in the appropriate CNAME file
           echo "${{ env.CNAME }}" > _site/CNAME
