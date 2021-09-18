@@ -27,6 +27,7 @@ jobs:
       - name: Configure for Dev Preview
         run: |
           sed -i "s|baseurl: ''|baseurl: '/web-preview/${{ env.BRANCH_NAME }}'|" _config.yml
+          echo "web_preview: true" >> _config.yml
           git config user.name "Automatic preview publish"
           git config user.email ""
           git commit -am "GHA: htcondor/htcondor-web #$GITHUB_RUN_NUMBER"
