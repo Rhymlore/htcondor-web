@@ -2,14 +2,26 @@
 set -e
 
 if [ "$1" = "production" ]; then
-  echo "Building Site for Production...";
-  JEKYLL_ENV=production bundle exec jekyll build
 
-elif [ -z "${OVERRIDE_CONFIG}" ]; then
-  echo "Building Site for Development..."
-  bundle exec jekyll build
+  if [ -z "${OVERRIDE_CONFIG}" ]; then
+    echo "Building Site for Production...";
+    JEKYLL_ENV=production bundle exec jekyll build
+
+  else
+    echo "Building Site for Production with Modified _config..."
+    JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,${OVERRIDE_CONFIG}
+
+  fi
 
 else
-  echo "Building Site for Development with Modified _config..."
-  bundle exec jekyll build --config _config.yml,${OVERRIDE_CONFIG}
+
+  if [ -z "${OVERRIDE_CONFIG}" ]; then
+    echo "Building Site for Development...";
+    bundle exec jekyll build
+
+  else
+    echo "Building Site for Development with Modified _config..."
+    bundle exec jekyll build --config _config.yml,${OVERRIDE_CONFIG}
+
+  fi
 fi

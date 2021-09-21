@@ -1,0 +1,53 @@
+name: Deploy production version of the Website on htcondor.com
+
+on:
+  push:
+    branches:
+      - production
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  Build-And-Deploy-Production:
+    runs-on: ubuntu-18.04
+
+    env:
+      CNAME: htcondor.com
+      production_url: https://github.com/htcondor/htcondor.github.io.git
+      OVERRIDE_CONFIG: _config_htcondor_com.yml
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup SSH Keys and known_hosts
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.HTCONDOR_COM_DEPLOY_KEY }}
+
+      - name: Initialize GH User
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: true
+
+      - name: Build and Deploy
+        run: |
+          # Build the production version of website
+          JEKYLL_ENV=production bundle exec jekyll build _config.yml,${{ env.OVERRIDE_CONFIG }}
+
+          # Add in the appropriate CNAME file
+          echo "${{ env.CNAME }}" > _site/CNAME
+
+          # Commit the build then use 'git subtree' to create a branch with just the _site contents
+          git add _site -f
+          git commit -m "Build Production Website"
+          git checkout -b split-branch `git subtree split --prefix _site production`
+
+          # Push to Production
+          git push ${{ env.production_url }} HEAD:main --force

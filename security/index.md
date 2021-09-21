@@ -1,5 +1,6 @@
 ---
 layout: subpage
+permalink:
 title: HTCondor Security
 ---
 
@@ -63,7 +64,7 @@ various parties at our discretion.
 All public announcements will be made Monday through Thursday between 9AM and
 5PM central time.  The announcement will be sent to the HTCondor-users and
 HTCondor-world mailing lists; the HTCondor team keeps a web page listing
-<a href="http://research.cs.wisc.edu/htcondor/security/vulnerabilities/">all
+<a href="{{ '/security/vulnerabilities/' | relative_url }}">all
 announced vulnerabilities</a>.
 </p>
 

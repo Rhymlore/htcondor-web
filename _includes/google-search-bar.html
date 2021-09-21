@@ -1,0 +1,24 @@
+
+{% if site.production_key == "csl" %}
+<div class="searchForm" >
+    <script>
+        (function() {
+            var cx = '010754594835990937497:xijuwhbknew';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+    <gcse:searchbox-only></gcse:searchbox-only>
+</div>
+{% elsif site.production_key == "htcondor_com" %}
+<script async src="https://cse.google.com/cse.js?cx=b60fb7238b713e52e"></script>
+<div class="gcse-searchbox-only"></div>
+{% else %}
+<script async src="https://cse.google.com/cse.js?cx=1056a9a876b1d1474"></script>
+<div class="gcse-searchbox-only"></div>
+{% endif %}
