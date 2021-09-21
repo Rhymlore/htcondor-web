@@ -35,4 +35,5 @@ sass:
 plugins:
   - jekyll-redirect-from
   - jekyll-environment-variables
+  - jekyll-sitemap
 
