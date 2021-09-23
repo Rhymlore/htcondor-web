@@ -24,6 +24,7 @@ $navbar-light-active-color: $primary;
 @import 'bootstrap/nav';
 @import 'bootstrap/transitions';
 @import 'bootstrap/alert';
+@import 'bootstrap/tables';
 @import "custom";
 
 #skip-link {
@@ -45,3 +46,5 @@ $navbar-light-active-color: $primary;
 #skip-link:focus {
   transform: translateY(0%);
 }
+
+pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px; font-family: monospace; }
