@@ -1,16 +1,16 @@
 ---
-layout: default
+layout: container-default
 title: Home
 ---
 
-<div class="row border-bottom pb-2">
+<div class="row pb-2">
     <div class="col-12 col-md-8">
         <h2>Computing with HTCondor&trade;</h2>
         <!-- <img src="images/HTCondor-head.gif" alt="[HTCondor-head]" border="0" align="left"> -->
         <p>
             Our goal is to develop, implement, deploy, and evaluate mechanisms and policies that support <a href="htc.html">High Throughput Computing (HTC)</a> on large collections of distributively owned computing resources. Guided by both the technological and sociological challenges of such a computing environment, the <a href="http://chtc.cs.wisc.edu/">Center for High Throughput Computing</a> at UW-Madison has been building the open source <a href="description.html">HTCondor distributed computing software</a> (pronounced "aitch-tee-condor") and related technologies to enable scientists and engineers to increase their computing throughput.
         </p>
-        <div class="alert alert-danger">
+        <div class="text-danger">
             Note: The HTCondor Software Suite (HTCSS) was known as 'Condor' from 1988 <a href="https://lists.cs.wisc.edu/archive/condor-users/2012-October/msg00110.shtml">until its name changed</a> in 2012.
         </div>
         </p>
@@ -18,14 +18,16 @@ title: Home
         </p>
     </div>
     <div id="#new-container" class="news col-12 col-md-4 mb-2">
-        <h4>Latest News</h4>
+        <div class="p-2 bg-light">
+            <h4>Latest News</h4>
 
-        {% assign news = site.news | sort | reverse %}
-        {% for item in news limit:5 %}
-        {% include news_item.html %}
-        {% endfor %}
+            {% assign news = site.news | sort | reverse %}
+            {% for item in news limit:5 %}
+            {% include news_item.html %}
+            {% endfor %}
 
-        <div class="more"><a href="new.html">More News &raquo;</a></div>
+            <div class="more"><a href="new.html">More News &raquo;</a></div>
+        </div>
     </div>
 </div>
 
@@ -49,7 +51,7 @@ To use, put the html you want in the below in the below capture block.
 {% endcapture %}
 {% include hot_news.html %}
 
-<div class="row">
+<div class="row border-top">
     <div class="col-12 col-md-4 pt-4 ps-4 p-2">
         <h3>Software</h3>
         <ul>
