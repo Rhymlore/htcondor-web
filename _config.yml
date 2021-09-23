@@ -28,6 +28,11 @@ defaults:
       type: "vulnerabilities"
     values:
       layout: vulnerabilities
+  -
+    scope:
+      path: "/news"
+    values:
+      layout: "news"
 
 sass:
   style: compressed

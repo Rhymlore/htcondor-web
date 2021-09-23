@@ -5,7 +5,7 @@ layout: container-default
 <div id="news-container" class="row">
     <div class="col-12">
         <h1>{{ page.title }}</h1>
-        <h2 class="newsDate">{{ page.date | date: "%B %e, %Y"}}</h2>
+        <h4 class="text-muted">{{ page.date | date: "%B %e, %Y"}}</h4>
         {% if page.link %}
         <a href="{{ page.link }}">Associated Link</a>
         {% endif %}

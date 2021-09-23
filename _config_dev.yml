@@ -2,7 +2,3 @@ sass:
   style: expanded
 
 exclude:
-  - _news/
-  - yum/
-  - mw/
-  - classad/
