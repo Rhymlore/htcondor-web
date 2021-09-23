@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: container-default
 title: HTCondor - Install Instructions - EL7 Previous
 ---
 

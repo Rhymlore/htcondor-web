@@ -2,3 +2,4 @@ sass:
   style: expanded
 
 exclude:
+  - _news/
