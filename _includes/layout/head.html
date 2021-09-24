@@ -6,12 +6,12 @@
     <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
+    <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
 
     {% if jekyll.environment == 'production' %}
 
     <meta name="google-site-verification" content="lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ" />
     <link rel="canonical" href="https://htcondor.org{{page.url}}">
-    <script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}" type="text/javascript"></script>
 
     {% if site.google_analytics %}
     {% include analytics.html %}
@@ -20,7 +20,6 @@
     {% else %}
 
     <meta name="robots" content="noindex">
-    <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
 
     {% endif %}
 
