@@ -1,13 +1,10 @@
 ---
-layout: default
-title: HTCondor - BirdBath
+layout: subpage
+title: BirdBath
 ---
 
 <img src="{{ '/assets/images/birdbath.gif' | relative_url }}" align="right" height="239" />
 <a name="top"></a>
-<h1>BirdBath</h1>
-
-<hr noshade>
 
 <!-- Now just status, and no one should be using 6.7.5 anyway...
 <h2>BirdBath Merged</h2>

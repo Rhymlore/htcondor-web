@@ -28,9 +28,14 @@ defaults:
       type: "vulnerabilities"
     values:
       layout: vulnerabilities
+  -
+    scope:
+      path: "/news"
+    values:
+      layout: "news"
 
 sass:
-  style: compact
+  style: compressed
 
 plugins:
   - jekyll-redirect-from

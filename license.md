@@ -1,9 +1,8 @@
 ---
-layout: default
-title: HTCondor - License Information
+layout: subpage
+title: License Information
 ---
 
-<h1>License Information</h1>
 
 <p>
 HTCondor is released under the open source <a href="#apache">Apache License, Version 2.0</a>, reproduced below.

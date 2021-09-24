@@ -1,12 +1,7 @@
 ---
-layout: default
+layout: subpage
 title: HTCondor Manuals
 ---
-
-<h1>HTCondor Manuals</h1>
-
-
-<!-- Page body -->
 
 <p>
     <a href="http://research.cs.wisc.edu/htcondor">HTCondor</a>

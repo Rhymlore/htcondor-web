@@ -1,15 +1,15 @@
 ---
-layout: default
+layout: container-default
 title: HTCondor YUM Repository
 ---
-
-<h1>HTCondor YUM Repository</h1>
 
 <h2>Description</h2>
 
 <p>
     We have a HTCondor YUM repository for
-    installing <a href="http://htcondor.org/">HTCondor</a> and <a href="https://htcondor.github.io/htcondor-ce/">HTCondor-CE</a> on Red Hat Enterprise Linux and compatible distributions (such as CentOS or Scientific Linux). Please see instructions below for supported platforms.
+    installing <a href="http://htcondor.org/">HTCondor</a> and <a href="https://htcondor.github.io/htcondor-ce/">HTCondor-CE</a>
+    on Red Hat Enterprise Linux and compatible distributions (such as CentOS or Scientific Linux). Please see
+    instructions below for supported platforms.
 </p>
 
 <p>
@@ -17,55 +17,72 @@ title: HTCondor YUM Repository
 </p>
 
 <p>
-    <a href="https://htcondor.github.io/htcondor-ce/v5/installation/htcondor-ce/">HTCondor-CE 5 Installation Instructions</a>
+    <a href="https://htcondor.github.io/htcondor-ce/v5/installation/htcondor-ce/">HTCondor-CE 5 Installation
+        Instructions</a>
 </p>
 
 <p>
-    <a href="https://htcondor.github.io/htcondor-ce/v4/installation/htcondor-ce/">HTCondor-CE 4 Installation Instructions</a>
+    <a href="https://htcondor.github.io/htcondor-ce/v4/installation/htcondor-ce/">HTCondor-CE 4 Installation
+        Instructions</a>
 </p>
 
 <p>
-    <a href="https://htcondor.github.io/htcondor-ce/v3/installation/htcondor-ce/">HTCondor-CE 3 Installation Instructions</a>
+    <a href="https://htcondor.github.io/htcondor-ce/v3/installation/htcondor-ce/">HTCondor-CE 3 Installation
+        Instructions</a>
 </p>
 
 <h2 style="clear:both">Repository Installation Instructions</h2>
 
 <p><b>Note:</b> "root" user must be used to perform installation.</p>
-<ol>
 
-    <li>Download and install the YUM repository RPM that matches your operating systems. There is a seperate repository for <b>Current</b> and <b>Stable</b> releases of HTCondor.
+<ol class="mb-3">
+    <li>
+        Download and install the YUM repository RPM that matches your operating systems. There is a seperate repository
+        for <b>Current</b> and <b>Stable</b> releases of HTCondor.
+    </li>
+</ol>
 
-        <br>
-        <br>
-        <table class="striped-spaced" border="5" width="70%">
-            <tbody><tr class="dark-stripe">
-                <th>OS</th>
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>OS</th>
+                    <th>Current Release</th>
+                    <th>Stable Release</th>
+                    <th>Supported Platforms</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Redhat Enterprise Linux 7 and compatible</td>
+                    <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm</td>
+                    <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el7.noarch.rpm</td>
+                    <td>x86_64</td>
+                </tr>
+                <tr>
+                    <td>Redhat Enterprise Linux 8 and compatible</td>
+                    <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm</td>
+                    <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el8.noarch.rpm</td>
+                    <td>x86_64</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-                <th>Current Release</th>
-                <th>Stable Release</th>
+<div class="row">
+    <div class="col-12">
+        <h3>Example</h3>
+        <b>Redhat 7: Install HTCondor's current release</b>
 
-                <th>Supported Platforms</th>
-
-            </tr>
-            <tr class="light-stripe">
-                <td>Redhat Enterprise Linux 7 and compatible</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el7.noarch.rpm</td>
-                <td>x86_64</td>
-            </tr>
-            <tr class="dark-stripe">
-                <td>Redhat Enterprise Linux 8 and compatible</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el8.noarch.rpm</td>
-                <td>https://research.cs.wisc.edu/htcondor/repo/9.0/htcondor-release-current.el8.noarch.rpm</td>
-                <td>x86_64</td>
-            </tr>
-            </tbody></table>
-        <br>
-
-        <b>Example - Redhat 7: Install HTCondor's current release </b>
-
-        <pre>yum install -y https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rpm
-</pre>
+        <pre>
+            <code>yum install -y https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.el7.noarch.rp</code>
+        </pre>
+    </div>
+</div>
 
 
-    </li></ol>
+

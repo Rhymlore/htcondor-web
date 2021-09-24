@@ -1,11 +1,7 @@
 ---
-layout: default
-title: HTCondor - High Throughput Computing
+layout: subpage
+title: High Throughput Computing
 ---
-
-<H2>
-High Throughput Computing (HTC)
-</H2>
 
 <p>
 For many experimental scientists, scientific progress and quality  of

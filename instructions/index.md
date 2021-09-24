@@ -1,9 +1,7 @@
 ---
-layout: default
-title: HTCondor - Install Instructions
+layout: subpage
+title: Install Instructions
 ---
-
-<h1>Install Instructions</h1>
 
 <p>
     HTCondor is in the Debian and Ubuntu repositories as well as Enterprise Linux’s EPEL, but these versions may

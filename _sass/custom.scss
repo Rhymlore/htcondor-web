@@ -1,7 +1,5 @@
 
 div.hotnews {
-        margin: 1em 2em;
-        padding: 0.5em 1em;
         font-size: 120%;
         border: 1px solid rgb(204,204,204);
         text-align: left;
@@ -21,3 +19,15 @@ tr.dark-stripe {
     background-color: #e5e5ff ;
     vertical-align: top;
 }
+
+.word-break-all {
+  word-break: break-all;
+}
+
+a.newsHeading {
+  text-decoration: none;
+}
+a.newsHeading:hover {
+  text-decoration: underline;
+}
+

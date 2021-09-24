@@ -1,12 +1,9 @@
 ---
-title: HTCondor - What is HTCondor?
+layout: subpage
+title: What is HTCondor?
 ---
-<H2>
-What is HTCondor?
-</H2>
+
 <p>
-
-
 HTCondor is a specialized workload management system for compute-intensive
 jobs.  Like other full-featured batch systems, HTCondor provides a job
 queueing mechanism, scheduling policy, priority scheme, resource monitoring,

@@ -1,9 +1,8 @@
 ---
-layout: default
-title: HTCondor - HTCondor Team
+layout: subpage
+title: HTCondor Team
 ---
 
-<h2>HTCondor Team</h2>
 
 <p><img width="1000" src="{{ '/assets/images/team-2021.jpg' | relative_url}}" border="0"></p>
 <p>

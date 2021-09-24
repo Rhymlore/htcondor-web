@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: subpage
 title: Mailing Lists
 ---
 <H2>HTCondor World</H2>
@@ -56,12 +56,11 @@ and htcondor-admin at the same time.</p>
 
 <p>You can subscribe, unsubscribe, and browse the archives
 at the 
-<a
-href="http://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel">HTCondor-devel
-mailing list page</a>.
+<a href="http://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel">
+    HTCondor-devel mailing list page
+</a>.
 Additional ways to search and access the archive is available 
 <a href="http://dir.gmane.org/gmane.comp.distributed.condor.devel">here</a>.
 </p>
 
-<HR NOSHADE>
 

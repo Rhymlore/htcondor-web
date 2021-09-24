@@ -1,0 +1,6 @@
+<script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript"></script>
+{% if jekyll.environment == 'production' %}
+<script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}" type="text/javascript"></script>
+{% else %}
+<script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
+{% endif %}

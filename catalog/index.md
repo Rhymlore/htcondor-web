@@ -1,6 +1,6 @@
 ---
-layout: default
-title: HTCondor - HTCondor ClassAd Catalog
+layout: subpage
+title: ClassAd Catalog
 ---
 
 <h2>HTCondor Standalone ClassAd Catalog</h2>

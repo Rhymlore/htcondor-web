@@ -1,13 +1,8 @@
 ---
-layout: default
-title: HTCondor - Publications
+layout: subpage
+title: Research Publications and Technical Information
 ---
 
-<H2>
-Research Publications and Technical Information
-</H2>
-
-<hr />
 <a href="#overview">Overview</a>&nbsp;&nbsp;&nbsp;
 <a href="#match">Matchmaking and ClassAds</a>&nbsp;&nbsp;&nbsp;
 <a href="#workflow">Workflow and DAGMan</a>&nbsp;&nbsp;&nbsp;

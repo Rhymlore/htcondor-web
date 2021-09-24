@@ -1,0 +1,93 @@
+---
+layout: container-default
+title: Home
+---
+
+<div class="row mb-4">
+    <div class="col-12 col-md-8">
+        <h2>Computing with HTCondor&trade;</h2>
+        <!-- <img src="images/HTCondor-head.gif" alt="[HTCondor-head]" border="0" align="left"> -->
+        <p>
+            Our goal is to develop, implement, deploy, and evaluate mechanisms and policies that support <a href="htc.html">High Throughput Computing (HTC)</a> on large collections of distributively owned computing resources. Guided by both the technological and sociological challenges of such a computing environment, the <a href="http://chtc.cs.wisc.edu/">Center for High Throughput Computing</a> at UW-Madison has been building the open source <a href="description.html">HTCondor distributed computing software</a> (pronounced "aitch-tee-condor") and related technologies to enable scientists and engineers to increase their computing throughput.
+        </p>
+        <div class="text-danger">
+            Note: The HTCondor Software Suite (HTCSS) was known as 'Condor' from 1988 <a href="https://lists.cs.wisc.edu/archive/condor-users/2012-October/msg00110.shtml">until its name changed</a> in 2012.
+        </div>
+        </p>
+        If you are looking for Phoenix Software International's software development and library management system for z/VSE or z/OS, click <a href="http://www.phoenixsoftware.com">here</a>.
+        </p>
+    </div>
+    <div id="#new-container" class="news col-12 col-md-4 mb-2">
+        <div class="p-2 bg-light">
+            <h4>Latest News</h4>
+
+            {% assign news = site.news | sort | reverse %}
+            {% for item in news limit:5 %}
+            {% include news_item.html %}
+            {% endfor %}
+
+            <div class="more"><a href="new.html">More News &raquo;</a></div>
+        </div>
+    </div>
+</div>
+
+{% comment %}
+This is "hotnews" template, used for relatively short lived news we
+want to emphasize, like Condor Week.  Keep it brief and use with care.
+
+To use, put the html you want in the below in the below capture block.
+{% endcomment %}
+{% capture content %}
+<p>
+    <b>European HTCondor Workshop 2021 is coming up, September 20-24</b>
+</p>
+<p>Join us next week for a free online workshop about HTCondor!
+    <b>It is still not too late to register</b> -- so if interested, please hurry up!
+    Some slots for contributed presentations are still available. Please let
+    us know about your projects, experience, plans and issues with HTCondor.
+    To register and/or submit an abstract to be a speaker, visit:
+    <a href="https://indico.cern.ch/e/htcondor2021">https://indico.cern.ch/e/htcondor2021</a>.
+</p>
+{% endcapture %}
+{% include hot_news.html %}
+
+<div class="row border-top">
+    <div class="col-12 col-md-4 pt-4 ps-4 p-2">
+        <h3>Software</h3>
+        <ul>
+            <li><a href="description.html">What is the HTCondor Software Suite (HTCSS)?</a></li>
+            <li><a href="downloads.html"><strong>Downloads</strong></a> including HTCondor source and binaries for Linux, Windows, and Mac.</li>
+            <li><a href="manual/"><strong>Documentation</strong></a> includes <strong><a
+            href="manual/quickstart.html">the Quick Start Guide</a></strong> and the <a href="manual/">HTCondor Manual</a>. Also see <a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes"><strong>HOWTO recipes</strong></a> and <a href="http://vivaldi.ll.iac.es/sieinvens/siepedia/pmwiki.php?n=HOWTOs.CondorSubmitFile">job submission examples</a>.</li>
+            <li><a href="htcondor-support/">Support Options</a> include community and professional solutions.</li>
+            <li><a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=DeveloperReleasePlan">Forthcoming release plans</a></li>
+            <li><a href="license.html">License Information</a></li>
+            <li><a href="security/">Security Information</a></li>
+        </ul>
+    </div>
+
+    <div class="col-12 col-md-4 pt-4 ps-4 p-2 border-start border-end">
+        <h3>Community</h3>
+        <ul>
+            <li><a href="mail-lists/"><strong>Email Lists</strong></a> - ask questions and share experiences with users worldwide.</li>
+            <li><a href="https://agenda.hep.wisc.edu/event/1579/">HTCondor Week</a> is our annual community meeting in Madison, and we often have an annual meeting in Europe as well. <a href="past_condor_weeks.html">Materials from past meetings</a> include talks from science and industry, plus <strong>useful tutorials</strong>.</li>
+            <li><a href="http://condor-wiki.cs.wisc.edu/index.cgi/wiki">HTCondor Wiki</a> contains <a href="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes">FAQs</a>, bug tickets, and more. </li>
+            <!-- <li><a href="http://htcondor.github.com/planet/">Blog Posts</a> aggregated at GitHub from multiple sites.</li> -->
+            <li><a href="logos/">Official Logos</a></li>
+            <!-- <li><a href="talks.html">Slide Presentations</a></li> -->
+        </ul>
+    </div>
+
+    <div class="col-12 col-md-4 pt-4 ps-4 p-2">
+        <h3>Research and Development</h3>
+        <ul>
+            <li><a href="publications.html"><strong>Research Publications</strong></a></li>
+            <li><a href="research.html">HTCondor Technologies</a> including the widely used <a href="classad/classad.html">ClassAd Library</a></li>
+            <li><a href="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=MakingContributions">Information for Developers</a></li>
+            <li><a href="http://chtc.cs.wisc.edu/jobs">Jobs</a> available in support of distributed computing at UW-Madison</li>
+            <li><a href="people.html">The CHTC Team</a> at the UW-Madison, and <a href="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=DeveloperHomePages">a list of code contributors and maintainers.</a></li>
+        </ul>
+    </div>
+</div>
+
+

@@ -1,0 +1,50 @@
+---
+
+---
+
+$primary: #3d5c7a;
+$secondary: #d31145;
+
+$navbar-light-color: $primary;
+$navbar-light-hover-color: lighten($primary, 25);
+$navbar-light-active-color: $primary;
+
+#main-copy {
+  h1, h2, h3, h4 {
+    color: $primary;
+    font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
+  }
+}
+
+
+@import 'bootstrap/bootstrap-grid';
+@import 'bootstrap/bootstrap-utilities';
+@import 'bootstrap/bootstrap-reboot';
+@import 'bootstrap/navbar';
+@import 'bootstrap/nav';
+@import 'bootstrap/transitions';
+@import 'bootstrap/alert';
+@import 'bootstrap/tables';
+@import "custom";
+
+#skip-link {
+  left: 50%;
+  position: absolute;
+  transform: translateY(-100%);
+}
+
+#skip-link {
+  background: $light;
+  height: 30px;
+  left: 50%;
+  padding: 8px;
+  position: absolute;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+#skip-link:focus {
+  transform: translateY(0%);
+}
+
+pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px; font-family: monospace; }
