@@ -1,0 +1,83 @@
+---
+title: How To Config Remote Config
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  HTCondor comes with remote config disabled
+ </strong>
+ <p>
+  This was very intentionally set so only the pool administrators
+can do this. However there are times when you may want to allow
+a limited amount. A case in point leading to this recipe was testing
+a new feature which allows taking a gpu offline.
+ </p>
+ <p>
+  Condor_config_val has two similar options: -set and -rset. The difference
+is that changes down with -set will be visible even after a restart. Both
+can be queried after a condor_reconfig.
+ </p>
+ <p>
+  <strong>
+   Shared config settings
+  </strong>
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ENABLE_RUNTIME_CONFIG = TRUE
+ALLOW_CONFIG = $(FULL_HOSTNAME)
+SETTABLE_ATTRS_CONFIG = MYRSETVAR, MYSETVAR
+</pre>
+ </div>
+ <p>
+  This will allow MYRSETVAR and MYSETVAR to be set with -rset and be viewable
+after a condor_reconfig.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_config_val -startd -rset "MYRSETVAR=5"
+</pre>
+ </div>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -startd
+condor_config_val -startd MYRSETVAR
+</pre>
+ </div>
+ <p>
+  <strong>
+   Persistent config settings
+  </strong>
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ENABLE_RUNTIME_CONFIG = TRUE
+ALLOW_CONFIG = $(FULL_HOSTNAME) # host allowed to remote config
+SETTABLE_ATTRS_CONFIG = MYRSETVAR, MYSETVAR
+ENABLE_PERSISTENT_CONFIG = TRUE
+PERSISTENT_CONFIG_DIR = $(spool)
+</pre>
+ </div>
+ <p>
+  This will allow -set and information needed to allow it to retain
+these values after a restart will be written to the HTCondor spool
+directory. This too will be visible after a condor_reconfig.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_config_val -set "MYSETVAR=5"
+</pre>
+ </div>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -startd
+condor_config_val -startd MYSETVAR
+</pre>
+ </div>
+</div>

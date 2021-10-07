@@ -1,0 +1,35 @@
+---
+title: Building Git Trac
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Summary
+  </h2>
+ </span>
+ git clone /p/condor/repository/condor-cvstrac.git
+ <p>
+  cat condor-cvstrac/README
+ </p>
+ <p>
+  make
+ </p>
+ <p>
+  Installed on condor-websrv-4 (aka htcondor-wiki) in /scratch/gittrac/; the binary itself is in bin/, the CGI wrapper in webroot/, the data in data/
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Rambling
+ </h2>
+ <p>
+  Gittrac (which is really just Cvstrac) is end of lifed, so we're on our own for bug fixes.  In addition, we've wanted features not on the mainline, so we have our own patches.
+ </p>
+ <p>
+  Our version is in a bare git repository at /p/condor/repository/condor-cvstrac.git
+ (CSL).  There is a README file documenting how to build and test it.  Note that we're using a statically linked SQLite.  An attempt in 2012-12 to use a system SQLite caused some queries to fail.  Todd recalls having some problem with the system SQLite prior to that.
+ </p>
+</div>

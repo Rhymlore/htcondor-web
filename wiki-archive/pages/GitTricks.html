@@ -1,0 +1,99 @@
+---
+title: Git Tricks
+layout: wiki-page
+---
+<div id="content">
+ <span class="subsection">
+  <h3>
+   Windows
+  </h3>
+ </span>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Add a splash of color to your git output
+ </h4>
+ <p>
+  For those who grew up with DOS, you'll probably recall the delight when it become possible to color the  terminal characters.  This feature has long since been disabled: as more and more people prefer are using the GUI rather than the command line to do their work.  However, it is still possible to turn those lovely colors back on, if you are so inclined.  To do this, simply add the following line in
+  <code>
+   %SystemDrive%\config.sys
+  </code>
+  (or
+  <code>
+   config.nt
+  </code>
+  for older versions of NT):
+ </p>
+ <p>
+ </p>
+ <pre>  DEVICE=%SystemRoot%\system32\ANSI.SYS
+</pre>
+ <p>
+  That is it.  After you're done reboot and tell git to use colors.  It will now highlight important information for you.  To enable this for all "colorable" git commands, issue the following:
+ </p>
+ <p>
+ </p>
+ <pre>  git config --global color.branch "always"
+</pre>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Whitespace
+ </h3>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Eliminate whitespace from a commit
+ </h4>
+ <p>
+  Imagine your editor converted all spaces to tabs or tabs to spaces. You absolutely do not want to commit such a change. There will be no way to easily tell what you actually changed if every line of a file change a change. When this happens use
+  <code>
+   git diff
+  </code>
+  with the
+  <code>
+   -w
+  </code>
+  and/or
+  <code>
+   -b
+  </code>
+  options to create a patch that does not have your whitespace changes, reset the file you changed to match
+  <code>
+   HEAD
+  </code>
+  and apply your patch.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  In Source Builds
+ </h3>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Hiding build output from git status
+ </h4>
+ <p>
+  Ensure that the only untracked files are files you want hidden from the output of git ignore.  Then use:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">git clean -ndfx | sed 's/^Would remove //' &gt; .git/info/exclude
+</pre>
+ </div>
+ <p>
+  (Untested, based on an email from nwp. Try at your own risk.)
+ </p>
+</div>

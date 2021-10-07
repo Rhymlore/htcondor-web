@@ -1,0 +1,40 @@
+---
+title: Why So Few Jobs On Window
+layout: wiki-page
+---
+<div id="content">
+ Windows is likely to be running out of desktop heap.
+Confirm this to be the case
+by looking in the log for the condor_schedd daemon
+to see if condor_shadow daemons are immediately
+exiting with status 128.
+If this is the case, increase the desktop heap size.
+Open the registry key:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SubSystems\Windows
+</pre>
+ </div>
+ <p>
+  The
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveSharedSection" title="Shared Section">
+    SharedSection
+   </a>
+  </span>
+  value can have three values separated by commas.
+The third value controls the desktop heap size for non-interactive desktops,
+which the HTCondor service uses.
+The default is 512 (Kbytes).
+60 condor_shadow daemons consume about 256 Kbytes,
+hence 120 shadows can run with the default value.
+To be able to run a maximum of 300 condor_shadow daemons,
+set this value at 1280.
+ </p>
+ <p>
+  Reboot the system for the changes to take effect.
+For more information,
+see Microsoft Article Q184802.
+ </p>
+</div>

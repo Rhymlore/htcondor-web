@@ -1,0 +1,121 @@
+---
+title: Manual Entry Guidelines
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   The technical writer's requests
+  </h2>
+ </span>
+ <p>
+  Here's a list of requests, of things to do right when you modify the manual.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Make a local copy, and look at your changes before commiting! Do not make
+someone else fix your Sphinx/rST boo-boos.
+  </li>
+  <li>
+   Run a spell checker over your changes before committing.
+The most common spelling errors (in our manual) run two words together as one.
+"Filesystem" is correctly "file system."
+"Filename" is correctly "file name."
+The noun "setup" (as in "My setup is foo bar!") is one word,
+so please continue using it as one word.
+As a verb, the two-word phrase is to "set up".
+  </li>
+  <li>
+   Do not use contractions!
+They are difficult for readers that do not have English as their first language.
+  </li>
+  <li>
+   Use spaces instead of tabs.
+  </li>
+  <li>
+   When making small changes,
+please do not change the locations of already existing line breaks.
+Removing the line breaks makes it more difficult for others to later identify and check the modifications.
+  </li>
+  <li>
+   If you remove or change a label definition,
+it is your job to check all other parts of the manual to make sure that there
+are no references that depend on the label.
+  </li>
+ </ol>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Here is a list of things that make your technical writer's job easier.
+ </h2>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Place line breaks at the end of sentences and phrases. Yes, this makes the file longer in terms of line numbers. But, it also makes editing easier, since changes are often made at the granularity of sentences.
+  </li>
+  <li>
+   If possible, write using the present tense, with an active voice (not passive voice), and in the third person.
+   <ul>
+    <li>
+     Active voice says "after the job executes" where the passive voice "after the job has executed" means the same thing.
+    </li>
+    <li>
+     "You" and "Your job" are examples of second person; third person examples are "the user that submits a job" and "the job."
+    </li>
+   </ul>
+  </li>
+ </ol>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  on Word Choice
+ </h2>
+ <p>
+  Several new terms have come into common usage when we talk to each other. However, some of these terms are not real words, and others are improperly used. Here are two examples that your technical writer continually removes from the manual (so stop using them!).
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <em>
+    config
+   </em>
+   is not a word. If you think you want to use this term, then instead use
+   <strong>
+    configure
+   </strong>
+   if you wanted a verb, or use
+   <strong>
+    configuration
+   </strong>
+   if you wanted a noun.
+  </li>
+  <li>
+   <em>
+    deprecate
+   </em>
+   has cult-following status among those who use it. Unfortunately, the dictionary defines it with "to express disapproval of" or "depreciate."
+   <ul>
+    <li>
+     <em>
+      Karen deprecates the use of the word "deprecate".
+     </em>
+     is a correct usage.
+    </li>
+    <li>
+     <em>
+      Karen desperately wants to deprecate the word "deprecate" from the manual.
+     </em>
+     is an incorrect usage.
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>

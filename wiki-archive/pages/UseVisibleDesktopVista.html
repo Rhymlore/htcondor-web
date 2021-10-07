@@ -1,0 +1,203 @@
+---
+title: Use Visible Desktop Vista
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to run Windows GUI jobs on the visible desktop
+  </h2>
+ </span>
+ <p>
+  <strong>
+   Note: In Windows 10, build 1703 and later this feature no longer works
+  </strong>
+  because the "Interactive Services Detection" service was removed in that Windows release.
+ </p>
+ <p>
+  HTCondor is able to run GUI-based applications on the Windows operating system, so long as these applications do not block waiting for keyboard or mouse input (i.e. the GUI application must be able to run as a batch job).  How this works is HTCondor dynamically creates a non-visible desktop for each slot on the execute node, and it will launch the job on this non-visible desktop.  The result is the GUI job runs on the machine without windows popping up on the visible desktop, thus allowing a GUI job to effectively "run in the background" without disturbing the desktop user.
+ </p>
+ <p>
+  However, at times you may want HTCondor to run your GUI job on the visible desktop.  For instance, perhaps you have a GUI job that appears to hang or otherwise fail - what could be happening is the job detected some problem and popped up an error window, but the only way to see this error window is to have the job run on the visible desktop.  To accomplish this, as the system administrator you will need to 1) tell Windows to allow the HTCondor service to access the visible desktop if you are running on Windows Vista or above, and then 2) tell HTCondor to use the visible desktop.
+ </p>
+ <p>
+  The basic steps are
+ </p>
+ <ol>
+  <li>
+   Start the
+   <code>
+    Interactive Services Detection
+   </code>
+   service
+  </li>
+  <li>
+   Enable
+   <em>
+    Allow service to interact with desktop
+   </em>
+   for the condor service
+  </li>
+  <li>
+   set
+   <code>
+    USE_VISIBLE_DESKTOP=True
+   </code>
+   in your condor_config and restart the condor service
+  </li>
+ </ol>
+ <p>
+  The first two steps are accomplished via the Windows Services Management Console.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Open the Services Management Console:
+   <p>
+   </p>
+   <ol>
+    <li>
+     Click on the
+     <em>
+      Start Menu
+     </em>
+    </li>
+    <li>
+     Open the
+     <strong>
+      Control Panel
+     </strong>
+    </li>
+    <li>
+     Select
+     <em>
+      Administrative Tools
+     </em>
+    </li>
+    <li>
+     Select
+     <em>
+      Services
+     </em>
+    </li>
+   </ol>
+  </li>
+ </ul>
+ <p>
+  [ note: If the
+  <em>
+   Services
+  </em>
+  option is missing, you could also type "start services.msc" from a command prompt ]
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Enable interactive services using Services Management Console:
+   <p>
+   </p>
+   <ol>
+    <li>
+     Find the
+     <strong>
+      Interactive Services Detection
+     </strong>
+     service
+    </li>
+    <li>
+     Bring up its properties by double-clicking on it
+    </li>
+    <li>
+     Change the
+     <em>
+      Startup type
+     </em>
+     to
+     <strong>
+      Automatic
+     </strong>
+    </li>
+    <li>
+     Click on the
+     <em>
+      Start
+     </em>
+     button below the
+     <em>
+      Service status
+     </em>
+     label
+    </li>
+    <li>
+     Click
+     <em>
+      OK
+     </em>
+    </li>
+   </ol>
+   <p>
+   </p>
+  </li>
+  <li>
+   Make the HTCondor service interactive using Services Management Console:
+   <p>
+   </p>
+   <ol>
+    <li>
+     Find the
+     <strong>
+      condor
+     </strong>
+     service
+    </li>
+    <li>
+     Bring up its properties by double-clicking on it
+    </li>
+    <li>
+     Switch to the
+     <em>
+      Log On
+     </em>
+     page
+    </li>
+    <li>
+     Check the
+     <em>
+      Allow service to interact with desktop
+     </em>
+     option
+    </li>
+    <li>
+     Click
+     <em>
+      OK
+     </em>
+    </li>
+   </ol>
+   <p>
+   </p>
+  </li>
+  <li>
+   Tell HTCondor to use the visible desktop:
+   <p>
+   </p>
+   <ol>
+    <li>
+     Add
+     <code>
+      USE_VISIBLE_DESKTOP=True
+     </code>
+     to your condor_config
+    </li>
+    <li>
+     Restart the HTCondor service via "net stop condor" followed by "net start condor"
+    </li>
+   </ol>
+  </li>
+ </ul>
+ <p>
+  Thanks to Ben Burnett for this information which was copied from his original post on his Wiki -http://ben.versionzero.org/wiki/Condor_Enable_Visible_Desktop_on_Vista
+ </p>
+</div>

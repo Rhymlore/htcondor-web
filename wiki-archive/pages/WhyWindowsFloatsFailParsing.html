@@ -1,0 +1,93 @@
+---
+title: Why Windows Floats Fail Parsing
+layout: wiki-page
+---
+<div id="content">
+ HTCondor assumes that all floating point numbers are of the form x.y, which,
+depending on a computer's current locale, may not always be the case. This
+problem occurs even if HTCondor is running under an account that has had the
+locale configured correctly.  The problem lies in the template user account
+which is used to create HTCondor's dynamic accounts. Even if the entire
+system is configured to use a new locale, this template account seems to
+retain the original system locale. The following steps can be used fix
+this problem.
+ <p>
+  To create a default user profile, you must be logged on as
+Administrator or be a member of the Administrators group.
+Create a new user profile for all new user accounts on a computer to be
+based on. To create subsequent profiles, you can use the new user account
+as a template. Here is how to use the new user profile as a template account
+to use as a new user's profile:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Log on to the computer as the new user, and customize the
+desktop if appropriate.
+  </li>
+  <li>
+   Optionally, install and configure any applications to be shared
+by user accounts made from this template.
+  </li>
+  <li>
+   Log off, and then log on as the Administrator.
+  </li>
+  <li>
+   In the Control Panel}, open the System Control Panel
+ applet.
+  </li>
+ </ol>
+ <p>
+  *: On Vista click on the
+ Advanced system settings Task listed in the left pane.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   On the Advanced tab, under User Profiles,
+click Settings.
+  </li>
+  <li>
+   Under Profiles stored on this computer, select the user
+you created to be the template, and then click Copy To}.
+  </li>
+  <li>
+   To create the default user profile for the computer, type the path
+to the default user:
+  </li>
+ </ol>
+ <p>
+  *: On Windows 2000: %WinDir%\Profiles\Default;
+ *: On Windows XP: %SystemDrive%\Documents and Settings\Defualt;
+ *: On Vista: %SystemDrive%\Users\Default.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   In the Copy To dialog box, under Permitted to use,
+click Change.
+  </li>
+  <li>
+   In the Select User or Group dialog box, in the
+Enter the object name to select text box, type: Everyone
+and click OK.
+  </li>
+  <li>
+   Click OK to dismiss the Copy To dialog box.
+  </li>
+  <li>
+   Click OK again to dismiss the User Profiles dialog box.
+  </li>
+  <li>
+   Finally, click OK one last time to dismiss the
+System Properties dialog.
+  </li>
+ </ol>
+ <p>
+  If HTCondor has already created some dynamic accounts, you will need to remove
+them so that HTCondor can re-create them with the new template account.
+ </p>
+</div>

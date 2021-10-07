@@ -1,0 +1,55 @@
+---
+title: Why Is My Job Preempted
+layout: wiki-page
+---
+<div id="content">
+ There are four circumstances under which HTCondor may evict a job.
+They are controlled by different expressions.
+ <p>
+  Reason number 1 is the user priority:
+controlled by the Attribute PREEMPTION_REQUIREMENTS
+expression in the configuration file.
+If there is a job from a higher priority user sitting idle,
+the condor_negotiator daemon may evict
+a currently running job submitted from a lower priority user if
+PREEMPTION_REQUIREMENTS is True.For more on user priorities,
+see the Priorities and
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveUserPrio" title="User Prio">
+    UserPrio
+   </a>
+  </span>
+  sections of the manual.
+ </p>
+ <p>
+  Reason number 2 is the owner (machine) policy:
+controlled by the PREEMPT expression in the configuration file.
+When a job is running and the PREEMPT expression
+evaluates to True,
+the condor_startd will evict the job.
+The PREEMPT expression should reflect
+the requirements under which the machine owner will not permit
+a job to continue to run.
+For example, a policy to evict a currently running job when a key is hit
+or when it is the 9:00am work arrival time,
+would be expressed in the PREEMPT expression
+and enforced by the condor_startd.
+ </p>
+ <p>
+  Reason number 3 is the owner (machine) preference:
+controlled by the RANK expression in the
+configuration file (sometimes called the startd rank or machine rank).
+The RANK expression is evaluated as a floating point number.
+When one job is running, a second idle job that evaluates to a higher
+RANK value
+tells the condor_startd to prefer the second job over the first.
+Therefore, the condor_startd will evict the first
+job so that it can start running the second (preferred) job.
+ </p>
+ <p>
+  Reason number 4 is if HTCondor is to be shutdown:
+on a machine that is currently running a job.
+HTCondor evicts the currently running job before proceeding
+with the shutdown.
+ </p>
+</div>

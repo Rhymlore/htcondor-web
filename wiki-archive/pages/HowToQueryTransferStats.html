@@ -1,0 +1,70 @@
+---
+title: How To Query Transfer Stats
+layout: wiki-page
+---
+<div id="content">
+ For any of the
+ <code>
+  condor_status
+ </code>
+ queries below, you can pass
+ <code>
+  -direct &lt;name&gt;
+ </code>
+ to get the result directly from a given schedd rather than from the collector.
+ <p>
+  To find out how many jobs are waiting to transfer output
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -schedd -af:ln Name TransferQueueMaxDownloading TransferQueueNumDownloading TransferQueueNumWaitingToDownload
+TransferQueueDownloadWaitTime
+</pre>
+ </div>
+ <p>
+  To find out how many jobs are waiting to transfer input
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -schedd -af:ln Name TransferQueueMaxUploading TransferQueueNumUploading TransferQueueNumWaitingToUpload
+TransferQueueUploadWaitTime
+</pre>
+ </div>
+ or
+ <div class="code">
+  <pre class="code">condor_status -direct &lt;name&gt; -schedd -long | sort | egrep "Name|Upload|Download"
+</pre>
+ </div>
+ <p>
+  To find out which jobs are uploading or waiting to upload. Note
+this query only works for jobs that have never run anywhere before.
+ </p>
+ <div class="code">
+  <pre class="code">condor_q -const 'JobStatus==2 &amp;&amp; JobCurrentStartExecutingDate=?=undefined'</pre>
+ </div>
+ <p>
+  To find out which jobs are downloading.
+ </p>
+ <div class="code">
+  <pre class="code">condor_q -const 'JobStatus==6'</pre>
+ </div>
+ <p>
+  To find out what percentage of time your jobs are transferring data vs. executing.
+ </p>
+ <p>
+  over the lifetime of the schedd
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -schedd -af Name 'JobsAccumPreExecuteTime*100.0/JobsAccumExecuteTime' 'JobsAccumPostExecuteTime*100.0/JobsAccumExecuteTime'</pre>
+ </div>
+ <p>
+  over the last
+  <code>
+   RECENT_WINDOW_MAX
+  </code>
+  seconds
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -schedd -af Name 'RecentJobsAccumPreExecuteTime*100.0/RecentJobsAccumExecuteTime' 'RecentJobsAccumPostExecuteTime*100.0/RecentJobsAccumExecuteTime'</pre>
+ </div>
+</div>

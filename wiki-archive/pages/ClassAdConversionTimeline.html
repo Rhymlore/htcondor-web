@@ -1,0 +1,287 @@
+---
+title: Class Ad Conversion Timeline
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   New ClassAd Conversion TimeLine
+  </h2>
+ </span>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Benchmarks
+ </h3>
+ <p>
+  See ticket
+  <span class="ticket">
+   <a class="resolved" href="tktview?tn=227" title="Benchmark new classads vs. old">
+    #227
+   </a>
+  </span>
+  for details on this work.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   A benchmark that instantiates N classads, adds A attributes into it, and then deletes them. Compare execution time and size b/w new and old classads.
+   <ul>
+    <li>
+     <em>
+      Nick
+     </em>
+     <strong>
+      DONE
+     </strong>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   A benchmark that instantiates N classads, then does a constraint evaluation on all of them. Compare execution time and size b/w new and old classads.
+   <ul>
+    <li>
+     <em>
+      Nick
+     </em>
+     <strong>
+      DONE
+     </strong>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Grab the output of condor_status -l off one of the collectors (?) on a pool to get all the machine classads in the pool into a text file. Suck this up into a program which instantiates a classad for each of these machines. (Maybe make 10 instances of classads for each machine to magnify results). Check memory footprint; compare b/w new and old classads.
+   <ul>
+    <li>
+     <em>
+      Nick
+     </em>
+     <strong>
+      Done
+     </strong>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Similarly with a job queue, grab the job classads, and suck them into a program which instantiates classads for each job in the text file. (Magnify as needed). Check memory footprint; compare b/w new and old classads.
+   <ul>
+    <li>
+     <em>
+      Nick
+     </em>
+     <strong>
+      Done
+     </strong>
+    </li>
+   </ul>
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Analyze data, determine whether to procede or not
+ </h3>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Monday, June 1, 2009: All of FW?
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Conversion
+ </h3>
+ <span class="wiki">
+  <a href="wiki-archiveClassAdConversionTimeDetailedEstimates" title="Class Ad Conversion Time Detailed Estimates">
+   Detailed time estimates for individual {quote:ClassAd} methods
+  </a>
+ </span>
+ are also available.
+ <span class="wiki">
+  <a href="wiki-archiveClassAdConversionTodo" title="Class Ad Conversion Todo">
+   The ClassAd conversion TODO
+  </a>
+ </span>
+ has more details on these individual blocks.
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Pre-Flag Day Tasks
+ </h4>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Complete round 1 of performance upgrades to new
+   <span class="quote">
+    ClassAds
+   </span>
+   [ ]: Will, Nick
+June 8
+   <p>
+   </p>
+  </li>
+  <li>
+   Scrub through old
+   <span class="quote">
+    ClassAds
+   </span>
+   for other hidden / unknown features [1 day]: Will
+June 9
+   <p>
+   </p>
+  </li>
+  <li>
+   Compatibility functions block
+   <span class="quote">
+    #1
+   </span>
+   [3 days]: Nick, Jaime
+   <ul>
+    <li>
+     June 8
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Compatibility functions block
+   <span class="quote">
+    #2
+   </span>
+   [4 days]: Nick, Jaime, Will
+   <ul>
+    <li>
+     June 10
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Write helper functions for these methods which we can't emulate transparently [4 hours]: Will
+   <ul>
+    <li>
+     June 11
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Add
+   <span class="quote">
+    ClassAds
+   </span>
+   functions that are in old
+   <span class="quote">
+    ClassAds
+   </span>
+   but not in new
+   <span class="quote">
+    ClassAds
+   </span>
+   [2 days]: Nick
+   <ul>
+    <li>
+     June 12
+    </li>
+   </ul>
+  </li>
+ </ol>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Flag Day Tasks
+ </h4>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Change most or all references to
+   <span class="quote">
+    ClassAd
+   </span>
+   and
+   <span class="quote">
+    AttrList
+   </span>
+   with
+   <span class="quote">
+    CompatClassAd
+   </span>
+   [4 hours]: Jaime, Will
+   <ul>
+    <li>
+     June 15
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Swap in Varghese's new
+   <span class="quote">
+    ClassAdList
+   </span>
+   class [?]: Jaime
+   <ul>
+    <li>
+     June 16
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Fix up the one or two callsites in matchmaker.cpp that move an ad from one
+   <span class="quote">
+    ClassAdList
+   </span>
+   to another [4 hours]: Will
+   <ul>
+    <li>
+     June 17
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Fix up remaining callsites [5 days]: Nick, Jaime, Will
+   <ul>
+    <li>
+     June 23
+    </li>
+   </ul>
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Other items revealed in testing
+ </h3>
+</div>

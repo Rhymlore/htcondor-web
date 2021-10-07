@@ -1,0 +1,144 @@
+---
+title: Adding Metaknobs
+layout: wiki-page
+---
+<div id="content">
+ To add a metaknob, edit
+ <strong>
+  param_info.in
+ </strong>
+ , and Search for $FEATURE, (it's near the bottom). metaknobs are mostly ordered by their category: $ROLE, $FEATURE, $SECURITY, etc.
+ <p>
+  Your probably should probably be declared as a $FEATURE knob, so search for that.
+ </p>
+ <p>
+  The perl script that parses param_info.in knows that something is a metaknob because the name begins with $. The code that uses metaknobs expects that they will be declared in the param_info.in as $&lt;category&gt;.&lt;knob&gt;.  Where categories can be added arbitrarily, (but not discovered).  So you should be reluctant to add new categories.
+ </p>
+ <p>
+  Metaknobs usually have multiline values, but this is not required.
+ </p>
+ <p>
+  As of 8.5.6 metaknobs can have arguments, which opens exciting new possibilities.
+see
+  <a class="external" href="https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=5739,0">
+   https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=5739,0
+  </a>
+ </p>
+ <p>
+  In metaknob statements any $(arg) where arg starts with a digit will be substituted as the
+  <strong>
+   use
+  </strong>
+  line is parsed. (valid param names can't start with a digit). The substitutions are
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    $(0)
+   </code>
+   all of the args
+  </li>
+  <li>
+   <code>
+    $(0?)
+   </code>
+   1 if any arguments, 0 if no arguments
+  </li>
+  <li>
+   <code>
+    $(0#)
+   </code>
+   the number of arguments (i.e. the number of commas+1)
+  </li>
+  <li>
+   <code>
+    $(1)
+   </code>
+   the first argument
+  </li>
+  <li>
+   <code>
+    $(1?)
+   </code>
+   1 if the first argument is non-empty, 0 if it is empty
+  </li>
+  <li>
+   <code>
+    $(1+)
+   </code>
+   all of the arguments, starting with the first one. equivalent to
+   <code>
+    $(0)
+   </code>
+  </li>
+  <li>
+   <code>
+    $(2)
+   </code>
+   the second argument
+  </li>
+  <li>
+   <code>
+    $(2?)
+   </code>
+   1 if the second argument is non-empty, 0 if it is empty
+  </li>
+  <li>
+   <code>
+    $(2+)
+   </code>
+   all of the arguments, starting with the second one
+  </li>
+  <li>
+   <code>
+    $(3)
+   </code>
+   the third argument
+  </li>
+  <li>
+   etc
+  </li>
+ </ul>
+ <p>
+  For instance. The
+  <code>
+   FEATURE : PerodicCronHook
+  </code>
+  metaknob is declared thus:
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">from param_info.in</pre>
+  <pre class="snip">[$FEATURE.PeriodicCronHook]
+friendly_name=Configure a Periodic Cron Hook, args: STARTD_CRON | SCHEDD_CRON , tag, period, exe [,hook_args]
+default : @end
+   $(1)_JOBLIST=$($(1)_JOBLIST) $(2)
+   $(1)_$(2)_MODE=Periodic
+   $(1)_$(2)_PERIOD=$(3)
+   $(1)_$(2)_EXECUTABLE=$(4)
+   if $(5?)
+     $(1)_$(2)_ARGS=$(5)
+   endif
+@end
+</pre>
+ </div>
+ <p>
+  And the
+  <code>
+   FEATURE : StartdCronPeriodic
+  </code>
+  metaknob uses it. it is declared
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">from param_info.in</pre>
+  <pre class="snip">[$FEATURE.StartdCronPeriodic]
+friendly_name=Configure a STARTD Cron periodic Hook, args: tag, period, exe [, hook_args]
+default = use FEATURE : PeriodicCronHook(STARTD_CRON, $(0))
+{snip}
+
+</pre>
+ </div>
+</div>

@@ -1,0 +1,90 @@
+---
+title: How To Use Config Script To Indicate Pre Installed Software
+layout: wiki-page
+---
+<div id="content">
+ Known to work with version 8.2
+ <p>
+  If you want each machine that has the special software installed to advertise its availability in its machine
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  ; and you want to
+  <strong>
+   detect
+  </strong>
+  availability in your configuration, you can do this with a config script in HTCondor 8.2 and later.  (prior to 8.2 you must use STARTD Cron)
+ </p>
+ <p>
+  Lets say you want to use the attribute
+  <code>
+   HAS_PYTHON
+  </code>
+  in to indicate that the machine has python installed. Then you could use the following configuration
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">STARTD_ATTRS = HAS_PYTHON $(STARTD_ATTRS)
+include command : $(LIBEXEC)/check_for_python.cmd
+</pre>
+ </div>
+ <p>
+  With tools The current directory can vary so the path to the script must be absolute.  (you can avoid running the script for tools by using the alternate configuration at the bottom of this page)
+ </p>
+ <p>
+  The script must write lines in config syntax to stdout, so in bash check_for_python.cmd it might be written as
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+# check for my python, and write config statements if we find it.
+if [ -e /usr/bin/python ]; then echo HAS_PYTHON=true; fi
+</pre>
+ </div>
+ <p>
+  In Windows batch language the check_for_python.cmd script might be
+ </p>
+ <div class="code">
+  <pre class="code">@echo off
+REM check the registry for python, and write config statements if we find it.
+reg query HKLM\Software\Wow6432Node\Python\PythonCore\2.7\InstallPath /ve 2&gt;NUL 1&gt;NUL &amp;&amp; echo HAS_PYTHON=true
+</pre>
+ </div>
+ <p>
+  Because the
+  <code>
+   check_for_python.cmd
+  </code>
+  script will be executed each time any HTCondor daemon starts or is reconfigured, and any time a HTCondor tool such as condor_status is run, you may want to configure the script to run only in the STARTD.
+ </p>
+ <p>
+  You can do this by wrapping the above configuration statements in an if block like this.
+  <strong>
+   use this configuration instead
+  </strong>
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">if $(IsStartd)
+  STARTD_ATTRS = HAS_PYTHON $(STARTD_ATTRS)
+  include command : $(LIBEXEC)/check_for_python.cmd
+endif
+</pre>
+ </div>
+ <p>
+  You should be aware, if you use the above configuration with if/endif.  Then the script will not execute when you run
+  <code>
+   condor_config_val
+  </code>
+  unless you pass it the
+  <code>
+   -subsystem startd
+  </code>
+  argument.
+ </p>
+</div>

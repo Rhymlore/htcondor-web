@@ -1,0 +1,117 @@
+---
+title: How To Suspend Jobs With Admin
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to suspend jobs with an administative command
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  By running a command, you can suspend jobs running under HTCondor across the entire pool or portions of it.  The following shell script is an example of how to do this.  The necessary configuration changes are documented at the top of the script.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+
+# Author: Dan Bradley &lt;dan@hep.wisc.edu&gt;
+# Date: 2007-12-21
+
+#
+# Example HTCondor configuration required to make this script work:
+# (You need to restart HTCondor to enable runtime config modification.)
+#
+# SuspendedByAdmin = False
+# SETTABLE_ATTRS_ADMINISTRATOR = SuspendedByAdmin
+# ENABLE_RUNTIME_CONFIG = True
+#
+# START = ($(START)) &amp;&amp; SuspendedByAdmin =!= True
+# WANT_SUSPEND = ($(WANT_SUSPEND)) || SuspendedByAdmin =?= True
+# SUSPEND = ($(SUSPEND)) || SuspendedByAdmin =?= True
+# CONTINUE = ($(CONTINUE)) &amp;&amp; SuspendedByAdmin =!= True
+
+
+PrintUsage() {
+  echo "USAGE: $0 OPTIONS"
+  echo
+  echo "Suspend/unsuspend jobs on GLOW.  This depends on the HTCondor"
+  echo "configuration doing the right thing when SuspendedByAdmin"
+  echo "is remotely modified by this script."
+  echo
+  echo "OPTIONS:"
+  echo "  --site=X       (GLOW site name)"
+  echo "  --constraint=X (arbitrary ClassAd constraint)"
+  echo "  --unsuspend    (remove suspension state set previously)"
+  echo "  --dry-run      (don't do anything; just show what would have been done)"
+  echo "  --status       (show suspension state)"
+  exit 2
+}
+
+OPTS=`getopt -o "h" -l "help,site:,constraint:,unsuspend,dry-run,status" -- "$@"`
+if [ $? -ne 0 ]; then PrintUsage; fi
+
+eval set -- "$OPTS"
+
+SITE=
+SUSPEND=True
+DRY_RUN=
+CONSTRAINT=
+STATUS=
+
+while [ ! -z "$1" ]
+do
+  case "$1" in
+    -h) PrintUsage;;
+    --help) PrintUsage;;
+    --site) shift; SITE=$1;;
+    --constraint) shift; CONSTRAINT=$1;;
+    --unsuspend) SUSPEND=False;;
+    --dry-run) DRY_RUN="echo dry-run:";;
+    --status) STATUS=1;;
+    --) shift; break;;
+    *) echo "Unexpected option $1"; PrintUsage;;
+  esac
+  shift
+done
+
+if ! [ -z "$SITE" ]; then
+  if ! [ -z "$CONSTRAINT" ]; then
+    CONSTRAINT="$CONSTRAINT &amp;&amp; "
+  fi
+  CONSTRAINT="${CONSTRAINT}Site =?= \"${SITE}\""
+fi
+
+if ! [ -z "$STATUS" ]; then
+  condor_status -constraint "$CONSTRAINT" -f "%s " Name -f "SuspendedByAdmin=%s" SuspendedByAdmin -f "\n" NewLine
+  exit 0
+fi
+
+if [ -z "$CONSTRAINT" ]; then
+  echo "You must specify --constraint or --site."
+  exit 2
+fi
+
+if [ "$SUSPEND" = "True" ]; then
+  action=Suspending
+else
+  action=Unsuspending
+fi
+
+echo "$action jobs on machines matching constraint $CONSTRAINT"
+
+condor_status -constraint "$CONSTRAINT" -f "%s\n" Machine | sort | uniq  |
+  while read HOST; do
+    [ -z "$HOST" ] &amp;&amp; continue;
+
+    echo $action $HOST
+    $DRY_RUN condor_config_val -startd -name $HOST -rset SuspendedByAdmin=$SUSPEND
+    $DRY_RUN condor_reconfig $HOST
+  done
+</pre>
+ </div>
+</div>

@@ -1,0 +1,42 @@
+---
+title: Why Does My Window Program Not Run
+layout: wiki-page
+---
+<div id="content">
+ First, make sure that the program really does work
+outside of HTCondor under Windows,
+that the disk is not full,
+and that the system is not out of user resources.
+ <p>
+  As the next consideration,
+know that
+some Windows programs do not run properly because they are dynamically linked,
+and they cannot find the .dll files that they depend on.
+HTCondor sets the PATH to be empty whenrunning a job.
+To avoid these difficulties, do one of the following
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   statically link the application
+  </li>
+  <li>
+   wrap the job in a script that sets up the environment
+  </li>
+  <li>
+   submit the job from a correctly-set environment with the command
+   <div class="code">
+    <pre class="code">getenv = true
+</pre>
+   </div>
+  </li>
+ </ol>
+ <p>
+  in the submit description file. This will copy your environment into the job's environment.
+ </p>
+ <p>
+  Finally, send the required .dll files along with the job
+using the submit description file command transfer_input_files.
+ </p>
+</div>

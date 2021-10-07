@@ -1,0 +1,90 @@
+---
+title: Run Cmd
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  runcmd for system calls
+ </strong>
+ <p>
+  This call is a robust tool for passing requests not to
+"system" from Perl but to "IPC::Open3::open3";
+ </p>
+ <p>
+  Everything you need to use it is in CondorUtils.pm
+and a sample usage script is in condor_tests/run_cmd.pl.
+It is used in all the key testing Perl modules and batch_test.pl
+ </p>
+ <p>
+  Calling it in its basic form is only different from "system"
+in spelling:
+ </p>
+ <p>
+  system("ps -ef");
+  <br/>
+  runcmd("ps -ef");
+  <br/>
+ </p>
+ <p>
+  However the behavior is quite different as is the return. Runcmd
+takes an optional hash after the string allowing you to control
+its default behaviors. Additionally it returns a reference to a hash
+containing an assortment of things.
+ </p>
+ <p>
+  There is an alternate calling method. For places already expecting
+to check the return code you can still use it by calling:
+ </p>
+ <p>
+  my $ret = verbose_system("ps -ef");
+ </p>
+ <p>
+  Both of these function accept an optional hash of args.
+ </p>
+ <p>
+  The four default behaviors and their defaults are:
+ </p>
+ <p>
+  expect_result                      PASS
+  <br/>
+  die_on_failed_expectation          TRUE
+  <br/>
+  emit_output                        TRUE
+  <br/>
+  use_system                         FALSE
+  <br/>
+ </p>
+ <p>
+  There are a number of predefined results which you can pass in
+in this form:
+ </p>
+ <p>
+  runcmd("ls",{expect_result=&gt;\&amp;FAIL});
+ </p>
+ <p>
+  PASS, FAIL, ANY, SIGNALED or SIGNAL.
+ </p>
+ <p>
+  If you'd like it quiet unless there is a failed expectation....
+ </p>
+ <p>
+  runcmd("ls",{expect_result=&gt;\&amp;FAIL,emit_output=&gt;0});
+ </p>
+ <p>
+  Returns a reference to a hash filled as follows:
+ </p>
+ <p>
+  $returnthings{"signal"} = $signal;
+  <br/>
+  $returnthings{"success"} = $rc;
+  <br/>
+  $returnthings{"exitcode"} = $rc;
+  <br/>
+  $returnthings{"stdout"} = \@outlines;
+  <br/>
+  $returnthings{"stderr"} = \@errlines;
+  <br/>
+  $returnthings{"expectation"} = $expected;
+  <br/>
+ </p>
+</div>

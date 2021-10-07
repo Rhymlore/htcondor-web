@@ -1,0 +1,105 @@
+---
+title: How To Avoid Job Restarts
+layout: wiki-page
+---
+<div id="content">
+ Known to work with version 7.4.0
+ <p>
+  By default, HTCondor manages jobs under the assumption that the user wants them to be run as many times as necessary in order to successfully finish.  If all goes well, this means the job will only run once.  However, various failures can require that the job be restarted in order to succeed.  Examples of such failures include:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   execute machine crashes while job is running
+  </li>
+  <li>
+   submit machine crashes while job is running and does not reconnect to job before the job lease expires
+  </li>
+  <li>
+   job is evicted by condor_vacate, PREEMPT, or is preempted by another job
+  </li>
+  <li>
+   output files from job fail to be transferred back to submit machine
+  </li>
+  <li>
+   input files fail to be transferred
+  </li>
+  <li>
+   network failures between execute and submit machine
+  </li>
+ </ul>
+ <p>
+  In some cases, it is desired that jobs
+  <em>
+   not
+  </em>
+  be restarted.  The user wants HTCondor to try to run the job once, and if this attempt fails for any reason, it should not make a second attempt.  To achieve this, the following can be put in the job's submit file:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>requirements = NumJobStarts == 0
+periodic_remove = JobStatus == 1 &amp;&amp; NumJobStarts &gt; 0
+</pre>
+ </div>
+ <p>
+  Note that this does not
+  <em>
+   guarantee
+  </em>
+  that HTCondor will only start the job once.  The
+  <code>
+   NumJobStarts
+  </code>
+  job attribute is updated shortly after the job starts running.  Various types of failures can result in the job starting without this attribute being updated (e.g. network failure between submit and execute machine).  By setting SHADOW_LAZY_QUEUE_UPDATE=false, the window of time between the job starting and the update of
+  <code>
+   NumJobStarts
+  </code>
+  can be decreased, but this still does not provide a guarantee that the job will never be started more than once.  This policy is therefore to start the job at least once, and, with best effort but no strong guarantee, not more than once.  As usual, HTCondor
+  <em>
+   does
+  </em>
+  provide a strong guarantee that the job is never running more than once at the same time.
+ </p>
+ <p>
+  Instead of
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveNumJobStarts" title="Num Job Starts">
+    NumJobStarts
+   </a>
+  </span>
+  , you can flag off of several over attributes that are incremented when a job starts up:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveNumShadowStarts" title="Num Shadow Starts">
+     NumShadowStarts
+    </a>
+   </span>
+   - Incremented when the condor_shadow starts, but before the job has started.  Guarantees that a job will run at most once, but it a problem occurs between the shadow starting and the job starting, the job will never run.
+  </li>
+  <li>
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveNumJobMatches" title="Num Job Matches">
+     NumJobMatches
+    </a>
+   </span>
+   -
+  </li>
+  <li>
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveJobRunCount" title="Job Run Count">
+     JobRunCount
+    </a>
+   </span>
+   -
+  </li>
+ </ul>
+ <p>
+  Search terms: run once and only once, one, single
+ </p>
+</div>

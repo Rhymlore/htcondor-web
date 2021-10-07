@@ -1,0 +1,19 @@
+---
+title: Dag Noop Nodes
+layout: wiki-page
+---
+<div id="content">
+ Currently nodes that are declared NOOPs in the DAG file (as opposed to in the submit file) do not have their jobs submitted to HTCondor.  This means that DAGMan writes "fake" submit (and execute?) and terminated events to the workflow log, so that DAG recovery will work.
+ <p>
+  Miron wants to change this -- I think partly because he doesn't like DAGMan writing events, and partly just to make things more consistent (see
+  <span class="ticket">
+   <a class="active" href="tktview?tn=5480" title="Actually submit DAG-level NOOP jobs">
+    #5480
+   </a>
+  </span>
+  ), but it hasn't been done yet because it's a fairly major change.
+ </p>
+ <p>
+  (More info needed here...)
+ </p>
+</div>

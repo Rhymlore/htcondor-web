@@ -1,0 +1,105 @@
+---
+title: How To Shutdown An Idle Machine
+layout: wiki-page
+---
+<div id="content">
+ Known to work with HTCondor version: 8.5.4 (see below if you have an earlier version)
+ <p>
+  This page describes a configuration useful primarily for virtual machines serving as an HTCondor execute node, and the admin wants the machine to be shut down when it is no longer being scheduled to run jobs.  This setup is handy for running execute nodes in public clouds when you don't want to keep paying to run execute nodes that aren't doing anything (ie prefer these nodes simply shutdown when they become idle).
+ </p>
+ <p>
+  Add the following to your condor_config file(s) :
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Tell HTCondor to daemons to gracefully exit if the condor_startd observes
+# that it has had no active claims for more than five consecutive minutes.
+STARTD_NOCLAIM_SHUTDOWN = 300
+
+# Next, tell the condor_master to run a script as root upon exit.
+# In our case, this script will shut down the node.
+DEFAULT_MASTER_SHUTDOWN_SCRIPT = /etc/condor/shutdown
+
+# This final config knob is for the paranoid, and covers
+# the case that perhaps the condor_startd crashes.  It tells the
+# condor_master to exit if it notices for any reason that the
+# condor_startd is not running within 1 minute of startup.
+MASTER.DAEMON_SHUTDOWN_FAST = ( STARTD_StartTime == 0 ) &amp;&amp; ((time() - DaemonStartTime) &gt; 60)
+</pre>
+ </div>
+ <p>
+  The script (
+  <code>
+   /etc/condor/shutdown
+  </code>
+  in this example) must of course be executable (and have the #! line), and is run by the master as root when the master shuts down.  The following script may be useful as an example to work from.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+
+# We start out trying to determine if this shutdown was voluntary or not.
+# In this example, we don't do anything useful with this information, so
+# you can skip it if you like.
+#
+# I'm not sure if /sbin/runlevel is available on systemd systems, so you
+# check to make sure that this is normally nonzero and zero when shutting down.
+SHUTDOWN=`/sbin/runlevel | /usr/bin/awk '{print $2}'`
+SHUTDOWN_MESSAGE='because instance is being terminated'
+if [ ${SHUTDOWN} -ne 0 ]; then
+    SHUTDOWN_MESSAGE='for lack of work'
+fi
+
+# The following line is probably AWS-specific; you can omit it and the
+# ${INSTANCE_ID} from the following line entirely.
+INSTANCE_ID=$(/usr/bin/curl -s http://169.254.169.254/latest/meta-data/instance-id)
+MESSAGE="$(/bin/date) Instance ${INSTANCE_ID} shutting down ${SHUTDOWN_MESSAGE}."
+
+# For testing.  You could do something cleverer here, if you'd like.
+echo ${MESSAGE}
+
+# Shut the machine down.  Comment this line out if you're just testing,
+# of course. :)
+/sbin/shutdown -h now
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Versions of HTCondor older than v8.5.4
+ </h3>
+ <p>
+  Versions of HTCondor before v8.5.4 do not have the
+  <code>
+   DEFAULT_MASTER_SHUTDOWN_SCRIPT
+  </code>
+  knob, which makes things more clumsy. However, you can  make do with the
+  <code>
+   condor_set_shutdown
+  </code>
+  command-line utility (see the man page) to pick a script to run upon system shut down.  For example, place the following into your condor_config:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>MASTER_SHUTDOWN_MYSHUTDOWN = /etc/condor/shutdown
+</pre>
+ </div>
+ <p>
+  Then to activate the shutdown script defined by "MYSHUTDOWN", use the
+  <code>
+   condor_set_shutdown
+  </code>
+  command with the -exec option.  This command must be run each time the master is (re)started by a user with sufficient (administrator) privilege.  Since start-up times are somewhat variable, you may want to use a retry loop like the one below; make sure that service and condor_set_shutdown are in the PATH.  (If you've automated the start-up of HTCondor, you need to automate running condor_set_shutdown to make this work; if the HTCondor in your VM starts on boot, you could put this in rc.local, for instance.)
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>while ! condor_set_shutdown -exec myshutdown; do sleep 1; done
+</pre>
+ </div>
+</div>

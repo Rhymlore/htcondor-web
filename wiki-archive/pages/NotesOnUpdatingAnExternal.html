@@ -1,0 +1,148 @@
+---
+title: Notes On Updating An External
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   TJ's notes on updating externals
+  </h2>
+ </span>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Steps for Updating OpenSSL to 1.0.1j for Windows using VC11
+ </h3>
+ <p>
+ </p>
+ <ul>
+  <li>
+   openssl 1.0.1j downloaded from here
+   <a class="external" href="http://www.openssl.org/source/">
+    http://www.openssl.org/source/
+   </a>
+  </li>
+  <li>
+   unpacked into a work directory, I used d:\scratch\condor\update_externals\openssl-1.0.1j
+  </li>
+  <li>
+   download nasm from here
+   <a class="external" href="http://www.nasm.us/">
+    http://www.nasm.us/
+   </a>
+  </li>
+  <li>
+   unpack into
+   <code>
+    c:\tools\nasm
+   </code>
+  </li>
+  <li>
+   start a VS2012 command prompt and add nasm to the path
+   <ul>
+    <li>
+     <code>
+      set PATH=c:\tools\nasm;%PATH%
+     </code>
+    </li>
+    <li>
+     <code>
+      cd d:\scratch\condor\update_externals\openssl-1.0.1j
+     </code>
+    </li>
+   </ul>
+  </li>
+  <li>
+   verify that perl is in the path
+   <ul>
+    <li>
+     <code>
+      perl -v
+     </code>
+    </li>
+   </ul>
+  </li>
+  <li>
+   follow the instructions in INSTALL.W32 from this directory
+   <ul>
+    <li>
+     <code>
+      perl Configure VC-WIN32 --prefix=%CD%\openssl-1.0.1j
+     </code>
+    </li>
+    <li>
+     <code>
+      ms\do_nasm.bat
+     </code>
+    </li>
+    <li>
+     <code>
+      nmake -f ms\ntdll.mak
+     </code>
+    </li>
+    <li>
+     <code>
+      nmake -f ms\ntdll.mak install
+     </code>
+    </li>
+   </ul>
+  </li>
+  <li>
+   tar up the full build output, just in case
+   <ul>
+    <li>
+     <code>
+      tar czf openssl-1.0.1j-VC11-Win32-full.tgz openssl-1.0.1j
+     </code>
+    </li>
+   </ul>
+  </li>
+  <li>
+   remove unneeded pieces from the build output
+   <ul>
+    <li>
+     <code>
+      pushd openssl-1.0.1j
+     </code>
+    </li>
+    <li>
+     <code>
+      move bin\*.dll .
+     </code>
+    </li>
+    <li>
+     <code>
+      move lib\*.lib .
+     </code>
+    </li>
+    <li>
+     <code>
+      move include\openssl .
+     </code>
+    </li>
+    <li>
+     <code>
+      rd /s/q bin lib ssl include
+     </code>
+    </li>
+    <li>
+     <code>
+      popd
+     </code>
+    </li>
+   </ul>
+  </li>
+  <li>
+   tar up the condor external
+   <ul>
+    <li>
+     <code>
+      tar czf openssl-1.0.1j-VC11-Win32.tar.gz openssl-1.0.1j
+     </code>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>

@@ -1,0 +1,44 @@
+---
+title: Why Window Can Not Find Host
+layout: wiki-page
+---
+<div id="content">
+ Given the command
+ <div class="code">
+  <pre class="code">  condor_off hostname2
+</pre>
+ </div>
+ an error message of the form
+ <div class="code">
+  <pre class="code">  Can't find address for master hostname2.somewhere.edu
+</pre>
+ </div>
+ appears.
+Yet, when looking at the host names with
+ <div class="code">
+  <pre class="code">  condor_status -master
+</pre>
+ </div>
+ the output is of the form
+ <div class="code">
+  <pre class="code">  hostname1.somewhere.edu
+  hostname2
+  hostname3.somewhere.edu
+</pre>
+ </div>
+ <p>
+  To correct this incomplete host name, add an entry to the
+configuration file for
+{DEFAULT_DOMAIN_NAME}
+that specifies the domain name to be used.
+For the example given, the configuration entry will be
+ </p>
+ <div class="code">
+  <pre class="code">  DEFAULT_DOMAIN_NAME = somewhere.edu
+</pre>
+ </div>
+ <p>
+  After adding this configuration file entry, use condor_restart
+to restart the HTCondor daemons and effect the change.
+ </p>
+</div>

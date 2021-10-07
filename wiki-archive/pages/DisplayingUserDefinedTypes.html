@@ -1,0 +1,57 @@
+---
+title: Displaying User Defined Types
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Customized Type Display
+  </h2>
+ </span>
+ <p>
+  You can customize how Visual C++ displays classes in the variable view. By default VC++ displays "{...}" and you need to click the small '+' icon to expand the members. You can change this behaviour, and make Visual C++ display whatever data member you want, in whatever order and in whatever format you like.
+ </p>
+ <p>
+  You need to locate a file called
+  <code>
+   AUTOEXP.DAT
+  </code>
+  in your Visual C++ installation. By default it will be:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   VC++ 6.0:
+   <ul>
+    <li>
+     <code>
+      C:\Program Files\Microsoft Visual Studio\Common\MSDev98\Bin\AUTOEXP.DAT
+     </code>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   VC++ 9.0:
+   <ul>
+    <li>
+     <code>
+      C:\Program Files\Microsoft Visual Studio 9.0\Common7\Packages\Debugger\autoexp.dat
+     </code>
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  After you have made the changes and saved the file, you will need to restart Visual C++ for the changes to take effect.
+ </p>
+ <p>
+  For a more in depth look at this option, and it's extensive range of uses, please refere to the folowing document:
+  <a class="external" href="http://mariusbancila.ro/blog/2007/04/06/tweaking-autoexpdat-for-custom-types-in-vs2005/">
+   Customize autoexp.dat for own types in VS2005
+  </a>
+  .  The page mentions the contents is aimed at Visual Studio 2005, but, having tested it, I've found that it works in both Visual Studio 2008 and 2010 Beta.
+ </p>
+</div>

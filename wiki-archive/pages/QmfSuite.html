@@ -1,0 +1,96 @@
+---
+title: Qmf Suite
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Module Description
+  </h2>
+ </span>
+ The Qpid Management Framework (QMF) is a distributed object management framework
+that uses Apache Qpid for its transport. It provides code-generation tools to
+render native language binding types and objects for C++, Python, and Ruby from
+XML schema definitions. That code is then linked to runtime libraries for
+client-agent integration mediated by a Qpid broker.
+ <p>
+  This contribution is a set of pluggable modules plus a daemon that are used
+for:
+ </p>
+ <ul>
+  <li>
+   start and stop of daemons
+  </li>
+  <li>
+   job submission and control (submit, set attribute, hold, release,
+remove)
+  </li>
+  <li>
+   queries of live and historical job data and output files
+  </li>
+  <li>
+   get/set of of stats, priorities and limits from the negotiator
+  </li>
+  <li>
+   collector stats for job counts (running, edle, etc.)
+  </li>
+  <li>
+   submitters stats
+  </li>
+  <li>
+   slot statistics and properties
+  </li>
+ </ul>
+ <p>
+  Currently, this code base has external dependencies on:
+ </p>
+ <ul>
+  <li>
+   Apache Qpid 0.8-4
+  </li>
+  <li>
+   Boost C++ libraries (1.39 or higher)
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Download
+ </h2>
+ The module is contained in the HTCondor source tree in src/condor_contrib/mgmt as of HTCondor 7.5.5.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Contact
+ </h2>
+ The contact person for this module is:
+ <code>
+  Peter MacKinnon
+ </code>
+ <code>
+  (pmackinn@redhat.com), Red Hat Inc.
+ </code>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Homepage
+ </h2>
+ More information about this module can be found on
+ <a class="external" href="https://cwiki.apache.org/qpid/qpid-management-framework.html">
+  https://cwiki.apache.org/qpid/qpid-management-framework.html
+ </a>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  License
+ </h2>
+ This module is released under the Apache License.
+</div>

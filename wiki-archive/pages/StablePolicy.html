@@ -1,0 +1,66 @@
+---
+title: Stable Policy
+layout: wiki-page
+---
+<div id="content">
+ The HTCondor stable series is updated with only bug fixes and new platform ports. Backward compatibility is strictly maintained except for potential security fixes.
+ <p>
+  The stable series can receive new features on an exception basis. Exceptions are rare.
+ </p>
+ <p>
+  Any potentially destabilizing changes to the stable series must be raised to a group of project maintainers - currently Todd Tannenbaum (CHTC) and Matthew Farrellee (Red Hat) - who will agree on a course of action. No action should be taken until it is approved by the maintainers.
+ </p>
+ <p>
+  Who can raise an exception to the maintainers?
+ </p>
+ <ul>
+  <li>
+   Anyone who is potentially making a destabilizing change (proactive)
+  </li>
+  <li>
+   Anyone who sees a destabilizing change (reactive)
+  </li>
+ </ul>
+ <p>
+  What is destabilizing?
+ </p>
+ <ul>
+  <li>
+   Anything that will show up in the "New Features" or "Configuration Variable and
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+     ClassAd
+    </a>
+   </span>
+   Attribute Additions and Changes" sections of the Version History
+   <ul>
+    <li>
+     "New Features" are typically tickets marked as Enhancement
+    </li>
+    <li>
+     "Configuration variable and
+     <span class="wiki">
+      <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+       ClassAd
+      </a>
+     </span>
+     attribute additions and changes" are changes to param() calls, the param table, or condor_attributes.h
+    </li>
+   </ul>
+  </li>
+  <li>
+   Anything that breaks the test suite
+  </li>
+  <li>
+   The above list is incomplete, use good judgment
+  </li>
+ </ul>
+ <p>
+  How can you raise an exception?
+ </p>
+ <ul>
+  <li>
+   Drop an email To: htcondor-devel@cs.wisc.edu, CC: tannenba@cs.wisc.edu,matt@redhat.com
+  </li>
+ </ul>
+</div>

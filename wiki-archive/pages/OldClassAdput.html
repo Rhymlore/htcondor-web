@@ -1,0 +1,49 @@
+---
+title: Old Class Adput
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ have a compatibility version of this method, but it has several deficiencies.
+ <p>
+  First, it doesn't print attributes from the chained ad.
+ </p>
+ <p>
+  Second, it doesn't omit private attributes when necessary. It also doesn't encrypt them when appropriate.
+ </p>
+ <p>
+  Third, it doesn't have the optional addition of the
+  <span class="quote">
+   ServerTime
+  </span>
+  attribute.
+ </p>
+ <p>
+  Fourth, it doesn't convert local IP addresses in attribute values to that of the open socket (using ConvertDefaultIPToSocketIP()).
+ </p>
+ <p>
+  Fifth, it doesn't emulate AttrList::put(), which doesn't send the
+  <span class="quote">
+   MyType
+  </span>
+  and
+  <span class="quote">
+   TargetType
+  </span>
+  attributes after the other attributes. There is a standalone function that does this (putOldClassAdNoTypes()). Clarification: putOldClassAdNoTypes() doesn't send the
+  <span class="quote">
+   MyType
+  </span>
+  or
+  <span class="quote">
+   TargetType
+  </span>
+  after other attributes.
+ </p>
+ <p>
+  Developer time: 1-2 days.
+ </p>
+</div>

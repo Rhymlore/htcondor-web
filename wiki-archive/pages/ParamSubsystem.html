@@ -1,0 +1,30 @@
+---
+title: Param Subsystem
+layout: wiki-page
+---
+<div id="content">
+ Redesign of the param system by Pete and others (
+ <span class="ticket">
+  <a class="new" href="tktview?tn=123" title="Grand unified param() system: Phase 1">
+   #123
+  </a>
+ </span>
+ &amp;
+ <span class="ticket">
+  <a class="stalled" href="tktview?tn=988" title="Grand unified param() system: Phase 2">
+   #988
+  </a>
+ </span>
+ ) has stalled over the issue of the code that uses params needing to be able to distinguish between undefined, defaulted and user specified values.
+ <p>
+  There are many params still (pete estimates about 7%) whose use depends on the ability to recognise the distinction between undefined and defaulted.  The initial version of the param system re-design did not support this distinction.
+ </p>
+ <p>
+  <span class="ticket">
+   <a class="stalled" href="tktview?tn=767" title="Updating some of 7.4 parameter defaults to modern machines">
+    #767
+   </a>
+  </span>
+  was created as a place to define defaults for params and to specify which params have triggering behaviors for undefined values.  This list was complete at one time, but has not been kept up to date as parameters are added/changed.
+ </p>
+</div>

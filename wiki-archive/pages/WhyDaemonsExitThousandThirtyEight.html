@@ -1,0 +1,49 @@
+---
+title: Why Daemons Exit Thousand Thirty Eight
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Why do Windows daemons exit with 10038 (WSAENOTSOCK) error?
+  </h2>
+ </span>
+ <p>
+  <em>
+   Note: HTCondor v8.3.5 and above is much less likely to encounter this problem than earlier versions of HTCondor. If you have this problem, it is likely that upgrading to the latest version of HTCondor will solve it.
+  </em>
+ </p>
+ <p>
+  Usually when HTCondor daemons exit in this manner, it is because the system in
+question has a non-standard Winsock Layered Service Provider (LSP) installed
+on it. An LSP is, in effect, a plug-in for the TCP/IP protocol stack.
+LSPs have been
+installed as part of anti-virus software and other security-related
+packages.
+ </p>
+ <p>
+  There are several tools available to check your system for the
+presence of LSPs. One with which we have had success is LSP-Fix,
+available at
+  <a class="external" href="http://www.cexx.org/lspfix.htm">
+   http://www.cexx.org/lspfix.htm
+  </a>
+  .
+Any non-Microsoft LSPs identified by
+this tool may potentially be causing the WSAENOTSOCK error in HTCondor.
+Although the LSP-Fix tool allows the direct removal of an LSP,
+it is likely advisable to completely remove the application for which
+the LSP is a part via the Control Panel.
+ </p>
+ <p>
+  Another approach is to completely reset the TCP/IP stack to its
+original state.  This can be done using the netsh tool:
+ </p>
+ <div class="code">
+  <pre class="code">netsh int ip reset reset-stack.log
+</pre>
+ </div>
+ The command will return the TCP/IP stack back to the state is was
+in when the OS was first installed.  The log file defined above will
+record all the configuration changes made by netsh.
+</div>

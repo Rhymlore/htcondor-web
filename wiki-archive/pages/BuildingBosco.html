@@ -1,0 +1,60 @@
+---
+title: Building Bosco
+layout: wiki-page
+---
+<div id="content">
+ This page describes how to build and release BOSCO, an enhanced version of HTCondor that is easy to install and use to submit jobs to remote batch systems that the user can only access via ssh.
+ <p>
+  The code for BOSCO lives on V7_7-bosco-publicbranch in the HTCondor git repository. It closely follows the master branch and will eventually be merged into master as a contrib module.
+ </p>
+ <p>
+  Currently, we build BOSCO in the new BaTLab and copy the stripped tarballs to our ftp server.
+ </p>
+ <p>
+  To build BOSCO, you first get a copy of the
+  <code>
+   nmi_tools/
+  </code>
+  directory of the
+  <code>
+   V7_7-bosco-publicbranch
+  </code>
+  git branch onto submit-2.batlab.org. Then, issue this command:
+ </p>
+ <div class="code">
+  <pre class="code">nmi_tools/condor_nmi_submit --build --git --desc="BOSCO" \
+--module=UNUSED --tag=V7_7-bosco-publicbranch \
+--platforms=x86_64_deb_6.0,x86_64_rhap_5.7,x86_64_rhap_6.2
+</pre>
+ </div>
+ <p>
+  Once the build completes, extract the stripped tarballs for each platform from the appropriate
+  <code>
+   results.tar.gz
+  </code>
+  . On AFS, make a directory under
+  <code>
+   /p/condor/public/ftp/bosco/
+  </code>
+  named with the current date. Copy the tarballs into this directory. Copy the
+  <code>
+   README
+  </code>
+  file from one of the older date directories into your new directory and update the information (git hash for branch head, NMI build ids). Then update the symlinks under
+  <code>
+   /p/condor/public/ftp/bosco/latest/
+  </code>
+  to point to your shiny new tarballs.
+ </p>
+ <p>
+  The tarball name that users will download is
+  <code>
+   bosco-beta-&lt;platform&gt;.tar.gz
+  </code>
+  , but the extracted directory will be named
+  <code>
+   condor-&lt;version&gt;-&lt;nmi id&gt;-&lt;platform&gt;-stripped.tar.gz
+  </code>
+  . The 'beta' will probably change once we have a final version to release. The name of the extracted directory may need to change as well, but that will require changing HTCondor's cmake scripts.
+ </p>
+</div>

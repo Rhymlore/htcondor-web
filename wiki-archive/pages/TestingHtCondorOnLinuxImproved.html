@@ -1,0 +1,102 @@
+---
+title: Testing Ht Condor On Linux Improved
+layout: wiki-page
+---
+<div id="content">
+ <div class="code">
+  <pre class="code">$ mkdir ~/condor
+# This is going to take a while.
+$ git clone http://condor-git.cs.wisc.edu/repos/condor.git
+$ mv condor source
+$ mkdir obj
+$ mkdir install
+# This directory really has to be named this.  Sorry.
+$ mkdir condor_tests
+$ cd obj
+# You may need edit this line to get HTCondor to actually build on your system.
+# (My system's Globus is incompatible, so I added '-DWITH_GLOBUS:BOOL=FALSE'.)
+$ PWD=`pwd`; cmake -DCMAKE_INSTALL_PREFIX:PATH=${PWD}/../install ../source
+$ make
+$ make tests
+$ make install
+
+# Set up and start the default personal condor.
+$ cd ../install
+$ ./condor_install --make-personal-condor
+$ . ./condor.sh
+
+# Do NOT start a personal condor.  That will break the test suite.
+
+# Prepare test suite.  [This step is stupid.]  This step must be repeated
+# for each time you re-rerun the tests (preceeded by deleting the condor_tests
+# directory and recreating it).
+$ cd ../condor_tests
+$ cp -r ../source/src/condor_tests/* .
+$ cp ../source/src/condor_examples/* .
+$ cp ../source/src/condor_scripts/*.pm .
+$ cp ../source/src/condor_scripts/run_test.pl .
+$ cp ../source/src/condor_scripts/safe_append.pl .
+$ cp ../obj/src/condor_tests/* .
+
+#
+# Prepare your environment.
+#
+# Unbreak (among potentially others) unit_test_sinful, test_protocol_matching, and lib_unit_tests.
+# Arguably, those tests should be fixed so that this isn't necessary.
+$ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOME}/condor/install/lib
+# The cmr-* series of tests are broken, still working on a simple fix.
+# Also, the built-in Perl module for determining FQDNs is broken; you
+# may need to edit /etc/resolv.conf's domain and search lines if a test
+# fails because your host's FQDN is misresolved.  We should probably fix
+# this problem, too.
+
+#
+# This will take /forever/.
+#
+$ for test in `cat list_all`; do PERL5LIB=`pwd` perl ./run_test.pl $test &amp;&gt; $test.out; done
+</pre>
+ </div>
+ <p>
+ </p>
+ <hr/>
+ <strong>
+  provisional
+ </strong>
+ <p>
+  On a brand-new a RH7.6 VM, you'll need to do the following:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">$ sudo su
+# Follow part of the install-from-repo instructions.
+$ yum install wget
+$ wget https://research.cs.wisc.edu/htcondor/yum/RPM-GPG-KEY-HTCondor
+$ rpm --import RPM-GPG-KEY-HTCondor
+$ cd /etc/yum.repos.d
+$ wget https://research.cs.wisc.edu/htcondor/yum/repo.d/htcondor-stable-rhel7.repo
+# The condor build deps are broken, so I faked it.  (Install all the packages
+# listed before the erroneous ones, install 'bison' instead of 'bison-devel'.)
+$ yum-builddep condor
+$ yum install git
+</pre>
+ </div>
+ <p>
+  Add the following to the CMake line:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">-DWITH_MUNGE:BOOL=FALSE -DWITH_GLOBUS:BOOL=FALSE
+</pre>
+ </div>
+ <p>
+  HTCondor will build without cgroups, because
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveRedHat" title="Red Hat">
+    RedHat
+   </a>
+  </span>
+  deprecated libcgroup, which apparently means removing its -devel package.
+ </p>
+</div>

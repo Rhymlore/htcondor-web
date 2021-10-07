@@ -1,0 +1,127 @@
+---
+title: Git Edit Commit
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Editing Git Commits
+  </h2>
+ </span>
+ <p>
+  To edit git commit messages,
+  <code>
+   git rebase -i
+  </code>
+  to perform this.
+ </p>
+ <p>
+  <strong>
+   Note
+  </strong>
+  : You can't do this after you've pushed the commit.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Run:
+   <code>
+    git rebase -i origin/&lt;branch&gt;
+   </code>
+   <ul>
+    <li>
+     Git will bring up your commits in your selected editor.  You'll start with something like this:
+     <div class="verbatim">
+      <pre>pick bccd911 Added feature fubar (#123)
+pick 6d4e448 Fixed bug that caused bad things [#234]
+pick 690109e Added feature foo bar
+
+# Rebase 33612d0..690109e onto 33612d0
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+</pre>
+     </div>
+    </li>
+    <li>
+     In this case, I want to edit the message for:
+     <ul>
+      <li>
+       The second (6d4e448) commit (ticket # is enclosed in square brackets)
+      </li>
+      <li>
+       The third (6901909e) commit (no ticket # at all)
+      </li>
+     </ul>
+    </li>
+    <li>
+     So I edit it to be something like this (just the non-comment lines):
+     <div class="verbatim">
+      <pre>pick bccd911 Added feature fubar (#123)
+e 6d4e448 Fixed bug that caused bad things [#234]
+e 690109e Added feature foo bar
+</pre>
+     </div>
+    </li>
+    <li>
+     Save your edits and exit the editor
+     <ul>
+      <li>
+       <strong>
+        Note
+       </strong>
+       : Edits to the commit messages here will have no affect.
+      </li>
+      <li>
+       <strong>
+        Note
+       </strong>
+       : If you delete a commit line, it'll literally be deleted from git -- you most likely don't want to do this!
+      </li>
+     </ul>
+    </li>
+    <li>
+     This will tell git to allow you to edit the second and third commit messages.  Git will then bring up your editor again (for each commit to edit) to allow you to edit it's commit message.  In my case, I edited them to something like these:
+     <ul>
+      <li>
+       <code>
+        Fixed bug that caused bad things
+        <span class="quote">
+         (#234)
+        </span>
+       </code>
+      </li>
+      <li>
+       <code>
+        Added feature
+        <span class="quote">
+         #345
+        </span>
+        foo bar
+       </code>
+      </li>
+     </ul>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Re-run the above git log to verify that you have what you expected:
+   <ul>
+    <li>
+     <code>
+      git log origin/&lt;branch&gt;..&lt;branch&gt;
+     </code>
+    </li>
+   </ul>
+  </li>
+ </ol>
+</div>

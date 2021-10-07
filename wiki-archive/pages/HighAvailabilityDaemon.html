@@ -1,0 +1,53 @@
+---
+title: High Availability Daemon
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   High Availability Daemon
+  </h2>
+ </span>
+ <p>
+  The HAD is intended to create and manage redudant negotiators.  (The collector at the time being stateless, one could simply add additional collectors to the  list in order to create redundancy.)
+ </p>
+ <p>
+  HAD and NEGOTIATOR must both be in DAEMON_LIST, and HAD_CONTROLS must be set to NEGOTIATOR.  (It's possible to have multiple HADs controlling multiple daemons, but they carefully partition themselves from each other.)
+ </p>
+ <p>
+  The master starts the HAD.  If the HAD sends it a CHILD_ON message, it will start the negotiator.  The HAD can turn off its controllee (the negotiator) with CHILD_OFF or CHILD_OFF_FAST messages.  The master kills the HAD when the negotiator dies (for good), since it has no other way to inform it of the problem.
+ </p>
+ <p>
+  HADs find each other via the configuration parameter HAD_LIST.  There's notionally a paper on HAD somewhere that explains the elections in more detail, but the HADs can elect in a pre-specified preference order.  The HADs periodically hold another election to determine if the one who's running the negotiator should change; in this way, missing HADs (and therefore, we presume via the master, missing negotiators) are only implicitly detected.
+ </p>
+ <p>
+  There's an additional subsystem, the replicator, which handles copying the accountant log (or whatever) from the primary HAD [machine] to all the secondary HAD[ machine]s.  There is code in a branch -- one of the two had_replication_fileset branches -- which allows replicators to manage more than one file.  (This might permit them to handle collectors with persistent state, eventually.)  If Nick recalls correctly, one of those branches is code-complete, but the necessarily extensive testing has not been completed.
+ </p>
+ <p>
+  The
+  <code>
+   condor_had
+  </code>
+  directory contains the vast majority of the code; there's very little code in the
+  <code>
+   condor_master
+  </code>
+  directory, none of which Nick has ever had reason to touch.  The HAD itself executes a state machine Nick hadn't gotten around to understanding, and uses
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAds" title="Class Ads">
+    ClassAds
+   </a>
+  </span>
+  for a few things internally.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Known Problems
+ </h3>
+ <p>
+  The schedd assumes that every collector has a co-located negotiator, which breaks horribly in the presence of HAD, although Nick doesn't recall the details.
+ </p>
+</div>

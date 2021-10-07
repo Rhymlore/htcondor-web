@@ -1,0 +1,72 @@
+---
+title: Building On Devuan
+layout: wiki-page
+---
+<div id="content">
+ The packaged version of HTCondor in Devuan 2.0.0 (ASCII) is 8.4.11.
+ <p>
+ </p>
+ <hr/>
+ For a proper build of 8.9.x, you'll need a large number of external libraries.  Generally speaking, you can just keep running the build and installing the obvious packages (usually but not alway
+ <code>
+  lib&lt;name&gt;-dev
+ </code>
+ ).  To aid in this process, search
+ <code>
+  build/packaging/new-debian/control
+ </code>
+ for the
+ <code>
+  Build-Depends
+ </code>
+ ; some of them are obsolete or apply only when building the manual (latex2html), others only if you're building packages (debhelper).
+ <p>
+  I use the following script to run cmake.  Building with VOMS is broken on Debian, so I didn't even try it for Devuan.  Since Devuan is mostly Debian, it was easiest to set the
+  <code>
+   SYSTEM_NAME
+  </code>
+  to
+  <code>
+   Debian
+  </code>
+  and then correct the
+  <code>
+   PLATFORM_STRING
+  </code>
+  and the names of Boost's Python libraries.
+ </p>
+ <p>
+  Feel free to change
+  <code>
+   _DEBUG
+  </code>
+  ,
+  <code>
+   _VERBOSE
+  </code>
+  , and
+  <code>
+   CMAKE_INSTALL_PREFIX
+  </code>
+  .
+ </p>
+ <p>
+ </p>
+ <div class="file">
+  <pre class="filelabel">configure</pre>
+  <pre class="file">#!/bin/bash
+PWD=`pwd`
+cmake \
+    -D_DEBUG:BOOL=TRUE \
+    -D_VERBOSE:BOOL=TRUE \
+    -DWITH_VOMS:BOOL=FALSE \
+    -DHAVE_EXT_VOMS:BOOL=OFF \
+    -DSYSTEM_NAME:STRING=Debian \
+    -DPLATFORM:STRING=x86_64-Devuan-2 \
+    -DPYTHON_BOOST_LIB:STRING=boost_python27 \
+    -DPYTHON3_BOOST_LIB:STRING=boost_python35 \
+    -DCMAKE_INSTALL_PREFIX:PATH=${PWD}/../install \
+    "$@"
+</pre>
+ </div>
+</div>

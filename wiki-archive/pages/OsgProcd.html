@@ -1,0 +1,122 @@
+---
+title: Osg Procd
+layout: wiki-page
+---
+<div id="content">
+ For wisdom regarding the ProcD in general, see
+ <span class="wiki">
+  <a href="wiki-archiveProcdWisdom" title="Procd Wisdom">
+   ProcdWisdom
+  </a>
+ </span>
+ .
+ <p>
+  <strong>
+   Update
+  </strong>
+  The osg procd fork was merged into mainline HTCondor for HTCondor 7.5.6.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Introduction
+ </h2>
+ <p>
+  The OSG ProcD is a forked version of the ProcD used in HTCondor. (Ideally, of course, we'd only have a single ProcD; See
+  <span class="ticket">
+   <a class="resolved" href="tktview?tn=111" title="Merge OSG ProcD into Condor">
+    #111
+   </a>
+  </span>
+  ). The OSG ProcD is made available as part of the VDT, and is currently used by a GLExec plugin authored by
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveIgorSfiligoi" title="Igor Sfiligoi">
+    Igor Sfiligoi
+   </a>
+  </span>
+  that is used to improve accounting in OSG in the presence of pilot jobs. The paper
+  <a class="external" href="http://www.cs.wisc.edu/condor/doc/grid-08-pilot-accounting.pdf">
+   here
+  </a>
+  describes this work in detail. The last
+release of the software was
+  <a class="external" href="http://vdt.cs.wisc.edu/software/procd/0.3">
+   here
+  </a>
+  .
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Differences from the Mainline ProcD
+ </h2>
+ <p>
+  The OSG ProcD does not differ much from what we ship with HTCondor. There are really only two things:
+ </p>
+ <p>
+  First, the OSG ProcD uses HTCondor's configuration subsystem and dprintf logging. It would be really nice to have this in the mainline ProcD as well. (See
+  <span class="ticket">
+   <a class="abandoned" href="tktview?tn=110" title="Change ProcD to run without root privilege">
+    #110
+   </a>
+  </span>
+  ).
+ </p>
+ <p>
+  Second, the way GID-based process tracking works is different. In mainline HTCondor, the ProcD takes care of maintaining a pool of GIDs and allocating them as needed. When a HTCondor daemon asks for GID-based tracking, the ProcD allocates a free GID from its pool and returns it to the daemon, which then inserts this GID into the supplementary group list of its child process. In the OSG ProcD, a tool called gidd_alloc is used to probe the system for a free GID within a specified range. This GID can then be inserted into a process's group list then given to the ProcD to use for GID-based tracking.
+ </p>
+ <p>
+  Note that the gidd_alloc tool is built from gidd_alloc.c in the condor_gidd directory of V7_1-procd_osg-branch. There's a bunch of other code in there too, but none of it made it to prime time and it can be ignored.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Releasing the OSG ProcD
+ </h2>
+ <p>
+  The code for the OSG ProcD exists on V7_1-procd_osg-branch in CONDOR_SRC.git. This branch also exists in CONDOR_EXT.git where uneeded externals have been trimmed out and in CONDOR_DOC.git as a convenience so that build tag aren't needed to produce the OSG ProcD binaries.
+ </p>
+ <p>
+  To build the OSG ProcD in NMI for all the platforms on which we ship it in the VDT, use a command like this:
+ </p>
+ <div class="verbatim">
+  <pre>$ ~cndrauto/condor/nmi_tools/condor_nmi_submit \
+      --git \
+      --build \
+      --without-tests \
+      --platforms=x86_rhas_3,x86_rhas_4,x86_rhap_5,x86_64_rhas_4 \
+      --tag=origin/V7_1-procd_osg-branch \
+      --module=UNUSED
+</pre>
+ </div>
+ <p>
+  The results.tar.gz files that are produced will have all the files needed to create tarballs for the VDT. To produce the final tarballs, you need to extract  binaries from results.tar.gz and run a packaging script. For example to produce a 0.3 release of the OSG ProcD:
+ </p>
+ <div class="verbatim">
+  <pre>$ tar xzf results.tar.gz
+$ tar xzf public/v7.1/condor-7.1.1-linux-x86-rhel5-dynamic-unstripped.tar.gz
+$ cd condor-7.1.1/libexec
+$ ./package_osg_procd
+created procd.tgz
+$ cp procd.tgz /path/to/somewhere/procd-0.3-x86_rhap_5.tgz
+</pre>
+ </div>
+ <p>
+  The above steps need to be done for each platform. The four resulting tarballs:
+ </p>
+ <div class="verbatim">
+  <pre>procd-0.3-x86_rhas_3.tgz
+procd-0.3-x86_rhas_4.tgz
+procd-0.3-x86_rhap_5.tgz
+procd-0.3-x86_64_rhas_4.tgz
+
+can then be given to the VDT for packaging.
+</pre>
+ </div>
+</div>

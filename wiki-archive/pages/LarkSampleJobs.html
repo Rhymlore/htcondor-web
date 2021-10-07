@@ -1,0 +1,145 @@
+---
+title: Lark Sample Jobs
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Running Sample Lark Jobs
+  </h2>
+ </span>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Installing Lark
+ </h3>
+ <p>
+  Download and install the latest Lark RPM from the Nebraska Koji.  The current build (as of the time of writing) is here:
+ </p>
+ <p>
+  <a class="external" href="http://koji.hep.caltech.edu/koji/buildinfo?buildID=935">
+   http://koji.hep.caltech.edu/koji/buildinfo?buildID=935
+  </a>
+ </p>
+ <p>
+  We'll be doing periodic code releases.  Otherwise, you can checkout and build the source code.  If the Lark branch and your installed version are close enough (in terms of code changes), you can get away with a normal PROPER build plus the following configurations:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>STARTER.PLUGINS = /home/cse496/bbockelm/projects/condor-build/src/condor_contrib/lark/lark-plugin.so
+STARTER = /home/cse496/bbockelm/projects/condor-build/src/condor_starter.V6.1/condor_starter
+SHADOW = /home/cse496/bbockelm/projects/condor-build/src/condor_shadow.V6.1/condor_shadow
+</pre>
+ </div>
+ <p>
+  You'll also need to use the Lark version of libcondor_utils:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>ln -sf ~/projects/condor-build/src/condor_utils/libcondor_utils_7_9_5.so /usr/lib64/libcondor_utils_7_9_5.so
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Configuring Lark in NAT mode
+ </h3>
+ <p>
+  The minimum to configure lark, besides setting
+  <code>
+   STARTER.PLUGINS
+  </code>
+  , is to enable the network accounting:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>LARK_NETWORK_ACCOUNTING = true
+</pre>
+ </div>
+ <p>
+  This will result in a NAT configuration.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Running jobs in NAT mode
+ </h3>
+ <p>
+  With a NAT configuration, a simple job is to look at the network configuration:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>[bbockelm@hcc-briantest lark]$ condor_run ifconfig
+i_slot1   Link encap:Ethernet  HWaddr 0E:B5:9F:A2:E5:E4
+          inet addr:192.168.181.2  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::cb5:9fff:fea2:e5e4/64 Scope:Link
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:1 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:104 (104.0 b)  TX bytes:104 (104.0 b)
+</pre>
+ </div>
+ <p>
+  If you can execute
+  <code>
+   ifconfig
+  </code>
+  at the same time the job is running, the output will look like this:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>[bbockelm@hcc-briantest lark]$ ifconfig
+e_slot1   Link encap:Ethernet  HWaddr 42:62:8D:A1:CC:E2
+          inet addr:192.168.181.1  Bcast:0.0.0.0  Mask:255.255.255.255
+          inet6 addr: fe80::4062:8dff:fea1:cce2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:26 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2636 (2.5 KiB)  TX bytes:2896 (2.8 KiB)
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Configuring Lark in Bridge Mode
+ </h3>
+ <p>
+  You need additional attributes in the machine ad to get Lark to change to bridge mode:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>STARTD_ATTRS = LarkNetworkType, LarkAddressType, LarkBridgeDevice
+LarkNetworkType = "bridge"
+LarkBridgeDevice = "eth0"
+LarkAddressType = "dhcp"
+</pre>
+ </div>
+ <p>
+  In particular, you will need to adjust
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveLarkBridgeDevice" title="Lark Bridge Device">
+    LarkBridgeDevice
+   </a>
+  </span>
+  from "eth0" to match the desired ethernet device on your host.
+ </p>
+ <p>
+  The network available on "eth0" must have a DHCP server willing to provide IP addresses to unregistered ethernet devices.
+ </p>
+</div>

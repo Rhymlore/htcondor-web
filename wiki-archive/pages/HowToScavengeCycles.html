@@ -1,0 +1,94 @@
+---
+title: How To Scavenge Cycles
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to scavenge cycles from PBS
+  </h2>
+ </span>
+ <p>
+  Known to work in HTCondor version: 7.0
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Overview
+ </h3>
+ <p>
+  The HTCondor system is designed (among many other things) to scavenge compute cycles on desktop workstations when interactive users are idle. This same concept can be applied to scavenging cycles from another batch system running on the same computer. The main idea is that instead of configuring HTCondor to notice when an interactive user is idle, to configure HTCondor to notice when the other batch system is idle on the machine. When the other system is idle, HTCondor is free to run jobs, until such time as the other batch system has work to do. Then, HTCondor must preempt or checkpoint the current work. This page discusses how to configure HTCondor to do this with PBS, though the concept works for other batch systems as well.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  HTCondor and PBS
+ </h3>
+ <p>
+  First, configure the HTCondor startd to only run jobs when the attribute PBSRunning is set. We'll set this dynamically with the condor_config_val -rset command.
+ </p>
+ <p>
+  On the worker nodes, define in the HTCondor config:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ENABLE_RUNTIME_CONFIG = TRUE
+STARTD_SETTABLE_ATTRS_OWNER = PBSRunning
+PBSRunning                      = False
+
+# Only start jobs if PBS is not currently running a job
+START_NOPBS = ( $(PBSRunning) == False )
+
+START = $(START) &amp;&amp; $(START_NOPBS)
+</pre>
+ </div>
+ <p>
+  so that HTCondor will only start if START is true and there are no PBS
+jobs running.
+ </p>
+ <p>
+  In the PBS world, again on the worker side, have PBS tell HTCondor when it is running, by adding the following to the PBS prologue.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">        if [ -x /opt/condor/bin/condor_config_val ]; then
+                 /opt/condor/bin/condor_config_val -rset -startd PBSRunning=True &gt; /dev/null
+                 /opt/condor/sbin/condor_reconfig -startd &gt; /dev/null
+                 sleep 2
+                 if ( /opt/condor/bin/condor_status  -format '%s' Name -format '%s \n' State  $(hostname) 2&gt; /dev/ null | grep -q Claimed )
+                 then
+                         /opt/condor/sbin/condor_vacate &gt; /dev/null
+                         sleep 2
+                 fi
+         fi
+</pre>
+ </div>
+ <p>
+  In the PBS Epilogue, tell HTCondor that it is OK to use this machine again:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">                 if [ -x /opt/condor/bin/condor_config_val ]; then
+                         /opt/condor/bin/condor_config_val -rset -startd PBSRunning=False &gt; /dev/null
+                         /opt/condor/sbin/condor_reconfig -startd &gt; / dev/null
+                 fi
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Acknowledgments
+ </h3>
+ <p>
+  This is based on a recipe from Preston Smith of Purdue University.  Thanks Preston!
+ </p>
+</div>

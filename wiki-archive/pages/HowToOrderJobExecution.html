@@ -1,0 +1,129 @@
+---
+title: How To Order Job Execution
+layout: wiki-page
+---
+<div id="content">
+ Negotiation identifies a queued set of jobs from a particular user that may be executed. If the user has more jobs queued, waiting to be executed, than there are machines available and offered, it may be convenient to specify the order in which these jobs are to be chosen for execution. This may be accomplished by setting a job priority.  A higher job priority job goes before a lower priority job. A job priority can be any integer, and larger values are of higher priority. So, 0 is a higher job priority than -3, and 6 is a higher job priority than 5.
+ <p>
+  Jobs may be categorized under six different levels of prioritization. For the simple case where each job can be given a distinct priority, and no categories are required, an already queued job's priority may be set with the condor_prio command; see the example in the manual section 2.6.4, or the condor_prio manual page for details. This single category changes the value of job
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  attribute
+  <code>
+   JobPrio
+  </code>
+  .
+ </p>
+ <p>
+  The six category levels are defined by the job
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  attributes:
+ </p>
+ <p>
+ </p>
+ <pre>    PreJobPrio1
+    PreJobPrio2
+    JobPrio
+    PostJobPrio1
+    PostJobPrio2
+    QDate
+</pre>
+ <p>
+  The set of highest priority jobs from the user are those that define
+  <code>
+   PreJobPrio1
+  </code>
+  . This set of jobs are compared only with other jobs that define this attribute. These jobs are run first, and in the ordering given by the value of
+  <code>
+   PreJobPrio1
+  </code>
+  . For those jobs that have the same value of
+  <code>
+   PreJobPrio1
+  </code>
+  , the value for
+  <code>
+   PreJobPrio2
+  </code>
+  is used. And, the comparison continues through the other four levels where there are matching values.
+ </p>
+ <p>
+  After any and all jobs that define
+  <code>
+   PreJobPrio1
+  </code>
+  are prioritized,
+  <code>
+   PreJobPrio2
+  </code>
+  is considered on any remaining jobs queued for this user. Those jobs defining
+  <code>
+   PreJobPrio2
+  </code>
+  are ordered, with the comparison continuing through the remaining levels where there are matching values of attributes.
+ </p>
+ <p>
+  This comparison algorithm continues at each category level, until
+  <code>
+   QDate
+  </code>
+  does ordering by the time at which the job entered the queue. The job in the queue the longest has highest priority.
+ </p>
+ <p>
+  One or more of these attributes, other than
+  <code>
+   QDate
+  </code>
+  may be set in the a job's submit description file by adding a line that defines the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  attribute. For example, consider the set of A jobs submitted by user chris. These A jobs are to be given the highest priority of all of chris' jobs. Assume the submit description file for job A1 includes
+ </p>
+ <p>
+ </p>
+ <pre>  +PreJobPrio1 = 5
+  +JobPrio = 20
+</pre>
+ <p>
+  The submit description file for job A2 includes
+ </p>
+ <p>
+ </p>
+ <pre>  +PreJobPrio1 = 5
+  +JobPrio = 30
+</pre>
+ <p>
+  Also consider the set of B jobs, also submitted by user chris. These B jobs are prioritized lower than the A jobs. The submit description file for job B1 includes
+ </p>
+ <p>
+ </p>
+ <pre>  +PreJobPrio1 = 2
+</pre>
+ <p>
+  The submit description file for job B2 includes
+ </p>
+ <p>
+ </p>
+ <pre>  +PreJobPrio1 = 2
+</pre>
+ <p>
+  The B jobs will be ordered by
+  <code>
+   QDate
+  </code>
+  , so assume that B1 was submitted before B2.
+ </p>
+ <p>
+  The ordering given to these four jobs will be A2 (highest priority), A1, B1, B2 (lowest priority).
+ </p>
+</div>

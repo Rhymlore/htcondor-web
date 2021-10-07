@@ -1,0 +1,103 @@
+---
+title: How To Steer Jobs
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to steer jobs towards more desirable machines
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  Jobs can be defined with their own rank expression that specifies which machines they prefer to run on.  Sometimes it is desirable for administrators to also influence the choice of machine.  For example, suppose you have a pool composed of desktop machines plus dedicated compute nodes.  You might want jobs to run on the dedicated nodes if any are idle.  The following example configuration achieves this:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">NEGOTIATOR_PRE_JOB_RANK = (IsDesktop =!= True &amp;&amp; isUndefined(RemoteOwner)) + \
+                          isUndefined(RemoteOwner)
+</pre>
+ </div>
+ <p>
+  That produces the following possible values for NEGOTIATOR_PRE_JOB_RANK:
+ </p>
+ <ul>
+  <li>
+   <strong>
+    2
+   </strong>
+   unclaimed and not a desktop
+  </li>
+  <li>
+   <strong>
+    1
+   </strong>
+   unclaimed and desktop
+  </li>
+  <li>
+   <strong>
+    0
+   </strong>
+   busy
+  </li>
+ </ul>
+ <p>
+  This assumes that desktop machines define a
+  <code>
+   ClassAd
+  </code>
+  attribute
+  <code>
+   IsDesktop
+  </code>
+  .  You can do that like this:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">IsDesktop = True
+STARTD_ATTRS = $(STARTD_ATTRS) IsDesktop
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to steer jobs without overriding the job's own rank expression
+ </h3>
+ <p>
+  Note that NEGOTIATOR_PRE_JOB_RANK is a higher precedence sort key than the job's own rank expression, so if two machines match a job and NEGOTIATOR_PRE_JOB_RANK is bigger for one than the other, then it doesn't matter what the job's rank expression says.  Sometimes, that is good, because otherwise, the user might define a rank expression for a completely different purpose (such as preferring faster machines) and not realize that in so doing, they lost the default behavior of steering their jobs away from desktops.  That being said, it is still sometimes desirable to steer jobs without overriding the user's rank expression.  You can do that with a configuration such as the following:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">NEGOTIATOR_POST_JOB_RANK = isUndefined(RemoteOwner) * (KFlops - SlotID)
+</pre>
+ </div>
+ <p>
+  The above example steers jobs towards faster machines and it tends to fill a multi-cpu cluster by sending jobs to different machines first and doubling up only when it has to.  This expression is chosen so that it has no effect if the machine is claimed, allowing control to pass on to PREEMPTION_RANK, which is intended for that purpose.
+ </p>
+ <p>
+  NEGOTIATOR_POST_JOB_RANK can be overridden by anyone who specifies a rank expression in their job submit file (unless their rank expression ranks the machines in question equally).  You might instead want users to have to try harder (i.e. know what they are doing) to override your configuration.  Here is an example:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">NEGOTIATOR_PRE_JOB_RANK = (JobOverridesNegotiatorRank =!= True) * \
+                          isUndefined(RemoteOwner) * (KFlops - SlotID)
+</pre>
+ </div>
+ <p>
+  Jobs that need to override the negotiator pre job rank can then be submitted with the following in their submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">+JobOverridesNegotiatorRank = True
+</pre>
+ </div>
+</div>

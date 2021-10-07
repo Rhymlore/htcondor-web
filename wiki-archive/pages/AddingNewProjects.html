@@ -1,0 +1,52 @@
+---
+title: Adding New Projects
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Introduction
+  </h2>
+ </span>
+ <p>
+  Assuming you have read-up on how to create a new HTCondor Daemon (
+  <span class="wiki">
+   <a href="wiki-archiveCreatingNewDaemons" title="Creating New Daemons">
+    Creating a new daemon
+   </a>
+  </span>
+  -- a somewhat dated, but useful reference for a daemon developer) or you have a really cool new tool in mind (even a boring one will do too), then the following will help you add a new Project to HTCondor's Visual Studio Solution file.
+ </p>
+ <p>
+  For those not versed in the Microsoft development lexicon, a
+  <strong>
+   Project
+  </strong>
+  as one would expect is a structure that defines a new executable, dynamic link library, etc. anything that Visual Studio can build.  As
+  <strong>
+   Solution
+  </strong>
+  is simply a collection of
+  <strong>
+   Projects
+  </strong>
+  that enforces pre-defined inter-project dependencies, like a
+  <strong>
+   Makefile
+  </strong>
+  .  All Project files are represented in XML, so they can easily be created and modified by anyone with sufficient XML know how.  Solution files, on the other hand, are still a proprietary -- although text, but not very human consumable (it's just lists of GUIDs) -- so it is best to leave Visual Studio's capable hands to make any of you desired changes.  This, unfortunately, means that a Windows developer may still always be involved in the introduction of a new Project.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Project Types
+ </h2>
+ <p>
+  There are two main types of Projects an average developer will need to know how to construct.  First is the tool Project.  It contains all the settings, paths, library references, etc. that we have determined are necessary for a successful HTCondor tool to be built (assuming you want to use the plethora of already written helper functions, container classes, etc. that already exist in the HTCondor code base).
+ </p>
+ <p>
+  The second type of Visual Studio Project that any developer will need to know how to make is a daemon.  This template Project is very similar to the tool template, with the exception of some of the ready included source files.  In the future, however, these two templates may diverge even further, thus they have been broken into two templates.
+ </p>
+</div>

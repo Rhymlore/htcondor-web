@@ -1,0 +1,83 @@
+---
+title: How To Reserve Slot For Special Jobs
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to reserve a slot or machine for special jobs
+  </h2>
+ </span>
+ <p>
+  Suppose you have a type of job known as a "Pickle" job and you want to dedicate a specific slot or machine to running this type of job.  The following example is one way to achieve this.  Since this example adds to the existing START expression, be sure to insert it after START is first defined or merge the two definitions together.  Place the following in the configuration file of the special machine:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#Advertise that this machine is for "Pickle" jobs
+IsPickleSlot = True
+STARTD_ATTRS = $(STARTD_ATTRS) IsPickleSlot
+
+# this machine only runs "Pickle" jobs
+START = ($(START)) &amp;&amp; (MY.IsPickleSlot =!= True || TARGET.IsPickleJob =?= True)
+</pre>
+ </div>
+ <p>
+  In the job submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">+IsPickleJob = true
+requirements = TARGET.IsPickleSlot
+</pre>
+ </div>
+ <p>
+  If you only want specific slots on the machine to be for Pickle jobs, you can adjust the setting of
+  <code>
+   IsPickleSlot
+  </code>
+  on a per-slot basis.  Example:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">SLOT1_IsPickleSlot = True
+SLOT2_IsPickleSlot = False
+</pre>
+ </div>
+ <p>
+  <strong>
+   Alternate STARTD configuration for HTCondor 8.2 or later
+  </strong>
+ </p>
+ <p>
+  In HTCondor 8.2 or later, a different START expression can be set for each slot type. Use the same submit file statements as the above, but change the STARTD condifig to this:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># create two types of slots, normal and pickle
+NUM_SLOTS_TYPE_2 = 2
+NUM_SLOTS_TYPE_1 = $(NUM_CPUS) - $(NUM_SLOTS_TYPE_2)
+
+# type 2 slots only run pickle jobs.
+SLOT_TYPE_2_START = $(START:True) &amp;&amp; (TARGET.IsPickleJob =?= True)
+
+#Advertise type 2 slots for "Pickle" jobs
+STARTD_ATTRS = $(STARTD_ATTRS) IsPickleSlot
+IsPickleSlot = SlotTypeId==2
+</pre>
+ </div>
+ <p>
+  Starting with HTCondor 8.3.8, attributes can also be advertised per-slot type, so this example could be simplified even further on 8.3.8 by replacing the last 3 statements in the above config block to this:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#Advertise type 2 slots for "Pickle" jobs using 8.3.8 features
+STARTD_ATTRS = $(STARTD_ATTRS) IsPickleSlot
+SLOT_TYPE_2_IsPickleSlot = true
+</pre>
+ </div>
+</div>

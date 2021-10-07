@@ -1,0 +1,22 @@
+---
+title: Dag File Parsing
+layout: wiki-page
+---
+<div id="content">
+ Parsing is line-by-line.  Parse is basically a large table that looks at the first token in a line and then passes control to a subroutine to complete parsing the line.
+ <p>
+  If a line begins with '#', it is ignored.  Unfortunately, there is a parse error if the '#' comment character appears later in the line.
+ </p>
+ <p>
+  The hairiest part of parsing is when one is parsing splices: The splice dag is parsed, and along with any sub-splices.  Then the splice is "lifted" into its parent dag.  It would be nice if the splice were represented in code as a subdag, along with nested dags; then we could just have subdags.  The splice could then be parsed "lazily".
+ </p>
+ <p>
+  This code is all in parse.cpp. dagman_main calls parse(); at the end, you have the dag nodes in memory.
+ </p>
+ <p>
+  Probably need something about partial rescue dags here.
+ </p>
+ <p>
+  (Note:  this has been changed to parse in two passes for the more flexible command ordering -- there's a ticket for this.)  Note that this is kind of tricky if INCLUDE commands are used...
+ </p>
+</div>

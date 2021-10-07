@@ -1,0 +1,52 @@
+---
+title: Full Port Log Ubuntu Fourteen
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Perform a clipped port
+  </h2>
+ </span>
+ <p>
+  Done a long time ago, and testing all-green.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Preparation of a new glibc external
+ </h2>
+ <p>
+  Three additional packages were necessary to build
+  <code>
+   glibc
+  </code>
+  :
+  <code>
+   gawk
+  </code>
+  ,
+  <code>
+   texinfo
+  </code>
+  , and
+  <code>
+   gcc-multilib
+  </code>
+  .  (You must use 'gcc-multilib', not a gcc-specific multilib; the build depends on certain symlinks which don't otherwise exist.)
+ </p>
+ <p>
+  I followed the
+  <span class="wiki">
+   <a href="wiki-archiveFullPortLogDebianSixSixtyFourBit" title="Full Port Log Debian Six Sixty Four Bit">
+    usual instructions
+   </a>
+  </span>
+  , but I made two changes to the resulting tarball.  The first was to remove the generated include directory.  (Which would forever tie the build to whatever happened to be installed on the machine when I made the tarball.  Removing this directory is probably what caused the gcc-multilib requirement.)  The second was a modification to the glibc manual's Makefile to permit the 'make install' process to finish.  (I'm not sure why installing texinfo isn't sufficient for this, but since we don't care about the glibc manual....)
+ </p>
+ <p>
+  I applied the Debian 7 set of patches, which all seemed to work.  (Yay!)
+ </p>
+</div>

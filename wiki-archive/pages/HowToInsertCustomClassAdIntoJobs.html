@@ -1,0 +1,109 @@
+---
+title: How To Insert Custom Class Ad Into Jobs
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to insert custom ClassAd attributes into a job
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  In the following examples, an attribute named
+  <em>
+   Group
+  </em>
+  is added with the value "Physics".  You can use whatever attribute name you want, but avoid attribute names that conflict with attributes used by HTCondor.  See the manual or run
+ </p>
+ <div class="code">
+  <pre class="code">condor_q -long</pre>
+ </div>
+ on a job to see what attributes are there.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to insert custom ClassAd attributes into a job via the submit file:
+ </h3>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">+Group = "Physics"
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to insert custom ClassAd attributes into a job via the configuration file:
+ </h3>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">Group = "Physics"
+SUBMIT_ATTRS = $(SUBMIT_ATTRS) Group
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to insert custom ClassAd attributes into a job via the environment:
+ </h3>
+ <p>
+  Insert desired value into the user's environment (e.g. in a shell setup script or whatever).  Example:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">export _CONDOR_GROUP='"Physics"'
+</pre>
+ </div>
+ <p>
+  Then add it in the HTCondor configuration file:
+ </p>
+ <div class="code">
+  <pre class="code">SUBMIT_ATTRS = $(SUBMIT_ATTRS) Group
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to insert {quote: ClassAd} attributes into a job from the machine ad:
+ </h3>
+ <p>
+  Suppose the name of the attribute in the machine ad is X.  Then put the following in the HTCondor configuration (on the submit node).
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">MachineX = "$$([X])"
+SUBMIT_ATTRS = $(SUBMIT_ATTRS) MachineX
+</pre>
+ </div>
+ <p>
+  Actually, X can be any
+  <span class="quote">
+   ClassAd
+  </span>
+  expression.  It is not just limited to an attribute name.  The value that is inserted into the job
+  <span class="quote">
+   ClassAd
+  </span>
+  , however, is always stored as a string.
+ </p>
+ <p>
+  In the job history file, the attribute of the most recent machine on which the job ran will be stored with the name
+ </p>
+ <div class="code">
+  <pre class="code">MATCH_EXP_MachineX</pre>
+ </div>
+</div>

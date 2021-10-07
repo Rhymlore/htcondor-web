@@ -1,0 +1,90 @@
+---
+title: Lease Manager
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Lease Manager Daemon
+  </h2>
+ </span>
+ <p>
+  The Lease Manager, as its name implies, is a HTCondor daemon that manages
+the leasing of some type of resource within the confines of a HTCondor
+pool. What the resource represents is immaterial to the lease manager;
+it could be software licenses, disk space, or network I/O.
+A lease manager daemon can handle one type of resource. You would
+configure and run a seperate lease manager for each type of resource you
+want to represent.
+ </p>
+ <p>
+  The architecture of resource leasing is very similar to the matching of
+machines with jobs in HTCondor. Offers of and requests for a resource are
+represented by classads. The ads are matched with each other, with each
+ad able to provide a requirements expression that constrains what it can
+be matched against. Resource offers are advertised in the collector by
+admin-provided code. The
+lease manager periodically queries for these ads. Clients connect to the
+lease manager and submit a request ad. The lease manager matches the
+request to one or more offers and returns the matching ad(s) to the
+client.
+ </p>
+ <p>
+  There are also some differences from the machine/job architecture.
+Resource requests and offers include a quantity of resource, represented
+by a 32-bit signed integer. An offer's resource can be shared between
+multiple requests, and one request can be satisfied by resources from
+several offers. The lease manager tracks how much of each offer's
+resource has been allocated, and to which requests it's been allocated.
+This information is persisted to disk as a classad collection.
+ </p>
+ <p>
+  Each allocation of resources to a request is associated with a unique id
+and a lease time. If the requester wishes to use the resources beyond
+the lease time, it must renew the lease.
+If the requester does not renew the lease before it expires, the
+lease manager will reallocate the resources to other requesters.
+When the requester is finished
+with the resources, it can return them before the lease expires to allow
+them to be reallocated sooner.
+The lease time is the minimum of the durations set by the offer, the
+request, and the lease manager. The lease manager can also impose a
+maximum lease time beyond which no renewals are allowed.
+ </p>
+ <p>
+  If the resources advertised by offer ads drops below the amounts
+allocated to requests, the lease manager will refuse to renew some of
+the leases so as to respect the new totals.
+ </p>
+ <p>
+  The lease manager responds to three commands: GET_LEASES, RENEW_LEASE,
+and RELEASE_LEASE. There is a DCLeaseManager class that clients can use
+to interact with the lease manager, which has corresponding methods. The
+DCLeaseManager class will return DCLeaseManagerLease objects to the
+client which represent the leases. It should be possible for a client to
+write the contents of a DCLeaseManagerLease to disk, to be read back
+after a failure.
+ </p>
+ <p>
+  The lease manager is used by some portions of stork, but isn't used
+anywhere in HTCondor currently. It's included in the HTCondor release.
+There are some tests for it in the test suite, one of which is run in
+the nmi build/test cycle.
+ </p>
+ <p>
+  Configuration parameters used by the lease manager are documented in the
+HTCondor manual.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Questions
+ </h3>
+ <ul>
+  <li>
+   What attributes are defined for the various ads used by the lease manager?
+  </li>
+ </ul>
+</div>

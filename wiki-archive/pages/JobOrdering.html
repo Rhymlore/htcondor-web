@@ -1,0 +1,173 @@
+---
+title: Job Ordering
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  The way this is handled in the code is probably not as clean as it could be, because PRE and POST scripts got added to DAGMan after the initial code was written.  Because of that, I guess, PRE scripts are handled outside of the ready queue data structure, which is kind of awkward.
+ </p>
+ <p>
+  There are a number of important data structures relating to job ordering:
+ </p>
+ <ul>
+  <li>
+   <code>
+    Dag::_jobs
+   </code>
+   : a list of all Job objects (nodes) in the DAG.
+  </li>
+  <li>
+   <code>
+    Dag::_readyQ
+   </code>
+   : a queue of all jobs that are ready to be submitted (all of their parent nodes have finished, and their PRE scripts, if any, have also finished).
+  </li>
+  <li>
+   <code>
+    Job::_queues[Q_WAITING]
+   </code>
+   : a list of Job objects (nodes) that this Job is waiting on (Jobs are removed from this queue as they finish).  (The Job object also has parents and children queues.)
+  </li>
+ </ul>
+ <p>
+  When DAGMan starts up, the ready queue is empty.
+  <code>
+   Dag::Bootstrap()
+  </code>
+  calls
+  <code>
+   Dag::StartNode()
+  </code>
+  on all jobs with empty waiting queues.
+  <code>
+   Dag::StartNode()
+  </code>
+  either runs the node's PRE script (if there is one) or puts the node into the ready queue.  If a job does have a PRE script, and the PRE script succeeds,
+  <code>
+   Dag::PreScriptReaper()
+  </code>
+  puts the job into the ready queue.  (If the PRE script fails,
+  <code>
+   Dag::PreScriptReaper()
+  </code>
+  marks the job as failed, except in special cases.)
+ </p>
+ <p>
+  Once a job is in the ready queue, it will eventually get submitted by
+  <code>
+   Dag::SubmitReadyJobs()
+  </code>
+  , which is called from
+  <code>
+   condor_event_timer()
+  </code>
+  in
+  <em>
+   dagman_main.cpp
+  </em>
+  ;
+  <code>
+   condor_event_timer()
+  </code>
+  is called by daemoncore (every 5 seconds by default).  Note that
+  <code>
+   Dag::SubmitReadyJobs()
+  </code>
+  will only submit a certain number of jobs each time it is called (that number is configurable).  If the attempt to submit the job fails,
+  <code>
+   Dag::SubmitReadyJobs()
+  </code>
+  calls
+  <code>
+   Dag::ProcessFailedSubmit()
+  </code>
+  , which puts the job back into the ready queue.
+ </p>
+ <p>
+  When a job finishes, DAGMan sees the job's terminated event in the appropriate log file, and calls
+  <code>
+   Dag::ProcessTerminatedEvent()
+  </code>
+  .  If the job failed,
+  <code>
+   Dag::ProcessTerminatedEvent()
+  </code>
+  calls
+  <code>
+   Job::TerminateFailure()
+  </code>
+  , which marks the job as failed.
+  <code>
+   Dag::ProcessTerminatedEvent()
+  </code>
+  then calls
+  <code>
+   Dag::ProcessJobProcEnd()
+  </code>
+  , whether the job succeeded or failed.
+  <code>
+   Dag::ProcessJobProcEnd()
+  </code>
+  takes a number of possible actions, such as initiating a retry for the node, starting the node's POST script, waiting for other job procs to finish if the cluster contains more than one proc, or marking the node as successful.
+ </p>
+ <p>
+  TEMPTEMP -- talk about post script
+ </p>
+ <p>
+  When a node finishes, we call
+  <code>
+   Dag::TerminateJob()
+  </code>
+  on it; that method goes through the list of this node's children and removes the just-finished node from the children's waiting queues.  For each child whose waiting queue becomes empty, it calls
+  <code>
+   Dag::StartNode()
+  </code>
+  , and the cycle continues.
+ </p>
+ <p>
+  <code>
+   condor_event_timer()
+  </code>
+  in
+  <em>
+   dagman_main.cpp
+  </em>
+  gets called every five (by default) seconds.  In that function, we call
+  <code>
+   Dag::SubmitReadyJobs()
+  </code>
+  to submit any jobs that are ready; ready any new node job events (see ???); output the status of the DAG; and check whether the DAG is finished.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Submission/event reading loop -- every 5 sec (default) via daemoncore
+  </li>
+  <li>
+   ready queue -- Job objects go into it when ready to submit
+  </li>
+  <li>
+   pre scripts are handled kind of kludgily -- might make more sense for Job objects to go into the ready queue when the PRE script should be submitted
+  </li>
+  <li>
+   document list of parents, not done parents in Job objects
+  </li>
+  <li>
+   Jobs have lists of parents, pending parents, etc.
+  </li>
+  <li>
+   Each job has parents, waiting, and children lists (parents and children lists don't change during run; waiting does)
+  </li>
+  <li>
+   submit failure puts job back into ready queue
+  </li>
+  <li>
+   pre scripts are handled separately from ready queue -- kind of goofs things up...
+  </li>
+  <li>
+   maybe explain how things work w/o pre/post scripts, then add in that info
+  </li>
+ </ul>
+</div>

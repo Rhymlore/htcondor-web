@@ -1,0 +1,67 @@
+---
+title: How To Edit Arunning Dagman Job
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Editing a Running DAGMan Job
+  </h2>
+ </span>
+ <p>
+  So you are running a DAGMan job and you find that the parameters you specified for the DAG are too aggressive (your schedd is filling up with your jobs that are idle and causing problems for other users) or too conservative (resources are left unused).  Instead of stopping and removing the DAGMan job, you can edit dag parameters so that they better fit your resources.  Here is how to do it.
+ </p>
+ <p>
+  Below, for concreteness, we are assuming the dagman is running in job 10.0 and you want to edit the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveMaxJobs" title="Max Jobs">
+    MaxJobs
+   </a>
+  </span>
+  command line parameter, which has been set too aggressively at 500 and needs to be tuned down to 200.
+ </p>
+ <p>
+ </p>
+ <pre>    1. condor_hold 10.0
+</pre>
+ <p>
+  Remember 10.0 is the cluster of the DAGman job. The hold here is to first, stop DAGMan from submitting any more jobs; and second, to force condor_dagman to restart (the condor_release command below) so that it has to reread its command line arguments.
+ </p>
+ <p>
+ </p>
+ <pre>    2. condor_q -l 10.0 | grep Arguments | sed 's/^Arguments = //' &gt; args
+</pre>
+ <p>
+  The file
+  <code>
+   args
+  </code>
+  should have contents that look similar to
+ </p>
+ <div class="code">
+  <pre class="code">"-f -l . -Lockfile /home/nwp/myia/align.dag.lock -AutoRescue 1 -DoRescueFrom 0 -Dag /home/nwp/myia/align.dag -Suppress_notification -MaxJobs 500 -CsdVersion $CondorVersion:' '7.9.4' 'Feb' '18' '2013' 'BuildID:' '102105' '$ -Dagman /usr/bin/condor_dagman -Update_submit"
+</pre>
+ </div>
+ The quotes are important!
+ <p>
+ </p>
+ <pre>    3. Now edit args so that MaxJobs is the limit that you want. (So just change "-MaxJobs 500" to "-MaxJobs 200" or whatever).
+</pre>
+ <p>
+  Now apply the
+  <code>
+   condor_qedit
+  </code>
+  command to change the command line arguments:
+ </p>
+ <p>
+ </p>
+ <pre>    4. condor_qedit 10.0 Arguments "$(cat args)"
+</pre>
+ <p>
+  Now restart condor_dagman.  DAGMan will start up in recovery mode, "catch up" to where it left off, and then continue submitting jobs.
+ </p>
+ <p>
+ </p>
+ <pre>    5. condor_release 10.0</pre>
+</div>

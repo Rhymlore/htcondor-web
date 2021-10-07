@@ -1,0 +1,149 @@
+---
+title: Execution Profiling
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to sample the stack
+  </h2>
+ </span>
+ <p>
+  This method is useful when you are called in to diagnose a HTCondor daemon that is using lots of cpu (or blocking a lot on I/O) for an unknown reason. Although crude, I have found this method to lead to the source of trouble in numerous cases.
+ </p>
+ <p>
+  If
+  <code>
+   pstack
+  </code>
+  or
+  <code>
+   gstack
+  </code>
+  are available, just use those.  If not, you can use
+  <code>
+   gdb
+  </code>
+  .
+ </p>
+ <p>
+  Here's an example gdb script for the schedd:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>add-symbol-file /path/to/condor_schedd.dbg
+set pagination off
+where
+quit
+</pre>
+ </div>
+ <p>
+  Run it a few times with the following command:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>gdb -p &lt;pid&gt; &lt; gdb_stack_sampler
+</pre>
+ </div>
+ <p>
+  If the stack shows that the schedd is usually in a certain part of the code, this may lead you to the source of trouble.
+ </p>
+ <p>
+  Beware that gdb (and gstack) may sometimes leave the process in a trapped state.  Send SIGCONT to the process to let it resume.
+ </p>
+ <p>
+  If you need to get the HTCondor admin to sample the stack for you, then it is nice to make it even simpler. Below is an example script to do the sampling. (Note that it doesn't load the .dbg file, just to keep things simple.)
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>#!/bin/sh
+
+PID=$1
+if [ "$PID" == "" ]; then
+  echo "USAGE: $0 pid"
+  exit 2
+fi
+
+LOG=stack_sample.$PID
+echo "Writing output to $LOG."
+max=10
+for i in `seq 1 $max`; do
+echo "Sample $i of $max"
+date &gt;&gt; $LOG
+
+gdb -p $PID &gt;&gt; $LOG &lt;&lt;EOF
+   set pagination off
+   where
+   quit
+EOF
+# in case gdb leaves the process trapped
+kill -CONT $PID
+sleep 5
+done
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  How to use callgrind to profile HTCondor
+ </h2>
+ <p>
+  Callgrind is a wonderful profiling tool. The one big disadvantage of it is that it slows down the application considerably (~20 times in my experience).
+ </p>
+ <p>
+  Here's an example of how to run callgrind on the collector.
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>condor_off -collector
+# become the user who runs HTCondor
+sudo su root
+valgrind —tool=callgrind /path/to/condor_collector -f -p 9618 &gt;&amp; /tmp/callgrind.log &lt; /dev/null &amp;
+PID=$!
+</pre>
+ </div>
+ <p>
+  You will see some files in the current working directory named
+  <code>
+   callgrind.out.$PID
+  </code>
+  and
+  <code>
+   callgrind.info.$PID
+  </code>
+  . Change the ownership of these from root to the condor user or callgrind will have trouble writing to them when the program exits.
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>chown condor:condor callgrind.*.$PID
+</pre>
+ </div>
+ <p>
+  After running for sufficient time, stop the collector.
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>kill -TERM $PID
+</pre>
+ </div>
+ <p>
+  You can then analyze the profile using kcachegrind.
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>kcachegrind /path/to/callgrind.out.$PID
+</pre>
+ </div>
+ <p>
+  The call tree is very useful. If you configure kcachegrind to know the path to the code, then you can also see the code for points in the call graph, annotated with profiling information. It is very nice!
+ </p>
+</div>

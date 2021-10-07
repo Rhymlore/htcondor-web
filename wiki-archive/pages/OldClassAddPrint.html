@@ -1,0 +1,39 @@
+---
+title: Old Class Add Print
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ already have a compatibility version of this method. It does not know about omitting 'private' attributes. We would have to add this capability.
+ <p>
+  The compatibility version also doesn't handle chained ads.
+ </p>
+ <p>
+  It also doesn't print
+  <span class="quote">
+   MyType
+  </span>
+  or
+  <span class="quote">
+   TargetType
+  </span>
+  if they're not set, nor does it print them first. In old
+  <span class="quote">
+   ClassAds
+  </span>
+  , if these are unset, they're printed as empty strings. This shouldn't matter, as there shouldn't be any code try to parse
+  <span class="quote">
+   ClassAds
+  </span>
+  written to the daemon logs.
+ </p>
+ <p>
+  Developer time: 4 hours
+ </p>
+ <p>
+  Progress: Method now handle private attributes and chained ads.
+ </p>
+</div>

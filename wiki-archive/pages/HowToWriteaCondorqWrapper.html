@@ -1,0 +1,124 @@
+---
+title: How To Writea Condorq Wrapper
+layout: wiki-page
+---
+<div id="content">
+ You may want to write a condor_q wrapper to display information specific to your installation.  With condor_q's -format option, this is usually straightforward.  Each call to -format allows you to write one piece of information.  That information can be simple attributes from the job's
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+   ClassAd
+  </a>
+ </span>
+ , or it can be full
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+   ClassAd
+  </a>
+ </span>
+ expressions.
+ <p>
+  Note that all of this applies to condor_status as well.
+ </p>
+ <p>
+  Here is a a command that almost replicates the output of "condor_q".  It does not print the "-- Submitter:" line at the start, nor does it print the summary at the bottom.  Furthermore, condor_q truncates the Cmd name to just the executable itself, excluding the directory portion of the path.  If
+  <span class="ticket">
+   <a class="new" href="tktview?tn=1368" title="New ClassAd function: regex_replace">
+    #1368
+   </a>
+  </span>
+  is implemented, extracting just the executable will be relatively straightforward.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_q \
+	-format '%4d.' ClusterId \
+	-format '%-3d ' ProcId \
+	-format '%-14s ' Owner \
+	-format '%-11s ' 'formatTime(QDate,"%m/%d %H:%M")' \
+	-format '%3d+' 'int(RemoteUserCpu/(60*60*24))' \
+	-format '%02d:' 'int((RemoteUserCpu-(int(RemoteUserCpu/(60*60*24))*60*60*24))/(60*60))' \
+	-format '%02d:' 'int((RemoteUserCpu-(int(RemoteUserCpu/(60*60))*60*60))/(60))' \
+	-format '%02d ' 'int(RemoteUserCpu-(int(RemoteUserCpu/60)*60))' \
+	-format '%-2s ' 'ifThenElse(JobStatus==0,"U",ifThenElse(JobStatus==1,"I",ifThenElse(TransferringInput=?=True,"&lt;",ifThenElse(TransferringOutput=?=True,"&gt;",ifThenElse(JobStatus==2,"R",ifThenElse(JobStatus==3,"X",ifThenElse(JobStatus==4,"C",ifThenElse(JobStatus==5,"H",ifThenElse(JobStatus==6,"E",string(JobStatus))))))))))' \
+	-format '%-3d ' JobPrio \
+	-format '%-4.1f ' ImageSize/1024.0 \
+	-format '%-18.18s' 'strcat(Cmd," ",Arguments)' \
+	-format '\n' Owner
+</pre>
+ </div>
+ <p>
+  (The RUN_TIME formatting is complicated because 7.4.x and earlier
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAds" title="Class Ads">
+    ClassAds
+   </a>
+  </span>
+  lack the modulus (%) operator.  7.5.2 and later will likely include this operator along with "New
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAds" title="Class Ads">
+    ClassAds
+   </a>
+  </span>
+  ", allowing for simpler expressions.  The ST formatting might be simplified if
+  <span class="ticket">
+   <a class="new" href="tktview?tn=1369" title="New ClassAd function: switch">
+    #1369
+   </a>
+  </span>
+  or something similar is implemented, but that is uncertain.)
+ </p>
+ <p>
+  Now, for example, lets say that a healthy chunk of your jobs are all
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveMatLab" title="Mat Lab">
+    MatLab
+   </a>
+  </span>
+  jobs, and all have a Cmd of /path/to/matlab.  You'd like to see the script file being passed in for these jobs instead of the path to matlab.  That's relatively simple, just check the Cmd's path and change what you print. The -format line in question would be:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">	-format '%-18.18s' 'ifThenElse(Cmd == "/path/to/matlab", Args, strcat(Cmd," ",Args))'
+</pre>
+ </div>
+ <p>
+  yielding a full command of:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_q \
+	-format '%4d.' ClusterId \
+	-format '%-3d ' ProcId \
+	-format '%-14s ' Owner \
+	-format '%-11s ' 'formatTime(QDate,"%m/%d %H:%M")' \
+	-format '%3d+' 'int(RemoteUserCpu/(60*60*24))' \
+	-format '%02d:' 'int((RemoteUserCpu-(int(RemoteUserCpu/(60*60*24))*60*60*24))/(60*60))' \
+	-format '%02d:' 'int((RemoteUserCpu-(int(RemoteUserCpu/(60*60))*60*60))/(60))' \
+	-format '%02d ' 'int(RemoteUserCpu-(int(RemoteUserCpu/60)*60))' \
+	-format '%-2s ' 'ifThenElse(JobStatus==0,"U",ifThenElse(JobStatus==1,"I",ifThenElse(TransferringInput=?=True,"&lt;",ifThenElse(TransferringOutput=?=True,"&gt;",ifThenElse(JobStatus==2,"R",ifThenElse(JobStatus==3,"X",ifThenElse(JobStatus==4,"C",ifThenElse(JobStatus==5,"H",ifThenElse(JobStatus==6,"E",string(JobStatus))))))))))' \
+	-format '%-3d ' JobPrio \
+	-format '%-4.1f ' ImageSize/1024.0 \
+	-format '%-18.18s' 'ifThenElse(Cmd == "/path/to/matlab", Args, strcat(Cmd," ",Args))'
+	-format '\n' Owner
+</pre>
+ </div>
+ <p>
+  Please be aware the above examples assume using a typical Unix/Linux command shell. If you are entering the above examples on Windows at a Windows Command Prompt (aka
+  <code>
+   cmd.exe
+  </code>
+  ), they will not work because the quoting rules for Windows cmd.exe are different than typically found on Unix/Linux.  In general, to make the above examples work on Windows, you will want to replace instances of single quotations with a double quotation, and then escape the pre-existing double quotations by preceding them with a backslash. For example, the following command that works at a Unix shell prompt
+ </p>
+ <div class="code">
+  <pre class="code">condor_q -format '%s\n' 'formatTime(QDate,"%m/%d %H:%M")' \
+</pre>
+ </div>
+ will need to changed as follows to work at Windows cmd.exe prompt:
+ <div class="code">
+  <pre class="code">condor_q -format "%s\n" "formatTime(QDate,\"%m/%d %H:%M\")"
+</pre>
+ </div>
+</div>

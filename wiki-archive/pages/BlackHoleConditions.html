@@ -1,0 +1,23 @@
+---
+title: Black Hole Conditions
+layout: wiki-page
+---
+<div id="content">
+ Execute nodes can sometimes become a "black hole" where jobs go to run but never do. This can be avoided by
+ <span class="wiki">
+  <a href="wiki-archiveAvoidingBlackHoles" title="Avoiding Black Holes">
+   policy
+  </a>
+ </span>
+ , or by testing nodes for the conditions observed below. This list is not exhaustive.
+ <p>
+ </p>
+ <ul>
+  <li>
+   <strong>
+    Hung NFS mounts
+   </strong>
+   - Linux nodes with hung NFS mounts can end up as black holes if the job requires files from an NFS mount
+  </li>
+ </ul>
+</div>

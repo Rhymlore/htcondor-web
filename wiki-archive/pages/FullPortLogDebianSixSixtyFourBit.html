@@ -1,0 +1,229 @@
+---
+title: Full Port Log Debian Six Sixty Four Bit
+layout: wiki-page
+---
+<div id="content">
+ This is a record of the work necessary to perform a full port of HTCondor
+to Debian 6 x86_64.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Perform a clipped port
+ </h2>
+ <p>
+  Do whatever is necessary to make this happen.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Preparation of a new glibc external
+ </h2>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Locate and see how glibc builds
+ </h3>
+ <p>
+  We must locate the glibc revision that comes standard with the
+platform.  This is different than locating the "official" glibc
+release since which is distro independent. It turns out each linux
+distro patches glibc according to its wishes and we need to preserve
+those patches. Historically, the is enough difference between the x86
+and x86_64 patches or builds that the same external CANNOT be used for
+both. It is very time intensive to discover if a vendor patched glibc
+source tree can be built/run properly on the another architecture.
+ </p>
+ <p>
+  1. Find the glibc source rpm associated with Deb 6 x86_64.
+ </p>
+ <p>
+ </p>
+ <pre>  apt-get source libc6
+</pre>
+ <p>
+  2. Prepare it so the patches are produced saving the output:
+ </p>
+ <p>
+ </p>
+ <pre>  # In my case, it was 2.11.2
+  cd eglibc-2.11.2
+  debian/rules patch
+</pre>
+ <p>
+  3. Save the resulting tarball:
+ </p>
+ <p>
+ </p>
+ <pre>  cd ..
+  cp -Rp eglibc-2.11.2 glibc-2.11.2-10-x86_64
+  tar czf glibc-2.11.2-10-x86_64.tar.gz glibc-2.11.2-10-x86_64
+</pre>
+ <p>
+  4. Now, build the glibc source package in order to find out how it is being
+   configured. The purpose of this is we have to compile glibc the same way
+   in our externals. Or at least as close as we can get it. We intend to
+   discover the configure line which builds glibc itself. You will likely
+   have to edit the configure flags to be a good set.
+ </p>
+ <p>
+ </p>
+ <pre>  cd eglibc-2.11.2
+  debian/rules build |&amp; tee build.out
+</pre>
+ <p>
+  The package gcc-multilib needs to be installed to compile glibc
+from the distro source. This is because it also compiles the 32
+bit versions.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Create the glibc external
+ </h3>
+ <p>
+  0. Figure out how cmake detects the GLIBC_VERSION variable, make sure it is
+    right.
+ </p>
+ <p>
+  1. Edit CMakeLists.txt to add a new case for the detected GLIBC_VERSION.
+    Ensure no conflicts with previous version numbers happen. Fill it
+    in similarly to the last recent one, taking into consideration
+    the new configure flags determined by inspection of build.out
+    from the previous step. You may need to comment out the GLIBC_PATCH step
+    for now.
+ </p>
+ <p>
+  2. Create a directory in the externals based upon the name of the GLIBC_VERSION.
+    Your future patches, if any, go here.
+ </p>
+ <p>
+  3. Place the required tarball into /p/condor/repository/externals, ensure it
+    has permissions of 644.
+ </p>
+ <p>
+  4. Test build it with 'make glibc' after the build has been configured.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Patch glibc so it honors --enable-static-nss &amp; other features specific to us
+ </h3>
+ <p>
+  In the Debian 5 port of HTCondor, we had patched glibc to make
+--enable-static-nss function and also turned off the ncsd support. This
+is because we needed a truely static binary, and the ncsd socket was
+kept permanently open which defered checkpointing permanently.
+ </p>
+ <p>
+  So, we need to determine how much of this is still true and still needs
+patching in the new glibc.
+ </p>
+ <p>
+  1. It turns out the patchfile to enable static nss from glibc external 2.7-18
+    works for the deb6 glibc.
+ </p>
+ <p>
+  2. TODO I haven't yet tested the nscd patch
+ </p>
+ <p>
+  3. TODO Add a patch which removes the warning about using nss function in
+    statically linked executables. It sucks and just causes rust.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Check glibc external build
+ </h3>
+ <p>
+  Ok, now we have to inspect the produced libraries and ensure that we are
+shipping everything we should be shipping. This include libc.a and a pile
+of resolver libraries like libnss_files.a, libnss_dns.a, and libresolv.a.
+Since glibc is an evolving library, these names may change or there might
+be additional libraries to ship along with it. So some of the above steps
+may be redone upon future knowledge discovery.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Start a build of HTCondor and see what breaks. Fix incrementally.
+ </h2>
+ <p>
+  Ok, lots of stuff broke. The gist of what broke (prototypes being
+different, etc) looks to be because wherever we had GLIBC212 as a
+preprocessor check we likely also need GLIBC211. I need to check to see
+if the GLIBC211 behavior still applies to GLIBC212.
+ </p>
+ <p>
+  1. GLIBC211 addition steps:
+    Every place I found a reference to GLIBC212, I checked to see if
+    it was valid on GLIBC212 and added GLIBC211 if it was.
+ </p>
+ <p>
+  Oh, it franks. That's quicker than I thought. Meh, onward ho.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Fixing the Test Suite so it builds
+ </h2>
+ <p>
+  Due to my changes for the Deb 6 x86_64 port, it seems I need to make
+no other changes.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Running the test suite and seeing what breaks
+ </h2>
+ <p>
+  You must build in source for the test suite to function.
+ </p>
+ <p>
+  # First we test just standard universe.
+ </p>
+ <p>
+  ./batch_test -b -c -f list_stduniv -d .
+ </p>
+ <p>
+  job_ckpt_standalone_std seemed to have failed, but the actual activity
+the test is doing is ok. I think there is a bug in our runcmd()
+implementation.  I looked, and I can't find a bug, well, to tell you
+the truth, I found a few bugs simply by code inspection and fixed them,
+but they weren't the ones which caused runcmd() to get confused. It just
+appears that perl's waitpid() just does something stupid.
+ </p>
+ <p>
+  # Then we remake everything and test the rest too.
+ </p>
+ <p>
+  ./batch_test -b -c -d .
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Test Suite Passes. Code complete
+ </h2>
+ <p>
+  Commit and push.
+ </p>
+</div>

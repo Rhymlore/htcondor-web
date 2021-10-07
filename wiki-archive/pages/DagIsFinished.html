@@ -1,0 +1,23 @@
+---
+title: Dag Is Finished
+layout: wiki-page
+---
+<div id="content">
+ (This needs updating for final nodes.)
+ <p>
+  A Dag is finished when:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   There are no nodes remaining to submit, all post scripts have completed, the final node has completed.
+  </li>
+  <li>
+   No nodes are queued up and the ready queue is empty.  This implies a cycle in the putative DAG or that something internally in DAGMan is messed up. DAGMan should exit, writing out a rescue DAG.
+  </li>
+  <li>
+   A node has exited with failure and all remaining nodes have a dependency on it completing successfully.  DAGMan should exit, writing out a rescue DAG.
+  </li>
+ </ol>
+</div>

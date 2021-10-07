@@ -1,0 +1,83 @@
+---
+title: Compiling Htcondor Without Afs
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Compiling Without AFS
+  </h2>
+ </span>
+ <div class="code">
+  <pre class="code">To: HTCondor Team mailing list
+Subject: Re: IMPORTANT changes to build system (please read)
+Date: Mon, 17 Mar 2003 22:48:30 -0600
+From: Derek Wright &lt;wright@cs.wisc.edu&gt;
+</pre>
+ </div>
+ <p>
+  <code>
+   On Mon, 17 Feb 2003 22:27:55 -0600  Se-Chang Son wrote:
+  </code>
+ </p>
+ <p>
+ </p>
+ <pre>    &gt; could you tell me how to build HTCondor on a machine w/o AFS
+    &gt; under this new rule of build system?
+</pre>
+ <p>
+  whoops!  i don't know if you ever got help with this, but i just found
+your message burried in my inbox...
+ </p>
+ <p>
+ </p>
+ <pre>    &gt; 1. copied files from /p/condor/workspaces/... to a private machine
+    &gt; 2. changed 'Top' value of config/site.def accordingly
+    &gt; 3. created build directory and symlinks under it appropriately (?):
+    &gt;     + build/config -&gt; $(Top)/config
+    &gt;     + build/imake -&gt; $(Top)/imake
+</pre>
+ <p>
+  this is where you went wrong...
+ </p>
+ <p>
+  you don't want build/imake itself to be a symlink to the top-level
+$(Top)/imake.  you want the imake directory to be a local directory,
+and all the files in $(Top)/imake to be symlinked into the imake
+directory.  this is just like any directory of a given HTCondor daemon
+inside src.  you need to locally compile your own copy of imake your
+build workspace.
+ </p>
+ <p>
+  the best thing to do if you're trying to not use AFS would probably be
+to copy /p/condor/home/bin/new_workspace to your machine, too, and run
+that.  it does everything for you, even editing your copy of
+config/site.def to point to the right location.
+ </p>
+ <p>
+  (can someone remind me of the magic perl incantation for the top of a
+script so it works anywhere, instead of having a hard-coded path to
+perl?)
+ </p>
+ <p>
+ </p>
+ <pre>    &gt; 4. ran 'build/src/condor_imake'
+</pre>
+ <p>
+  didn't this give you any error messages?
+ </p>
+ <p>
+ </p>
+ <pre>    &gt; 5. ran 'make' under 'build/src' and got an error:
+    &gt;     + Makefile:229: *** target file `submit.tar' has both : and :: entries.  Stop.
+</pre>
+ <p>
+  this usually means you don't have a good version of imake...
+ </p>
+ <p>
+  sorry for the delay in answering!
+ </p>
+ <p>
+  -d
+ </p>
+</div>

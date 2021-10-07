@@ -1,0 +1,61 @@
+---
+title: How To Run Jobs Periodically Like Cron
+layout: wiki-page
+---
+<div id="content">
+ (AKA "cronman")
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  Condor itself has build-in support for re-running a job on a certain time schedule.  However, the same job id is re-run again and again, which can lead to problems: If the job goes on hold once, it is never re-run until it is released.  The job never ends up in the history file, and it is hard to measure usage for each instance.  Sometimes, you want a separate condor job for each timed run.  Here's how to do that.
+ </p>
+ <p>
+  First, create a very simple dag.  Put the followning in a file called cronman.dag
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">JOB A repeat.sub
+SCRIPT POST A /bin/false
+RETRY A 1000000
+
+</pre>
+ </div>
+ <p>
+  Then, you'll need a submit file that has the job proper:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">universe = vanilla
+executable = something
+arguments = arg1 arg2
+
+output = output.$(Cluster)
+error = errorfile.$(Cluster)
+log = log
+
+# If you want to run once an hour, on the hour
+#  see the manual for the full set of cron_ options
+cron_minute = 0
+queue
+</pre>
+ </div>
+ <p>
+  Then, just submit the dag with
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_submit_dag cronman.dag
+</pre>
+ </div>
+ <p>
+  After the DAG starts up, it will submit a child job, which will go into the run
+state right away.  However, it won't actually "fire" until the minute hits "0".
+Then when the job is finished, it should leave the queue and a new job with a
+new ID should be submitted in its place (and again go into the run state right
+away).
+ </p>
+</div>

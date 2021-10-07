@@ -1,0 +1,152 @@
+---
+title: Debian Native Package
+layout: wiki-page
+---
+<div id="content">
+ HTCondor is available as a native package in Debian. Currently, HTCondor 7.8.2 is in
+ <code>
+  testing
+ </code>
+ , which will become the next stable release, Debian 7 (
+ <code>
+  wheezy
+ </code>
+ ). More recent versions of HTCondor are available in
+ <code>
+  unstable
+ </code>
+ (a.k.a.
+ <code>
+  sid
+ </code>
+ ).
+ <p>
+  Note: The HTCondor Team releases Debian packages of HTCondor that closely resemble the tarball packages. This page does not describe those packages.
+ </p>
+ <p>
+  Michael Hanke is the current maintainer of the Debian package for HTCondor. The mailing list address condor-debian&lt;at&gt;cs.wisc.edu is also listed as a maintainer.
+ </p>
+ <p>
+  The source tree used to create the Debian package lives on its own branch, which adds a
+  <code>
+   debian
+  </code>
+  directory and removes some files that shouldn't be in a Debian package. Merges from the HTCondor release branches are done as required when making a new release.
+ </p>
+ <p>
+  In the HTCondor git repository, branch
+  <code>
+   debian
+  </code>
+  contains the most recent Debian package for HTCondor (7.8.4 as of this writing). It is also stored in the git repository
+  <a class="external" href="http://git.debian.org/git/pkg-exppsy/condor.git">
+   http://git.debian.org/git/pkg-exppsy/condor.git
+  </a>
+  , on the
+  <code>
+   master
+  </code>
+  branch. In that repository, branch
+  <code>
+   maint-wheezy
+  </code>
+  contains the source for versions in
+  <code>
+   testing
+  </code>
+  (a.k.a.
+  <code>
+   wheezy
+  </code>
+  ), which is 7.8.2 plus back-ported security patches. Some of the Debian package releases are tagged in both repositories with names like
+  <code>
+   debian/7.8.2_dfsg.1-2
+  </code>
+  .
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Upload Process
+ </h2>
+ <p>
+  The following procedure was written originally by Michael Hanke (November 2012) and was posted here (and edited for web readability) by Tim Cartwright.
+ </p>
+ <p>
+  Note: This was a least-effort upgrade, so you can use this as a reference for the minimum procedure. I am using the version for the current stable release in the commands:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   First, merge the release tag into the Debian "upstream" tracking branch, which is used to generate the "orig" tarball:
+   <div class="verbatim">
+    <pre>$ git co upstream
+$ git merge V7_8_6</pre>
+   </div>
+  </li>
+  <li>
+   Now, merge it into the Debian release branch, "master" in Michael's case, and probably different for you:
+   <div class="verbatim">
+    <pre>$ git co master
+$ git merge upstream</pre>
+   </div>
+  </li>
+  <li>
+   Generate the release tarball. This command will figure out the most recent merge point from "upstream" and describe it in terms of HTCondor release tags to generate a package version. The tarball is created in the current directory but must be moved one level up.
+   <div class="verbatim">
+    <pre>$ make -f debian/rules get-orig-source
+$ mv condor_7.8.6\~dfsg.1.orig.tar.gz ..</pre>
+   </div>
+  </li>
+  <li>
+   Test all patches and resolve any conflicts or fuzz:
+   <div class="verbatim">
+    <pre>$ quilt push -a
+$ quilt pop -a</pre>
+   </div>
+  </li>
+  <li>
+   Create a new changelog entry using the determined version, plus package revision. This includes creating a summary of the upstream changelog, with all the bits that are relevant for a Debian administrator or user. There are tools in Debian that will auto-generate install reports, which include the changelog entries; this is very useful for a cluster administrator, and we want to be friends...
+   <div class="verbatim">
+    <pre>$ dch -v '7.8.6~dfsg.1-1'</pre>
+   </div>
+  </li>
+  <li>
+   [Optional:] Set up ccache to facilitate the build:
+   <div class="verbatim">
+    <pre>$ export PATH=/usr/lib/ccache:$PATH</pre>
+   </div>
+  </li>
+  <li>
+   Build the package:
+   <div class="verbatim">
+    <pre>$ dpkg-buildpackage -us -uc</pre>
+   </div>
+  </li>
+  <li>
+   Run the package tests
+   <div class="verbatim">
+    <pre>$ lintian -iv ../condor_7.8.6\~dfsg.1-1_i386.changes</pre>
+   </div>
+  </li>
+  <li>
+   Deal with discovered problems
+  </li>
+  <li>
+   Install and test the build
+...
+  </li>
+  <li>
+   When everything is ready, create a signed tag:
+   <div class="verbatim">
+    <pre>$ git tag -s debian/7.8.6~dfsg.1-1</pre>
+   </div>
+  </li>
+  <li>
+   Call for a Debian developer and ask for a sponsored upload
+  </li>
+ </ol>
+</div>

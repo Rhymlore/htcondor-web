@@ -1,0 +1,40 @@
+---
+title: How To Ban Machine
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to ban a machine from executing jobs
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  Suppose jobs are mysteriously failing on a particular machine. Some kind of hardware problem such as memory corruptionis suspected. It is probably a good idea to turn HTCondor off until the problem is solved. In addition, just so no mistakes are made, it may also a good idea to take the machine out of the HTCondor pool, in case HTCondor gets restarted prematurely.
+ </p>
+ <p>
+  Do this by adding to the HTCondor configuration visible to the condor_collector daemon:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># 2008-04-27: badmachine has a hardware problem, so temporarily blacklist it
+HOSTDENY_WRITE = $(HOSTDENY_WRITE) badmachine.domain.name
+</pre>
+ </div>
+ <p>
+  Issue the command
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -full</pre>
+ </div>
+ The existing machine
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+   ClassAd
+  </a>
+ </span>
+ will take time to expire (~15 minutes); restart the condor_collector daemon if the expiration interval is too long to wait.
+</div>

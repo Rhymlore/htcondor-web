@@ -1,0 +1,85 @@
+---
+title: Provide Contrib Modules
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Summary
+  </h2>
+ </span>
+ There are many modules out there - maintained by the HTCondor team and also third-party modules - that work on top of HTCondor proper. This page gives an overview of some of those modules, where to find them, who to contact about them, etc. Most of the mentioned modules are or will be hosted within the HTCondor source repository.
+ <p>
+ </p>
+ <hr/>
+ <span class="section">
+  <h2>
+   Idea
+  </h2>
+ </span>
+ Contrib modules hosted in the HTCondor repository are supposed to be built with our nightly builds. Ideally they would also be tested which requires contributors to provide appropriate regression tests.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  How to contribute
+ </h2>
+ In general the same rules apply as for
+ <span class="wiki">
+  <a href="wiki-archiveMakingContributions" title="Making Contributions">
+   MakingContributions
+  </a>
+ </span>
+ . However, since you will provide a standalone package, we have would like you to adhere to a certain format for sake of consistency.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Format
+ </h2>
+ A contrib module &lt;project&gt; should adhere to the following format:
+ <p>
+ </p>
+ <ul>
+  <li>
+   &lt;project&gt;
+   <ul>
+    <li>
+     README (description of your module and brief documentation on how to use it )
+    </li>
+    <li>
+     license.txt (the license under which your module is released - will most likely be similar to HTCondor's, but may vary. In doubt talk to us about it!)
+    </li>
+    <li>
+     author.txt  (the contact person for this module - name, e-mail address, affiliation, ... )
+    </li>
+    <li>
+     src/ folder
+    </li>
+    <li>
+     tests/ folder (containing regression tests - if applicable)
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  In the end it would be nice if you already hooked your module into HTCondor's build system cmake, but if necessary we can provide assistance. This is, of course, only applicable to projects linking into the HTCondor code. If you provide a module in a scripting language or entirely separate from the HTCondor code, you can ignore this part.
+ </p>
+ <p>
+  Last but not least, please create a wiki page for your module according to this:
+  <span class="wiki">
+   <a href="wiki-archiveExampleModule" title="Example Module">
+    ExampleModule
+   </a>
+  </span>
+  . This will be linked to from the
+  <span class="wiki">
+   <a href="wiki-archiveContribModules" title="Contrib Modules">
+    ContribModules
+   </a>
+  </span>
+  TOC.
+ </p>
+</div>

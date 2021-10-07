@@ -1,0 +1,147 @@
+---
+title: Qmf Triggerd
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Module Description
+  </h2>
+ </span>
+ The Qpid Management Framework (QMF) is a distributed object management framewor
+k
+that uses Apache Qpid for its transport. It provides code-generation tools to
+render native language binding types and objects for C++, Python, and Ruby from
+XML schema definitions. That code is then linked to runtime libraries for
+client-agent integration mediated by a Qpid broker.
+ <p>
+  This contribution is a daemon that raises QMF Events based upon user defined
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  queries.  The Triggerd asks the Collector if any
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAds" title="Class Ads">
+    ClassAds
+   </a>
+  </span>
+  match the
+specific query, and then processes the results and raises events.  A trigger
+definition contains 3 elements:
+ </p>
+ <ul>
+  <li>
+   A Name
+  </li>
+  <li>
+   A
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+     ClassAd
+    </a>
+   </span>
+   Query
+  </li>
+  <li>
+   The text to be raised if the
+   <span class="wiki">
+    <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+     ClassAd
+    </a>
+   </span>
+   Query returns any matches
+  </li>
+ </ul>
+ <p>
+  The QMF Events raised by the condor_triggerd contain two
+arguments:
+ </p>
+ <ul>
+  <li>
+   The time the event was raised
+  </li>
+  <li>
+   The event text
+  </li>
+ </ul>
+ <p>
+  The event text can contain attributes from the matching
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  by surrounding
+the attribute with $().  If there was a trigger with text:
+ </p>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>$(Machine) has been Claimed/Idle</pre>
+ </div>
+ <p>
+  Then the
+  <code>
+   $(Machine)
+  </code>
+  would be replaced with the value for the attribute Machine
+from the matching
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  Currently, this code base has external dependencies on:
+ </p>
+ <ul>
+  <li>
+   Apache Qpid 0.8-4
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Download
+ </h2>
+ The module is contained in the HTCondor source tree in src/condor_contrib/triggerd as of HTCondor 7.5.5.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Contact
+ </h2>
+ The contact person for this module is:
+ <code>
+  Rob Rati
+ </code>
+ <code>
+  (rrati@redhat.com), Red Hat Inc.
+ </code>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Homepage
+ </h2>
+ For more information about this module, please refer to:
+ <a class="external" href="https://cwiki.apache.org/qpid/qpid-management-framework.html">
+  https://cwiki.apache.org/qpid/qpid-management-framework.html
+ </a>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  License
+ </h2>
+ This module is released under the Apache License.
+</div>

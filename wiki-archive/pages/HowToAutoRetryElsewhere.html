@@ -1,0 +1,93 @@
+---
+title: How To Auto Retry Elsewhere
+layout: wiki-page
+---
+<div id="content">
+ Imagine that you knew your job will never run for longer than 20 minutes, and if your job does run for more than 20 minutes, you want to presume something is wrong with the machine. Here is an example of a condor_submit file that tells HTCondor to restart the job on a different machine if the job ran for more than 20 minutes.
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Fill in executable and max expected runtime in minutes.
+# If the job runs longer than expected, it will go on hold,
+# and then will be restarted on a different machine.  After
+# three restarts on three different machines, the job will
+# stay on hold.
+#
+executable = foo.exe
+expected_runtime_minutes = 20
+#
+# Should not need to change the below...
+#
+job_machine_attrs = Machine
+job_machine_attrs_history_length = 4
+requirements = target.machine =!= MachineAttrMachine1 &amp;&amp; \
+   target.machine =!= MachineAttrMachine2 &amp;&amp; \
+   target.machine =!= MachineAttrMachine3
+periodic_hold = JobStatus == 2 &amp;&amp; \
+   time() - EnteredCurrentStatus &gt; 60 * $(expected_runtime_minutes)
+periodic_hold_subcode = 1
+periodic_release = HoldReasonCode == 3 &amp;&amp; HoldReasonSubCode == 1 &amp;&amp; \
+   JobRunCount &lt; 3
+periodic_hold_reason = ifthenelse(JobRunCount&lt;3,"Ran too long, will retry","Ran too long")
+queue
+</pre>
+ </div>
+ <p>
+  Note the technique is to put the job on hold via
+  <code>
+   periodic_hold
+  </code>
+  if it runs too long, resulting in the job going to the Held state.  Next the job is released via
+  <code>
+   periodic_release
+  </code>
+  , causing the job to go back to Idle and be rescheduled.  The
+  <code>
+   requirements
+  </code>
+  expression ensures the job runs on different machine entirely, not just a different slot on the same machine; see
+  <span class="wiki">
+   <a href="wiki-archiveAvoidingBlackHoles" title="Avoiding Black Holes">
+    AvoidingBlackHoles
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  Also note that
+  <code>
+   periodic_release
+  </code>
+  expression only releases a job that was put on hold for a known cause, which we implement by utilizing the
+  <code>
+   periodic_hold_subcode
+  </code>
+  attribute.  After all, we don't want to release a job that was put on hold for a different reason, such as the user running
+  <code>
+   condor_hold
+  </code>
+  .  We also set
+  <code>
+   periodic_hold_reason
+  </code>
+  to something helpful, so typing
+  <code>
+   condor_q -hold
+  </code>
+  displays something informative.
+ </p>
+ <p>
+  Finally, note that we limit the number of times a job goes through the hold/release cycle.
+ </p>
+ <p>
+  All of the mechanisms used in the below submit file are described on
+  <a class="external" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_submit.html">
+   the condor_submit manual page
+  </a>
+  .  Also may be useful to browse the
+  <a class="external" href="http://research.cs.wisc.edu/htcondor/manual/current/12_Appendix_A.html">
+   documented job classad attributes
+  </a>
+  .
+ </p>
+</div>

@@ -1,0 +1,359 @@
+---
+title: Scripting Git Trac
+layout: wiki-page
+---
+<div id="content">
+ At the moment this is a bit of a junk draw collecting notes on programmatically interacting with
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveGitTrac" title="Git Trac">
+   GitTrac
+  </a>
+ </span>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Bulk changing target versions
+ </h2>
+ <p>
+  See ticket-target-mover.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">cvs -d /p/condor/repository/CONDOR_SRC checkout tools/ticket-target-mover
+</pre>
+ </div>
+ <p>
+  Usage:
+./ticket-target-mover --from-ver=&lt;version ID&gt; --to-ver=&lt;version ID&gt; [options]
+ </p>
+ <ul>
+  <li>
+   --username=&lt;GitTrac username&gt; - default is your Unix username (adesmet)
+  </li>
+  <li>
+   --password=&lt;GitTrac password&gt; - default is contents of ~/.gtmover/password
+  </li>
+  <li>
+   --url-base=&lt;NEW URL&gt; - default
+   <a class="external" href="https://condor-wiki.cs.wisc.edu/index.cgi/">
+    https://condor-wiki.cs.wisc.edu/index.cgi/
+   </a>
+  </li>
+  <li>
+   --force-version - allow unusual version IDs.
+  </li>
+  <li>
+   --execute - Actually do the work. Defaults to only reporting a plan
+  </li>
+ </ul>
+ <p>
+  ticket-target-mover uses the web interface, so the ticket history is correctly updated.  It also adds a remark noting somethin like: "2010-Aug-23 17:06:39 by adesmet: Bulk change of target version from v070400 to v070404 using ./ticket_target_mover."
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  General ticket editing
+ </h2>
+ <p>
+  (This section is based on Matt Farrellee's email "scripting gittrac &amp; unassigned resolved tickets".)
+ </p>
+ <p>
+  Note that our
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveGitTrac" title="Git Trac">
+    GitTrac
+   </a>
+  </span>
+  install has been modified by mattf to allow updating individual fields without needing to resubmit all of the fields.  The below will probably not work on other CVSTrac installations.
+ </p>
+ <p>
+  First some constants:
+ </p>
+ <div class="code">
+  <pre class="code"># Our site
+SITE=http://condor-wiki.cs.wisc.edu/index.cgi
+# COOKIE_FILE can be just about any path you can write to
+COOKIE_FILE=$HOME/my-cookies
+# TICKET is the ticket number you want to work on
+TICKET=1337
+</pre>
+ </div>
+ <p>
+  First, login is a must. you need a cookie to access functions such as tktedit. to get a login cookie use:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">curl -c $COOKIE_FILE -d u=$USER -d "p=$PASS" -d in= http://$SITE/login
+</pre>
+ </div>
+ <p>
+  second, once you have a cookie, it is necessary to get a CSRF secret, which gittrac uses to avoid cross-site scripting attacks. to get one use:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">curl -b $COOKIE_FILE "http://$SITE/tktedit?tn=$TICKET" 2&gt;&amp;1 | \
+  grep 'type="hidden"' | grep -v -e 'name="tn"' -e 'name="le"'
+</pre>
+ </div>
+ <p>
+  the above two steps give you all the information you need to start editing tickets without the web UI.
+ </p>
+ <p>
+  to actually perform an edit use this command:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">curl -b $COOKIE_FILE -d tn=$TICKET -d le=0 -d submit= -d \
+  "$CSRF_NAME=$CSRF_VALUE" -d "$FIELD" http://$SITE/tktedit
+</pre>
+ </div>
+ <p>
+  CSRF_NAME is from the previous output, as well as CSRF_VALUE.
+ </p>
+ <p>
+  The last parameter is FIELD, which is always of the form X=Y where X is a field name and Y is the new value. field names are:
+ </p>
+ <p>
+  <table border="1" cellspacing="0">
+   <tbody>
+    <tr>
+     <td>
+      <strong>
+       CGI
+      </strong>
+     </td>
+     <td>
+      <strong>
+       Database
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <strong>
+       Field
+      </strong>
+     </td>
+     <td>
+      <strong>
+       Field
+      </strong>
+     </td>
+     <td>
+      <strong>
+       Meaning
+      </strong>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      y
+     </td>
+     <td>
+      type
+     </td>
+     <td>
+      Type
+     </td>
+    </tr>
+    <tr>
+     <td>
+      s
+     </td>
+     <td>
+      status
+     </td>
+     <td>
+      Status
+     </td>
+    </tr>
+    <tr>
+     <td>
+      d
+     </td>
+     <td>
+      derivedfrom
+     </td>
+     <td>
+      Parent ticket
+     </td>
+    </tr>
+    <tr>
+     <td>
+      v
+     </td>
+     <td>
+      version
+     </td>
+     <td>
+      Earliest known version with problem
+     </td>
+    </tr>
+    <tr>
+     <td>
+      a
+     </td>
+     <td>
+      assignedto
+     </td>
+     <td>
+      Assigned to
+     </td>
+    </tr>
+    <tr>
+     <td>
+      e
+     </td>
+     <td>
+      severity
+     </td>
+     <td>
+      Target version for fix
+     </td>
+    </tr>
+    <tr>
+     <td>
+      p
+     </td>
+     <td>
+      priority
+     </td>
+     <td>
+      Priority
+     </td>
+    </tr>
+    <tr>
+     <td>
+      m
+     </td>
+     <td>
+      subsystem
+     </td>
+     <td>
+      Subsystem
+     </td>
+    </tr>
+    <tr>
+     <td>
+      w
+     </td>
+     <td>
+      owner
+     </td>
+     <td>
+      Submitter
+     </td>
+    </tr>
+    <tr>
+     <td>
+      t
+     </td>
+     <td>
+      title
+     </td>
+     <td>
+      Title/Summary
+     </td>
+    </tr>
+    <tr>
+     <td>
+      c
+     </td>
+     <td>
+      description
+     </td>
+     <td>
+      Long description
+     </td>
+    </tr>
+    <tr>
+     <td>
+      r
+     </td>
+     <td>
+      remarks
+     </td>
+     <td>
+      Long remarks
+     </td>
+    </tr>
+    <tr>
+     <td>
+      n
+     </td>
+     <td>
+      contact
+     </td>
+     <td>
+      ?
+     </td>
+    </tr>
+    <tr>
+     <td>
+      x1
+     </td>
+     <td>
+      extra1
+     </td>
+     <td>
+      Associated rust ticket
+     </td>
+    </tr>
+    <tr>
+     <td>
+      x2
+     </td>
+     <td>
+      extra2
+     </td>
+     <td>
+      Customer Group
+     </td>
+    </tr>
+    <tr>
+     <td>
+      x3
+     </td>
+     <td>
+      extra3
+     </td>
+     <td>
+      Visibility (Public/Private)
+     </td>
+    </tr>
+    <tr>
+     <td>
+      x4
+     </td>
+     <td>
+      extra4
+     </td>
+     <td>
+      Notify (email list)
+     </td>
+    </tr>
+    <tr>
+     <td>
+      x5
+     </td>
+     <td>
+      extra5
+     </td>
+     <td>
+      Due Date
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </p>
+</div>

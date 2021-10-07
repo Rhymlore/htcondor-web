@@ -1,0 +1,89 @@
+---
+title: How To Add Job Req
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to Add Automatic Job Requirements
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  To have some jobs preferentially run on some machines instead of others, see
+  <span class="wiki">
+   <a href="wiki-archiveHowToSteerJobs" title="How To Steer Jobs">
+    How to steer jobs towards more desirable machines
+   </a>
+  </span>
+  .  To
+  <strong>
+   require
+  </strong>
+  that specific jobs run on certain machines and not on others,  read on.
+ </p>
+ <p>
+  A user can specify within the job's requirements in the submit description file that the job must run on a specific machine.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">requirements = Machine == "example1.com"
+</pre>
+ </div>
+ <p>
+  As an alternative, the administrator may add requirements in the configuration file. These requirements are automatically inserted for every job.  For example, suppose that jobs from the special user "appinstaller" are to always run on a specific and reserved machine.  The administrator may set that up with the following configuration on the submit machine:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">APPEND_REQUIREMENTS = MY.Owner != "appinstaller" || TARGET.IsAppInstallerMachine =?= True
+</pre>
+ </div>
+ <p>
+  Then, in the local configuration file of the specific and reserved machine, add the following:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">IsAppInstallerMachine = True
+STARTD_ATTRS = $(STARTD_ATTRS) IsAppInstallerMachine
+</pre>
+ </div>
+ <p>
+  With this configuration, user "appinstaller" jobs will only run on the correct machine(s).  If only jobs from "appinstaller" are to run on the specific machine, then the administrator also modifies the configuration such that this machine only starts jobs from the desired owner:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">START = ($(START)) &amp;&amp; TARGET.Owner == "appinstaller"
+</pre>
+ </div>
+ <p>
+  Instead of altering the configuration to modify APPEND_REQUIREMENTS for each and every job's requirements
+(harmlessly in this example), the administrator may modify the user's login environment. HTCondor configuration is also read from the environment by tools such as condor_submit.  User "appinstaller" changes the environment with:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">export _CONDOR_APPEND_REQUIREMENTS=\
+  'MY.Owner != "appinstaller" || TARGET.IsAppInstallerMachine =?= True'
+</pre>
+ </div>
+ <p>
+  Note that this overrides any use of APPEND_REQUIREMENTS within the configuration file.
+ </p>
+ <p>
+  If it is the case the administrator does
+  <strong>
+   not
+  </strong>
+  control the configuration of the submit machine, none of the above options can work.  In that case, do things the ugly way: modify all potential execute machines to reject jobs from user "appinstaller",
+  <strong>
+   except
+  </strong>
+  for the machines that should accept the jobs.
+ </p>
+</div>

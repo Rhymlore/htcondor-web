@@ -1,0 +1,46 @@
+---
+title: Why Windows Unexpected Performance Counter
+layout: wiki-page
+---
+<div id="content">
+ HTCondor on Windows platforms relies on built-in performance counters
+for its operation.
+If performance counters that HTCondor requires are disabled,
+daemons may exit with a message such as
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">1/26 09:16:42 (fd:2) (pid:5732) ERROR: "Unexpected performance counter
+    size for total CPU: 0 (expected: 8)" at line 2846 in file
+    ..\src\condor_procapi\procapi.cpp
+</pre>
+ </div>
+ <p>
+  or
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">1/20 15:29:14 (pid:2484) ERROR "unable to spawn the ProcD" at line 136
+    in file ..\src\condor_c++_util\proc_family_proxy.C
+</pre>
+ </div>
+ <p>
+  and even
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">4/16 10:49:13 loadavg thread died, restarting. (exit code=2)
+</pre>
+ </div>
+ <p>
+  To enable the performance counters, check the registry key
+ </p>
+ <div class="code">
+  <pre class="code">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfProc\Performance
+</pre>
+ </div>
+ If a value for Disable Performance Counters exists, delete it or set
+it to 0.
+</div>

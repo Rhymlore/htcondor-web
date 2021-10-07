@@ -1,0 +1,28 @@
+---
+title: Old Class Ad Eval String
+layout: wiki-page
+---
+<div id="content">
+ This method has three variants:
+ <ul>
+  <li>
+   int EvalString(const char*, const class AttrList*, char*)
+  </li>
+  <li>
+   int EvalString(const char*, const class AttrList*, char **value)
+  </li>
+  <li>
+   int EvalString(const char*, const class AttrList*, MyString&amp; value)
+  </li>
+ </ul>
+ <p>
+  New
+  <span class="quote">
+   ClassAds
+  </span>
+  already have a compatibility version of the first variant. Writing compatibility methods for the other two will be easy.
+ </p>
+ <p>
+  Developer time: 1 hour
+ </p>
+</div>

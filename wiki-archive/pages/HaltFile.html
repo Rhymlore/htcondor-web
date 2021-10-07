@@ -1,0 +1,53 @@
+---
+title: Halt File
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  The DAG halt file is basically an alternative to
+  <em>
+   condor_hold/condor_release
+  </em>
+  for temporarily halting submission of new DAG node jobs.  When a DAGMan job is held (because is it scheduler universe) the schedd actually kills the DAGMan process, and then condor_release starts a new DAGMan process.  The weakness of this is that the re-started DAGMan process has to go into recovery mode to rebuild its internal state to match the state of the node jobs.  Using a halt file halts also halts the submission of new node jobs, but it doesn't kill off the DAGMan process -- it keeps running, and monitoring the log files, but it just doesn't submit any new jobs.  Also, if all node jobs in the queue finish (and all associated POST scripts finish) DAGMan creates a rescue DAG and exits.
+ </p>
+ <p>
+  Another advantage of the halt file is that it doesn't rely on the schedd to communicate with DAGMan -- on a submit machine with a very high load (perhaps caused by DAGs!),
+  <em>
+   condor_hold
+  </em>
+  may time out, thereby preventing the user from holding the DAG to decrease the load on the machine.
+ </p>
+ <p>
+  Note that, while in halted mode, we run POST scripts for any nodes for which the HTCondor job finishes and there is a POST script.  This is because if we didn't run the POST script, and then a rescue DAG got created, the node wouldn't be marked as done, and therefore the work done by the node job would be wasted.  We
+  <em>
+   don't
+  </em>
+  run any PRE scripts while we're halted, though.
+ </p>
+ <p>
+  Each time through
+  <code>
+   Dag::SubmitReadyJobs()
+  </code>
+  we check for the existence of the halt file (the halt file name is defined by the
+  <code>
+   HaltFileName()
+  </code>
+  function, based on the primary DAG file name).  If we find the halt file, we return from this method before submitting any more jobs (unless we're ready to run the final node).  On the other hand, if we go from halted to unhalted, we start up the PRE scripts that have been deferred while we were halted.
+ </p>
+ <p>
+  Note that we check in
+  <code>
+   condor_event_timer()
+  </code>
+  whether to exit because we're halted and there are no pending jobs or POST scripts.  In
+  <code>
+   ScriptQ::Run()
+  </code>
+  we check whether the DAG is halted, and, if so, defer any PRE scripts that we would otherwise run.
+ </p>
+ <p>
+  Hmm -- I have to check what happens if you have a final node and halt the DAG...  It looks like we'll still run the final node, but I have to make sure of that.
+ </p>
+</div>

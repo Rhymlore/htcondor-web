@@ -1,0 +1,252 @@
+---
+title: Contrib Modules
+layout: wiki-page
+---
+<div id="content">
+ The optional contribution modules (aka "contribs") are tools or plugins operating on top of HTCondor. None of them underlie the HTCondor development cycle and the HTCondor team does not provide support for most of them (exceptions are described in the respective module). Many of the modules are hosted within HTCondor's git repository in the condor_contrib folder and are distributed with the HTCondor source release, however, they are not part of HTCondor's release binaries.
+ <p>
+  If you want to provide your own contrib module, please follow the instructions on the wiki page
+  <span class="wiki">
+   <a href="wiki-archiveProvideContribModules" title="Provide Contrib Modules">
+    ProvideContribModules
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  List of current optional contribution modules
+ </h2>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Makeflow
+ </h3>
+ Makeflow is a workflow manager that allows you to express complex
+DAGs (Directed Acyclic Graphs) in a compact Make-like syntax and run them easily on your HTCondor pool. See
+ <a class="external" href="http://ccl.cse.nd.edu/software/makeflow/">
+  http://ccl.cse.nd.edu/software/makeflow/
+ </a>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  PyDagman
+ </h3>
+ <span class="quote">
+  PyDagman
+ </span>
+ is a Python package to simplify the
+programmatic creation of DAG files for condor_dagman in Python.
+The package is born from frustration writing one-off scripts to create
+DAG files for the users I support.  We regularly assist users in
+creating DAG workflows to their specifications, usually by reading in
+parameters from a parameter file and then programmatically building the
+DAG file using loops and conditionals.  This package takes care of some
+of the more annoying aspects, such as string formatting and circular
+dependency checking. See
+ <a class="external" href="https://github.com/brandentimm/pydagman">
+  https://github.com/brandentimm/pydagman
+ </a>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  htcondor_dag.py
+ </h3>
+ htcondor_dag.py turns python functions into HTCondor jobs. It writes out a DAG (Directed Acyclic Graph) defining the individual jobs and their dependencies, ready for submission to dagman which schedules their execution across a cluster of compute nodes. See
+ <a class="external" href="https://github.com/candlerb/htcondor_dag.py">
+  https://github.com/candlerb/htcondor_dag.py
+ </a>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  HTCondor Quill
+ </h3>
+ Quill stores job history data persistently in a database and allows HTCondor tools to query the database.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorQuill" title="Htcondor Quill">
+   HtcondorQuill
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   HTCondor DBQ
+  </h3>
+ </span>
+ HTCondor DBQ provides a relational database management system interface to HTCondor.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorDbq" title="Htcondor Dbq">
+   HtcondorDbq
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   Drop And Compute
+  </h3>
+ </span>
+ <a class="external" href="http://www.walkingrandomly.com/?p=3339">
+  DropAndCompute
+ </a>
+ , from the University of Manchester, is an approach to using network (or grid or cloud based) computational resources without having to know the operating system of the resource’s gateway or any command line tools. It provides and
+ <span class="quote">
+  DropBox
+ </span>
+ style user interface for job submission and management.
+ <span class="subsection">
+  <h3>
+   HTCondor Pigeon
+  </h3>
+ </span>
+ Pigeon allows queuing and forwarding of user log messages via AMQP. It consists of a broker and client tools.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorPigeon" title="Htcondor Pigeon">
+   HtcondorPigeon
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   HTCondor Aviary
+  </h3>
+ </span>
+ An alternative SOAP API to Birdbath that uses WSO2 and Axis2/C.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorAviary" title="Htcondor Aviary">
+   HtcondorAviary
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   CondorAgent
+  </h3>
+ </span>
+ An alternative API to the HTCondor scheduler based on a REST interface.
+ <span class="quote">
+  CondorAgent
+ </span>
+ is a program that runs beside a HTCondor scheduler. It provides enhanced access to scheduler-based data and scheduler actions via a HTTP-based REST interface.
+ <span class="quote">
+  CondorAgent
+ </span>
+ is deployed as either a shell script wrapped Python program (which requires Python 2.4 or greater) or as a Windows binary (which does not require a local Python installation).
+See:
+ <a class="external" href="https://github.com/cyclecomputing/condor-agent">
+  https://github.com/cyclecomputing/condor-agent
+ </a>
+ <span class="subsection">
+  <h3>
+   HTCondor Plumage
+  </h3>
+ </span>
+ A NoSQL operational data store framework that uses mongodb.
+See:
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveCondorPlumage" title="Condor Plumage">
+   CondorPlumage
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   HTCondor Log Analyzer
+  </h3>
+ </span>
+ <a class="external" href="http://condorlog.cse.nd.edu">
+  This web site
+ </a>
+ allows you to upload log files generated by the HTCondor system, and get back graphics and an explanation of what happened in the system. This can aid in understanding a workload of hundreds or thousands of jobs.
+ <span class="subsection">
+  <h3>
+   HTCondor Log Viewer
+  </h3>
+ </span>
+ Real-time visualization of events in the job event log via a Java Swing application.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorLogViewer" title="Htcondor Log Viewer">
+   HtcondorLogViewer
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   HTCondor View
+  </h3>
+ </span>
+ HTCondor View is used to automatically generate World Wide Web (WWW) pages displaying usage statistics of your HTCondor Pool. Included in the module is a shell script that invokes the condor_stats command to retrieve pool usage statistics from the HTCondor View server and generate HTML pages from the results. See
+ <span class="wiki">
+  <a href="wiki-archiveHtcondorViewClient" title="Htcondor View Client">
+   HtcondorViewClient
+  </a>
+ </span>
+ .
+ <span class="subsection">
+  <h3>
+   DMTCP/HTCondor Integration
+  </h3>
+ </span>
+ DMTCP is a third part user space checkpointing library which, through a
+shim script and extra information in one's submit description file, can
+checkpoint vanilla universe jobs. See:
+ <span class="wiki">
+  <a href="wiki-archiveDmtcpCondor" title="Dmtcp Condor">
+   DmtcpCondor
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   Stork
+  </h3>
+ </span>
+ Stork is a batch scheduler specialized in data placement and data movement, which is based on the concept and ideal of making data placement a first class entity in a distributed computing environment.
+See:
+ <a class="external" href="http://www.storkproject.org">
+  http://www.storkproject.org
+ </a>
+ <span class="subsection">
+  <h3>
+   Remote HTCondor
+  </h3>
+ </span>
+ Remote HTCondor allows a user to submit and monitor batch jobs through a remote instance of HTCondor from his or her computer without having to install HTCondor locally.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveRemoteCondor" title="Remote Condor">
+   RemoteCondor
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   CL-MW: A Master/Slave Distributed Computing Library in Common Lisp
+  </h3>
+ </span>
+ See:
+ <span class="wiki">
+  <a href="wiki-archiveClMw" title="Cl Mw">
+   ClMw
+  </a>
+ </span>
+ <span class="subsection">
+  <h3>
+   HDFS
+  </h3>
+ </span>
+ The Hadoop Distributed File System (HDFS) is a user space, distributed file system, maintained by the Apache project.  The condor_hdfs daemon is a daemon which manages the running of the java-based hdfs daemon.
+See:
+ <span class="wiki">
+  <a href="wiki-archiveHadoopDistributedFileSystemModule" title="Hadoop Distributed File System Module">
+   HadoopDistributedFileSystemModule
+  </a>
+ </span>
+</div>

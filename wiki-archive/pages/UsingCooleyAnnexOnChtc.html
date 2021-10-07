@@ -1,0 +1,210 @@
+---
+title: Using Cooley Annex On Chtc
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Introduction
+  </h2>
+ </span>
+ <p>
+  We are developing a way to run targeted CHTC jobs on the Cooley cluster at ALCF (Argonne Leadership Computing Facility). This is done via "hobble-in", a human-assisted form of glide-in that submits HTCondor startds as user jobs into Cooley's batch scheduler, Cobalt. The setup mimics how the condor annex allocates resources from AWS to run CHTC jobs (
+  <span class="wiki">
+   <a href="wiki-archiveUsingCondorAnnexOnChtc" title="Using Condor Annex On Chtc">
+    UsingCondorAnnexOnChtc
+   </a>
+  </span>
+  ).
+ </p>
+ <p>
+  Each machine in Cooley has the following resources:
+ </p>
+ <ul>
+  <li>
+   Two 2.4 GHz Intel Haswell E5-2620 v3 processors (6 cores per CPU, 12 cores total)
+  </li>
+  <li>
+   One NVIDIA Tesla K80 (with two GPUs)
+  </li>
+  <li>
+   384GB RAM, 24 GB GPU RAM (12 GB per GPU)
+  </li>
+  <li>
+   FDR Infiniband interconnect
+  </li>
+  <li>
+   345GB local scratch space
+  </li>
+  <li>
+   Red Hat Enterprise Linux Server release 6.8 (Santiago)
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  User Steps
+ </h2>
+ <p>
+  Similar to other resources outside of CHTC, running on Cooley will not happen by default. Jobs need to meet certain conditions regarding where and how they're submitted.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Required
+ </h3>
+ <p>
+  Jobs that want to be able to run on Cooley need to be submitted to a schedd configured to flock to the CHTC Condor Annex collector. Currently, that means submitting from these machines:
+ </p>
+ <ul>
+  <li>
+   submit-1.chtc.wisc.edu
+  </li>
+  <li>
+   submit-4.chtc.wisc.edu
+  </li>
+ </ul>
+ <p>
+  The jobs' resource requests must not exceed the available resources of a Cooley machine (detailed above).
+ </p>
+ <p>
+  The jobs must indicate that they want to run on resources outside of CHTC and that they're willing to run on Cooley specifically. To do so, the user must add the following lines to their submit file:
+ </p>
+ <div class="code">
+  <pre class="code">+WantFlocking = True
++MayUseCooley = True
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Optional
+ </h3>
+ <p>
+  If the user wants the jobs to run only on Cooley, they can add a clause to the Requirements expression:
+ </p>
+ <div class="code">
+  <pre class="code">requirements = Facility =?= "Cooley"
+</pre>
+ </div>
+ <p>
+  If the user wants the jobs to run only on a specific Cooley annex, they can add a different clause to the Requirements expression:
+ </p>
+ <div class="code">
+  <pre class="code">requirements = AnnexName =?= "Test1"
+</pre>
+ </div>
+ <p>
+  These two additions to the Requirements expression can be used individually or together.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Staff Steps
+ </h2>
+ <p>
+  Submitting jobs to Cooley is done from the login machines (hostname cooley.alcf.anl.gov) using the Cobalt batch scheduler. Access to theses machines is done via ssh using two-factor authentication. Thus, submission and management of Cooley jobs must be done by a human who has a login account.
+ </p>
+ <p>
+  Before submitting Cooley jobs, a CHTC staff member must configure the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveSoftEnv" title="Soft Env">
+    SoftEnv
+   </a>
+  </span>
+  system so that the proper CUDA libraries can be found by HTCondor and user jobs. To do so, they must create the file
+  <code>
+   ~/.soft.cooley
+  </code>
+  with the following contents:
+ </p>
+ <div class="code">
+  <pre class="code">+mvapich2
++cuda-9.0.176
+@default
+</pre>
+ </div>
+ <p>
+  Once logged into a Cooley login machine, a CHTC staff member can submit a new hobble-in job with a command like this:
+ </p>
+ <div class="code">
+  <pre class="code">% /home/jfrey/hobblein/bin/hobblein_submit 2 24:00:00 Test1 jfrey
+1337326
+%
+</pre>
+ </div>
+ <p>
+  This will submit a hobble-in job that uses 2 machines, runs for 24 hours, has an annex name of Test1, and will only run jobs owned by user jfrey. If the username argument is omitted, then the hobble-in will run jobs from any user.
+ </p>
+ <p>
+  The command will print out the Cobalt job id (1337326 in this case). The status of the job can be checked via Cobalt with this command:
+ </p>
+ <div class="code">
+  <pre class="code">% qstat
+JobID    User   WallTime  Nodes  State    Location
+=======================================================
+1337326  jfrey  00:10:00  2      running  cc024,cc124
+%
+</pre>
+ </div>
+ <p>
+  You can check the status of all jobs you've submitted as well:
+ </p>
+ <div class="code">
+  <pre class="code">% qstat -u jfrey
+JobID    User   WallTime  Nodes  State     Location
+========================================================
+1337314  jfrey  00:10:00  2      exiting   cc028,cc031
+1337326  jfrey  00:10:00  2      starting  cc024,cc124
+%
+</pre>
+ </div>
+ <p>
+  You can also delete a job from Cobalt:
+ </p>
+ <div class="code">
+  <pre class="code">% qdel 1337326
+      Deleted Jobs
+JobID    User
+================
+1337326  jfrey
+%
+</pre>
+ </div>
+ <p>
+  While the hobble-in job is running at Cooley, machine ads will appear in the CHTC annex collector. They can be queried using the annex name specified to hobblein_submit.
+ </p>
+ <div class="code">
+  <pre class="code">% condor_status -pool annex-cm.chtc.wisc.edu -annex Test1
+Name                         OpSys      Arch   State     Activity LoadAv Mem
+
+slot1@cc075.fst.alcf.anl.gov LINUX      X86_64 Unclaimed Idle      0.000 387137
+slot1@cc081.fst.alcf.anl.gov LINUX      X86_64 Unclaimed Idle      0.000 387137
+
+               Machines Owner Claimed Unclaimed Matched Preempting  Drain
+
+  X86_64/LINUX        2     0       0         2       0          0      0
+
+         Total        2     0       0         2       0          0      0
+%
+</pre>
+ </div>
+ <p>
+  The startds can be shut down like with a regular annex. This must be done as the root user on annex-cm.chtc.wisc.edu, due to the current security configuration.
+ </p>
+ <div class="code">
+  <pre class="code"># condor_off -annex Test1
+Sent "Kill-Daemon" command for "master" to master jfrey@cc081.fst.alcf.anl.gov
+Sent "Kill-Daemon" command for "master" to master jfrey@cc075.fst.alcf.anl.gov
+#
+</pre>
+ </div>
+</div>

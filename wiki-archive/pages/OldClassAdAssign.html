@@ -1,0 +1,67 @@
+---
+title: Old Class Ad Assign
+layout: wiki-page
+---
+<div id="content">
+ This method has six variants:
+ <ul>
+  <li>
+   int Assign(char const *variable,
+   <span class="quote">
+    MyString
+   </span>
+   &amp;value)
+  </li>
+  <li>
+   int Assign(char const *variable,char const *value)
+  </li>
+  <li>
+   int Assign(char const *variable,int value)
+  </li>
+  <li>
+   int Assign(char const *variable,float value)
+  </li>
+  <li>
+   int Assign(char const *variable,double value)
+  </li>
+  <li>
+   int Assign(char const *variable,bool value)
+  </li>
+ </ul>
+ <p>
+  In new
+  <span class="quote">
+   ClassAds
+  </span>
+  , InsertAttr() is a direct equivalent set of
+methods. The only differences are the return type (int vs. bool) and new
+  <span class="quote">
+   ClassAds
+  </span>
+  don't have float or
+  <span class="quote">
+   MyString
+  </span>
+  variants.
+ </p>
+ <p>
+  A simple search-and-replace or set of pass-through functions will work.
+In the former case, some call sites may need to be fixed up because of
+the change in return type. For the
+  <span class="quote">
+   MyString
+  </span>
+  variant, we can try adding a
+cast operator to std::string or const char* in
+  <span class="quote">
+   MyString
+  </span>
+  .
+ </p>
+ <p>
+  Developer time: 1-2 hours, some student time for search-and-replace fixup
+ </p>
+ <p>
+  Progress: Done (added compatibility function)
+ </p>
+</div>

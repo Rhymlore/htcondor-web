@@ -1,0 +1,162 @@
+---
+title: Unifying Logging And Rotation
+layout: wiki-page
+---
+<div id="content">
+ This wiki page contains an overview of currently existing logging and rotation mechanisms in HTCondor.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  What is there?
+ </h3>
+ <div class="code">
+  <pre class="code">- dprintf
+- user logs
+- event logs
+- history files
+- quill logs
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Current API of the individual logging methods
+ </h3>
+ <hr/>
+ User Log:
+ <hr/>
+ Writer- and Reader-class :
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveWriteUserLog" title="Write User Log">
+   WriteUserLog
+  </a>
+ </span>
+ and
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveReadUserLog" title="Read User Log">
+   ReadUserLog
+  </a>
+ </span>
+ <p>
+  -
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveWriteUserLog" title="Write User Log">
+    WriteUserLog
+   </a>
+  </span>
+ </p>
+ <p>
+ </p>
+ <pre>	May be global, may write out as XML
+</pre>
+ <p>
+ </p>
+ <pre>	- Instantiation:
+    	WriteUserLog(const char *owner, const char *domain, const char *file,
+				 int clu, int proc, int subp, bool xml = XML_USERLOG_DEFAULT,
+				 const char *gjid = NULL);
+</pre>
+ <p>
+ </p>
+ <pre>    	WriteUserLog(const char *owner, const char *file,
+				 int clu, int proc, int subp, bool xml = XML_USERLOG_DEFAULT);
+</pre>
+ <p>
+ </p>
+ <pre>		Also empty constructor possible, but that means that initialization has to be done separately.
+</pre>
+ <p>
+ </p>
+ <pre>	- Usage:
+		  bool writeEvent (ULogEvent *event, ClassAd *jobad = NULL,
+					 bool *written = NULL );
+</pre>
+ <p>
+ </p>
+ <pre>		Problem: This function returns success, even if no initialization was made (and therefore nothing was written)
+</pre>
+ <p>
+ </p>
+ <pre>	- Locking:
+		- in write process:
+				FileLockBase: lock on file is obtained
+				lock is released upon completion
+</pre>
+ <p>
+ </p>
+ <pre>		private function for writing/locking: doWriteEvent(...)
+</pre>
+ <p>
+ </p>
+ <pre>	- Rotation:
+		int doRotation( const char *path, FILE *&amp;fp,
+					MyString &amp;rotated, int max_rotations );
+</pre>
+ <p>
+ </p>
+ <pre>		log files are named &lt;name&gt;.x, where &lt;name&gt;.1 is the most recently created file (apart from simply &lt;name&gt;, which is the current log file)
+		A rename has to take place for all existing archived log files for every rotation.
+</pre>
+ <p>
+ </p>
+ <hr/>
+ Event Log:
+ <hr/>
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveUserLog" title="User Log">
+   UserLog
+  </a>
+ </span>
+ API, different semantics
+ <p>
+ </p>
+ <hr/>
+ dprintf:
+ <hr/>
+ - initially used by daemon core with several different declarations
+ <div class="code">
+  <pre class="code">-- void dprintf( int flags, char* fmt, ... ) CHECK_PRINTF_FORMAT(3,4)
+-- void dprintf( int, const char*, ... )
+-- void	dprintf( int, char* ... )
+-- void dprintf( int level ) const
+-- void dprintf(unsigned int lvl)
+-- void dprintf ( int flags, const char* fmt, ... ) CHECK_PRINTF_FORMAT(2,3)
+-- void dprintf ()
+</pre>
+ </div>
+ <p>
+ </p>
+ <hr/>
+ Quill:
+ <hr/>
+ uses daemon core dprintf
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Current semantics
+ </h3>
+ TODO
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Some commonly used logging/rotation tools
+ </h3>
+ <p>
+  syslog : typically system administrator determines log destination, not software
+  <br/>
+  Log4J : Apache logging tool for Java
+  <br/>
+  Log4CPP : Logging tool for C++ modeled after Log4J
+  <br/>
+  Log4C : --- " ---- for C
+  <br/>
+ </p>
+</div>

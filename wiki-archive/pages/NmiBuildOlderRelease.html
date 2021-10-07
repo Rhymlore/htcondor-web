@@ -1,0 +1,34 @@
+---
+title: Nmi Build Older Release
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  When The Old Way Fails
+ </strong>
+ <p>
+  Here is a situation which showed up while trying to build 6.8.2 when
+we were on 7.2.1 and 7.3.0. The build using current tools and GIT worked fine
+except that globus.4.0.3 as of that time was a corrupted tar ball. To build I needed to construct a working set of code and then do a workspace build in NMI.
+I needed newer tools to get the workspace build option. This is what ended up working:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Construct the sources you need to build in a workspace on the current NMI build host.
+  </li>
+  <li>
+   Place the latest NMI tools into the workspace from the master(nmi_tools)
+  </li>
+  <li>
+   Massage the NMI glue(nmi_glue) by taking nmi_glue/build/platform_post which matches the current NMI tools and placing this in the old nmi_glue.
+  </li>
+  <li>
+   CD into the nmi_tools folder
+  </li>
+  <li>
+   ./condor_nmi_submit --build --desc="Requested 6.8.2 build" --workspace=../ --platforms=x86_rhas_3,x86_64_rhas_3
+  </li>
+ </ul>
+</div>

@@ -1,0 +1,39 @@
+---
+title: Why Windows Installer Fail
+layout: wiki-page
+---
+<div id="content">
+ This error results when the VBScript engine is not registered.
+Since HTCondor's installer depends on the VBScript engine for custom steps,
+the installer will fail if it cannot find the VBScript engine.
+ <p>
+  The fix is to register the VMScript engine.
+With Administrative privilege:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Launch the Command Prompt (\Prog{cmd.exe}) as the Administrator.
+  </li>
+  <li>
+   At the Command Prompt, change directories to the \File{System32} folder,
+within the Windows folder.
+  </li>
+  <li>
+   Issue the command
+   <div class="code">
+    <pre class="code">  regsvr32 vbscript.dll
+</pre>
+   </div>
+  </li>
+ </ol>
+ <p>
+  If successful, the message
+ </p>
+ <div class="code">
+  <pre class="code">  DllRegisterServer in vbscript.dll succeeded.
+</pre>
+ </div>
+ is printed.
+</div>

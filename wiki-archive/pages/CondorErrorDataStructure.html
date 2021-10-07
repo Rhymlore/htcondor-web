@@ -1,0 +1,150 @@
+---
+title: Condor Error Data Structure
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   CondorError data structure
+  </h2>
+ </span>
+ I am on an awareness campaign for the
+ <span class="wiki">
+  <a class="missing" href="wiki-archiveCondorError" title="Condor Error">
+   CondorError
+  </a>
+ </span>
+ stack. It is the
+most important data structure in HTCondor, and most people don't even know
+it exists.
+ <p>
+  The error stack is sort of like an exception. The error stack object is
+passed down the calling chain. If any level has an error, instead of (or
+at least, in addition to) calling dprintf and returing false, the level
+can push a new error onto the stack. The upper level can examine down the
+the stack and decide what to do.
+ </p>
+ <p>
+  The "error" itself is a tuple of three values:
+  <code>
+   &lt;subsystem, error code, error text&gt;
+  </code>
+ </p>
+ <p>
+  subsystem should be obvious. The error code is unique in HTCondor, and the
+text is a free-form string that was tacked when the error was generated.
+ </p>
+ <p>
+  The error codes are defined in
+  <code>
+   condor_includes/condor_error_codes.h
+  </code>
+ </p>
+ <p>
+  To use the error stack,
+  <code>
+   #include "CondorError.h"
+  </code>
+ </p>
+ <p>
+  When you declare an
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCondorError" title="Condor Error">
+    CondorError
+   </a>
+  </span>
+  object, prefer the name 'errstack'.
+ </p>
+ <p>
+  The error stack has the following public interface:
+ </p>
+ <div class="code">
+  <pre class="code">CondorError();
+~CondorError();
+CondorError(CondorError&amp;);
+
+// Assigning an existing CondorError to a newly-declared CondorError makes a
+// deep copy of the error. This should be operator=, not operator==
+CondorError&amp; operator==(CondorError&amp;);
+
+
+
+// Push a new error onto the stack. The second version makes it work like
+// printf()
+// push allocates memory and copies subsys and message there, the caller
+// does not need to preserve them after the call
+void push( char* subsys, int code, char* message );
+void pushf( char* subsys, int code, char* format, ... );
+
+
+// expands the error stack into a full string. If want_newline is false,
+// the errors come back seperated by a bar, ie
+// SUBSYS1:1234:"Something went wrong"|SUBSYS2:5432:"Something blew up"
+// The caller should NOT delete the string they get back, and if they
+// want to use it they should copy it to memory they own. I think this
+// is actually buggy
+        const char* getFullText( bool want_newline = false );
+
+// Get the subsystem, code, or text message from 'level' down the stack
+        char* subsys(int level = 0);
+        int   code(int level = 0);
+        char* message(int level = 0);
+
+// Get a pointer to the CondorError object 'level' down the stack.
+// Not currently implemented.
+        CondorError* next(int level = 0);
+
+// Remove the error one level down the stack. Return true if pop can be
+// called again. (I think). It seems to leave the top-level error alone.
+// ie CondorError.code(0) returns the same thing after a call to
+// CondorError.pop(), but CondorError.code(1) returns something different
+        bool  pop();
+
+// Destroys the error stack. It walks the error stack and destroys every
+// object.
+        void  clear();
+
+
+Here is an example program that uses it. I've never tried to Frank(tm) it.
+
+void foo();
+bool bar(int, CondorError*);
+bool zot(int, CondorError*);
+
+void foo() {
+
+	CondorError errstack;
+
+	if(bar(4, &amp;errstack)) {
+		printf("Success!");
+	} else {
+		printf("Failure: %s\n", errstack.getFullText());
+	}
+
+}
+
+bool bar(int i, CondorError* errstack) {
+
+	bool results;
+
+	results = zot(i, errstack);
+	if(i &gt; 9) {
+		errstack-&gt;push("EXAMPLE", BAR_ARG_TOO_BIG, "HTCondor cannot handle double digits!");
+		return false;
+	}
+	return results;
+}
+
+bool zot(int i, CondorError* errstack) {
+
+	if( (i % 2) == 1) {
+		errstack-&gt;push("EXAMPLE", ZOT_ARG_ODD, "HTCondor cannot handle odd numbers!");
+		return false;
+	}
+	return true;
+}
+
+
+</pre>
+ </div>
+</div>

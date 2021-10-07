@@ -1,0 +1,102 @@
+---
+title: How To Match Multicore After Drain
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  How to match only Multicore jobs in recently drained slots
+ </strong>
+ <p>
+  Known to work with HTCondor version: 8.2.8
+ </p>
+ <p>
+  Since the purpose of the defrag daemon is to drain jobs on a p-slot so multi-core jobs can begin to match, it would be best to implement a policy where recently drained p-slots can
+  <strong>
+   insist
+  </strong>
+  on matching only multicore jobs for a period of time.
+ </p>
+ <p>
+  Unfortunately, there is no attribute that uniquely identifies a recently drained slot - but there are two candidate attributes that come close with some caveats.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    EnteredCurrentState
+   </code>
+   - resets to the current time when the slot leaves "Drained" state - but also when the STARTD is restarted or each time the negotiator matches the slot and
+   <code>
+    NEGOTIATOR_INFORM_STARTD
+   </code>
+   is true (which is the default prior to 8.3.7).
+  </li>
+  <li>
+   <code>
+    ExpectedMachineGracefulDrainingCompletion
+   </code>
+   - when this value is &lt; time(), it represents the time at which the slot was fully drained - either because a drain state ran to completion or because the there were simply no jobs running on the slot or any children.  when this value is &gt; time() it represents the projected completion time of draining.
+  </li>
+ </ul>
+ <p>
+  We can use one of these two attributes  to trigger a policy that will match only multi-core jobs for N negotiation cycles on "recently drained" slots:
+ </p>
+ <p>
+  <strong>
+   This is the preferred policy - use this policy if you use the defrag daemon
+  </strong>
+ </p>
+ <div class="code">
+  <pre class="code"> # This knob must be set in the negotiator's configuration. It prevents
+ # slots from going into matched state, which works fine and is necessary
+ # to make the $(StateTimer) trigger only when we leave draining state.
+NEGOTIATOR_INFORM_STARTD = false
+
+ # Set OnlyMulticoreInterval to the number of seconds the startd should
+ # only allow multi-core jobs. Default to about 2 negotiation cycles.
+OnlyMulticoreInterval = 2*$(NEGOTIATOR_INTERVAL:300)
+ # If this slot has more than 4 cores free, then insist on jobs that
+ # request at least 4 cores or more.
+IsMulticore = RequestCpus &gt;= IfThenElse(Cpus&lt;4,1,4)
+ # We only want this policy to apply to partitionable slots (pslots)
+IsntUnmatchedPSlot = PartitionableSlot=!=true || State=="Matched"
+
+OnlyMulticoreJobsAfterDrain = $(IsntUnmatchedPSlot) || $(IsMulticore) || $(StateTimer) &gt; $(OnlyMulticoreInterval)
+
+START = $(START) &amp;&amp; ( $(OnlyMulticoreJobsAfterDrain) )
+</pre>
+ </div>
+ <p>
+  The policy says that for 2 negotiation cycles after the STARTD starts up or leaves draining state, the slot should only match jobs that want at least 4 cores. Once the slot has less than 4 available Cpus remaining, it will match single-core jobs.  We only want this portion of the START expression to be evaluated by the Negotiator, which is what the $(IsntUnmatchedPSlot) sub-expression does.
+ </p>
+ <p>
+  <strong>
+   Alternate policy that triggers whenever the p-slot fully drains for any reason - but doesn't work at all if draining is only partial
+  </strong>
+ </p>
+ <p>
+  This policy using
+  <code>
+   ExpectedMachineGracefulDrainingCompletion
+  </code>
+  triggers the preference for multi-core automatically whenever a p-slot has no child d-slots, but, it reverts back to matching any job as soon as there are child d-slots.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"> # A job counts as multicore when it requests 4 or more core, or when
+ # it has already matched to a slot that has less than 4 cores.
+IsMulticore = RequestCpus &gt;= IfThenElse(Cpus&lt;4,1,4)
+ # We want to insist on multicore jobs for about 2 negotiation cycles
+OnlyMulticoreInterval = $(NEGOTIATOR_INTERVAL:60)*2
+ # How long has it been since the p-slot was fully drained.
+ # note that if the result is &lt; 0, draining is in the future.
+DrainStateTimer = (time() - ExpectedMachineGracefulDrainingCompletion)
+
+OnlyMulticoreJobsAfterDrain = PartitionableSlot=!=true || $(IsMulticore) || $(DrainStateTimer) &gt; $(OnlyMulticoreInterval) || $(DrainStateTimer) &lt; 0
+
+START = $(START) &amp;&amp; ( $(OnlyMulticoreJobsAfterDrain) )
+</pre>
+ </div>
+</div>

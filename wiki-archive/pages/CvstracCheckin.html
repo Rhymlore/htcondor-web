@@ -1,0 +1,204 @@
+---
+title: Cvstrac Checkin
+layout: wiki-page
+---
+<div id="content">
+ <strong class="three">
+  CVSTrac Check-ins
+ </strong>
+ <p>
+  A check-in (sometimes called a patchset or changeset) is simply a commit to the
+repository. It includes a message
+describing the change, a source code diff, and various information such as who
+made the change, when it was made.
+ </p>
+ <p>
+  CVSTrac attempts to represent a CVS commit as a single atomic operation (called
+a patch-set), even when the commit includes multiple directories. Other SCMs
+supported by CVSTrac would typically already represent commits atomically.
+ </p>
+ <p>
+  <strong class="two">
+   Check-in Features
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Fields
+  </strong>
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <strong>
+    Check-in number
+   </strong>
+   is a unique number for the patchset which can be
+referenced from any
+   <span class="wiki">
+    <a href="wiki-archiveFormattingWikiPages" title="Formatting Wiki Pages">
+     wiki
+    </a>
+   </span>
+   using the
+   <span class="quote">
+    [nnn]
+   </span>
+   markup.
+  </li>
+  <li>
+   <strong>
+    User
+   </strong>
+   is the repository user who made the change. This may not necessarily
+match a CVSTrac user.
+  </li>
+  <li>
+   <strong>
+    Branch
+   </strong>
+   is check-in on a branch. Branch activity is usually highlighted in
+various displays with a slightly different background.
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Comment
+  </strong>
+ </p>
+ <p>
+  A check-in comment is simply the contents of the CVS commit message. However,
+CVSTrac interprets such comments as
+  <span class="wiki">
+   <a href="wiki-archiveFormattingWikiPages" title="Formatting Wiki Pages">
+    wiki markup
+   </a>
+  </span>
+  , allowing for a much richer
+presentation when reading change messages in a browser.
+ </p>
+ <p>
+  Check-in comments can be editted within CVSTrac (i.e. to fix an incorrect
+ticket number). However, any such changes are only help in the CVSTrac database
+and aren't visible in the repository itself. On the flip side, direct
+manipulation of the repository (such as with the
+  <code>
+   cvs admin
+  </code>
+  command) usually
+won't propogate to the CVSTrac database either.
+ </p>
+ <p>
+  <strong>
+   Files
+  </strong>
+ </p>
+ <p>
+  Each check-in has a list of associated files. Following each file will bring
+you the
+  <span class="wiki">
+   <a href="wiki-archiveCvstracFileHistory" title="Cvstrac File History">
+    file history
+   </a>
+  </span>
+  page.
+ </p>
+ <p>
+  <strong>
+   Diffs
+  </strong>
+ </p>
+ <p>
+  When viewing a check-in, a complete
+  <em>
+   diff
+  </em>
+  of the change is shown. The
+formatting of this
+  <em>
+   diff
+  </em>
+  may be enriched with
+custom filter.
+ </p>
+ <p>
+  <strong>
+   Tickets
+  </strong>
+ </p>
+ <p>
+  A check-in can be associated with a specific
+  <span class="wiki">
+   <a href="wiki-archiveCvstracTicket" title="Cvstrac Ticket">
+    ticket
+   </a>
+  </span>
+  by mentioning the ticket
+number in
+  <span class="quote">
+   #n
+  </span>
+  format inside the commit message. This allows development
+activity to be associated with a particular problem report.
+ </p>
+ <p>
+  <strong class="two">
+   Committing Changes
+  </strong>
+ </p>
+ <p>
+  Changes are committed in the usual fashion (using a CVS command-line program).
+However, in order to maximize the grouping of commits within a single patchset,
+it's recommended that related commits be done all at once, with the same commit
+message.
+ </p>
+ <p>
+  Commits can be made using
+  <span class="wiki">
+   <a href="wiki-archiveFormattingWikiPages" title="Formatting Wiki Pages">
+    wiki markup
+   </a>
+  </span>
+  .
+Commits made in relation to a specific ticket can be associated with that
+ticket simply by mentioning the ticket number. i.e.
+ </p>
+ <p>
+ </p>
+ <pre>  cvs commit -m "Fix for ticket #45" Makefile src/file.c include/header.h
+</pre>
+ <p>
+  <strong class="two">
+   Inspections
+  </strong>
+ </p>
+ <p>
+  <span class="wiki">
+   <a href="wiki-archiveCvstracInspection" title="Cvstrac Inspection">
+    Inspections
+   </a>
+  </span>
+  are short comments (40 chars)
+attached to check-ins. There's no limit to the number of inspections that can
+be associated with a check-in.
+ </p>
+ <p>
+  <strong class="two">
+   Patchsets
+  </strong>
+ </p>
+ <p>
+  A patchset is basically a single
+  <em>
+   diff
+  </em>
+  of all the changes in a check-in. In
+theory, it's designed such that one can download it and recreate the changes
+using
+  <em>
+   patch
+  </em>
+  . In practice, this may not work well with binary files.
+ </p>
+</div>

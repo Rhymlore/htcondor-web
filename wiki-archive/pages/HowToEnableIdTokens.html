@@ -1,0 +1,75 @@
+---
+title: How To Enable Id Tokens
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to enable IDTOKENS authentication in HTCondor 8.9.12, 9.0.0, and later
+  </h2>
+ </span>
+ <p>
+  If would like to enable a simple method for authenticating daemon-to-daemon communication, IDTOKENS is relatively straightforward.  Upon setting up IDTOKENS authentication, your HTCondor daemons will only trust other HTCondor daemons that are able to read a secret signing key that is stored on on each machine in a file that is readable only by the system. This will effectively prevent unauthorized machines from joining your pool, and also prevent users from starting their own HTCondor daemons on machines authorized with host-based (IP address) authentication.
+ </p>
+ <p>
+  (
+  <strong>
+   WINDOWS NOTE
+  </strong>
+  : In the config settings below, change
+  <code>
+   FS
+  </code>
+  to
+  <code>
+   NTSSPI
+  </code>
+  )
+ </p>
+ <p>
+  <strong>
+   INSTRUCTIONS FOR ALL PLATFORMS:
+  </strong>
+  Add the following lines to enable the IDTOKENS method in the condor_config file:
+ </p>
+ <div class="code">
+  <pre class="code">SEC_DAEMON_INTEGRITY = REQUIRED
+SEC_DAEMON_AUTHENTICATION = REQUIRED
+SEC_DAEMON_AUTHENTICATION_METHODS = IDTOKENS
+SEC_NEGOTIATOR_INTEGRITY = REQUIRED
+SEC_NEGOTIATOR_AUTHENTICATION = REQUIRED
+SEC_NEGOTIATOR_AUTHENTICATION_METHODS = IDTOKENS
+SEC_CLIENT_AUTHENTICATION_METHODS = FS, IDTOKENS
+ALLOW_DAEMON = condor_pool@*
+</pre>
+ </div>
+ <p>
+  <strong>
+   NOTE:
+  </strong>
+  If you have configured any other authentication methods, make sure to keep them in the list of CLIENT methods.
+ </p>
+ <p>
+  Then, on each machine in your pool, run this command as root:
+ </p>
+ <div class="code">
+  <pre class="code">condor_store_cred -c add
+</pre>
+ </div>
+ And it will prompt you for a password (signing key).  You can optionally use
+ <code>
+  -p
+ </code>
+ on the command line to avoid prompting.  On Linux machines, can simply copy the file
+ <code>
+  /etc/condor/passwords.d/POOL
+ </code>
+ to all machines once have set it.  If you do so, make sure to verify the permissions (0600) and ownership (root).
+ <p>
+  If your HTCondor daemons were already running when you made these changes, don't forget to reconfigure your pool to have the new settings take effect:
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -all
+</pre>
+ </div>
+</div>

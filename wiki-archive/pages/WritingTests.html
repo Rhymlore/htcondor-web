@@ -1,0 +1,50 @@
+---
+title: Writing Tests
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Writing Tests for HTCondor
+  </h2>
+ </span>
+ <p>
+  Unit tests for HTCondor which are run on the batlab servers are present in the
+src/condor_tests directory. These tests are perl scripts with "run" extension.
+Some tests verify the functioning of various condor tools, while the remaining verify some condor functionality and require a running HTCondor.
+ </p>
+ <p>
+  Each test has its own requirements for running HTCondor. The requirements are added in the test file itself as a comment in the following format:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#testreq: &lt;space separated requirements&gt;
+</pre>
+ </div>
+ <p>
+  ex. for cmd_q_shows-better-analyze.run, we need a running personal condor. This requirement is specified as a comment in the file. Such a hint should always start from a new line for the parser code in run_test.pl and nmi scripts to be successfully read.
+ </p>
+ <div class="code">
+  <pre class="code">#testreq: personal
+</pre>
+ </div>
+ <p>
+  Few tests, start condor themselves using boilerplate code as they want to run condor with custom configuration. To address this situation, we have added support for tests to specify test configuration in a here-document marked by CONDOR_TESTREQ_CONFIG. Such a here document is parsed only if it is between the ^#testreq and ^#endtestreq markers.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#testreq: personal
+my $config = &lt;&lt;CONDOR_TESTREQ_CONFIG;
+        DAEMON_LIST = MASTER,SCHEDD,COLLECTOR,NEGOTIATOR,STARTD
+        WANT_SUSPEND = FALSE
+        NEGOTIATION_INTERVAL = 5
+        SCHEDD_INTERVAL = 5
+        NUM_CPUS = 24
+        MAX_SCHEDD_LOG = 20 Kb
+CONDOR_TESTREQ_CONFIG
+#endtestreq
+</pre>
+ </div>
+</div>

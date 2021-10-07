@@ -1,0 +1,122 @@
+---
+title: Registered Ports
+layout: wiki-page
+---
+<div id="content">
+ The condor_collector's well-known port 9618 (both TCP and UDP) has been officially registered as of April 2008 with a service name of "condor".
+ <a class="external" href="http://www.iana.org/assignments/port-numbers">
+  Behold
+ </a>
+ !  Below is the information related to this registration.
+ <p>
+  The registration request was done by Todd Tannenbaum and submitted to IANA following the procedure is defined in [RFC4340] in March of 2008. It was approved on April 3, 2008.
+ </p>
+ <p>
+  <strong>
+   Communicating with IANA re Condor's registration
+  </strong>
+ </p>
+ <p>
+  Should we ever need to communicate w/ IANA re this registration, send email to The Internet Assigned Numbers Authority at iana-ports@iana.org.
+ </p>
+ <p>
+  To expedite processing, make sure you include the follow exact text in
+the subject line of all future correspondence on this issue:
+ </p>
+ <p>
+ </p>
+ <pre>         [IANA #155683]
+</pre>
+ <p>
+  <strong>
+   Application for User Registered Port Number
+  </strong>
+ </p>
+ <p>
+  Name :
+ </p>
+ <p>
+  Todd Tannenbaum
+ </p>
+ <p>
+  E-mail :
+ </p>
+ <p>
+  tannenba@cs.wisc.edu
+ </p>
+ <p>
+  Protocol Number :
+ </p>
+ <p>
+  TCP &amp; UDP
+ </p>
+ <p>
+  Message Formats :
+ </p>
+ <p>
+  Messages may be formated using either the CEDAR protocol, or using SOAP over HTTP.  The data is inspected upon arrival to determine if HTTP or CEDAR is being used by the client.
+ </p>
+ <p>
+  For HTTP, the SOAP messages use DOC/LIT encoding, and is standards compliant.
+ </p>
+ <p>
+  CEDAR is an open source network messaging library used by the Condor High Throughput Computing system (www.condorproject.org) as the underlying network transport for RPC. The encoded data stream is divided into "messages", which are further sub-divided in to "packets". Message boundaries have end-to-end significance; packet boundaries are hidden in the implementation. No data element ever crosses a message boundary. Each CEDAR packet is preceded by a packet header: A one-byte EOM (end-of-message) indicator (non-zero indicates that this is the last packet of a message) followed by a length as a network-byte-order 32 bit unsigned integer. The length does not include the header itself, so a zero-length packet (one with no payload) has a length field containing 0. Packet boundaries are totally transparent on input.
+ </p>
+ <p>
+  Message Types :
+ </p>
+ <p>
+  Request from the client, and no reply from the server (e.g. heartbeats).
+Client request followed by a server reply.
+ </p>
+ <p>
+  Message Opcodes :
+ </p>
+ <p>
+  UPDATE (write) information, DELETE information, QUERY (read) information, reconfigure, shutdown.
+ </p>
+ <p>
+  Message Sequences :
+ </p>
+ <p>
+  The client can either:
+a) send a request via UDP; no reply happens from the server in this case, or
+b) send a request via TCP, and depending upon the opcode, wait for an optional reply.  in the event of a timeout, either client or server is permitted to simply close the socket.
+ </p>
+ <p>
+  Protocol functions :
+ </p>
+ <p>
+  Resource and address directory services.
+ </p>
+ <p>
+  Broadcast or Multicast used ?
+ </p>
+ <p>
+  no
+ </p>
+ <p>
+  How and what for Broadcast or Multicast is used (if used):
+ </p>
+ <p>
+  Description :
+ </p>
+ <p>
+  We propose to use port 9618 as the well-known port for the Condor High Throughput Computing system.  Condor is an open source distributed workload management system for compute-intensive jobs. Like other full-featured batch systems, Condor provides a job queuing mechanism, scheduling policy, priority scheme, resource monitoring, and resource management. Condor can be used to build Grid-style computing environments that cross administrative boundaries. Condor's "flocking" technology allows multiple Condor compute installations to work together. Condor incorporates many of the emerging Grid-based computing methodologies and protocols.  Condor is in use at thousands of sites across the world (incl Fortune 100 companies, universities, govt labs), and is managed by the Condor Research Project at the Univ of Wisconsin-Madison via funding from the National Science Foundation.
+ </p>
+ <p>
+  Although highly distributed, the Condor system requires to be "bootstrapped" with one well-known port (which for the past 15+ years, Condor has used port 9618).  On this port runs the "Condor Collector" service, which acts as the directory service for the rest of the system.  All other Condor clients in a Condor installation subsequently query the Collector service to discover the IP address and dynamic ports in use by other components of the system.
+ </p>
+ <p>
+  Name of the port :
+ </p>
+ <p>
+  Condor Collector Service
+ </p>
+ <p>
+  Short name of the port :
+ </p>
+ <p>
+  Condor
+ </p>
+</div>

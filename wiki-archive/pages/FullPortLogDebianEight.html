@@ -1,0 +1,48 @@
+---
+title: Full Port Log Debian Eight
+layout: wiki-page
+---
+<div id="content">
+ I installed
+ <code>
+  uuid-dev
+ </code>
+ ,
+ <code>
+  libkrb5-dev
+ </code>
+ (may be optional in the future, once Jaime fixes the build to use its own Globus),
+ <code>
+  gcc-4.8
+ </code>
+ (not, I don't know why
+ <code>
+  glibc
+ </code>
+ doesn't like 4.9, either),
+ <code>
+  gawk
+ </code>
+ ,
+ <code>
+  texinfo
+ </code>
+ , and
+ <code>
+  gcc-multilib
+ </code>
+ .
+ <p>
+  Debian 8 uses the same glibc version as Ubuntu.  It would probably be marginally more likely to be compatible to use Debian's version on Ubuntu rather than vice-versa, but since everything tested OK I'm not going to worry about it.
+ </p>
+ <p>
+  Reminder: you need to activate the (64-bit only) "LIGO" test specifically for each platform in the
+  <code>
+   condor_tests
+  </code>
+  directory.
+ </p>
+ <p>
+  This port was performed against a pre-release version of Debian 8; our scripts recognize it as "Debian-" or "x86_64_Debian0" instead of "Debian-8" or "x86_64_Debian8"; we should probably remove the former when we upgrade the build machine to the full release.  See the commit message for files with the screwy names.
+ </p>
+</div>

@@ -1,0 +1,137 @@
+---
+title: Resubmit Last Nights Builds
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Resubmitting last night's builds of HTCondor to NMI
+  </h2>
+ </span>
+ <p>
+  Do this after the builds failed completely.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Read the
+   <span class="wiki">
+    <a href="wiki-archiveNmiBuild" title="Nmi Build">
+     Building HTCondor on NMI
+    </a>
+   </span>
+   page first
+  </li>
+  <li>
+   As described in the above, become the cndrauto user on nmi-s006:
+   <ul>
+    <li>
+     <code>
+      sudo su - cndrauto
+     </code>
+    </li>
+    <li>
+     <code>
+      crontab -l
+     </code>
+    </li>
+    <li>
+     See the entries for running the nightly builds. Simply run them.  Example:
+     <ul>
+      <li>
+       /home/cndrauto/condor/run_nightly_builds --logfile=official_ports-nightly.log
+      </li>
+      <li>
+       /home/cndrauto/condor/run_nightly_builds --logfile=nmi_ports-nightly.log --platforms=nmi_one_offs --desc="NMI Ports"
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Making a new tag and resubmitting builds of HTCondor to NMI
+ </h2>
+ <p>
+  This is appropriate if code changes need to be made before resubmitting the 'nightly' builds.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Create a new build tag.
+   <ul>
+    <li>
+     <code>
+      git tag BUILD-V7_5_5-branch-2011-1-3_2 V7_5_5-branch
+     </code>
+    </li>
+    <li>
+     <code>
+      git push origin BUILD-V7_5_5-branch-2011-1-3_2
+     </code>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Also tag the manual.
+   <ul>
+    <li>
+     <code>
+      git tag BUILD-V7_5_5-branch-2011-1-3_2 V7_5_5-branch
+     </code>
+    </li>
+    <li>
+     <code>
+      git push origin BUILD-V7_5_5-branch-2011-1-3_2
+     </code>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Then on nmi-s006:
+  </li>
+  <li>
+   <code>
+    sudo su - cndrauto
+   </code>
+  </li>
+  <li>
+   Verify that the code updates have made it to the local copy of the repository.
+  </li>
+  <li>
+   <code>
+    git --git-dir=/space/git/CONDOR_SRC.git fetch
+   </code>
+  </li>
+  <li>
+   <code>
+    git --git-dir=/space/git/CONDOR_DOC.git fetch
+   </code>
+  </li>
+  <li>
+   <code>
+    git --git-dir=/space/git/CONDOR_SRC.git log BUILD-V7_5_5-branch-2011-1-3_2
+   </code>
+  </li>
+  <li>
+   When all is ready, edit
+   <code>
+    /space/git/nwo-build-tags.git
+   </code>
+   and replace the nightly tag with the new one you just made.  Delete the entries that are unwanted.  (This is a hack!)
+  </li>
+  <li>
+   Now submit the builds as above.
+  </li>
+ </ul>
+</div>

@@ -1,0 +1,80 @@
+---
+title: Manual Regression Tests Vm Universe
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Introduction:
+  </h2>
+ </span>
+ So of the VM universe tests require that HTCondor be started as root, NMI does not allow this so right now it is manual, but we could probably create add a test script for this at some point, so the user could just run that script for manual testing.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Pre-reqs:
+ </h2>
+ see:
+ <a class="external" href="http://www.cs.wisc.edu/condor/manual/v7.3/3_15Virtual_Machines.html">
+  http://www.cs.wisc.edu/condor/manual/v7.3/3_15Virtual_Machines.html
+ </a>
+ <p>
+  <strong>
+   Common:
+  </strong>
+  You will need to install libvirt and supporting daemons, as well as the utilities listed in the afore mentioned link.  I usually recommend installing virsh as well for diagnostic purposes.
+ </p>
+ <p>
+  <strong>
+   Xen:
+  </strong>
+  In order for you to truly run Xen you will need to configure and install all the correct packages for the distro you are working with, and select the xen-kernel on boot up in order for you to be able to run Xen jobs.
+ </p>
+ <p>
+  <strong>
+   KVM:
+  </strong>
+  You will need to verify that the machine you are working on support hardware (VT) acceleration and enable it in your bios (It is usually turned off on most laptops).  Next you will need to install qemu and kvm packages and kernel module.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  HTCondor's KVM Test
+ </h2>
+ <p>
+  HTCondor now includes a KVM test, in
+  <code>
+   src/condor_tests/job_kvm_basic.run
+  </code>
+  .  See that file for further instructions (some of which may be automatable).
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Tests to run:
+ </h2>
+ <strong>
+  Common
+ </strong>
+ <p>
+  1. Submit a vm job and test both w/ &amp; w/o LIBVIRT_XML_SCIPRT
+ </p>
+ <p>
+  2. Reboot the VM and see how VM-Gahp deals with it
+ </p>
+ <p>
+  3. Shutdown the VM and "  "
+ </p>
+ <p>
+  4. Crash the VM and "  "
+ </p>
+ <p>
+  5. Have the VM start up and join the grid, verify that it is available.  Submit another job and verify the VM runs said job.
+ </p>
+</div>

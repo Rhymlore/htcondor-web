@@ -1,0 +1,161 @@
+---
+title: Ipv Six Work Note Three
+layout: wiki-page
+---
+<div id="content">
+ See also:
+ <ul>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveIpvSixWorkNote" title="Ipv Six Work Note">
+     IpvSixWorkNote
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveIpvSixWorkNoteTwo" title="Ipv Six Work Note Two">
+     IpvSixWorkNoteTwo
+    </a>
+   </span>
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Phases
+ </h2>
+ <p>
+ </p>
+ <ol>
+  <li>
+   use newer socket API without supporting IPv6 at all
+  </li>
+  <li>
+   introduce ipaddr structure, which is capable of storing IPv6 address. (but no IPv6 support)
+  </li>
+  <li>
+   Support IPv6
+  </li>
+  <li>
+   (maybe) support dual stack (IPv4 and IPv6 on single daemon, single socket)
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Phase 1
+ </h3>
+ <p>
+  step 0:  thursday, april 29
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   list all functions that need to be ipv6 aware.  gethostbyname, gethostbyaddr, etc.
+   <p>
+   </p>
+  </li>
+  <li>
+   create wrappers for each of the above functions if they do not exist.
+   <p>
+   </p>
+  </li>
+  <li>
+   find all call sites for above functions and use wrapper instead
+  </li>
+ </ol>
+ <p>
+  step 1:  friday, april 30
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   reimplement gethostbyname (and others) to invoke getaddrinfo() instead, and copy resulting ipv4 address into hostent structure, and return.  this does not change the signature of condor_gethostbyname().
+  </li>
+ </ol>
+ <p>
+  step 2:  monday, may 3
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   deal with inet_ntoa and family?
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Phase 2
+ </h3>
+ <p>
+  step 3:  monday, may 10
+(should be step 1 of Phase 2)
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   introduce ipaddr class (which encapsulates both v4 and v6 addresses) and
+ change function signatures where needed.  update call sites.
+  </li>
+ </ol>
+ <p>
+  step 4:  wednesday, may 12
+(step 2 of Phase 2)
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   introduce condor_hostent (might actually be equivalent to addrinfo), change function signatures, update call sites.  hostent was static, so also add calls to free() for the new condor_hostent structure.
+  </li>
+ </ol>
+ <p>
+  everything to here done by may 14th.
+ </p>
+ <p>
+  step 5: (next semester)
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   actually populate the condor_hostent and ipaddr classes with ipv6 data.  watch what breaks, come up with a plan.  ipverify() and many other places in HTCondor which assume 4-byte ip address or 21-byte address strings will need to be updated.
+  </li>
+ </ol>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Complications
+ </h4>
+ <p>
+  There's tricky thing on Phase 1. We decided not to remove struct hostent which is also obsolete. FYI,
+struct hostent is returned by gethostbyname() and is used for DNS lookup.
+ </p>
+ <p>
+  The newer API for gethostbyname() is getnameinfo(). Indeed, getnameinfo() does not return struct
+hostent. Thus, I wrote a wrapper function that returns struct hostent using getnameinfo().
+ </p>
+ <p>
+  The problem is that getnameinfo() does not return exact same information as gethostbyname() returns.
+Although getnameinfo() is replacement for gethostbyname(), they behave differently! Alternate
+hostname (hostname alias) could be different. I will send you the code that shows different behavior
+of gehostbyname() and getnameinfo().
+ </p>
+ <p>
+  I am not sure if it would break the compatibility. We may need to discuss how we can treat semantic
+difference of gethostbyname() and getnameinfo().
+ </p>
+</div>

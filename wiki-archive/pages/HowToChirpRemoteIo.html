@@ -1,0 +1,165 @@
+---
+title: How To Chirp Remote Io
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to do remote IO in vanilla universe with Chirp and Parrot (on CHTC submit node)
+  </h2>
+ </span>
+ <p>
+  The directions below work for the CHTC submit node.
+ </p>
+ <p>
+  One of the neat features of Standard Universe is the ability to do remote IO, meaning, you can read from/write to files in your remote submit folder without the need to transfer them back and forth between the submit- and the execute node.
+ </p>
+ <p>
+  This howto briefly describes how you can do remote IO leveraging the HTCondor-integrated condor_chirp and
+  <a class="external" href="http://www.cse.nd.edu/~ccl/software/parrot/">
+   Parrot
+  </a>
+  . All of this should work with HTCondor versions 7.6.0 and newer.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  What is required?
+ </h3>
+ In order to do this, all you need is HTCondor version 7.6.0 or newer and you need
+ <a class="external" href="http://www.cse.nd.edu/~ccl/software/parrot/">
+  Parrot
+ </a>
+ . You will need to have the version matched to your execute node architectures available. It is more convenient to install parrot directly on the execute nodes but you can also transfer it with your job data. A small caveat: Parrot will only work on Linux, which means that your execute machine needs to run some flavor of Linux. Your submit node, however, can run whatever OS that is supported by HTCondor 7.6.0.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to create your submit file?
+ </h3>
+ To have your job do remote IO, all you now need to do is to create a wrapper such that your job can be run under parrot. The easiest way is to have a script such as
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+######## wrapper.sh ################
+# This script directly passes all
+# its arguments into 'parrot_run'
+####################################
+
+./parrot_run "$@"
+
+</pre>
+ </div>
+ <p>
+  Ultimately, this script will be your job executable and you'll specify your actual program to be run (let's assume its name is 'foo') and its arguments as job args:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#####################
+#### condor.submit
+#####################
+
+universe = vanilla
+executable = wrapper.sh
+arguments = foo arg1 arg2 arg3
++WantIOProxy = True
+...
+</pre>
+ </div>
+ <p>
+  <code>
+   +WantIOProxy = True
+  </code>
+  will trigger start up of the chirp service which is needed to do remote IO, so make sure you have that in your submit file too.
+ </p>
+ <p>
+  Now, the only thing that is left to know: Remote IO does not just happen in your current working directory as you may be used to from your standard universe jobs. Your submit directory is hidden under
+  <code>
+   /chirp/CONDOR/
+  </code>
+  . So whenever you want to read a file from there or write to there, you'll have to prefix your file name with this path.
+ </p>
+ <p>
+  Example: Your application wants to read the file
+  <code>
+   input/inputRead.dat
+  </code>
+  and write to
+  <code>
+   output/outWrite.dat
+  </code>
+  and you pass these as arguments. Typically you would call
+ </p>
+ <div class="code">
+  <pre class="code">./foo input/inputRead.dat output/outWrite.dat
+</pre>
+ </div>
+ <p>
+  now you will need to pass
+ </p>
+ <div class="code">
+  <pre class="code">./foo /chirp/CONDOR/$ENV(PWD)/input/inputRead.dat /chirp/CONDOR/$ENV(PWD)/output/outWrite.dat
+</pre>
+ </div>
+ <p>
+  This will be easier for you if your application does not have paths encoded statically but rather takes them as arguments (or environment variables).
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Complete submit file example
+ </h3>
+ Last but not least a complete example submit file combining all the mentioned steps:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#####################
+#### condor.submit
+#####################
+
+universe = vanilla
+executable = wrapper.sh
+arguments = foo /chirp/CONDOR/$ENV(PWD)/input/inputRead.dat /chirp/CONDOR/$ENV(PWD)/input/inputRead.dat
++WantIOProxy = True
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+# in this example we are going to transfer parrot_run with the application
+# and assume it being located in /usr/local
+transfer_input_files = /usr/local/bin/parrot_run,foo
+
+queue
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Additional Resources
+ </h2>
+ <p>
+  Obviously there are a variety of useful things you can do with chirp and parrot. Remote IO is only one of them.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="http://www.cse.nd.edu/~ccl/software/parrot/">
+    Parrot's home and user manual
+   </a>
+  </li>
+  <li>
+   <a class="external" href="http://www.cse.nd.edu/~ccl/software/chirp/">
+    Chirp's home and user manual
+   </a>
+  </li>
+ </ul>
+</div>

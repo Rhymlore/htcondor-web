@@ -1,0 +1,69 @@
+---
+title: How To Config High Prio Schedd Using Group Quotas
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to configure a "high priority" submit node using group quotas
+  </h2>
+ </span>
+ <p>
+  Known to work with 8.6 (because of the use of a submit transform)
+ </p>
+ <p>
+  This recipe shows how to make a "high priority" submit node. That is - a submit node that the negotiator will always match first. It assumes that you are not already using accounting groups with quotas for some other purpose.
+ </p>
+ <p>
+  The basic mechanism here is that your high priority submit node will automatically put jobs submitted to it into a specific accounting group.  Then if the negotiator is configured to allot most of the pools resources to that group, then that schedd will be the first one that the negotiator makes matches for.
+ </p>
+ <p>
+  To do this, we configure a submit transform on the submit node
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">config fragment for the high priority submit node</pre>
+  <pre class="snip">JOB_TRANSFORM_NAMES = SetPriorityGroup $(JOB_TRANSFORM_NAMES)
+JOB_TRANSFORM_SetPriorityGroup @=END
+[
+   Requirements = AccountingGroup is undefined;
+   copy_Owner = "AcctGroupUser";
+   set_AcctGroup = "Priority";
+   eval_set_AccountingGroup = strcat("Priority.",Owner");
+]
+@END
+</pre>
+ </div>
+ <p>
+  And a group quota in the Negotiator
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">config fragment for central manager node</pre>
+  <pre class="snip">GROUP_NAMES =  $(GROUP_NAMES) Priority
+# give the Priority group 90% of the pool resources
+GROUP_QUOTA_DYNAMIC_Priority = 0.9
+GROUP_AUTOREGROUP = true
+</pre>
+ </div>
+ <p>
+  If the quota set for the
+  <code>
+   Priority
+  </code>
+  group is as large or nearly as large as the total
+  <code>
+   SLOT_WEIGHT
+  </code>
+  of the pool, Then the negotiator will always negotiate for jobs in the
+  <code>
+   Priority
+  </code>
+  group first.  Since jobs submitted on the high priority submit node are automatically in this group, they will be matched first.
+ </p>
+ <p>
+  If your pool is already configured to use accounting groups with quotas, then you will need to adjust the negotiator configuration in order to use this technique.
+ </p>
+</div>

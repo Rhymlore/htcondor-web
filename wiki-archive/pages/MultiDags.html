@@ -1,0 +1,40 @@
+---
+title: Multi Dags
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  Because there's no requirement that all nodes in a given DAG file be connected, it's pretty simple to allow multiple DAG files to be run by a single DAGMan invocation.  The main issue is making sure that you don't have name collisions between nodes in different DAG files (if there are name collisions
+  <em>
+   within
+  </em>
+  a DAG file, that's a user error...).
+ </p>
+ <p>
+  To avoid the name collision problem, we simply rename the nodes (add details here).
+ </p>
+ <p>
+  Once parsing has happened, we no longer have any record of which DAG file a given node came from -- essentially we have a DAG structure that could be created by a single DAG file with appropriate node names.  One consequence of this is that, if a rescue DAG is generated, we get a single rescue DAG file that incorporates information for the
+  <em>
+   entire
+  </em>
+  structure corresponding to all of the input files.
+ </p>
+ <p>
+  Things to mention:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   node name munging
+  </li>
+  <li>
+   you get a single rescue DAG
+  </li>
+  <li>
+   primary DAG file
+  </li>
+ </ul>
+</div>

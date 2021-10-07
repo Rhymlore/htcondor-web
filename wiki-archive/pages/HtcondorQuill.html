@@ -1,0 +1,60 @@
+---
+title: Htcondor Quill
+layout: wiki-page
+---
+<div id="content">
+ <strong>
+  WARNING! Current version of HTCondor do not support Quill.  Support for Quill has ceased starting with HTCondor v8.6.0+.  This page is just for archival purposes and/or for very old HTCondor installations
+ </strong>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Module Description
+ </h2>
+ HTCondor Quill is available as a contrib module and no longer released with the HTCondor binaries.
+ <p>
+  <em>
+   Note that Quill is no longer tested or supported starting with HTCondor v8.4.0!!
+  </em>
+ </p>
+ <p>
+  Quill consists of two daemons,
+  <code>
+   condor_quill
+  </code>
+  and
+  <code>
+   condor_dbmsd
+  </code>
+  . It manages a database that represents a copy of the HTCondor job queue.
+  <code>
+   condor_q
+  </code>
+  and
+  <code>
+   condor_history
+  </code>
+  tools can then query the database.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Download
+ </h2>
+ The module is contained in the HTCondor source tree in src/condor_contrib/condor_dbmsd (dbmsd) and src/condor_contrib/condor_tt (quill) as of HTCondor 7.5.5.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Contact
+ </h2>
+ The contact for this module is the HTCondor Team
+ <a class="external" href="http://research.cs.wisc.edu/condor/condor-support/">
+  http://research.cs.wisc.edu/condor/condor-support/
+ </a>
+</div>

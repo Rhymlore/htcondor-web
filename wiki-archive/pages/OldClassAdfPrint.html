@@ -1,0 +1,45 @@
+---
+title: Old Class Adf Print
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ already have a compatibility version of this
+method, but it doesn't handle chained ads.
+ <p>
+  It also doesn't print
+  <span class="quote">
+   MyType
+  </span>
+  or
+  <span class="quote">
+   TargetType
+  </span>
+  if they're not set, nor does it print them first. In old
+  <span class="quote">
+   ClassAds
+  </span>
+  , if these are unset, they're printed as empty strings. This shouldn't matter, as the old
+  <span class="quote">
+   ClassAds
+  </span>
+  methods that read from a file don't care about the presence or ordering of
+  <span class="quote">
+   MyType
+  </span>
+  and
+  <span class="quote">
+   TargetType
+  </span>
+  .
+ </p>
+ <p>
+  Developer time: 4 hours
+ </p>
+ <p>
+  Progress: Method now handles chained ads.
+ </p>
+</div>

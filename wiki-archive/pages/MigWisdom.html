@@ -1,0 +1,76 @@
+---
+title: Mig Wisdom
+layout: wiki-page
+---
+<div id="content">
+ [Wisdom dates from 2021-06-25]
+ <p>
+  We have access to a(t least one) A100 in
+  <code>
+   coba2000.chtc.wisc.edu
+  </code>
+  , although that machine is frequently busy.
+ </p>
+ <p>
+  The machine
+  <code>
+   gpulab2004.chtc.wisc.edu
+  </code>
+  has four A100s.
+ </p>
+ <p>
+ </p>
+ <hr/>
+ For now, to get an A100 from AWS, you have to rent eight of them with the
+ <code>
+  p4d.24xlarge
+ </code>
+ instance type.  Use the "Deep Learning Base AMI (Amazon Linux 2)" to avoid having to deal with drivers and belike.
+ <p>
+ </p>
+ <div class="term">
+  <pre class="term">sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install https://research.cs.wisc.edu/htcondor/repo/current/htcondor-release-current.amzn2.noarch.rpm
+sudo yum-builddep condor
+</pre>
+ </div>
+ <p>
+  Then set up your HTCondor build tree in the usual way.  (Don't forget the
+  <code>
+   -j BIGNUM
+  </code>
+  ; this instance type has a
+  <em>
+   lot
+  </em>
+  of cores.)
+ </p>
+ <p>
+ </p>
+ <hr/>
+ NVidia has a
+ <a class="external" href="https://docs.nvidia.com/datacenter/tesla/mig-user-guide/index.html">
+  MIG user guide
+ </a>
+ .  Of particular note:
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    sudo nvidia-smi -i INDEX -mig 1
+   </code>
+   enables MIG but does not create any GPU instances.  Doing this step but not the next one is the (mis)configuration of relevance to
+   <a class="external" href="https://opensciencegrid.atlassian.net/browse/HTCONDOR-476">
+    HTCONDOR-476
+   </a>
+   .
+  </li>
+  <li>
+   <code>
+    sudo nvidia-smi mig -i 1 -cgi 19,19,19,19,19,19,19 -C
+   </code>
+   creates a 7-way split of the A100.
+  </li>
+ </ul>
+</div>

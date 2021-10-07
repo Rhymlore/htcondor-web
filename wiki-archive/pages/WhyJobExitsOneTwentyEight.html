@@ -1,0 +1,14 @@
+---
+title: Why Job Exits One Twenty Eight
+layout: wiki-page
+---
+<div id="content">
+ This can occur when the machine your job is running on is missing a
+DLL (Dynamically Linked Library) required by your program.
+The solution is to find the DLL file the program needs and put it in
+the TRANSFER_INPUT_FILES list in the job's submit file.
+ <p>
+  To find out what DLLs your program depends on, right-click the program
+in Explorer, choose Quickview, and look under Import List.
+ </p>
+</div>

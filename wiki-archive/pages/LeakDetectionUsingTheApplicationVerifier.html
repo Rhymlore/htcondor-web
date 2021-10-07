@@ -1,0 +1,61 @@
+---
+title: Leak Detection Using The Application Verifier
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Requirements
+  </h2>
+ </span>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="ftp://ftp.microsoft.com/PSS/Tools/Developer%20Support%20Tools/LeakDiag/">
+    LeakDiag
+   </a>
+  </li>
+  <li>
+   Process and Windows System Symbols (for stack trace)
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Introduction
+ </h2>
+ <p>
+  What follows is an exhaustive tutorial demonstrating ways which a developer can indentify resource leaks in a process.  We use a tool called
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveLeakDiag" title="Leak Diag">
+    LeakDiag
+   </a>
+  </span>
+  from Microsoft.  This tool allows us to see the changes in processes' resource consumption over time. In some cases, a processes' resource consumption may grow in an unbounded manner. A resource leak may be responsible for this behavior. The rest of this document is devoted to identifying these incorrect behaviors and when they may be a problem.
+ </p>
+ <p>
+  So, unlike
+  <code>
+   umdh.exe
+  </code>
+  ,
+  <span class="quote">
+   LeakDiag
+  </span>
+  can detect all possible resource leaks in a Windows environment.  To do this it uses Microsoft's
+  <a class="external" href="http://research.microsoft.com/en-us/projects/detours/">
+   Detours
+  </a>
+  library, which can hook any system or library call and replace it with its own.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Conclusion
+ </h2>
+</div>

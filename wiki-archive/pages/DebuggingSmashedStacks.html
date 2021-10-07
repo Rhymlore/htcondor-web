@@ -1,0 +1,102 @@
+---
+title: Debugging Smashed Stacks
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Debugging Smashed Stacks
+  </h2>
+ </span>
+ <p>
+  Debugging a smashed stack can be difficult because the backtrace is nearly useless. A few tips:
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  The Zen of Core Files
+ </h3>
+ <p>
+  (Section added Aug 1, 2006, adesmet)
+ </p>
+ <p>
+  Pete's core dump technique for finding buffer overruns on the stack:
+ </p>
+ <p>
+  Check the actual addresses in the backtrace. If a few stack frames in a row fail to have the high bit set in any of the bytes of the address, chances are that an ASCII string has walked off the end of the buffer. An example from a real core dump:
+ </p>
+ <div class="code">
+  <pre class="code">#0  0x0818d216 in WriteCoreDump ()
+#1  0x0817db6c in linux_sig_coredump ()
+#2  0xffffe500 in ?? ()
+#3  0x0000000b in ?? ()
+#4  0x00000063 in ?? ()
+#5  0x00000000 in ?? ()
+#6  0x0000002b in ?? ()
+#7  0x0000002b in ?? ()
+#8  0x0854f47c in ?? ()
+#9  0x08554aa8 in ?? ()
+#10 0xffff8ed8 in ?? ()
+#11 0xffff8ed8 in ?? ()
+#12 0x00000330 in ?? () from /lib/libm.so.6
+#13 0x00002c0c in ?? () from /lib/libm.so.6
+#14 0xffff8f80 in ?? ()
+#15 0x2e303956 in ?? ()
+#16 0x0000000e in ?? ()
+#17 0x00000004 in ?? ()
+#18 0x0819e716 in List&lt;char&gt;::AtEnd ()
+#19 0x0819dee3 in List&lt;char&gt;::Next ()
+#20 0x081fd963 in GenericQuery::makeQuery ()
+#21 0x65646f6e in ?? ()
+#22 0x2e303932 in ?? ()
+#23 0x7361646c in ?? ()
+#24 0x7469632d in ?? ()
+#25 0x67696c2e in ?? ()
+#26 0x61632e6f in ?? ()
+#27 0x6365746c in ?? ()
+#28 0x64652e68 in ?? ()
+#29 0x00292275 in ?? ()
+#30 0x30323735 in ?? ()
+#31 0x2e303330 in ?? ()
+#32 0x08540030 in ?? ()
+#33 0x0062f8b8 in ?? ()
+#34 0x084b3800 in vtable for Daemon ()
+#35 0x00000000 in ?? ()
+#36 0x00000000 in ?? ()
+#37 0x00000000 in ?? ()
+#38 0x0ac87610 in ?? ()
+#39 0x00000000 in ?? ()
+#40 0x00000000 in ?? ()
+#41 0x00000000 in ?? ()
+#42 0x00000000 in ?? ()
+#43 0x00000001 in ?? ()
+#44 0x00000000 in ?? ()
+#45 0x0ac8c020 in ?? ()
+</pre>
+ </div>
+ If you think you might have this case, "strings core" can give some clues. After that, open the core file in less. Jump to the end (G), At the very end, or near it you'll find the environment. Jump backward a few pages (Ctrl+B) looking for a large string. That's probably the string responsible for overflowing the buffer on the stack.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  gcc's -fstack-protector
+ </h3>
+ <p>
+  (Section added Aug 1, 2006, adesmet)
+ </p>
+ <p>
+  Greg Thain offers the following on August 1, 2006:
+ </p>
+ <p>
+  Gcc 4.1 has a new option that can help find these much, much faster. There's a new option, -fstack-protector, which puts a guard word on the stack of each function that has an array on the stack, and checks the guard at function exit. If the guard has changed, it asserts right then and there, before returning. This means that even though the stack is garbage, the innermost frame is still visible and debuggable in gcc. It also means that most buffer overflow attacks won't work.
+ </p>
+ <p>
+  I've fixed a bunch of the HTCondor source code to allow us to compile with this new gcc, but not all of the source code -- in particular, not the externals. Still, all of the daemons can be compiled with this option.
+ </p>
+ <p>
+  We can't just switch to this new gcc because of standard universe and the externals, but I'd recommend to folks that if you suspect a stack buffer overflow, and are sending a debug binary out to a user, that you recompile with this option, it leaves a slime trail of awesomeness in its wake.
+ </p>
+</div>

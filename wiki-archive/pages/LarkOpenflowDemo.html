@@ -1,0 +1,121 @@
+---
+title: Lark Openflow Demo
+layout: wiki-page
+---
+<div id="content">
+ <div class="restricted">
+  Switch (non-openflow) s-cssc-b240-5 provides connectivity to the Lark infrastructure:
+  <ul>
+   <li>
+    Gi1/0/4 - management interface em1 on host 'ofswitch' (vlan 1420)
+   </li>
+   <li>
+    Gi1/0/5 - openflow interface em2 on host 'ofswitch' (vlan 3325)
+   </li>
+   <li>
+    Gi1/0/5 - openflow interface eth1 on host 'lark01' (vlan 3325)
+   </li>
+   <li>
+    Gi1/0/40 - management interface eth0 on host 'lark01' (vlan 1420)
+   </li>
+  </ul>
+  <p>
+   Host 'ofswitch'
+  </p>
+  <ul>
+   <li>
+    runs the cisco one openflow controller at
+    <a href="http://128.104.59.140:8080">
+     http://128.104.59.140:8080
+    </a>
+    <br/>
+    Run via
+    <tt>
+     java /root/cisco/org.eclipse.osgi.jar
+    </tt>
+    in a screen session.  Use
+    <tt>
+     screen -r
+    </tt>
+    as root to re-attach.
+   </li>
+   <li>
+    See LarkOpenflowDemoFlows
+   </li>
+   <li>
+    hosts the web demo software at
+    <a href="http://128.104.59.140">
+     http://128.104.59.140
+    </a>
+    <br/>
+    Files are in /var/www
+   </li>
+   <li>
+    runs openvswitch
+    <blockquote>
+     <pre>$ sudo /usr/local/bin/ovs-vsctl show
+64c3b37c-2f7a-4724-baad-aa4d5fa43649
+    Bridge of-switch
+        Controller "tcp:0.0.0.0:6633"
+            is_connected: true
+        Port of-switch
+            Interface of-switch
+                type: internal
+        Port "p1p1"
+            Interface "p1p1"
+        Port "p1p2"
+            Interface "p1p2"
+        Port "p1p3"
+            Interface "p1p3"
+        Port "p1p4"
+            Interface "p1p4"
+    ovs_version: "1.9.90"
+</pre>
+    </blockquote>
+   </li>
+   <li>
+    Alan took snapshots of
+    <tt>
+     /var/www
+    </tt>
+    on ovswitch in
+late January to capture the web interface.
+    <br/>
+    This isn't a proper repository of any sort, just tarballs.
+    <br/>
+    They are at
+    <tt>
+     /afs/cs.wisc.edu/p/condor/workspaces/adesmet/lark/demo-live-backups
+    </tt>
+   </li>
+  </ul>
+  Host 'lark01'
+  <ul>
+   <li>
+    Runs a self-contained lark enabled htcondor
+   </li>
+   <li>
+    Relevant demo files are in /home/larkdemo (in there is a README file that goes into more detail) and /etc/condor:
+   </li>
+   <li>
+    repository is at
+    <tt>
+     /afs/cs.wisc.edu/p/condor/workspaces/adesmet/lark/demo-201301
+    </tt>
+    which is a non-bare git repository.
+    <br/>
+    The copies in /home/larkdemo on lark00 or lark01 are just copies.
+   </li>
+   <li>
+    Runs dnsmasq:
+    <blockquote>
+     <pre>dhcp-range=128.104.50.128,128.104.50.254,255.255.255.0,20m
+
+# default route
+dhcp-option=3,128.104.50.1
+</pre>
+    </blockquote>
+   </li>
+  </ul>
+ </div>
+</div>

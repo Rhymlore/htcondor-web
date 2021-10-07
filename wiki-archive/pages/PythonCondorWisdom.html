@@ -1,0 +1,118 @@
+---
+title: Python Condor Wisdom
+layout: wiki-page
+---
+<div id="content">
+ <div class="restricted">
+  <h1>
+   Using the python-condor library
+  </h1>
+  <p>
+   <i>
+    <b>
+     python-condor
+    </b>
+   </i>
+   is a wrapper module containing mechanisms for interacting with the HTCondor system. It is included by default in 7.9.4.
+  </p>
+  <h2>
+   Basics - Job Submission
+  </h2>
+ </div>
+ <ol>
+  <li>
+   Begin by importing the condor and classad modules from a python interpreter.
+   <div class="restricted">
+    <b>
+     Note: some distributions require you import the module as
+     <i>
+      htcondor
+     </i>
+    </b>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Declare a collector with an IP address/hostname.
+  </li>
+  <li>
+   Locate a scheduler by applying the 'locate' method on the collector object.
+  </li>
+  <li>
+   Parse a classad file with the classad library's .parse() method. (Note: these are raw classad files. They are similar to submit files, but vary in interesting ways. condor_q -l xx.xx will display the classad data for a particular job.)
+  </li>
+  <li>
+   Using the .submit method to submit the file to the appropriate scheduler.
+   <div class="code">
+    <pre class="code">[bbockelm@example python-condor]$ python
+Python 2.6.6 (r266:84292, Jun 18 2012, 09:57:52)
+[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import condor
+&gt;&gt;&gt; import classad
+&gt;&gt;&gt; coll = condor.Collector("red-condor.unl.edu")
+&gt;&gt;&gt; results = coll.query(condor.AdTypes.Startd, "true", ["Name"])
+&gt;&gt;&gt; len(results)
+3812
+&gt;&gt;&gt; results[0]
+[ Name = "slot1@red-d20n35"; MyType = "Machine"; TargetType = "Job" ]
+&gt;&gt;&gt; scheddAd = coll.locate(condor.DaemonTypes.Schedd, "red-gw1.unl.edu")
+&gt;&gt;&gt; scheddAd["ScheddIpAddr"]
+'&lt;129.93.239.132:53020&gt;'
+&gt;&gt;&gt; schedd = condor.Schedd(scheddAd)
+&gt;&gt;&gt; results = schedd.query('Owner =?= "cmsprod088"', ["ClusterId", "ProcId"])
+&gt;&gt;&gt; len(results)
+63
+&gt;&gt;&gt; results[0]
+[ MyType = "Job"; TargetType = "Machine"; ServerTime = 1356722353; ClusterId = 674143; ProcId = 0 ]
+&gt;&gt;&gt; condor.param["COLLECTOR_HOST"]
+'hcc-briantest.unl.edu'
+&gt;&gt;&gt; schedd = condor.Schedd() # Defaults to the local schedd.
+&gt;&gt;&gt; results = schedd.query()
+&gt;&gt;&gt; results[0]["RequestMemory"]
+ifthenelse(MemoryUsage isnt undefined,MemoryUsage,( ImageSize + 1023 ) / 1024)
+&gt;&gt;&gt; results[0]["RequestMemory"].eval()
+1L
+&gt;&gt;&gt; ad=classad.parse(open("test.submit.ad"))
+&gt;&gt;&gt; print schedd.submit(ad, 2) # Submits two jobs in the cluster; edit test.submit.ad to preference.
+110
+&gt;&gt;&gt; print schedd.act(condor.JobAction.Remove, ["111.0", "110.0"])'
+
+    [
+        TotalNotFound = 0;
+        TotalPermissionDenied = 0;
+        TotalAlreadyDone = 0;
+        TotalJobAds = 2;
+        TotalSuccess = 2;
+        TotalChangedAds = 1;
+        TotalBadStatus = 0;
+        TotalError = 0
+    ]
+&gt;&gt;&gt; print schedd.act(condor.JobAction.Hold, "Owner =?= \"bbockelm\"")'
+
+    [
+        TotalNotFound = 0;
+        TotalPermissionDenied = 0;
+        TotalAlreadyDone = 0;
+        TotalJobAds = 2;
+        TotalSuccess = 2;
+        TotalChangedAds = 1;
+        TotalBadStatus = 0;
+        TotalError = 0
+    ]
+&gt;&gt;&gt; schedd.edit('Owner =?= "bbockelm"', "Foo", classad.ExprTree('"baz"'))
+&gt;&gt;&gt; schedd.edit(["110.0"], "Foo", '"bar"')
+&gt;&gt;&gt; coll = condor.Collector()
+&gt;&gt;&gt; master_ad = coll.locate(condor.DaemonTypes.Master)
+&gt;&gt;&gt; condor.send_command(master_ad, condor.DaemonCommands.Reconfig) # Reconfigures the local master and all children
+&gt;&gt;&gt; condor.version()
+'$CondorVersion: 7.9.4 Jan 02 2013 PRE-RELEASE-UWCS $'
+&gt;&gt;&gt; condor.platform()
+'$CondorPlatform: X86_64-ScientificLinux_6.3 $'
+&gt;&gt;&gt;
+</pre>
+   </div>
+  </li>
+ </ol>
+</div>

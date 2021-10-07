@@ -1,0 +1,87 @@
+---
+title: How To Upgrade Condor Gracefully
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to upgrade HTCondor gracefully
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  There are 2 approaches to upgrading to a newer version of HTCondor:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   One way to gracefully upgrade is to shut down the pool, install the new version of HTCondor, and then start it back up.  To do that,
+see
+   <span class="wiki">
+    <a href="wiki-archiveHowToShutDownCondor" title="How To Shut Down Condor">
+     How to shut down HTCondor without killing jobs
+    </a>
+   </span>
+   .  However, before you do that, consider the consequence of waiting for jobs to finish.  On multi-core machines, if all cores but one are idle, because you are waiting for a job to finish, this may be worse than killing everything and quickly restarting.
+   <p>
+   </p>
+  </li>
+  <li>
+   Another way to upgrade leaves HTCondor running.  HTCondor will automatically restart itself if the condor_master binary is updated.  To take advantage of this, configure HTCondor so that the path to binaries (for example,
+   <code>
+    MASTER
+   </code>
+   ) points to the new binaries.  One way to do that (under Unix) is to use a symbolic link that points to the current HTCondor installation directory (e.g. /opt/condor).  Once the new files are in place, change the symbolic link to point to the new directory.  If HTCondor is configured to locate its binaries via the symbolic link, then after the symbolic link changes, the condor_master daemon will notice the new binaries and restart itself.  How frequently it checks is controlled by the configuration variable
+   <code>
+    MASTER_CHECK_NEW_EXEC_INTERVAL
+   </code>
+   , which defaults 5 minutes.
+   <p>
+   </p>
+  </li>
+ </ol>
+ <ul>
+  When the condor_master notices new binaries, it begins a graceful restart, which may not be exactly what you want.  On an execute machine, a graceful restart means that running jobs are preempted.  Standard universe jobs will attempt to checkpoint, which could be a problem if all machines in a large pool attempt to do this at the same time.  If they do not complete within the cutoff time specified by the
+  <code>
+   KILL
+  </code>
+  policy expression (default 10 minutes), then they are killed without producing a checkpoint.  You may therefore want to increase this cutoff time, and you may also want to upgrade the pool in stages rather than all at once.
+  <p>
+   For universes other than the standard universe, jobs are preempted.  If jobs have been guaranteed a certain amount of uninterrupted run time with
+   <span class="quote">
+    MaxJobRetirementTime
+   </span>
+   , then the job is not killed until the specified amount of retirement time has been exceeded (it is 0 by default).  The first step of killing the job is a soft kill signal, which can be intercepted by the job so that it can shut down gracefully, save state etc.  If the job has not gone away once the KILL expression fires (10 minutes by default), then the job is forcibly hard-killed.  Since graceful shutdown of jobs may rely on shared resources such as disks where state is saved, the same reasoning applies as for standard universe: you may want to increase the
+   <code>
+    KILL
+   </code>
+   time for large pools, and you may want to upgrade the pool in stages to avoid jobs running out of time.
+  </p>
+  <p>
+   Another time limit to be aware of is the configuration variable
+   <code>
+    SHUTDOWN_GRACEFUL_TIMEOUT
+   </code>
+   .  This defaults to 30 minutes.  If the graceful restart is not completed within this time, a fast restart ensues.  This causes jobs to be hard-killed.
+  </p>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to check what version of HTCondor is running on all machines in a pool
+ </h3>
+ <p>
+  On Unix platforms, the following is a handy way to summarize the HTCondor versions that exist in the pool:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -master -format "%s\n" CondorVersion | sort | uniq -c
+</pre>
+ </div>
+</div>

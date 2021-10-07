@@ -1,0 +1,18 @@
+---
+title: Why Do My Jobs Only Run On Submit Machine
+layout: wiki-page
+---
+<div id="content">
+ HTCondor will only send jobs from a submit machine to a remote execute machine if it has been told that the two machines share a common file system, or if file transfer is enabled.  If you have this problem, try setting the following lines in your submit file to enable file transfer:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">should_transfer_files = yes
+when_to_transfer_output = on_exit
+transfer_input_files = file_to_transfer1, another_file_to_transfer, and_so_on
+</pre>
+ </div>
+ <p>
+  Note that the executable is included by default in the file transfer list.
+ </p>
+</div>

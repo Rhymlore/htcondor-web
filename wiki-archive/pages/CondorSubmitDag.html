@@ -1,0 +1,34 @@
+---
+title: Condor Submit Dag
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  Condor_submit_dag creates a normal HTCondor submit file, and then (unless the
+  <code>
+   -no_submit
+  </code>
+  flag is given) calls condor_submit on that file.  If the DAG file is
+  <em>
+   foo.dag
+  </em>
+  , the submit file will be
+  <em>
+   foo.dag.condor.sub
+  </em>
+  .
+ </p>
+ <p>
+  Note that condor_submit_dag itself no longer does any parsing at all of the DAG file (a long time ago I think it did a little bit of parsing to check the log file specifications).
+ </p>
+ <p>
+  nested dags -- eager submit option
+ </p>
+ <p>
+  deep/shallow options
+ </p>
+ <p>
+  startup of scheduler universe/daemoncore
+ </p>
+</div>

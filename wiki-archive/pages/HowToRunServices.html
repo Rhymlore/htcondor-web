@@ -1,0 +1,171 @@
+---
+title: How To Run Services
+layout: wiki-page
+---
+<div id="content">
+ <strong>
+  In Progress NOT complete
+ </strong>
+ <span class="section">
+  <h2>
+   Introduction
+  </h2>
+ </span>
+ This wiki page contains information about how to allow an administrator to schedule and manage services using HTCondor (IaaS).
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Configuration Options
+ </h2>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  1.) Local Resources
+ </h3>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Virtual Machine
+ </h4>
+ The most obvious solution to this problem now-a-days is to configure a virtual machine, or "appliance", whose sole purpose is to provide a service to a IT infrastructure.  This virtual machine can then be accessed and spun on demand
+ <p>
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="http://research.cs.wisc.edu/condor/manual/v7.7/2_11Virtual_Machine.html">
+    http://research.cs.wisc.edu/condor/manual/v7.7/2_11Virtual_Machine.html
+   </a>
+  </li>
+  <li>
+   <a class="external" href="http://research.cs.wisc.edu/condor/manual/v7.7/3_3Configuration.html#SECTION004329000000000000000">
+    http://research.cs.wisc.edu/condor/manual/v7.7/3_3Configuration.html#SECTION004329000000000000000
+   </a>
+  </li>
+ </ul>
+ <p>
+  For these types of application it is relatively easy to configure a virtual machine with a hypervisor of your choosing and configure your appliance.  There are a couple of extra settings you may wish to add to your submission which will help in managing your appliances.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#############################
+# Submission additions for services
+#############################
+# For resilient services where they can not go down
+# logs should be routinely investigated for activity
+on_exit_remove=false
+periodic_release=true
+
+# Any attributes which will be useful in administration
++HTTPD_IP=TARGET.MachineIP
+</pre>
+ </div>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Chroot jobs
+ </h4>
+ Another way to achieve this is through the use of chroot jail.  By using your package management system you can install just the desired dependencies to a location which is idea for infrastructure.
+ <p>
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="http://prefetch.net/articles/yumchrootlinux">
+    http://prefetch.net/articles/yumchrootlinux
+   </a>
+  </li>
+ </ul>
+ <p>
+  This solution has a couple of trade offs the administrator should take into account.  It does come with the added performance boost of being native but there are several configuration issues which need to be taken into account:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Consistent UID's into images (recommend using service ID's for consistency)
+  </li>
+  <li>
+   Firewall configurations.
+  </li>
+ </ul>
+ <p>
+  Once your chroot image is created you will need to configure
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">##########################################
+# Could be shared via NFS, or transferred
+NAMED_CHROOT= httpd=/your/chroot/loc
+</pre>
+ </div>
+ <p>
+  Once your startd's have been configured you can run jobs.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable=your_scriptwrapper_to_kick_httpd_in_chroot.sh
+log=$(cluster).$(process).log.txt
+output=$(cluster).$(process).out.txt
+error=$(cluster).$(process).err.txt
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+RequestMemory = 256M
++RequestedChroot="httpd"
+
+queue 1
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  2.) Remote Resources
+ </h3>
+ <span class="subsubsection">
+  <h4>
+   Grid/EC2 Jobs
+  </h4>
+ </span>
+ <p>
+  TODO: Update 7.7 series docs with ec2 refs.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  References
+ </h2>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/creating-loopback-s3-linux.html.html">
+    http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/creating-loopback-s3-linux.html.html
+   </a>
+  </li>
+ </ul>
+ <p>
+  Other refs:
+ </p>
+ <ul>
+  <li>
+   <a class="external" href="http://lxc.sourceforge.net/">
+    http://lxc.sourceforge.net/
+   </a>
+  </li>
+ </ul>
+</div>

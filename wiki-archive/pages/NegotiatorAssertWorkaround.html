@@ -1,0 +1,58 @@
+---
+title: Negotiator Assert Workaround
+layout: wiki-page
+---
+<div id="content">
+ <strong>
+  Do not upgrade from HTCondor 7.8.4 to 7.9 or 7.10.
+ </strong>
+ <p>
+  HTCondor 7.8.4 contains a bug that causes the negotiator daemon to write malformed entries in its
+  <code>
+   Accountantnew.log
+  </code>
+  . When a 7.8 negotiator reads the
+  <code>
+   Accountantnew.log
+  </code>
+  on startup, it ignores these entries. If any jobs complete while the negotiator wasn't running, their accumulated runtime won't be charged to their owner when calculating user priorities.
+ </p>
+ <p>
+  But in HTCondor 7.9.0 and beyond, the negotiator is less tolerant of malformed entries in the
+  <code>
+   Accountantnew.log
+  </code>
+  . It will abort upon seeing one. The master will periodically attempt to restart the negotiator, and each time, the negotiator will abort and exit. As a result, no jobs will run in the local pool, as no matches will be made.
+ </p>
+ <p>
+  HTCondor version 7.8.5 (and future 7.8 releases) will not produce these malformed entries and will remove them from the
+  <code>
+   Accountantnew.log
+  </code>
+  . If you're running HTCondor 7.8.4 and wish to upgrade your central manager 7.9 or beyond, first upgrade to the latest version of 7.8 and start up HTCondor for several minutes. Then, you can shut down HTCondor and upgrade to the desired version.
+ </p>
+ <p>
+  If you do upgrade directly from HTCondor 7.8.4 to HTCondor 7.9 or later and find yourself affected by this bug, there is another solution.
+HTCondor 7.9.1 includes
+  <code>
+   accountant_log_fixer
+  </code>
+  in the libexec directory. This tool can correct the malformed entries. It should be run with a single command line argument: the path to your
+  <code>
+   Accountantnew.log
+  </code>
+  .  For example "
+  <code>
+   accountant_log_fixer Accountantnew.log
+  </code>
+  ", assuming your
+  <code>
+   Accountantnew.log
+  </code>
+  is in the current working directory, and the
+  <code>
+   accountant_log_fixer
+  </code>
+  is in your path.
+ </p>
+</div>

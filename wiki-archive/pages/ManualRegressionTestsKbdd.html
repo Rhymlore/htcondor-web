@@ -1,0 +1,108 @@
+---
+title: Manual Regression Tests Kbdd
+layout: wiki-page
+---
+<div id="content">
+ This is one of the
+ <span class="wiki">
+  <a href="wiki-archiveManualRegressionTests" title="Manual Regression Tests">
+   ManualRegressionTests
+  </a>
+ </span>
+ :
+ <p>
+  Confirm that the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveKeyboardIdle" title="Keyboard Idle">
+    KeyboardIdle
+   </a>
+  </span>
+  is correctly set. In particular, is the condor_kbdd working?  Key cases to check:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   USB keyboard and mouse on Linux
+  </li>
+  <li>
+   Windows Vista or later
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  To test on Linux:
+ </h3>
+ <ul>
+  <li>
+   untar the appropriate version of HTCondor in a scratch directory of a machine that you have access to the keyboard and mouse (note: make sure that keyboard and mouse are USB)
+  </li>
+  <li>
+   run './condor_install .' (note the trailing dot)
+  </li>
+  <li>
+   source condor.sh (as instructed)
+  </li>
+  <li>
+   edit the file at local.*/condor_config.local and add the following:
+   <div class="verbatim">
+    <pre>ALLOW_WRITE = *
+DAEMON_LIST = $(DAEMON_LIST), KBDD
+</pre>
+   </div>
+  </li>
+  <li>
+   Run condor_master
+  </li>
+  <li>
+   Give HTCondor a few seconds to start up, and then run this shell script
+  </li>
+ </ul>
+ <p>
+ </p>
+ <div class="verbatim">
+  <pre>while true; do sleep 10; condor_status -l -direct `hostname` | grep KeyboardIdle; done</pre>
+ </div>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Poke at the keyboard and mouse (individually) and see if the timer resets.  For the mouse the timer might stay at 4 but this is probably ok.
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  To test on Windows
+ </h3>
+ <p>
+  On Windows, the KBDD needs to be in the registry so that it will start when a user logs on and will run as that user.  You can either do this by installing HTCondor using the MSI installer and choosing to run jobs when the keyboard is idle; or you can add KBDD to the DAEMON_LIST, start HTCondor, and then log off and back on again.  The KBDD should startup when you log on.
+ </p>
+ <p>
+  To test the kbdd, run this as a .BAT file
+ </p>
+ <div class="verbatim">
+  <pre>@echo off
+for /L %%I in (1,1,100000) do (
+time /T
+condor_status -l | grep "Idle ="
+sleep 20
+)
+</pre>
+ </div>
+ <p>
+  <code>
+   sleep
+  </code>
+  is not a native command on Windows. If you don't have it, you can use
+  <code>
+   ping 127.0.0.1 &gt; NUL
+  </code>
+  instead.  The KBDD seems to update about once every 3 minutes by default, so testing this takes some patience.
+ </p>
+</div>

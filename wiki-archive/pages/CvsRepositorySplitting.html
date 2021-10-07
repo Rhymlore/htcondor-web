@@ -1,0 +1,70 @@
+---
+title: Cvs Repository Splitting
+layout: wiki-page
+---
+<div id="content">
+ Suppose you have two projects, named "one" and "two", in a single
+CVS repository named "common".  Your directory structure looks something
+like this:
+ <p>
+ </p>
+ <pre>    /home
+                              |- one
+                              `- two
+</pre>
+ <p>
+  In other words, the CVS repository is rooted at /home/cvs/common.
+All the source files are in /home/cvs/common/one and /home/cvs/common/two
+and the administrative files are in /home/cvs/common/CVSROOT.
+Our objective is to split this one repository into two, as follows:
+ </p>
+ <p>
+ </p>
+ <pre>    /home
+                   |       `- one
+                   |
+                   `- two
+                           `- two
+</pre>
+ <p>
+  In the new setup, the first CVS repository is at /home/cvs/one and
+the second CVS repository is at /home/cvs/two.  Each has its own
+subdirectory for content and for administrative files.
+ </p>
+ <p>
+  The first step is to create the new directories and copy in the
+appropriate files.
+ </p>
+ <p>
+ </p>
+ <pre>    mkdir /home/cvs/one
+    mv /home/cvs/common/one /home/cvs/one
+    mkdir /home/cvs/one/CVSROOT
+    cp /home/cvs/common/CVSROOT/* /home/cvs/one/CVSROOT
+    mkdir /home/cvs/two
+    mv /home/cvs/common/two /home/cvs/two
+    mv /home/cvs/common/CVSROOT /home/cvs/two
+    rmdir /home/cvs/common
+</pre>
+ <p>
+  Notice that the content files for each project were moved into
+their appropriate CVS repository but that the administrative
+files were copied into both of the new repositories.  The next
+step is to modify the CVSROOT/history files in each of the new
+repositories so that they only contain information about the
+files in their respective repositories.
+ </p>
+ <p>
+ </p>
+ <pre>    cd /home/cvs/one/CVSROOT
+    mv history history.orig
+    grep 'one/' history.orig &gt;history
+    cd /home/cvs/two/CVSROOT
+    mv history history.orig
+    grep 'two/' history.orig &gt;history
+</pre>
+ <p>
+  We're done.  Now each project is in its own CVS repository.  Now
+you can create a separate CVSTrac database for each project.
+ </p>
+</div>

@@ -1,0 +1,122 @@
+---
+title: Dag Recovery
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  Recovery mode is a mode in which DAGMan "catches up" with what has happened with the node jobs of its DAG before actually submitting any new jobs (it does the "catching up" by reading the user log files of the node jobs).  Basically, we get into recovery mode if a DAG was running and DAGMan exited in a way that didn't create a rescue DAG, and then DAGMan was restarted.  There are two main ways that this can happen:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   condor_hold/condor_release of the condor_dagman job (condor_hold actually kills the condor_dagman process, but leaves the job in the queue; condor_release starts a new DAGMan process, which goes into recovery mode).
+  </li>
+  <li>
+   DAGMan exits without creating a rescue DAG because of something like an assertion.
+  </li>
+ </ul>
+ <p>
+  You can also force DAGMan into recovery mode by creating an appropriate lock file and condor_submitting the .condor.sub file (instead of condor_submit_dagging the DAG file).
+ </p>
+ <p>
+  We figure out whether we're going to go into recovery mode in
+  <code>
+   main_init()
+  </code>
+  in
+  <em>
+   dagman_main.cpp
+  </em>
+  .  After parsing the DAG file(s) and any rescue DAG, we check for the existance of a lock file (
+  <em>
+   foo.dag.lock
+  </em>
+  if the primary DAG file is
+  <em>
+   foo.dag
+  </em>
+  ).  If the lock file exists, we call
+  <code>
+   util_check_lock_file()
+  </code>
+  in
+  <em>
+   dagman_util.cpp
+  </em>
+  .  This attempts to instantiate a
+  <code>
+   ProcessId
+  </code>
+  object from the lock file (this is Joe Meehean's unique PID thing, which tries to avoid the possibility of having a PID refer to the wrong process).  If the process that wrote the lock file is running, we will exit (we don't want to have two instances of the same DAG running at the same time; see the log file section).  If the process that wrote the lock file
+  <em>
+   isn't
+  </em>
+  running, or we weren't able to construct the ProcessID object, we continue.  In that case, we call util_create_lock_file() to write a lock file containing a serialized ProcessID object corresponding to
+  <em>
+   our
+  </em>
+  process.
+ </p>
+ <p>
+  Once we've figured out whether we're in recovery mode,
+  <code>
+   main_init()
+  </code>
+  calls
+  <code>
+   Dag::Bootstrap()
+  </code>
+  .  That does some things that are outside the scope of recovery mode, and then performs the recovery step.  First of all, we turn on caching of
+  <code>
+   dprintf()
+  </code>
+  output (that improves performance significantly -- at least in the past,
+  <code>
+   dprintf()
+  </code>
+  opened and closed the file each time, so that was pretty slow in recovery mode, when you're trying to really write out a lot of stuff quickly).  Then we monitor the log files for all jobs that are ready (there had better be some, or we have a cycle).  Next we call
+  <code>
+   ProcessLogEvents()
+  </code>
+  , which reads the monitored log files.  (more needed here)
+ </p>
+ <p>
+  Things to mention:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   condor_hold actually kills the DAGMan process; condor_release starts a new process (but the same HTCondor ID)
+  </li>
+  <li>
+   lock file (including Joe's Unique PID thing)
+  </li>
+  <li>
+   re-reading node job userlogs
+  </li>
+  <li>
+   FD problems on wide DAGs (throttles don't help us in recovery mode)
+  </li>
+  <li>
+   a bunch of places where we do special stuff in recovery mode
+  </li>
+  <li>
+   recovery mode is totally separate from a rescue DAG; in fact, you can be in recovery mode while running a rescue DAG.
+  </li>
+  <li>
+   recovery mode really places a lot of constraints on the rest of the DAGMan code (e.g., need node names in submit events; inter-submit sleeps if using multiple logs; no macros in log file names for node jobs; probably a bunch more that I can't think of at the moment)
+  </li>
+  <li>
+   when DAGMan exits normally (whether successfully or not) it deletes the lock file
+  </li>
+  <li>
+   caching debug output
+  </li>
+  <li>
+   basically, in recovery mode, we monitor a new log file where we'd submit a new job in "normal" mode
+  </li>
+ </ul>
+</div>

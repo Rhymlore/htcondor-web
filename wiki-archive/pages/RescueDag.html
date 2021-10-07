@@ -1,0 +1,265 @@
+---
+title: Rescue Dag
+layout: wiki-page
+---
+<div id="content">
+ Documentation of the rescue DAG/condor_rm and related code in DAGMan.
+ <p>
+  Note that rescue DAGs have gone through a number of significant changes over the history of DAGMan.  I'm only going to document the most recent version here.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Naming of rescue DAG files
+ </h3>
+ <p>
+  If the original DAG file is
+  <em>
+   foo.dag
+  </em>
+  , the rescue DAG files will be named
+  <em>
+   foo.dag.rescue.001
+  </em>
+  ,
+  <em>
+   foo.dag.rescue.002
+  </em>
+  , etc.  Each time a rescue DAG is written, the rescue DAG number is incremented.  When a rescue DAG is run, the highest-numbered rescue DAG is used (by default).
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Format of rescue DAG
+ </h3>
+ <p>
+  As of version 7.7.2, rescue DAG files are no longer a complete DAG file as they used to be.  Now, the rescue DAG only records the state of the DAG (which nodes are done, and remaining node retries) and must be parsed in conjunction with the original DAG file.  This is done so that a user discovers an error in their DAG file when they have a rescue DAG, they only need to fix the original DAG file, rather than having to fix both the orginal file and the rescue DAG file.  (The old behavior can be obtained by setting DAGMAN_WRITE_PARTIAL_RESCUE to false.)
+ </p>
+ <p>
+  Anyhow, in the default case, the only things (besides comments) in the rescue DAG file are lines marking nodes as done and lines resetting the remaining retries for nodes.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Creation of rescue DAG
+ </h3>
+ <p>
+  Rescue DAGs are created in three cases:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   The DAGMan job itself is condor_rm'ed
+  </li>
+  <li>
+   A node or nodes have failed, and the DAG has reached the point where it can make no more forward progress.
+  </li>
+  <li>
+   Immediately after parsing (or attempting to parse) the DAG, if
+   <code>
+    -DumpRescue
+   </code>
+   is given on the command line.
+  </li>
+ </ul>
+ <p>
+  In the first two cases,
+  <code>
+   main_shutdown_rescue()
+  </code>
+  in
+  <em>
+   dagman_main.cpp
+  </em>
+  gets called (if DAGMan is condor_rm'ed,
+  <code>
+   main_shutdown_rescue()
+  </code>
+  is called by
+  <code>
+   main_shutdown_remove()
+  </code>
+  , which is called by daemoncore; otherwise, it's explicitly called at various places in the DAGMan code), and that calls
+  <code>
+   Dag::Rescue()
+  </code>
+  .  Note that
+  <code>
+   main_shutdown_rescue()
+  </code>
+  uses the
+  <code>
+   inShutdownRescue
+  </code>
+  flag to make sure you don't get into a recursion if you have an error while trying to write the rescue DAG.
+ </p>
+ <p>
+  In the third case,
+  <code>
+   Dag::Rescue()
+  </code>
+  is called at various places in
+  <code>
+   main_init()
+  </code>
+  in
+  <em>
+   dagman_main.cpp
+  </em>
+  (man, that function is too big!!).
+ </p>
+ <p>
+  In any case,
+  <code>
+   Dag::Rescue()
+  </code>
+  calls
+  <code>
+   FindLastRescueDagNum()
+  </code>
+  , which checks all legal rescue DAG names and finds the highest-numbered one, and then
+  <code>
+   RescueDagName()
+  </code>
+  , which creates a properly-formatted rescue DAG file name, and then
+  <code>
+   WriteRescue()
+  </code>
+  , which actually writes the rescue DAG.
+ </p>
+ <p>
+  I think
+  <code>
+   WriteRescue()
+  </code>
+  is pretty straightforward.  The main complication is that there are a bunch of places where we don't write stuff out if
+  <code>
+   isPartial
+  </code>
+  is true.
+  <code>
+   WriteRescue()
+  </code>
+  iterates through all of the nodes and calls
+  <code>
+   WriteNodeToRescue()
+  </code>
+  on each one.  The main reason for breaking
+  <code>
+   WriteNodeToRescue()
+  </code>
+  out of
+  <code>
+   WriteRescue()
+  </code>
+  was to reduce the excessive indentation, and make the code easier to read.  Note that this
+  <code>
+   isPartial
+  </code>
+  flag is passed to
+  <code>
+   WriteNodeToRescue()
+  </code>
+  , because most of the info printed by
+  <code>
+   WriteNodeToRescue()
+  </code>
+  is
+  <em>
+   not
+  </em>
+  printed to a partial rescue DAG (which is the default mode).
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Use/parsing of rescue DAG
+ </h3>
+ <p>
+  <code>
+   main_init()
+  </code>
+  (that huge function again!) calls
+  <code>
+   FindLastRescueDagNum()
+  </code>
+  to find out if there are any rescue DAGs for the current DAG.  (Oh, yeah -- the user now has to run a rescue DAG by re-submitting the original DAG, not by submitting the rescue DAG directly as they did a long time ago.)  The user can also specify
+  <code>
+   -DoRescueFrom &lt;number&gt;
+  </code>
+  on the command line to specify a rescue DAG to run, if they don't want to run the latest one.  If you specify a rescue DAG number, any later rescue DAGs are renamed by
+  <code>
+   RenameRescueDagsAfter()
+  </code>
+  (
+  <em>
+   foo.dag.rescue.005
+  </em>
+  -&gt;
+  <em>
+   foo.dag.rescue.005.old
+  </em>
+  , etc.).
+ </p>
+ <p>
+  After parsing the original DAG file(s), DAGMan then parses the rescue DAG (which just sets the status of various nodes to DONE as appropriate, and also possibly changes the number of retries left on some nodes).  At that point, we're ready to actually run the DAG.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Additional actions on condor_rm of DAGMan
+ </h3>
+ <p>
+  In
+  <code>
+   main_shutdown_rescue()
+  </code>
+  , if there are any node jobs in the queue, we call
+  <code>
+   Dag::RemoveRunningJobs()
+  </code>
+  to remove them.  If any PRE or POST scripts are running, we call
+  <code>
+   RemoveRunningScripts()
+  </code>
+  to kill them.  (Note that in the case of DAGMan having made all the progress it can in the face of node failures, there won't be any node jobs or scripts running at this point.)
+ </p>
+ <p>
+  <code>
+   Dag::RemoveRunningJobs()
+  </code>
+  removes any HTCondor jobs by using the constraint
+  <em>
+   "DAGManJobId == &lt;id&gt;"
+  </em>
+  ; any Stork jobs are removed individually.
+ </p>
+ <p>
+  <code>
+   Dag::RemoveRunningScripts()
+  </code>
+  iterates through all of the nodes, and individually kills any running scripts via daemoncore.
+ </p>
+ <p>
+  In
+  <code>
+   main_shutdown_rescue()
+  </code>
+  we also call
+  <code>
+   Dag::StartFinalNode()
+  </code>
+  , which starts the DAG final node if there is one and we haven't already started it.
+ </p>
+</div>

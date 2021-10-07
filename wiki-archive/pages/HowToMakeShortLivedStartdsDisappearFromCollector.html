@@ -1,0 +1,66 @@
+---
+title: How To Make Short Lived Startds Disappear From Collector
+layout: wiki-page
+---
+<div id="content">
+ By default, HTCondor assumes that condor_startd daemons are relatively stable and long lived.  A condor_startd, representing a machine, will show up in the collector, and thus be visible in the output of condor_status after the first time it sends an update to the collector.  The condor_startd will then send periodic updates to the collector every time the condor_startd state changes,  when the value of the
+ <code>
+  START
+ </code>
+ expression changes, and at periodic intervals even when there are no changes.  This periodic interval is controlled by the configuration variable
+ <code>
+  UPDATE_INTERVAL
+ </code>
+ , which defaults to 300 seconds (5 minutes).
+ <p>
+  If the collector has not received an update from a particular condor_startd in a fixed amount of time, it identifies that condor_startd
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  as stale, causing the collector to discard the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  , and that condor_startd no longer shows up in the collector or in the output of condor_status.  More important, that machine cannot be matched to jobs.  This allows HTCondor to gracefully disconnect from machines, even when there is a network outage or other interruption, where the condor_startd does not get an opportunity to send notice that it is going away.  The stale interval is controlled by the collector's configuration variable
+  <code>
+   CLASSAD_LIFETIME
+  </code>
+  , with a default value of 900 seconds (15 minutes).  The same effect may be specified for a specific condor_startd in its local configuration; set the machine
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  attribute
+  <code>
+   ClassAdLifetime
+  </code>
+  , as this configuration example shows:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ClassAdLifeTime = 180
+STARTD_ATTRS = ClassAdLifeTime
+</pre>
+ </div>
+ <p>
+  Some sites will have condor_startd daemons that come and go frequently.  This is the case for those launched in the cloud, inside Virtual Machines, or in the case of Glidein.  For these cases, the default 15 minute staleness timer value can be too long. A condor_startd can exit, but the central manager will not know, and thus the central manager will still try to send jobs to it, lowering throughput.  If the condor_startd is shut down in a controlled way with the condor_off command, condor_startd will attempt the send an invalidate request to the collector. If successful, the central manager will remove the condor_startd from the pool immediately.  However, in these environments, it is not always possible to know when the underlying system will pull the plug on the condor_startd.
+ </p>
+ <p>
+  If your pool is such a site, it is recommended to decrease the interval set for the staleness timer.
+ </p>
+ <p>
+  For the advanced user, the condor_advertise command with the INVALIDATE_AD option can also be used to force the removal of the
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveClassAd" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  from the collector.
+ </p>
+</div>

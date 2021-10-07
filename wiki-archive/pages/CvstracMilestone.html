@@ -1,0 +1,151 @@
+---
+title: Cvstrac Milestone
+layout: wiki-page
+---
+<div id="content">
+ <strong class="three">
+  CVSTrac Milestones
+ </strong>
+ <p>
+  A milestone is an object which pins an event to a specific name and date. This
+would include things like releases, branch points, builds, project milestones,
+etc.
+ </p>
+ <p>
+  <strong class="two">
+   Milestone Features
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Fields
+  </strong>
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <strong>
+    Date and Time
+   </strong>
+   should be obvious. A date may be in the future.
+  </li>
+  <li>
+   <strong>
+    Type
+   </strong>
+   is either
+   <em>
+    Release
+   </em>
+   or
+   <em>
+    Event
+   </em>
+   .
+   <em>
+    Release
+   </em>
+   milestones may be shown in
+   <span class="wiki">
+    <a href="wiki-archiveCvstracFileHistory" title="Cvstrac File History">
+     file revision
+    </a>
+   </span>
+   views.
+  </li>
+  <li>
+   <strong>
+    Branch
+   </strong>
+   would identify a specific CVS code branch.
+  </li>
+  <li>
+   <strong>
+    Comment
+   </strong>
+   is a
+   <span class="wiki">
+    <a href="wiki-archiveFormattingWikiPages" title="Formatting Wiki Pages">
+     wiki field
+    </a>
+   </span>
+   describing the
+milestone.
+  </li>
+ </ul>
+ <p>
+  A milestone may also be associated with tickets by referencing the ticket
+number in the comment. Some milestones will also be associated with a
+directory, such as those created by CVS repository activity.
+ </p>
+ <p>
+  <strong class="two">
+   Creating A Milestone
+  </strong>
+ </p>
+ <p>
+  There are two ways to create a milestone. Once created, milestones can't
+currently be deleted.
+ </p>
+ <p>
+  <strong>
+   Manual Method
+  </strong>
+ </p>
+ <p>
+  By clicking on the
+  <strong>
+   Milestone
+  </strong>
+  link, one can manually create a milestone and
+populate each field directly.
+ </p>
+ <p>
+  <strong>
+   Repository Method
+  </strong>
+ </p>
+ <p>
+  You can create an
+  <em>
+   Event
+  </em>
+  milestone using the
+  <code>
+   cvs rtag
+  </code>
+  command. The name of
+the tag becomes the milestone comment. For example:
+ </p>
+ <p>
+ </p>
+ <pre>  cvs rtag build_5918 cvstrac
+</pre>
+ <p>
+  will create an
+  <em>
+   Event
+  </em>
+  milestone for the
+  <code>
+   cvstrac
+  </code>
+  directory with "build_5918"
+as the milestone comment.
+ </p>
+ <p>
+  <strong class="two">
+   Using Milestones
+  </strong>
+ </p>
+ <p>
+  Milestones are mostly useful as markers in various pages, such as the
+  <span class="wiki">
+   <a href="wiki-archiveCvstracTimeline" title="Cvstrac Timeline">
+    timeline
+   </a>
+  </span>
+  .
+ </p>
+</div>

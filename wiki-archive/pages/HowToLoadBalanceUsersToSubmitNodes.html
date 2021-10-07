@@ -1,0 +1,167 @@
+---
+title: How To Load Balance Users To Submit Nodes
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to load balance users to one of many submit nodes
+  </h2>
+ </span>
+ <p>
+  Known to work with 8.6
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Overview
+ </h3>
+ <p>
+  It is common for uses of HPC systems to have a shared file system and a pool of submit servers that users are assigned to dynamically and transparently based on load.  It is transparent to users because all of their files are on a shared file system, so which machine is running their job is something that they need not know in many cases.
+ </p>
+ <p>
+  This use model can be approximated with HTCondor, but there are some differences which should be noted.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   The HTCondor job queue is not shared between submit nodes, but any node can query any other nodes job queue by setting configuration parameters or using command line arguments.  It is also possible to query ALL jobs queues with a single command, although this is not fully transparent to the user.
+   <p>
+   </p>
+  </li>
+  <li>
+   other differences?
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Strategy
+ </h3>
+ <p>
+  The basic strategy is to make use of HTCondor's ability to customize the configuration per-user so that any given users jobs will always go to a specific schedd regardless of which submit machine they are currently logged in to. This can be almost completely transparent to the user if all of the user's files are on a shared file system.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Implementation
+ </h3>
+ <p>
+  The administrator, or the user will add a file into the users
+  <code>
+   ~/.condor/user_config
+  </code>
+  file.  That file will the configuration variable
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">user_config fragment</pre>
+  <pre class="snip">SCHEDD_HOST=&lt;schedd-name&gt;</pre>
+ </div>
+ that will cause any queue management commands, like condor_submit, condor_hold and condor_q to be routed to a specific schedd named
+ <code>
+  &lt;schedd-name&gt;
+ </code>
+ .  Where
+ <code>
+  &lt;schedd-name&gt;
+ </code>
+ is the same name that you would see in the output of the command
+ <div class="term">
+  <pre class="term">condor_status -schedd</pre>
+ </div>
+ <div class="verbatim">
+  <pre>    Name                              Machine                           RunningJobs   IdleJobs   HeldJobs
+    submit-3.chtc.wisc.edu            submit-3.chtc.wisc.edu                   2638      47950       7870
+    submit-4.chtc.wisc.edu            submit-4.chtc.wisc.edu                   1990      49497       8977
+    submit-5.chtc.wisc.edu            submit-5.chtc.wisc.edu                  11586      28108       6966
+    testsubmit.chtc.wisc.edu          testsubmit.chtc.wisc.edu                    0          0          1</pre>
+ </div>
+ <p>
+  So, for instance you might configure the user
+  <strong>
+   tj
+  </strong>
+  to use submit-3
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">fragment of /home/tj/.condor/user_config</pre>
+  <pre class="snip">SCHEDD_HOST=submit-3.chtc.wisc.edu</pre>
+ </div>
+ <p>
+  Now whenever user
+  <strong>
+   tj
+  </strong>
+  runs
+  <code>
+   condor_submit
+  </code>
+  , or
+  <code>
+   condor_q
+  </code>
+  , the submit/query will go to the schedd called
+  <code>
+   submit-3.chtc.wisc.edu
+  </code>
+  .
+ </p>
+ <p>
+  As long as
+  <strong>
+   tj
+  </strong>
+  user has no jobs in any of the HTCondor schedd queues, he can be moved to a new schedd merely by changing the contents of
+  <code>
+   /home/tj/.condor/user_config
+  </code>
+  file.  This can happen even while
+  <strong>
+   tj
+  </strong>
+  is logged in, since the file is re-parsed by each invocation of
+  <code>
+   condor_q
+  </code>
+  or
+  <code>
+   condor_submit
+  </code>
+ </p>
+ <p>
+  Whether or not
+  <strong>
+   tj
+  </strong>
+  has any jobs in any of the schedd's can be determined by running
+ </p>
+ <div class="term">
+  <pre class="term">condor_status -submit tj@chtc.wisc.edu -af Machine 'HeldJobs+IdleJobs+RunningJobs+LocalJobsIdle+LocalJobsRunning'</pre>
+ </div>
+ <div class="verbatim">
+  <pre>    submit-3.chtc.wisc.edu 3</pre>
+ </div>
+ or the equivalent command via the HTCondor python bindings.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Schedd failover
+ </h3>
+ <p>
+  If the schedd's job queue is stored on the shared file system, HTCondor can be configured so that when a given machine fails, any schedd's running on it will be automatically restarted on the backup machine, but with the same schedd name.
+ </p>
+ <p>
+  <strong>
+   details to be written
+  </strong>
+ </p>
+</div>

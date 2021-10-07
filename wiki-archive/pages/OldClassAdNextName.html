@@ -1,0 +1,20 @@
+---
+title: Old Class Ad Next Name
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ provides an iterator via the begin() and end() methods for traversing all of the attributes in the ad. The iterator doesn't handle any chained ad, but no calls to NextName() deal with chained ads.
+ <p>
+  NextName() returns new-allocated memory that the caller must free. All of the existing callsites don't appear to do so.
+ </p>
+ <p>
+  Developer time: several hours to convert the callsites, could be done by a student.
+ </p>
+ <p>
+  Progress: All callsites now use NextNameOriginal().
+ </p>
+</div>

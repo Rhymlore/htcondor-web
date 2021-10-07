@@ -1,0 +1,66 @@
+---
+title: How To Fill Pool Breadth First
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  How to fill a pool Breadth First
+ </strong>
+ <p>
+  Some pool administrators prefer a policy where, when there are fewer jobs than total cores in their pool, those jobs are "spread out" as much as possible, so that each machine is running the fewest number of jobs.  If each machine is identical, such a policy may result in better performance than one in which each machine is "filled up" before assigning jobs to the next machine, but may use more power to do so.
+ </p>
+ <p>
+  Such a breadth first policy is relatively easy to implement when the pool uses only static slots, but is also possible to implement with dynamic, or partitionable slots.
+ </p>
+ <p>
+  In both cases, the main idea is to set the NEGOTIATOR_PRE_JOB_RANK expression in the negotiator to prefer to give to the schedds machines that are already running the fewest numbers of jobs.  We use NEGOTIATOR_PRE_JOB_RANK instead of
+NEGOTIATOR_POST_JOB_RANK, so that the job's RANK expression doesn't come into play.  If you trust your users to override this policy, you could use NEGOTIATOR_POST_JOB_RANK instead. Note that because this policy happens in the negotiator, if CLAIM_WORKLIFE is set to a high value, the schedds are free to reuse the slots they have been assigned for some time, which may cause the policy to be out of balance for the CLAIM_WORKLIFE duration.
+ </p>
+ <p>
+  <strong>
+   Negotiator config settings for a pool with static slots
+  </strong>
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">NEGOTIATOR_PRE_JOB_RANK = isUndefined(RemoteOwner) * (- SlotId)
+</pre>
+ </div>
+ <p>
+  Changing this will require a condor_reconfig of the negotiator to take effect.
+ </p>
+ <p>
+  <strong>
+   For a pool with partitionable slots
+  </strong>
+ </p>
+ <p>
+  By default, when the condor negotiator matches a partitionable slot to a job, it
+gives the whole partitionable slot to the schedd to use for as many jobs as possible.  This creates a depth-first kind of pool filling, one where jobs tend to be packed as much as possible on the fewest number of machines.  The best way to turn this off is to disable the schedd-side partitionable slot splitting.  The downside of this change is that each machine can only match one new job per negotiation cycle.  Also, if
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveConsumptionPolicy" title="Consumption Policy">
+    ConsumptionPolicy
+   </a>
+  </span>
+  has been enabled, this will also cause a depth-first filling of machines.
+ </p>
+ <p>
+  On the schedd, make the following configuration change.  This requires a condor_reconfig of the schedd to take effect.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">CLAIM_PARTITIONABLE_LEFTOVERS = false
+</pre>
+ </div>
+ <p>
+  Then on the central manager, make the following configuration change.  This requires a condor_reconfig of the central manager (condor_negotiator) to take effect.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">NEGOTIATOR_DEPTH_FIRST = false
+</pre>
+ </div>
+</div>

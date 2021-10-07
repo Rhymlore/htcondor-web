@@ -1,0 +1,93 @@
+---
+title: How To Ban User
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to ban a user from submitting jobs
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  Suppose a user is submitting jobs that are causing problems (like crashing machines) and you need to temporarily block the user until you can talk with them and solve the problem.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to ban a user from submitting jobs
+ </h3>
+ <p>
+  Add the following to the submit machine configuration:
+ </p>
+ <div class="code">
+  <pre class="code">DENY_WRITE = dan@hep.wisc.edu/*
+</pre>
+ </div>
+ <p>
+  Then run
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -full &lt;submit machine name&gt;</pre>
+ </div>
+ .  You might need to run that from  the central manager if only the central manager is allowed to run administrative commands in your HTCondor pool.  To verify that this configuration setting was successfully processed, query the schedd:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_config_val -schedd DENY_WRITE
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to ban a user from joining the pool
+ </h3>
+ <p>
+  If you do not control the submit machine, you could block the user from advertising to the pool collector.  Use
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -submitters</pre>
+ </div>
+ to see the value of the submitter ad's Name attribute for the user to be banned.  (You can use the -long option if the name is truncated in the output.)  Then enter it into the following configuration settings and run
+ <div class="code">
+  <pre class="code">condor_reconfig</pre>
+ </div>
+ .  It will take ~15 minutes for the existing submitter ad to expire, so restart the collector if you are in a hurry.
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">IsBannedSubmitter = MyType == "Submitter" &amp;&amp; Name == "dan@hep.wisc.edu"
+COLLECTOR_REQUIREMENTS = ($(IsBannedSubmitter)) == False
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to ban a user from executing jobs on specific machines
+ </h3>
+ <p>
+  If you just want to ban a user from submitting to some but not all machines, you could do that in the execute machine configuration:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">IsBannedUser = User =?= "dan@hep.wisc.edu"
+START =  ($(START)) &amp;&amp; ( ($(IsBannedUser))  == FALSE )
+</pre>
+ </div>
+ <p>
+  Run
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -all</pre>
+ </div>
+ after you have made that change (or just reconfig the execute machines that need it).
+</div>

@@ -1,0 +1,116 @@
+---
+title: Experimental Support For Periodic Checkpointing In Vanilla Universe
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  This documentation is for EXPERIMENTAL features.
+ </strong>
+ <p>
+  <strong>
+   Both the feature and the documentation are subject to change without notice.
+  </strong>
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Introduction
+ </h2>
+ <p>
+  The vanilla universe can now periodically send a signal to the user process.  If the process exits successfully after receiving this signal, intermediate file transfer will occur, in order to ensure that progress to that point has been preserved.
+ </p>
+ <p>
+  Presently, "success" is defined to be "exit with code 0"; this will change in a future revision.
+ </p>
+ <p>
+  In 8.5.3 (and until 8.7.3), "success" will be defined by three job ad attributes:
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCheckpointExitBySignal" title="Checkpoint Exit By Signal">
+    CheckpointExitBySignal
+   </a>
+  </span>
+  ,
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCheckpointExitSignal" title="Checkpoint Exit Signal">
+    CheckpointExitSignal
+   </a>
+  </span>
+  , and
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCheckpointExitCode" title="Checkpoint Exit Code">
+    CheckpointExitCode
+   </a>
+  </span>
+  .  If the first is true, then "success" occurs when the process exits on signal
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCheckpointExitSignal" title="Checkpoint Exit Signal">
+    CheckpointExitSignal
+   </a>
+  </span>
+  .  Otherwise, "success" occurs when the process exits with code
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveCheckpointExitCode" title="Checkpoint Exit Code">
+    CheckpointExitCode
+   </a>
+  </span>
+  .  (As this is an experimental feature, you'll need to prepend a '+' to each of the preceeding attributes when you use it in a submit file.)
+ </p>
+ <p>
+  In 8.7.3 (and later), "success" will be defined in the same way, but the name of the attributes change to
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveSuccessCheckpointExitBySignal" title="Success Checkpoint Exit By Signal">
+    SuccessCheckpointExitBySignal
+   </a>
+  </span>
+  ,
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveSuccessCheckpointExitSignal" title="Success Checkpoint Exit Signal">
+    SuccessCheckpointExitSignal
+   </a>
+  </span>
+  , and
+  <span class="wiki">
+   <a class="missing" href="wiki-archiveSuccessCheckpointExitCode" title="Success Checkpoint Exit Code">
+    SuccessCheckpointExitCode
+   </a>
+  </span>
+  , respectively.  You will still need to prepend a '+'.
+ </p>
+ <p>
+  In 8.5.3, you may also set '+WantFTOnCheckpoint = TRUE'.  If during the course of normal execution the job exits with "success", as defined above, file transfer will occur as if the job is being evicted.
+ </p>
+ <p>
+  Presently, intermediate file transfer is defined to be identical to file transfer as if on an eviction, which means that specifying a transfer_output_files list that doesn't include the checkpoint files will break things (the job will restart from scratch if rescheduled on another machine).  This also implies that you'll only want to use this feature on a small scale for now -- the checkpoints (which may include the entire sandbox) are uploaded to the schedd's spool directory, which is probably space- and time- wise unwise.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Configuration
+ </h2>
+ <p>
+  Configure the startd for periodic checkpoints as normal for standard universe.
+ </p>
+ <p>
+  In the job ad, set '+WantCheckpointSignal = TRUE'.  You may also set '+CheckpointSig' to the signal you want sent.  The signal will otherwise default to the soft kill signal (which defaults to SIGTERM).
+ </p>
+ <p>
+  If you also want to checkpoint on eviction, set 'when_to_transfer_output = ON_EXIT_OR_EVICT' in the job ad.  You may also want to set 'kill_sig' to match '+CheckpointSig' (so that your job will receive its checkpoint signal, rather than its soft-kill signal (usually SIGTERM), when it's evicted).
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Random Thoughts
+ </h2>
+ <p>
+  The code currently doesn't update the job ad on a successful checkpoint; it also does not correctly tell the shadow (and therefore the schedd or job log) if the job successfully checkpointed (it will always say it didn't).
+ </p>
+ <p>
+  The remote usage accounting is probably entirely wrong.
+ </p>
+</div>

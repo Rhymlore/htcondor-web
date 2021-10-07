@@ -1,0 +1,59 @@
+---
+title: Old Class Ad Class Ad
+layout: wiki-page
+---
+<div id="content">
+ Four versions of the constructor are called by outside code:
+ <ul>
+  <li>
+   ClassAd()
+  </li>
+  <li>
+   ClassAd(FILE*,char*,int&amp;,int&amp;,int&amp;)
+  </li>
+  <li>
+   ClassAd(char *, char)
+  </li>
+  <li>
+   ClassAd(const ClassAd&amp;)
+  </li>
+ </ul>
+ <p>
+  The underlying
+  <span class="quote">
+   AttrList
+  </span>
+  constructors are called in some locations.
+ </p>
+ <p>
+  The first version has a direct equivalent in new
+  <span class="quote">
+   ClassAds
+  </span>
+  .
+ </p>
+ <p>
+  The second version has a compatibility version in new
+  <span class="quote">
+   ClassAds
+  </span>
+  .
+ </p>
+ <p>
+  The third version has no equivalent in new
+  <span class="quote">
+   ClassAds
+  </span>
+  . There are two callsites. One (ClassAdCollection::GetClassAdRank()) is trivial to rewrite to construct the ad differently. The other (HookPrepareJobClient::hookExited()) can be rewritten in a few hours.
+ </p>
+ <p>
+  The fourth version has a direct equivalent in new
+  <span class="quote">
+   ClassAds
+  </span>
+  .
+ </p>
+ <p>
+  Developer time: 3-4 hours
+ </p>
+</div>

@@ -1,0 +1,208 @@
+---
+title: Dag Man Design Docs
+layout: wiki-page
+---
+<div id="content">
+ Here are the areas that should be documented (see gittrac
+ <span class="ticket">
+  <a class="resolved" href="tktview?tn=2815" title="Kent pre-trip brain dump">
+   #2815
+  </a>
+ </span>
+ ).  I re-ordered them somewhat to make the list more logical in terms of related functionality.
+ <p>
+ </p>
+ <ul>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagOverview" title="Dag Overview">
+     Overview of DAGMan
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveCondorSubmitDag" title="Condor Submit Dag">
+     Condor_submit_dag/scheduler universe startup
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagFileParsing" title="Dag File Parsing">
+     DAG file parsing
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveRescueDag" title="Rescue Dag">
+     Rescue DAG/condor_rm of DAGMan
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagRecovery" title="Dag Recovery">
+     Recovery mode/condor_hold/condor_release
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagmanDataStructures" title="Dagman Data Structures">
+     Internal data structures
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveJobOrdering" title="Job Ordering">
+     Proper ordering of jobs/scripts (ready queue, etc.)
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archivePrePostSemantics" title="Pre Post Semantics">
+     Implementation of PRE/POST script semantics
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveReadUserLogs" title="Read User Logs">
+     Monitoring node jobs/reading the user logs
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagIsFinished" title="Dag Is Finished">
+     Deciding when the DAG is finished
+    </a>
+   </span>
+  </li>
+  <li>
+   ABORT-DAG-ON
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagFinalNode" title="Dag Final Node">
+     DAG final node
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveNodeVars" title="Node Vars">
+     Node variables
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveNestedDags" title="Nested Dags">
+     Nested DAGs
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveMultiDags" title="Multi Dags">
+     Multiple disjoint DAGs
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveSpliceSubdags" title="Splice Subdags">
+     Splices
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveNodeRetries" title="Node Retries">
+     Node retries
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagSubmitRetries" title="Dag Submit Retries">
+     DAG submit retries
+    </a>
+   </span>
+  </li>
+  <li>
+   DAG-wide throttles (maxjobs, maxidle, maxpre, maxpost)
+  </li>
+  <li>
+   category throttles
+  </li>
+  <li>
+   depth-first DAG traversal
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveNodePriorities" title="Node Priorities">
+     Node priorities
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveHaltFile" title="Halt File">
+     Halt file
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagNoopNodes" title="Dag Noop Nodes">
+     NOOP nodes (at the DAG level)
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveDagmanMultiJobClusters" title="Dagman Multi Job Clusters">
+     Multi-job clusters
+    </a>
+   </span>
+  </li>
+  <li>
+   strict warnings
+  </li>
+  <li>
+   DIR on nodes
+  </li>
+  <li>
+   node status file
+  </li>
+  <li>
+   jobstate.log file
+  </li>
+  <li>
+   dot file
+  </li>
+  <li>
+   Stork support
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveMiscNotes" title="Misc Notes">
+     Miscellaneous notes
+    </a>
+   </span>
+  </li>
+  <li>
+   <span class="wiki">
+    <a href="wiki-archiveSubDagsVsSplices" title="Sub Dags Vs Splices">
+     External sub DAGs vs. splices
+    </a>
+   </span>
+  </li>
+ </ul>
+</div>
