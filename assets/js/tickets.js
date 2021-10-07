@@ -6,7 +6,7 @@ function main(){
     set_up_search_bar()
 
     let ticket_search = document.getElementById("ticket-search")
-    ticket_search.addEventListener("keyup", populate_search)
+    ticket_search.addEventListener("keyup", function(){makeDelay(250)(populate_search);})
 }
 
 function get_url_ticket(){
@@ -37,6 +37,14 @@ function create_results_html(ticket){
 
     return html
 }
+
+function makeDelay(ms) {
+    let timer = 0;
+    return function(callback){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
+};
 
 async function populate_search() {
 
