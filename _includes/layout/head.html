@@ -7,7 +7,9 @@
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
-    {{ include.js }}
+    {% for js in include.js %}
+        <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
+    {% endfor %}
 
     {% if jekyll.environment == 'production' %}
 

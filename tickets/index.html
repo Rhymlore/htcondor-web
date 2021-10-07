@@ -1,7 +1,9 @@
 ---
-js_extension: |
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
-    <script src="/assets/js/tickets.js" type="text/javascript" defer></script>
+js_extension:
+    -   src: "https://unpkg.com/lunr/lunr.js"
+        loading:
+    -   src: "/assets/js/tickets.js"
+        loading: "defer"
 
 layout: container-default
 ---
