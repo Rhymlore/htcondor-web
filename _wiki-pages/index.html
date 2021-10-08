@@ -5,5 +5,5 @@ permalink: /wiki-archive/pages/index.html
 
 <h2>All Wiki Pages</h2>
 {% for page in site.wiki-pages %}
-<a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+<a href="{{ page.url | relative_url }}"><h5>{{ page.title }}</h5></a>
 {% endfor %}
