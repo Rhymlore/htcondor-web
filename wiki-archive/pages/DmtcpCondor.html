@@ -14,7 +14,7 @@ layout: wiki-page
  <p>
   (Information on why this was necessary is at
   <span class="ticket">
-   <a class="new" href="tktview?tn=3747" title="DMTCP checkpoints can't handle being moved">
+   <a class="new" href="../../tickets/?ticket=3747" title="DMTCP checkpoints can't handle being moved">
     #3747
    </a>
   </span>
@@ -30,7 +30,7 @@ layout: wiki-page
  <p>
   Moving jobs between different processors can cause the jobs to crash because of incompatibilities.  For example, if your job checkpoints on a system that uses SSE4, glibc will cache that information and use SSE4 optimized code paths. If you then move to a machine lacking that support, the next time you call into such a function (including many common string routines) the job will crash.  We're working on an easier solution (See
   <span class="ticket">
-   <a class="defer" href="tktview?tn=3753" title="DMTCP checkpoint resumes must require original CheckpointPlatform">
+   <a class="defer" href="../../tickets/?ticket=3753" title="DMTCP checkpoint resumes must require original CheckpointPlatform">
     #3753
    </a>
   </span>

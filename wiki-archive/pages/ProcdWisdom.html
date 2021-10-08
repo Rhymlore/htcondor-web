@@ -68,7 +68,7 @@ layout: wiki-page
   </span>
   project. The idea was that while most root-enabled things could be accomplished with a stateless root-owned setuid binary (the condor_root_switchboard), our process family tracking code needed a root-running daemon. In hindsight, I think this may have been a mistake (see ticket
   <span class="ticket">
-   <a class="abandoned" href="tktview?tn=110" title="Change ProcD to run without root privilege">
+   <a class="abandoned" href="../../tickets/?ticket=110" title="Change ProcD to run without root privilege">
     #110
    </a>
   </span>
@@ -105,7 +105,7 @@ layout: wiki-page
  <p>
   The ProcD uses named pipe IPC for communication with its clients. This is true on both UNIX and Windows, though what "named pipe" means is wildly different in the two contexts. Most of the differences are hidden away in the LocalClient/LocalServer classes in the ProcD. The main user-visible difference is how named pipes are actually named. On UNIX, they exist as nodes in the file system. On Windows, they use a separate namespace. Ticket
   <span class="ticket">
-   <a class="new" href="tktview?tn=292" title="Ensure ProcD named pipe uniqueness on Windows">
+   <a class="new" href="../../tickets/?ticket=292" title="Ensure ProcD named pipe uniqueness on Windows">
     #292
    </a>
   </span>
