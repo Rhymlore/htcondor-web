@@ -3,6 +3,7 @@ sass:
 
 exclude:
   - _news/
+  - pages/
   - "2*.json" # Exclude some of the ticket files
   - "2*.json"
   - "3*.json"
