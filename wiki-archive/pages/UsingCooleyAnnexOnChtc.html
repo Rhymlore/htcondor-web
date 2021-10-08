@@ -11,7 +11,7 @@ layout: wiki-page
  <p>
   We are developing a way to run targeted CHTC jobs on the Cooley cluster at ALCF (Argonne Leadership Computing Facility). This is done via "hobble-in", a human-assisted form of glide-in that submits HTCondor startds as user jobs into Cooley's batch scheduler, Cobalt. The setup mimics how the condor annex allocates resources from AWS to run CHTC jobs (
   <span class="wiki">
-   <a "UsingCondorAnnexOnChtc" title="Using Condor Annex On Chtc">
+   <a href="{{ '/wiki-archive/pages/UsingCondorAnnexOnChtc' | relative_url }}" title="Using Condor Annex On Chtc">
     UsingCondorAnnexOnChtc
    </a>
   </span>
@@ -90,15 +90,13 @@ layout: wiki-page
   If the user wants the jobs to run only on Cooley, they can add a clause to the Requirements expression:
  </p>
  <div class="code">
-  <pre class="code">requirements = Facility =?= "Cooley"
-</pre>
+  <pre class="code">requirements = Facility =?= href="{{ '/wiki-archive/pages/Cooley' | relative_url }}" </pre>
  </div>
  <p>
   If the user wants the jobs to run only on a specific Cooley annex, they can add a different clause to the Requirements expression:
  </p>
  <div class="code">
-  <pre class="code">requirements = AnnexName =?= "Test1"
-</pre>
+  <pre class="code">requirements = AnnexName =?= href="{{ '/wiki-archive/pages/Test1' | relative_url }}" </pre>
  </div>
  <p>
   These two additions to the Requirements expression can be used individually or together.
@@ -116,7 +114,7 @@ layout: wiki-page
  <p>
   Before submitting Cooley jobs, a CHTC staff member must configure the
   <span class="wiki">
-   <a class="missing" "SoftEnv" title="Soft Env">
+   <a class="missing" href="{{ '/wiki-archive/pages/SoftEnv' | relative_url }}" title="Soft Env">
     SoftEnv
    </a>
   </span>

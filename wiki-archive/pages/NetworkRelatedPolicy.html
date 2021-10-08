@@ -60,13 +60,13 @@ layout: wiki-page
  <p>
   This section describes the corresponding Job
   <span class="wiki">
-   <a class="missing" "ClassAds" title="Class Ads">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
     ClassAds
    </a>
   </span>
   that advertises the user job's preferences and requirements. The list of Job
   <span class="wiki">
-   <a class="missing" "ClassAds" title="Class Ads">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
     ClassAds
    </a>
   </span>
@@ -87,19 +87,19 @@ layout: wiki-page
    </strong>
    : This attribute indicates the required bandwidth the users want to have for the network bandwidth when their submitted jobs are running in the HTCondor pool on the matched machines. The job can be matched on some specific machine only if the machine can provide network bandwidth larger than the required value during the job execution. The attribute value is a real number, and the unit for bandwidth is Mbps. The unit is omitted. For example:
    <span class="wiki">
-    <a class="missing" "BandWidth" title="Band Width">
+    <a class="missing" href="{{ '/wiki-archive/pages/BandWidth' | relative_url }}" title="Band Width">
      BandWidth
     </a>
    </span>
    = 5.5, simply means that the required bandwidth is 5.5Mbps. In reality,
    <span class="wiki">
-    <a class="missing" "RequestMaxBandwidth" title="Request Max Bandwidth">
+    <a class="missing" href="{{ '/wiki-archive/pages/RequestMaxBandwidth' | relative_url }}" title="Request Max Bandwidth">
      RequestMaxBandwidth
     </a>
    </span>
    and
    <span class="wiki">
-    <a class="missing" "RequestMinScheddBandwidth" title="Request Min Schedd Bandwidth">
+    <a class="missing" href="{{ '/wiki-archive/pages/RequestMinScheddBandwidth' | relative_url }}" title="Request Min Schedd Bandwidth">
      RequestMinScheddBandwidth
     </a>
    </span>
@@ -111,25 +111,25 @@ layout: wiki-page
    </strong>
    : This attribute indicates whether the users want the HTCondor starter to invoke the network accounting functionality. The value could be TRUE or FALSE. For example:
    <span class="wiki">
-    <a class="missing" "NetworkAccounting" title="Network Accounting">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkAccounting' | relative_url }}" title="Network Accounting">
      NetworkAccounting
     </a>
    </span>
    = TRUE. In real scenarios,
    <span class="wiki">
-    <a class="missing" "NetworkLoad" title="Network Load">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkLoad' | relative_url }}" title="Network Load">
      NetworkLoad
     </a>
    </span>
    ,
    <span class="wiki">
-    <a class="missing" "NetworkIn" title="Network In">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkIn' | relative_url }}" title="Network In">
      NetworkIn
     </a>
    </span>
    ,
    <span class="wiki">
-    <a class="missing" "NetworkOut" title="Network Out">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkOut' | relative_url }}" title="Network Out">
      NetworkOut
     </a>
    </span>
@@ -141,13 +141,13 @@ layout: wiki-page
    </strong>
    : This attribute determines how to setup the network for the purpose of network accounting when the job is running in HTCondor pool. The value can be "Bridge" or "NAT". The users can use
    <span class="wiki">
-    <a class="missing" "InboundConnectivity" title="Inbound Connectivity">
+    <a class="missing" href="{{ '/wiki-archive/pages/InboundConnectivity' | relative_url }}" title="Inbound Connectivity">
      InboundConnectivity
     </a>
    </span>
    (True/False) and
    <span class="wiki">
-    <a class="missing" "OutboundConnectivity" title="Outbound Connectivity">
+    <a class="missing" href="{{ '/wiki-archive/pages/OutboundConnectivity' | relative_url }}" title="Outbound Connectivity">
      OutboundConnectivity
     </a>
    </span>
@@ -187,13 +187,13 @@ layout: wiki-page
  </h3>
  To make it possible for HTCondor to have network related policy integrated when scheduling submitted jobs, we also need to design the corresponding Machine
  <span class="wiki">
-  <a class="missing" "ClassAds" title="Class Ads">
+  <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
    ClassAds
   </a>
  </span>
  that adequately advertises its network related attributes. There are some repetitions or overlaps between the Machine Ad and Job Ad. For the purpose of completeness, we also list those attributes in this section. The list of Machine
  <span class="wiki">
-  <a class="missing" "ClassAds" title="Class Ads">
+  <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
    ClassAds
   </a>
  </span>
@@ -224,19 +224,19 @@ layout: wiki-page
    </strong>
    : This attribute indicates the available bandwidth for the network in which the machine is. The machine can be matched on some specific jobs only if the machine can provide network bandwidth larger than the required value during the job execution. For example:
    <span class="wiki">
-    <a class="missing" "BandWidth" title="Band Width">
+    <a class="missing" href="{{ '/wiki-archive/pages/BandWidth' | relative_url }}" title="Band Width">
      BandWidth
     </a>
    </span>
    = 5.5, simply means that the required bandwidth is 5.5Mbps. In reality,
    <span class="wiki">
-    <a class="missing" "AvailMaxBandwidth" title="Avail Max Bandwidth">
+    <a class="missing" href="{{ '/wiki-archive/pages/AvailMaxBandwidth' | relative_url }}" title="Avail Max Bandwidth">
      AvailMaxBandwidth
     </a>
    </span>
    and
    <span class="wiki">
-    <a class="missing" "AvailMinScheddBandwidth" title="Avail Min Schedd Bandwidth">
+    <a class="missing" href="{{ '/wiki-archive/pages/AvailMinScheddBandwidth' | relative_url }}" title="Avail Min Schedd Bandwidth">
      AvailMinScheddBandwidth
     </a>
    </span>
@@ -249,25 +249,25 @@ layout: wiki-page
   </li>
   <li>
    <span class="wiki">
-    <a class="missing" "NetworkAccounting" title="Network Accounting">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkAccounting' | relative_url }}" title="Network Accounting">
      NetworkAccounting
     </a>
    </span>
    : This attribute indicates whether the machine can provide network accounting functionality.  If enabled, the attributes
    <span class="wiki">
-    <a class="missing" "NetworkLoad" title="Network Load">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkLoad' | relative_url }}" title="Network Load">
      NetworkLoad
     </a>
    </span>
    ,
    <span class="wiki">
-    <a class="missing" "NetworkIn" title="Network In">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkIn' | relative_url }}" title="Network In">
      NetworkIn
     </a>
    </span>
    ,
    <span class="wiki">
-    <a class="missing" "NetworkOut" title="Network Out">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkOut' | relative_url }}" title="Network Out">
      NetworkOut
     </a>
    </span>
@@ -315,21 +315,20 @@ layout: wiki-page
    </strong>
    : The method for determining the network address for the job-internal virtual network device.  DHCP indicates to get the address via dhclient (
    <span class="wiki">
-    <a class="missing" "NetworkType" title="Network Type">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkType' | relative_url }}" title="Network Type">
      NetworkType
     </a>
    </span>
    must be set to "bridge" in this case).  "Local" indicates the address will only be valid locally and determined via Unix lockfiles (
    <span class="wiki">
-    <a class="missing" "NetworkType" title="Network Type">
+    <a class="missing" href="{{ '/wiki-archive/pages/NetworkType' | relative_url }}" title="Network Type">
      NetworkType
     </a>
    </span>
    must be set to "local").  If set to "static", then "LarkInnerAddressIPv4" must also be set and "LarkInnerAddressIPv6" may be set. The "static" setting is only meaningful for bridge networks.
    <ul>
     <li>
-     Possible Values: "local", "dhcp", or "static"
-    </li>
+     Possible Values: "local", "dhcp", or href="{{ '/wiki-archive/pages/static' | relative_url }}"     </li>
     <li>
      Attribute Type: string
     </li>
@@ -384,7 +383,7 @@ layout: wiki-page
    </strong>
    : The name of an IPTable chain, which may be used by the
    <span class="wiki">
-    <a class="missing" "StartupScript" title="Startup Script">
+    <a class="missing" href="{{ '/wiki-archive/pages/StartupScript' | relative_url }}" title="Startup Script">
      StartupScript
     </a>
    </span>
@@ -451,13 +450,13 @@ layout: wiki-page
   <li>
    The machine can be matched to the job if it supports IPv6 and is in the same VLAN the user requests. If the machined is matched to the job, the attribute value of
    <span class="wiki">
-    <a class="missing" "InboundConnectivity" title="Inbound Connectivity">
+    <a class="missing" href="{{ '/wiki-archive/pages/InboundConnectivity' | relative_url }}" title="Inbound Connectivity">
      InboundConnectivity
     </a>
    </span>
    and
    <span class="wiki">
-    <a class="missing" "OutboundConnectivity" title="Outbound Connectivity">
+    <a class="missing" href="{{ '/wiki-archive/pages/OutboundConnectivity' | relative_url }}" title="Outbound Connectivity">
      OutboundConnectivity
     </a>
    </span>

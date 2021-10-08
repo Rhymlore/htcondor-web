@@ -126,8 +126,7 @@ SLOT1_SUSPEND  = False
 SLOT2_START    = TARGET.IsSuspensionJob =?= true
 SLOT2_CONTINUE = slot1_State =?= "Unclaimed" || slot1_State =?= "Owner"
 SLOT2_PREEMPT  = FALSE
-SLOT2_SUSPEND  = slot1_State =?= "Claimed"
-</pre>
+SLOT2_SUSPEND  = slot1_State =?= href="{{ '/wiki-archive/pages/Claimed' | relative_url }}" </pre>
  </div>
  <p>
   To submit a suspension job, you could put something like the following in your submit file:
