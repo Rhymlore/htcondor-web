@@ -1,5 +1,5 @@
 ---
-layout: container-default
+layout: subpage
 title: Wiki Archive
 ---
 
