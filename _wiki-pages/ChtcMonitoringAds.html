@@ -1,0 +1,327 @@
+---
+title: Chtc Monitoring Ads
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   CHTC Custom Collector Ads for Monitoring
+  </h2>
+ </span>
+ <p>
+  The CHTC collector at cm.chtc.wisc.edu contains several custom ad types to assist monitoring.  These custom ads are created by a Python script "monitorGlidein.py" that runs on cm.chtc.wisc.edu periodically via cron and lives in git repo gitolite@git.chtc.wisc.edu:puppet_data.
+ </p>
+ <p>
+  For example, to see instantaneous GPU job information across campus
+ </p>
+ <p>
+ </p>
+ <pre>   $ condor_status -pool cm.chtc.wisc.edu -any -cons 'MyType=="GpuSubmitter"' -af:h Name Machine IdleJobs RunningJobs RunningJobsOSG HeldJobs
+</pre>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  OsgCeScheduler Ads
+ </h3>
+ <p>
+  These are custom scheduler ads representing HTCondor CEs deployed in OSG. For each HTCondor CE, the CE schedd is queried for aggregate information on pilot jobs (identified as jobs that have not been routed by the condor_jobrouter).
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Attributes
+ </h4>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    MyType
+   </code>
+   . Equals
+   <code>
+    href="{{ '/wiki-archive/pages/OsgCeScheduler' | relative_url }}"    </code>
+  </li>
+  <li>
+   <code>
+    Name
+   </code>
+   . Identity of this CE's schedd.
+  </li>
+  <li>
+   <code>
+    Machine
+   </code>
+   . Host name of the CE.
+  </li>
+  <li>
+   <code>
+    OsgResrouce
+   </code>
+   . The abbreviated site name of the CE with
+   <code>
+    _XXX
+   </code>
+   suffix appended to help ensure uniqueness (the
+   <code>
+    XXX
+   </code>
+   is a compressed MD5 sum on the Machine attr).
+  </li>
+  <li>
+   <code>
+    IsCCStar
+   </code>
+   . Boolean value; True if CE is managing a CC* site, else False.
+  </li>
+  <li>
+   <code>
+    Accessible
+   </code>
+   . Boolean value; if False, then the CE could not be contacted (firewall?) and thus all remaining attribute vales below will be undefined.
+  </li>
+  <li>
+   <code>
+    RunningJobs
+   </code>
+   . Total running pilot jobs on this CE.
+  </li>
+  <li>
+   <code>
+    IdleJobs
+   </code>
+   . Total idle pilot jobs on this CE.
+  </li>
+  <li>
+   <code>
+    HeldJobs
+   </code>
+   . Total held pilot jobs on this CE.
+  </li>
+  <li>
+   <code>
+    RunningJobsGPU
+   </code>
+   . Running pilot jobs on this CE that requested GPUs.
+  </li>
+  <li>
+   <code>
+    IdleJobsGPU
+   </code>
+   . Idle pilot jobs on this CE that requested GPUs.
+  </li>
+  <li>
+   <code>
+    HeldJobsGPU
+   </code>
+   . Held pilot jobs on this CE that requested GPUs.
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  OsgSubmitter Ads
+ </h3>
+ <p>
+  These are custom submitter ads representing users who have jobs tagged as allowed to run in OSG (via
+  <code>
+   WantGlidein=True
+  </code>
+  ), and submitted these jobs to a schedd requesting resources from CHTC.
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Attributes
+ </h4>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    MyType
+   </code>
+   . Equals
+   <code>
+    href="{{ '/wiki-archive/pages/OsgSubmitter' | relative_url }}"    </code>
+  </li>
+  <li>
+   <code>
+    RunningJobs
+   </code>
+   . Total jobs tagged as allowed to run in OSG that are running anywhere.
+  </li>
+  <li>
+   <code>
+    RunningJobsOSG
+   </code>
+   . Total jobs tagged as allowed to run in OSG that are running on an OSG resource (via a pilot provisioned by CHTC's glideinwms).
+  </li>
+  <li>
+   <code>
+    IdleJobs
+   </code>
+   . Total jobs tagged as allowed to run in OSG that are Idle.
+  </li>
+  <li>
+   <code>
+    HeldJobs
+   </code>
+   . Total jobs tagged as allowed to run in OSG that are Held.
+  </li>
+  <li>
+   <code>
+    Name
+   </code>
+   . Identity of the submitting user.
+  </li>
+  <li>
+   <code>
+    Machine
+   </code>
+   . Host name of the submitting machine running the schedd.
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  GpuSubmitter Ads
+ </h3>
+ <p>
+  These are custom submitter ads representing users who have jobs requesting one or more GPUs, and submitted these jobs to a schedd requesting resources from CHTC.
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Attributes
+ </h4>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    MyType
+   </code>
+   . Equals
+   <code>
+    href="{{ '/wiki-archive/pages/GpuSubmitter' | relative_url }}"    </code>
+  </li>
+  <li>
+   <code>
+    RunningJobs
+   </code>
+   . Total jobs requesting GPUs that are running anywhere.
+  </li>
+  <li>
+   <code>
+    RunningJobsOSG
+   </code>
+   . Total jobs requesting GPUs that are running on an OSG resource (via a pilot provisioned by CHTC's glideinwms).
+  </li>
+  <li>
+   <code>
+    IdleJobs
+   </code>
+   . Total jobs requesting GPUs that are Idle.
+  </li>
+  <li>
+   <code>
+    HeldJobs
+   </code>
+   . Total jobs requesting GPUs that are Held.
+  </li>
+  <li>
+   <code>
+    Name
+   </code>
+   . Identity of the submitting user.
+  </li>
+  <li>
+   <code>
+    Machine
+   </code>
+   . Host name of the submitting machine running the schedd.
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  CovidSubmitter Ads
+ </h3>
+ <p>
+  These are custom submitter ads representing users who have jobs tagged as doing COVID work (currently via
+  <code>
+   OConnorCOVID=True
+  </code>
+  ), and submitted these jobs to a schedd requesting resources from CHTC.
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Attributes
+ </h4>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <code>
+    MyType
+   </code>
+   . Equals
+   <code>
+    href="{{ '/wiki-archive/pages/CovidSubmitter' | relative_url }}"    </code>
+  </li>
+  <li>
+   <code>
+    RunningJobs
+   </code>
+   . Total COVID jobs that are running anywhere.
+  </li>
+  <li>
+   <code>
+    RunningJobsOSG
+   </code>
+   . Total COVID jobs that are running on an OSG resource (via a pilot provisioned by CHTC's glideinwms).
+  </li>
+  <li>
+   <code>
+    IdleJobs
+   </code>
+   . Total COVID jobs that are Idle.
+  </li>
+  <li>
+   <code>
+    HeldJobs
+   </code>
+   . Total COVID jobs that are Held.
+  </li>
+  <li>
+   <code>
+    Name
+   </code>
+   . Identity of the submitting user.
+  </li>
+  <li>
+   <code>
+    Machine
+   </code>
+   . Host name of the submitting machine running the schedd.
+  </li>
+ </ul>
+</div>

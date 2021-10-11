@@ -1,0 +1,32 @@
+---
+title: Converting Cvs To Git
+layout: wiki-page
+---
+<div id="content">
+ This is how the condor-web CVS repository was converted to Git.  It may be of use in converting any other lingering CVS repositories.
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Get cvs-fast-export
+wget http://www.catb.org/~esr/cvs-fast-export/cvs-fast-export-1.10.tar.gz
+tar xzf cvs-fast-export-1.10.tar.gz
+pushd cvs-fast-export-1.10
+make
+popd
+
+# Generate list of users
+find /p/condor/repository/HTML/condor-web -name '*,v' -type f -print0 | xargs -0 egrep '^date.*author' | awk '{print $4}' | awk -F';' '{print $1}' | sort | uniq | xargs -n1 perl -e 'print($ARGV[0]," = ",(getpwnam($ARGV[0]))[6]," &lt;$ARGV[0]\@cs.wisc.edu&gt; America/Chicago\n")' &gt; authormap
+# Hand edit author map.  Look for " =  &lt;" to find entires that couldn't be resolved.  Fill them in or delete them.
+
+# Generate Git fast export file
+find /p/condor/repository/HTML/condor-web/ -name '*,v' -print | cvs-fast-export-1.10/cvs-fast-export -A authormap &gt; web-fast-export
+
+# Create new repository
+mkdir condor-web
+cd condor-web
+git init
+cat ../web-fast-export | git fast-import
+git checkout
+</pre>
+ </div>
+</div>

@@ -1,0 +1,160 @@
+---
+title: Testing Condor On Linux
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Testing HTCondor On Linux
+  </h2>
+ </span>
+ <p>
+  Starting in 8.9.3, HTCondor tests can be invoked using the
+  <code>
+   ctest
+  </code>
+  framework.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Building HTCondor
+ </h3>
+ <p>
+  This is a simple primer for building HTCondor; refer to
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnLinux' | relative_url }}" title="Building Htcondor On Linux">
+    BuildingHtcondorOnLinux
+   </a>
+  </span>
+  for more in-depth build instructions.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Get the source code from any of the following locations:
+   <div class="code">
+    <pre class="code">git clone https://github.com/htcondor/htcondor.git
+# Source code can also be obtained from tarballs on HTCondor's website
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Compiling the code and tests.(See
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnLinux' | relative_url }}" title="Building Htcondor On Linux">
+     BuildingHtcondorOnLinux
+    </a>
+   </span>
+   for more details on building the code and pre-requisites)
+   <div class="code">
+    <pre class="code">cd htcondor # change directory to the root of source tree..
+mkdir __build # make an out-of-source build destination
+cd __build
+../configure_uw ..
+make install
+</pre>
+   </div>
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Running ctest
+ </h3>
+ <p>
+  From the build directory, after creating a release directory via
+  <code>
+   make install
+  </code>
+  (or equivalent), run:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ctest -j 20
+</pre>
+ </div>
+ <p>
+  That's it!  The tests should be idempotent - it should be safe to re-run them as many times as desired.
+ </p>
+ <p>
+  If all the tests fail and the failures happened very quickly (i.e., no condor was launched), the first place to check is
+  <code>
+   Testing/Temporary/LastTest.log
+  </code>
+  .
+ </p>
+ <p>
+  <strong>
+   NOTE
+  </strong>
+  : Some tests failures cause a personal
+  <code>
+   condor_pool
+  </code>
+  to be leaked.  If you have issues re-running the tests, try doing
+  <code>
+   killall condor_master
+  </code>
+  .
+ </p>
+ <p>
+  Some
+  <code>
+   ctest
+  </code>
+  tips and tricks:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Run 40 test cases in parallel -- depending on your machine/container,
+# you may be able to run as many as 80 or as few as 10 before tests fail due to overloading
+ctest -j 40
+# Run all tests matching the regex `cmr`:
+ctest -R cmr
+# Run all tests except those matching `cmr`:
+ctest -E cmr
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Running ctest in a docker container
+ </h3>
+ <p>
+  When running the condor tests inside a docker container, the container must be started with special flags for some of the tests to work.  While we hope to fix the tests in the future, for now, starting with a hostname like so
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">docker run --hostname docker.cs.wisc.edu &lt;rest of arguments&gt;
+</pre>
+ </div>
+ <p>
+  is needed.  This is because many tests assume the hostname are FQDNs, and there will be many test timeouts and failures if the hostname of the container has no dots in it.  Note that
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   specifying a "--hostname" flag in Docker is NOT compatible with using "--network host", thus it is recommended to use the default NAT networking.
+  </li>
+  <li>
+   using the default NAT networking also has the nice property of making another virtual interface.... because running the test suite can consume 5k ephemeral network ports, creating a virtual network interface will help prevent the bare metal server from running out of ports.
+  </li>
+  <li>
+   the unit_test_sinful looks for ipv6 addresses, which most docker containers do not fully support with NAT networking, and thus running in Docker with NAT networking will cause this test to be skipped.
+  </li>
+ </ol>
+</div>

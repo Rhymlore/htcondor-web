@@ -1,0 +1,112 @@
+---
+title: Running Rincondor Pool
+layout: wiki-page
+---
+<div id="content">
+ See also
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/RstatJobs' | relative_url }}" title="Rstat Jobs">
+   RstatJobs
+  </a>
+ </span>
+ (Eventually that page should be merged into this one.)
+ <p>
+  <strong class="two">
+   Running R in a HTCondor Pool
+  </strong>
+ </p>
+ <p>
+  It works very well to move the R runtime in either Windows
+or Linux with the job. Then one actually runs a wrapper script
+to set up the runtime and place things as needed. The only
+moderately tricky part is handling non-included R Packages.
+ </p>
+ <p>
+  Though the commands are the same in both a Wiindows R
+developement location(One where a matching RTools is installed
+and R was built using those tools) the environment settings
+to have a local Package store found is a bit different.
+ </p>
+ <p>
+  I make sure that the directory RR/library exists and then I
+run this command and tar up the RR directory afRLIBSter:
+ </p>
+ <p>
+ </p>
+ <pre>  R CMD INSTALL --preclean -l ./RR/library package.tar.gx
+  tar -zcvf RLIBS.tar.gz RR
+</pre>
+ <p>
+  With windows I ship cygwin tools for tar and gzip and associated
+DLLs so there is some similarity between extractions by the
+wrapper scripts.
+ </p>
+ <p>
+  Under Linux using perl I drop R into current directory
+and set these two things:
+ </p>
+ <p>
+ </p>
+ <pre>  $ENV{R_HOME} = "$Rlocation";
+  $ENV{LD_LIBRARY_PATH} = "$Rlocation/lib";
+</pre>
+ <p>
+  If there is a library tar ball as mentioned above, the following
+is done:
+ </p>
+ <p>
+ </p>
+ <pre>  # do we have prebuilt libraries?
+  my $renviron;
+  if(-f "RLIBS.tar.gz") {
+    system("tar -zxvf RLIBS.tar.gz");
+    $ENV{HOME} = $location;
+    $renviron = "$location/.Renviron";
+    open(RLIB,"&gt;$renviron") or die "Can not create &lt;$renviron&gt;:$!\n";
+    print RLIB "R_LIBS_USER=$location/RR/library\n";
+    close(RLIB);
+  }
+</pre>
+ <p>
+  Once that is done, the following starts R:
+ </p>
+ <p>
+ </p>
+ <pre>  $cmdtorun = "$Rlocation/bin/Rscript --no-save ./$scripts $realarg";
+  print "about to execute &lt;&lt;$cmdtorun&gt;&gt;\n";
+  $res = system("$cmdtorun");
+</pre>
+ <p>
+  Windows is similar but wrapper is a .bat script. Here is what
+we use in the Center for High Throughput Computing for
+packages, shared files for sets up jobs, job specific input,
+the runtime etc.
+ </p>
+ <p>
+ </p>
+ <pre>  dir
+  time /t
+  if not exist built-win32-R-2.10.1.tar.gz goto noruntime
+  set R_LIBS_USER=RLIBS
+  tar.exe -zxvf built-win32-R-2.10.1.tar.gz
+  if not exist RLIBS.tar.gz goto nolibs
+  tar.exe -zxvf RLIBS.tar.gz
+  set R_LIBS_USER=RLIBS
+  :nolibs
+  if not exist %2.tar.gz goto nojobfiles
+  tar -xvf %2.tar
+  :nojobfiles
+  if not exist sharedfiles.tar.gz goto nosharedfiles
+  tar -zxvf sharedfiles.tar.gz
+  :nosharedfiles
+  mkdir tmp
+  set PATH=%path%;.\bin
+  dir
+  dir .\bin
+  echo Try job now
+  Rscript.exe soartest.R
+  dir
+  echo Job completed
+  :noruntime
+  echo Failed to find runtime. This is bad!</pre>
+</div>

@@ -1,0 +1,54 @@
+---
+title: Startd For Local Universe
+layout: wiki-page
+---
+<div id="content">
+ Startd for local universe.
+ <p>
+  Today HTCondor supports many universes.  However, the "universe" concept contains at least two ideas:  A "universe" can related to the type of job, and the support that a certain kind of job needs at runtime, such as "standard universe" (i.e. checkpointing), "java universe", "VM universe", and "vanilla universe".  Completely orthogonal to this, the universe can relate to the scheduling of jobs.  The "parallel universe", the "grid universe", and the local and scheduler universe are of this kind.
+ </p>
+ <p>
+  The local universe runs jobs managed by a starter, but this starter is forked by the schedd.  Local universe jobs always run on the submit machine, and generally many more are allowed to run than there are cores on the submit machine.  Unlike vanilla and standard universe, there is no startd or shadow.  Unlike scheduler universe jobs, there is a starter.
+ </p>
+ <p>
+  There are about twenty places in the code where we switch on the value of LOCAL_UNIVERSE, and so there are a number of small but surprising differences between the way that local universe jobs and vanilla behave.  Lately, the Pegasus folks would like to be able to seamless change job universes between local and vanilla without seeing any of these semantic differences.  It would also be useful for the "checkpoint local and run remote" trick that LIGO would do.  Other groups have also noticed the difference between local and vanilla.  Most recently, CHTC jobs failed in the local universe for issues having to do with the setting of the TEMP environment variable to the sandbox directory.
+ </p>
+ <p>
+  So, to make local universe jobs have as much as the same semantics as vanilla, we will change local universe jobs to use a startd and shadow.  This will increase the overhead of local universe somewhat.  We will not change the scheduler universe, so that uses that are very resources constrained can still use that.
+ </p>
+ <p>
+  The startd the schedd uses for running local universe jobs will be permanently claimed by the schedd, so it will never need the overhead of waiting for a negotiation cycle.  As it is today, there will be no user priority based preemption of one local universe job for another.
+ </p>
+ <p>
+  This startd will be forked and managed by the schedd, and will report not to the collector, but only to the schedd.  This startd will be completely independent of any startd running on the machine launched by the master, designed to run normal jobs.  The startd will use partitionable slots, with a large but fixed number of slots, much like MAX_SCHEDULER_JOBS_RUNNING today limits the number of local universe jobs running.  Thus, jobs should start relatively quickly in the local universe, with no need to wait for a negotiation cycle.
+ </p>
+ <p>
+  We will also add a condor_status -local option to condor_status, so that users can more easily see what's going on in the local universe.
+ </p>
+ <p>
+  Testing.  In addition to ad-hoc testing, most every test that runs in the test suite today under the vanilla universe should work unmodified in the new local universe.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Milestones
+ </h3>
+ <p>
+ </p>
+ <ul>
+  <li>
+   [ 2 days ] Run local job on existing startd
+  </li>
+  <li>
+   [ 3 days ] Launch special local startd from schedd
+  </li>
+  <li>
+   [ 3 days ] Test local jobs running
+  </li>
+  <li>
+   [ 2 days ] Beta test with Pegasys
+  </li>
+ </ul>
+</div>

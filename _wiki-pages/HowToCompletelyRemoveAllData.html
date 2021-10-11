@@ -1,0 +1,22 @@
+---
+title: How To Completely Remove All Data
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to completely remove all data from a Quill database
+  </h2>
+ </span>
+ <p>
+  Run the pgsql_dropddl.sql postgres script in the sql subdirectory of the release directory.
+ </p>
+ <p>
+  for example:
+ </p>
+ <p>
+  <code>
+   psql -h hostname -d databasename &lt; pgsql_dropddl.sql
+  </code>
+ </p>
+</div>

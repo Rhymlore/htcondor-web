@@ -1,0 +1,65 @@
+---
+title: How To Use All Cpus
+layout: wiki-page
+---
+<div id="content">
+ Known to Work: HTCondor v8.4+
+ <p>
+  Imagine a heterogeneous cluster ranging from small four core systems to
+large 40 core machines and user jobs which can practically scale to any number
+of local cores itself. This page shows how a job can ask request as many cores as available on a node, or ask for a minimum/maximum range of nodes.
+ </p>
+ <p>
+  In all cases, the job environment variable OMP_NUM_THREADS will be set to the number of cores assigned to the slot where the job is running (the name of that environment variable is a POSIX/OpenMP standard).
+ </p>
+ <p>
+  ** Question: I’d like at least 3 cpus, up to max of 8 if available
+ </p>
+ <p>
+  Answer:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">  executable = foo.exe
+  # Only interested in slots with 3 to 8 CPUs if they
+  # are static or dynamic.  If a slot is partitionable,
+  # make sure it has at least 3 cpus.
+  requirements = Cpus &gt;= 3 &amp;&amp; (PartitionableSlot || Cpus &lt;= 8)
+  # Request up to 8 cpus out of a partitionable slot.
+  request_cpus = Cpus &gt; 8 ? 8 : Cpus
+  queue
+</pre>
+ </div>
+ <p>
+  ** Question: I’d like all CPUs currently available in a slot, be it either static or partitionable, and I'd like to be matched with machines that have as many cores available as possible.
+ </p>
+ <p>
+  Answer:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">  executable = foo.exe
+  request_cpus = Cpus
+  rank = Cpus
+  queue
+</pre>
+ </div>
+ <p>
+  ** Question: I'd like all the CPUs on the machine; in other words, I want to be the only job running on the machine.  Of course, this job
+may have to wait a long time to run!
+ </p>
+ <p>
+  Answer:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">  requirements = TotalCpus == Cpus
+  executable = foo.exe
+  request_cpus = TotalCpus
+  queue
+</pre>
+ </div>
+</div>

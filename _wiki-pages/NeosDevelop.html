@@ -1,0 +1,169 @@
+---
+title: Neos Develop
+layout: wiki-page
+---
+<div id="content">
+ <span class="subsection">
+  <h3>
+   Git Repository
+  </h3>
+ </span>
+ /u/k/o/kooburat/public/project/neos.git
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  NOES Server [Path: NEOS]
+ </h4>
+ <ul>
+  <li>
+   makeDist.py
+   <ul>
+    <li>
+     [optional] generate source tar file from cvs, need to change to git
+     <ul>
+      <li>
+       Only one user used this feature
+      </li>
+     </ul>
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   NeosXML.py, XMLValidator.py
+   <ul>
+    <li>
+     contains hard code path to neos website ????
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  NOES Solvers [Path: SolverTools]
+ </h4>
+ <ul>
+  <li>
+   What need to be done after register a solver
+   <ul>
+    <li>
+     register.py will automatically generate new html pages.
+    </li>
+    <li>
+     matching categories must be found in the database (insert by hand)
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  NOES Portal [Path: WebTemplate]
+ </h4>
+ <ul>
+  <li>
+   Installation.html
+   <ul>
+    <li>
+     static link to Neos source tar files - rethink how we going to redistribute the sources
+    </li>
+    <li>
+     may remove this feature
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   faq.html
+   <ul>
+    <li>
+     static link to many documentation - obtains these document and put them in to neos FTP
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   solverCreator.cgi,registerSovler.cgi
+   <ul>
+    <li>
+     Write example XML file to single file, not thread safe
+    </li>
+    <li>
+     [FIXED] Use
+     <span class="wiki">
+      <a class="missing" href="{{ '/wiki-archive/pages/NeosSolver' | relative_url }}" title="Neos Solver">
+       NeosSolver
+      </a>
+     </span>
+     to validate XML file instead of Java
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   admin/
+   <ul>
+    <li>
+     [optional] use .htaccess to lock, may need to think about new mechanism
+    </li>
+    <li>
+     admin pages are no longer used
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Bugs/Issues
+ </h4>
+ <ul>
+  <li>
+   Cannot register solver
+   <ul>
+    <li>
+     [FIXED]
+     <span class="wiki">
+      <a class="missing" href="{{ '/wiki-archive/pages/NeosServer' | relative_url }}" title="Neos Server">
+       NeosServer
+      </a>
+     </span>
+     cannot bind port 3332, have to use higher port
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   email interface?
+   <ul>
+    <li>
+     There is a python script that pull email. Need to hook this script to HTCondor cron or other mechanism
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Categories
+   <ul>
+    <li>
+     Must be inserted by hand
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>

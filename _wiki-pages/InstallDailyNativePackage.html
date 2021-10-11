@@ -1,0 +1,32 @@
+---
+title: Install Daily Native Package
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Install a daily build with native packaging
+  </h2>
+ </span>
+ <p>
+  There are several native package repositories containing builds of HTCondor.  One is the "daily" repository, which contains a snapshot of the codebase as it stands in the past 24 hours (assuming automated regression testing did not fail).  These are
+  <strong>
+   not
+  </strong>
+  official releases, and are intended just for testing and development.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Install a daily build on Centos 7
+ </h3>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">yum -y install https://research.cs.wisc.edu/htcondor/repo/9.1/htcondor-release-current.el7.noarch.rpm
+yum -y install condor --enablerepo=htcondor-daily
+</pre>
+ </div>
+</div>

@@ -1,0 +1,17 @@
+---
+title: Old Class Ad Exchange Expressions
+layout: wiki-page
+---
+<div id="content">
+ This method is trying to be clever to quickly replace one ad with another in a hashtable without changing the pointer in the collector. The closest thing new
+ <span class="quote">
+  ClassAds
+ </span>
+ has is the assignment operator, which would be much slower. Why not remove the old ad from the hashtable and insert the new one?
+ <p>
+  Developer time: 1-2 hours to safely update callsite.
+ </p>
+ <p>
+  Progress: Callsites updated.
+ </p>
+</div>

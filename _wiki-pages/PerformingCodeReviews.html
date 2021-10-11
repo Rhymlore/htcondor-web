@@ -1,0 +1,132 @@
+---
+title: Performing Code Reviews
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to perform a code review
+  </h2>
+ </span>
+ <p>
+  Here are the steps to take to perform a good code review in HTCondor.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Upon completion of the code review, add a pithy remark to the appropriate gittrac ticket with your thoughts. This will allow someone to discover by reading the ticket (a) if a code review was performed, (b) who did the review, (c) when the review happened, and (d) what the reviewer discovered.
+   <p>
+   </p>
+  </li>
+  <li>
+   Ask the author if regression tests are not too cost
+  prohibitive to test the feature/fix. If not, then they
+   <strong>
+    must
+   </strong>
+   exist.
+   <p>
+   </p>
+  </li>
+  <li>
+   The author must have Purify'ied or valground the codebase
+  (bonus points if they can do it while also running
+  regression tests) and have fixed anything suspicious.
+   <p>
+   </p>
+  </li>
+  <li>
+   Schedule a set time with the author to perform the code
+  review. Be aware that a large code review (1000+ lines)
+  could take 16 hours or more to do.
+   <p>
+   </p>
+  </li>
+  <li>
+   Learn at a high level why/where the change/addition is
+  being made: What problem does it fix? What assumptions
+  does it make? What are its limitations?  What branch
+  is the code on and is that the right place for it? Why
+  are the new files (if any) named the way they are and
+  should they be named in such a manner (easier to fix
+  before adding to cvs)?
+   <p>
+   </p>
+  </li>
+  <li>
+   Have the author explain in plain english the code changes
+  while visually walking the code. Listen for inconsistancies
+  between what is said and what is read.
+   <p>
+   </p>
+  </li>
+  <li>
+   Inspect the code line by line with reasonable effort to
+  determine correctness or correct obvious mistakes. Ask
+  questions especially concerning error handling and look
+  for opportunities for defensive programming. Correct
+  gross coding conventions errors, simplify overly complex
+  branch code, add debugging output where necessary, refactor
+  common internal code
+   <strong>
+    before
+   </strong>
+   it gets merged
+  into mainline codes.
+   <p>
+   </p>
+  </li>
+  <li>
+   If the code duplicates large sections of other codes, or
+  reimplements functions from some utility library. That
+   <strong>
+    must
+   </strong>
+   be factored out of the codebase
+  for maintenance purposes unless there is a very good
+  reason why it can't.
+   <p>
+   </p>
+  </li>
+  <li>
+   Ensure the code compiles on the correct platforms
+  (using NMI) and is bracketed with #ifdefs if needed for
+  conditional compilation and passes the current regression
+  test suite.
+   <p>
+   </p>
+  </li>
+  <li>
+   Hand test the feature/code fixes which were too cost
+  prohibitive to implement regressions tests and ensure it
+  does what is advertised. For example, if the code path was
+  to alter the output of condor_status in some manner, run
+  condor_status and see if the output is modified properly.
+  Test edge cases--especially where user input or control
+  must happen.
+   <p>
+   </p>
+  </li>
+  <li>
+   If the code/feature changes are visible to a user,
+  ensure that all related documentation in the manual is
+  up to date and sufficiently detailed to explain the new
+  feature/bug fix.
+   <p>
+   </p>
+  </li>
+  <li>
+   Carefully inspect diffs of the codebase against the place
+  it is being merged to ensure nothing is being changed that
+  shouldn't be and it plays well with surrounding codes.
+  If the code requires a new external. Ensure
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/AddingNewExternalPackage' | relative_url }}" title="Adding New External Package">
+     these instructions
+    </a>
+   </span>
+   were followed correctly.
+  </li>
+ </ol>
+</div>

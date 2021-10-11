@@ -1,0 +1,129 @@
+---
+title: Making Contributions
+layout: wiki-page
+---
+<div id="content">
+ <strong>
+  Contributions
+ </strong>
+ , either
+ <strong>
+  code
+ </strong>
+ patches or
+ <strong>
+  documentation
+ </strong>
+ , are welcomed from the community.
+ <p>
+  For
+  <strong>
+   documentation
+  </strong>
+  contributions,
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Send a request to the
+   <a class="external" href="https://lists.cs.wisc.edu/mailman/listinfo/condor-devel">
+    condor-devel mailing list
+   </a>
+   mailing list, and an administrator will help you
+  </li>
+ </ol>
+ <p>
+  For
+  <strong>
+   code
+  </strong>
+  contributions,
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/DownloadingSource' | relative_url }}" title="Downloading Source">
+     Grab the source code
+    </a>
+   </span>
+   !  Also helpful to refer to
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnUnix' | relative_url }}" title="Building Htcondor On Unix">
+     BuildingHtcondorOnUnix
+    </a>
+   </span>
+   and/or
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnWindows' | relative_url }}" title="Building Htcondor On Windows">
+     BuildingHtcondorOnWindows
+    </a>
+   </span>
+  </li>
+  <li>
+   Open a ticket for discussing your contribution (either enhancement or bug fix); you can read about our ticket process
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/CvstracTicket' | relative_url }}" title="Cvstrac Ticket">
+     here
+    </a>
+   </span>
+   or by clicking [Help] at the top of the
+   <a href="tktnew">
+    new ticket page
+   </a>
+   .  If your contribution is a small/trivial patch or bugfix, you could simply attach a patch file directly to the ticket page (at the top of the ticket page, select
+   <code>
+    Attach
+   </code>
+   ). If your change is an enhancement (new feature) or large bug fix, you will need to author and attach a
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/DesignDoc' | relative_url }}" title="Design Doc">
+     design document
+    </a>
+   </span>
+   to the ticket page for architecture review and get it approved before code contributions will be accepted. It is appreciated if you openly discuss design with committers via the htcondor-devel mailing list.
+  </li>
+  <li>
+   Send an email to the
+   <a class="external" href="https://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel">
+    htcondor-devel mailing list
+   </a>
+   announcing your ticket to find a committer to help you
+  </li>
+  <li>
+   Make sure: you work with a committer, your code compiles on all platforms, your code meets guidelines, you include test a procedure
+  </li>
+  <li>
+   Assign your ticket to the committer and change its status to review
+  </li>
+ </ol>
+ <p>
+  Your code contributions will be much more happily received if you observe the following guidelines:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Submit your contribution as a patch to most recent version of the HTCondor source code.
+  </li>
+  <li>
+   State which version of the HTCondor source your patch is relative to.
+  </li>
+  <li>
+   When generating your patch, use one of the diff formats that provides context (i.e.
+   <code>
+    diff -c
+   </code>
+   or
+   <code>
+    diff -u
+   </code>
+   ).
+  </li>
+  <li>
+   When modifying existing source files, try to match the formatting style of the surrounding code.
+  </li>
+ </ul>
+</div>

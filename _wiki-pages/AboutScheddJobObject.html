@@ -1,0 +1,117 @@
+---
+title: About Schedd Job Object
+layout: wiki-page
+---
+<div id="content">
+ As of 8.3.3  The job queue in the SCHEDD changed from a Hashtable of compat
+ <code>
+  ClassAd
+ </code>
+ objects to a Hashtable of
+ <code>
+  JobQueueJob
+ </code>
+ objects.  The
+ <code>
+  JobQueueJob
+ </code>
+ class is derived from compat
+ <code>
+  ClassAd
+ </code>
+ , so it can be passed to any function that wants a
+ <code>
+  ClassAd
+ </code>
+ ; But unlike
+ <code>
+  ClassAd
+ </code>
+ , it provides a place to hang data members that are useful to the SCHEDD at runtime, but should not be written to the job queue log.
+ <p>
+  For instance, the autocluster id can now be stored in the job object and never written into the job queue log. In fact, the impetus for this change was the need to have more than a single autocluster set, and thus to have more than one autocluster id associate with each job.
+ </p>
+ <p>
+  The job queue in the SCHEDD is still an instance of
+  <code>
+   ClassAdLog
+  </code>
+  . The
+  <code>
+   ClassAdLog
+  </code>
+  code has been refactored to be a template class on both the key and the value. The key must have a string representation, but does not have to be a string.  And the value must be derived from the compat
+  <code>
+   ClassAd
+  </code>
+  class.
+ </p>
+ <p>
+  For most users of the
+  <code>
+   ClassAdLog
+  </code>
+  , the key still of type
+  <code>
+   HashKey
+  </code>
+  , and the value is of type
+  <code>
+   ClassAd
+  </code>
+  just as it was before.  But in the SCHEDD. The key is a
+  <code>
+   JOB_ID_KEY
+  </code>
+  , (which is essentially a PROC_ID with methods). The value is class
+  <code>
+   JobQueueJob
+  </code>
+  .
+ </p>
+ <p>
+  When external clients of the SCHEDD fetch a
+  <code>
+   JobAd
+  </code>
+  by calling
+  <code>
+   GetJobAd()
+  </code>
+  , they still get back a
+  <code>
+   ClassAd
+  </code>
+  , but when code internal to the SCHEDD calls
+  <code>
+   GetJobAd()
+  </code>
+  , a
+  <code>
+   JobQueueJob*
+  </code>
+  is returned.  Not all of these call sites in the SCHEDD have been updated to recognize the change. Some are using a ClassAd* to hold the return value - but many of the key functions have been updated including
+  <code>
+   GetJobAd
+  </code>
+  and
+  <code>
+   WalkJobQueue
+  </code>
+ </p>
+ <p>
+  It is safe to hold a pointer to a
+  <code>
+   JobQueueJob
+  </code>
+  object in a SCHEDD data structure so long it is removed from that data structure in
+  <code>
+   ConstructClassAdLogTableEntry&lt;JobQueueJob*&gt;::Delete(ClassAd* &amp;ad)
+  </code>
+  , in the destructor of
+  <code>
+   JobQueueJob
+  </code>
+  (which is currently empty), or earlier, if your code can be certain that a job cannot be removed while the code is running.
+ </p>
+</div>

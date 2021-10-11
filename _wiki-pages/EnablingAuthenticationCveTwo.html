@@ -1,0 +1,125 @@
+---
+title: Enabling Authentication Cve Two
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Enabling Authentication for your Execute Machines
+  </h2>
+ </span>
+ <p>
+  To enable authentication on your pool's execute machines, you essentially want to add the following to the condor_config on your execute machines:
+ </p>
+ <div class="code">
+  <pre class="code">SEC_DAEMON_AUTHENTICATION = REQUIRED
+</pre>
+ </div>
+ <p>
+  However, it is not quite that simple.  If you haven't already, you will need to configure an authentication method that works from daemon-to-daemon, such as
+  <code>
+   PASSWORD, SSL, GSI, KERBEROS,
+  </code>
+  (or
+  <code>
+   IDTOKENS,
+  </code>
+  if using a very recent HTCondor version)
+ </p>
+ <p>
+  You can check your current security settings by running:
+ </p>
+ <div class="code">
+  <pre class="code">condor_config_val -dump SEC_
+</pre>
+ </div>
+ <p>
+  Based on those results, find the scenario below that matches your configuration for instructions.
+ </p>
+ <p>
+ </p>
+ <hr/>
+ <span class="subsection">
+  <h3>
+   Scenario 1: Authentication is already required for all daemon-to-daemon communications
+  </h3>
+ </span>
+ If you are flocking to another pool, or jobs are flocking into your pool, you must also have daemon-to-daemon authentication configured for everything flocking in and/or out as well.
+ <p>
+  Assuming that is true, you are all set and can follow the workaround options in the HTCONDOR2020-0002 CVE.
+ </p>
+ <p>
+  If you do not have daemon-to-daemon authentication configured for flocking, keep reading and follow the instructions below.
+ </p>
+ <p>
+ </p>
+ <hr/>
+ <span class="subsection">
+  <h3>
+   Scenario 2: No authentication is set up at all, and no jobs are flocking in or out
+  </h3>
+ </span>
+ In this scenario, you have not configured any authentication.  How you want to set up authentication varies a lot depending on your computing environment.  If your pool is "self contained" and is not flocking to or from other pools, the easiest way to do this is to set up
+ <code>
+  PASSWORD
+ </code>
+ authentication.  Instructions for doing that are located on the Wiki here:
+ <p>
+ </p>
+ <ul>
+  <a class="external" href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToEnablePoolPassword">
+   https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToEnablePoolPassword
+  </a>
+ </ul>
+ <p>
+  Then you are all set and can follow the workaround options in the HTCONDOR2020-0002 CVE.
+ </p>
+ <p>
+  Other options for types of authentication that could work here are
+  <code>
+   SSL, KERBEROS, GSI, and IDTOKENS.
+  </code>
+  Please consult the security section of the manual for more information on those authentication methods and their configuration:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <a class="external" href="https://htcondor.readthedocs.io/en/latest/admin-manual/security.html">
+   https://htcondor.readthedocs.io/en/latest/admin-manual/security.html
+  </a>
+ </ul>
+ <p>
+ </p>
+ <hr/>
+ <span class="subsection">
+  <h3>
+   Scenario 3: Jobs are flocking to other pools, or jobs are flocking into your pool
+  </h3>
+ </span>
+ <p>
+  This type of setup can vary drastically as it depends on how you want to configure your own pool in addition to how other administrators have configured the pools you are flocking to and/or from.  This configuration can be quite involved, and if possible we highly recommend upgrading to the latest version of HTCondor.
+ </p>
+ <p>
+  Please review the security section of the manual to become acquainted with the general security framework if you are not already:
+ </p>
+ <ul>
+  <a class="external" href="https://htcondor.readthedocs.io/en/latest/admin-manual/security.html">
+   https://htcondor.readthedocs.io/en/latest/admin-manual/security.html
+  </a>
+ </ul>
+ <p>
+  Because we cannot control the configuration of remote pools, the best we can do is secure communications within your own pool.  Jobs that flock to other pools may still be vulnerable to this issue unless you have set up authentication between your SchedD and the remote pool, in which case you might belong to Scenario 2 above.
+ </p>
+ <p>
+  If you cannot upgrade and wish to continue, you will be setting up your pool to use PASSWORD authentication internally.  But be aware that using this configuration, jobs that flock in or out will not necessarily be authenticated.
+ </p>
+ <p>
+  Follow the instructions above for configuring PASSWORD authentication.  However, instead of the config shown there, use this instead:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">...
+</pre>
+ </div>
+</div>

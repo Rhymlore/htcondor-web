@@ -1,0 +1,172 @@
+---
+title: Experimental Annex Gcp Support
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   description
+  </h2>
+ </span>
+ <p>
+  <em>
+   condor_annex
+  </em>
+  was always intended to work with multiple cloud providers, and this experiment is about supporting the Google Cloud Platform (GCP).
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  the rules of acquisition
+ </h3>
+ <p>
+  Until further notice, the binaries for this experiment are available by invitation only.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  limitations and restrictions
+ </h3>
+ <p>
+  The current (2020-05-15) version of this experiment is
+  <em>
+   extremely
+  </em>
+  limited.
+  <em>
+   All
+  </em>
+  that it does is start instances, which, if they're Debian 10, will join the annex pool.  These instances will have
+  <strong>
+   AnnexName
+  </strong>
+  defined in their machine ad, but will otherwise not behave as expected.  In particular, this includes, but is not limited to:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   The instance will not terminate itself when HTCondor is turned off (via
+   <em>
+    condor_off
+   </em>
+   <em>
+    -annex
+   </em>
+   , usually).
+  </li>
+  <li>
+   The instance will not terminate itself because it is idle.
+  </li>
+  <li>
+   The instance will not terminate itself, nor be terminated, because the annex's duration has expired.
+  </li>
+  <li>
+   The instance will not restrict itself to running jobs from the annexing user,
+ or to jobs with
+   <strong>
+    MayUseAWS
+   </strong>
+   set.
+  </li>
+  <li>
+   The corresponding command-line options will be ignored.
+  </li>
+  <li>
+   Instances not in the pool will not be tracked.
+  </li>
+  <li>
+   The instance will not prevent user jobs from accessing the instance metadata, which includes things like the pool password and the instance's credentials (if any).
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  set up
+ </h3>
+ <p>
+  The current (2020-05-15) version of this experiment does not do any GCP set-up for you.  In particular, you must:
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   arrange for instances started by
+   <em>
+    condor_annex
+   </em>
+   to have a firewall rule allowing inbound port 9618;
+  </li>
+  <li>
+   and provide
+   <em>
+    condor_annex
+   </em>
+   with the necessary user credentials.
+  </li>
+ </ol>
+ <p>
+  The GCP web console's default firewall editing appears to apply to all instances in the project, current and future.
+ </p>
+ <p>
+  To obtain the necessary user credentials, download and install Google's
+  <em>
+   gcloud
+  </em>
+  tool (see
+  <a class="external" href="https://cloud.google.com/compute/docs/gcloud-compute/">
+   https://cloud.google.com/compute/docs/gcloud-compute/
+  </a>
+  ) and then complete the
+  <em>
+   gcloud init
+  </em>
+  process (including logging in).
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  usage
+ </h3>
+ <p>
+  Running
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_annex -gcp -count N</pre>
+ </div>
+ <p>
+  will complain about missing command-line options.  You can set defaults for the missing command-line options, and will probably want to, by modifying the user config file, as usual for
+  <em>
+   condor_annex
+  </em>
+  .  An example follows:
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">~/.condor/user_config </pre>
+  <pre class="snip"># These should be the same for everybody.
+ANNEX_DEFAULT_GCP_SERVICE_URL = https://compute.googleapis.com/compute/v1
+ANNEX_DEFAULT_GCP_STARTUP_SCRIPT = $(RELEASE_DIR)/etc/examples/gce-annex-configure.sh
+
+# If you pick a different default zone, adjust the rest of the config appropriately.
+ANNEX_DEFAULT_GCP_ZONE = us-central1-a
+us_central1_a.ANNEX_DEFAULT_GCP_MACHINE_TYPE = projects/&lt;project ID&gt;/zones/us-central1-a/machineTypes/n1-standard-1
+us_central1_a.ANNEX_DEFAULT_GCP_IMAGE_NAME = projects/debian-cloud/global/images/debian-10-buster-v20200413
+us_central1_a.ANNEX_DEFAULT_GCP_PROJECT = &lt;project ID&gt;
+us_central1_a.ANNEX_DEFAULT_GCP_AUTH_FILE = /home/&lt;username&gt;/.config/gcloud/credentials.db
+# Deliberately left blank.  May be useful if you've logged into more than one account with gcloud.
+us_central1_a.ANNEX_DEFAULT_GCP_ACCOUNT =
+</pre>
+ </div>
+</div>

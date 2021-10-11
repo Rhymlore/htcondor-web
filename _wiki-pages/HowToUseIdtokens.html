@@ -1,0 +1,132 @@
+---
+title: How To Use Idtokens
+layout: wiki-page
+---
+<div id="content">
+ Work in progress.
+ <p>
+  Not verified yet.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Enabling IDTOKENS
+ </h2>
+ <p>
+  Is IDTOKENS in the authentication methods list by default?
+ </p>
+ <p>
+  Is our best practice here to create
+  <code>
+   condor@$(TRUST_DOMAIN)
+  </code>
+  tokens?
+  <code>
+   role@$(TRUST_DOMAIN)
+  </code>
+  tokens?  (There's a ticket to make the latter the default for promiscuous mode.)
+ </p>
+ <p>
+  The key part of the configuration is the ALLOW lists, which may eventually have sane user-based defaults (if we stop shipping a config file with
+  <code>
+   use security: host_based
+  </code>
+  ).
+ </p>
+ <p>
+  Maybe what we really need is just the "upgrading from host-based to user-based security (with IDTOKENS)" page?
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Enabling Promiscuous Mode
+ </h2>
+ <p>
+  Enabling IDTOKENS doesn't mean you automatically start using it; you have distribute tokens first.  To make that easier, you can enable "promiscuous mode" by calling
+  <code>
+   condor_token_auto_approve
+  </code>
+  .  (See the man page for details.)  However, that doesn't work out of the box.  Add the following three lines to your configuration.
+ </p>
+ <p>
+ </p>
+ <div class="file">
+  <pre class="filelabel">promiscuous-mode.config</pre>
+  <pre class="file"># Enable IDTOKENS' promiscuous mode.
+COLLECTOR.SEC_DAEMON_AUTHENTICATION_METHODS = $(SEC_DEFAULT_AUTHENTICATION_METHODS) ANONYMOUS
+COLLECTOR.SEC_READ_AUTHENTICATION_METHODS = $(SEC_DEFAULT_AUTHENTICATION_METHODS) ANONYMOUS
+COLLECTOR.DENY_DAEMON = CONDOR_ANONYMOUS_USER*/*
+</pre>
+ </div>
+ <p>
+ </p>
+ <hr/>
+ <div class="file">
+  <pre class="filelabel">central-manager.config</pre>
+  <pre class="file">CONDOR_HOST = &lt;this machine's external IP address&gt;
+
+use security : strong
+
+ALLOW_ADMINISTRATOR = condor@*
+ALLOW_OWNER = condor@*
+ALLOW_READ = *
+ALLOW_WRITE = condor@*
+ALLOW_DAEMON = condor@*
+ALLOW_NEGOTIATOR = condor@*
+
+# Enable IDTOKENS (for daemons) and FS (for users).
+SEC_DEFAULT_AUTHENTICATION_METHODS = FS, IDTOKENS
+
+use role : CentralManager
+</pre>
+ </div>
+ <p>
+ </p>
+ <div class="file">
+  <pre class="filelabel">submit.config</pre>
+  <pre class="file">CONDOR_HOST = &lt;central manager's external IP address&gt;
+
+use security : strong
+
+ALLOW_ADMINISTRATOR = condor@*
+ALLOW_OWNER = condor@*
+ALLOW_READ = *
+ALLOW_WRITE = condor@*
+ALLOW_DAEMON = condor@*
+ALLOW_NEGOTIATOR = condor@*
+
+# Enable IDTOKENS (for daemons) and FS (for users).
+SEC_DEFAULT_AUTHENTICATION_METHODS = FS, IDTOKENS
+
+use role : submit
+
+# Allow any local user to submit jobs.
+ALLOW_WRITE = $(ALLOW_WRITE) *@$(HOSTNAME)
+</pre>
+ </div>
+ <p>
+ </p>
+ <div class="file">
+  <pre class="filelabel">execute.config</pre>
+  <pre class="file">CONDOR_HOST = &lt;central manager's external IP address&gt;
+
+use security : strong
+
+ALLOW_ADMINISTRATOR = condor@*
+ALLOW_OWNER = condor@*
+ALLOW_READ = *
+ALLOW_WRITE = condor@*
+ALLOW_DAEMON = condor@*
+ALLOW_NEGOTIATOR = condor@*
+
+# Enable IDTOKENS (for daemons) and FS (for users).
+SEC_DEFAULT_AUTHENTICATION_METHODS = FS, IDTOKENS
+
+use role : execute
+</pre>
+ </div>
+</div>

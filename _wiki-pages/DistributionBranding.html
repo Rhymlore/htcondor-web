@@ -1,0 +1,127 @@
+---
+title: Distribution Branding
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Distribution Branding
+  </h2>
+ </span>
+ <p>
+  This page denotes a HTCondor feature which allows HTCondor to change various
+aspects about itself away from the "condor" name. This was primarily created
+as a helper for the "Hawkeye" feature of HTCondor since it used its own config
+files that sat next to a HTCondor installation.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Important Source Files
+ </h2>
+ <ul>
+  <li>
+   <span class="quote">
+    condor_utils/myDistribution.cpp
+   </span>
+  </li>
+  <li>
+   <span class="quote">
+    condor_includes/myDistribution.h
+   </span>
+  </li>
+  <li>
+   <span class="quote">
+    condor_utils/distribution.cpp
+   </span>
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Some facts
+ </h2>
+ <ul>
+  <li>
+   There is a 20 character max for the name of a distribution.
+  </li>
+  <li>
+   <code>
+    myDistribution.cpp
+   </code>
+   is where the default name can be changed.
+  </li>
+  <li>
+   The branding system looks at argv of all tools and daemons, and can set the brand via a command line argument.
+  </li>
+  <li>
+   Currently only Hawkeye and HTCondor are supported.
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Effect of the codebase
+ </h2>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Environment Variables
+   <ul>
+    <li>
+     EnvGetName() is a critical location to understand.
+    </li>
+    <li>
+     condor_environ.cpp
+    </li>
+    <li>
+     condor_environ.h
+    </li>
+    <li>
+     Things like _CONDOR_mumble are branded in that CONDOR can be changed to HAWKEYE or anything else. Any environment variables the code speciifically looks for in this manner can be changed. This mechanism is also what the param() system uses when you specify _CONDOR_mumble to set config file variables.
+    </li>
+    <li>
+     There is a hard coded list of special environment variables whose names are affected by the distribution name.
+    </li>
+   </ul>
+  </li>
+  <li>
+   Config Files
+   <ul>
+    <li>
+     Location
+    </li>
+    <li>
+     Name
+    </li>
+    <li>
+     Local Names
+    </li>
+   </ul>
+  </li>
+  <li>
+   Home directory and COndor User ID
+   <ul>
+    <li>
+     ~condor is an example, could be ~hawkeye if desired.
+    </li>
+    <li>
+     init_tilde() is an example in our code
+    </li>
+    <li>
+     uids.cpp finds the "condor" user, or applicable distribution name instead.
+    </li>
+   </ul>
+  </li>
+  <li>
+   Rset/Set functionality
+  </li>
+ </ul>
+</div>

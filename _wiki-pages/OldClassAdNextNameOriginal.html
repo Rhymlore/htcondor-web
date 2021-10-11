@@ -1,0 +1,23 @@
+---
+title: Old Class Ad Next Name Original
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ provide an iterator via the begin() and end() methods to traverse all of the attributes in the ad. The iterator doesn't handle any chained ad.
+ <p>
+  NextNameOriginal() is called in MergeClassAd(), which is called by code that uses chained ads. MergeClassAd() appears to do the wrong thing if the merge_from ad is chained and has the same attribute (but different values) in parent and child.
+ </p>
+ <p>
+  NextNameOriginal() is also called by the schedd's dollarDollarExpand(), which deals with chained ads.
+ </p>
+ <p>
+  NextNameOriginal() is also called by FILEXML::file_newEvent(), which is called by the schedd's AppendHistory(), which deals with chained ads.
+ </p>
+ <p>
+  Developer time: 1-2 days to deal with tricky callsites
+ </p>
+</div>

@@ -1,0 +1,112 @@
+---
+title: Read User Logs
+layout: wiki-page
+---
+<div id="content">
+ Note: not yet complete!
+ <p>
+  (Needs lots of changes because of workflow log!)
+ </p>
+ <p>
+  DAGMan monitors the state of node jobs that are in the queue by reading the "workflow log file".  Written by shadow, etc.; DAGMan also writes POST script terminated events and "fake" events for DAG-level NOOP jobs (Miron doesn't like this).  Note:  the "workflow log" is just a special case of a user log file, like the files specified with "log = ..." in a submit file.  The main important aspect is that it consolidates events for all relevant jobs into a single file; it also excludes some events that DAGMan doesn't care about.
+ </p>
+ <p>
+  This is an area in which the DAGMan implementation has changed quite a bit.  There have been three main "phases" of DAGMan's interaction with log files:
+ </p>
+ <ol>
+  <li>
+   Initially DAGMan only read a single log file; it was required that every node job specify this log file with the "log = ..." command in the submit file.
+  </li>
+  <li>
+   Then we changed to allowing any log file to be specified for a given node job; DAGMan read multiple log files and consolidated all of them into a single event stream.
+  </li>
+  <li>
+   Now DAGMan again reads only a single log file (the "workflow log"); however, the workflow log is independent from any log file specified in a node job's submit file.
+  </li>
+ </ol>
+ <p>
+  A consequence of this history is that the DAGMan code for reading and dealing with events is probably somewhat more complex than it really needs to be.
+ </p>
+ <p>
+  (More updates needed below.)
+ </p>
+ <p>
+  DAGMan monitors the state of submitted jobs solely by reading the user logs for the node jobs.
+ </p>
+ <p>
+  Things to mention:
+ </p>
+ <ul>
+  <li>
+   issues with macros in log file names.  Note that this is no longer an issue if the user uses the (default) dagman node log. (implemented in
+   <span class="ticket">
+    <a class="defer" href="../../tickets/?ticket=2807" title="Have DAGMan use a single node job user log file">
+     #2807
+    </a>
+   </span>
+   ).
+  </li>
+  <li>
+   multi-log code truncates files the first time it monitors them (except in recovery mode)
+  </li>
+  <li>
+   multi-log code (really, lower-level code) keeps track of where we were in log files, in case we re-monitor them
+  </li>
+  <li>
+   we monitor the log file for a node just before submitting it; unmonitor after job is done; special stuff for POST scripts (we write post script terminated event)
+  </li>
+  <li>
+   multi-log code essentially coalesces any number of log files into a single stream of events
+  </li>
+  <li>
+   submit events contain node name -- that's how we associate HTCondor IDs with nodes in recovery mode (in "normal" mode we get the HTCondor ID from the condor_submit output; I have to check what we do if that disagrees with the corresponding submit event when we read it)
+  </li>
+  <li>
+   if we have two instances of the same DAG running at the same time (or any two DAG instances whose node jobs share user log files), things will get goofed up because the submit event notes only contain the node name; there's no way to tell which DAG the event goes with if they both have nodes with the given name
+  </li>
+  <li>
+   possible confusion in recovery mode when going from DST to standard time, because timestamps are in local time
+  </li>
+  <li>
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/ReadMultipleUserLogs' | relative_url }}" title="Read Multiple User Logs">
+     ReadMultipleUserLogs
+    </a>
+   </span>
+   class vs.
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/MultiLogFiles' | relative_url }}" title="Multi Log Files">
+     MultiLogFiles
+    </a>
+   </span>
+   class
+  </li>
+  <li>
+   1-sec sleeps before submits to make sure we can unambiguously order events when reading them back (because the user log timestamps only have a resolution of 1 sec)
+  </li>
+  <li>
+   why are HTCondor and Stork events handled with separate
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/ReadMultipleUserLogs' | relative_url }}" title="Read Multiple User Logs">
+     ReadMultipleUserLogs
+    </a>
+   </span>
+   objects?  I don't remember -- need to look that up.
+  </li>
+  <li>
+   default log used if no log specified by submit file -- log file passed on condor_submit_dag command line
+  </li>
+  <li>
+   in the Dag class: ProcessLogEvents(), ProcessOneEvent(), ProcessAbortEvent(), ProcessTerminatedEvent(), etc.
+  </li>
+  <li>
+   we don't care about all events
+  </li>
+  <li>
+   Dag::EventSanityCheck()
+  </li>
+  <li>
+   cases where events show up in incorrect order (e.g., execute before submit)
+  </li>
+ </ul>
+</div>

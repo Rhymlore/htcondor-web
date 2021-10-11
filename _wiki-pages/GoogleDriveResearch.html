@@ -1,0 +1,289 @@
+---
+title: Google Drive Research
+layout: wiki-page
+---
+<div id="content">
+ This is the research and rationale that lead to
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/GoogleDriveWisdom' | relative_url }}" title="Google Drive Wisdom">
+   GoogleDriveWisdom
+  </a>
+ </span>
+ .  If you just want to use Google Drive for design documents, you probably want
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/GoogleDriveWisdom' | relative_url }}" title="Google Drive Wisdom">
+   GoogleDriveWisdom
+  </a>
+ </span>
+ , not this.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Rationale and Research
+ </h2>
+ <p>
+  The UW pays for access to Google Apps, including, notably, Google Drive (formerly Google Docs).  We have special terms of service for privacy.  You don't need a Google account; your UW NetID is good enough.  Note that the privacy protects are limited to Drive, Sites, Groups, and Contacts.  You can use other Google services with your UW NetID, but you don't get any special protections.
+ </p>
+ <p>
+  The Flightworthy team is considering using Google Drive to store design documents.
+ </p>
+ <p>
+  Benefits
+ </p>
+ <ul>
+  <li>
+   Eliminates download/upload step in editing or commenting on a design document
+  </li>
+  <li>
+   Multiple people can edit or comment on a design document simultaneously
+  </li>
+  <li>
+   Eliminates formatting wonkiness from using a mix of MS Word and
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/OpenOffice' | relative_url }}" title="Open Office">
+     OpenOffice
+    </a>
+   </span>
+   .
+  </li>
+ </ul>
+ <p>
+  Costs
+ </p>
+ <ul>
+  <li>
+   We become reliant on Google (and the UW to keep paying Google)
+  </li>
+  <li>
+   Offline access requires Google Chome
+  </li>
+  <li>
+   Offline editing is not risk free. You're at the mercy of Google's merge algorithm, and changes may be lost.  (See "Offline support" below.)
+  </li>
+ </ul>
+ <p>
+  Probably not costs
+ </p>
+ <ul>
+  <li>
+   We lose advanced formatting; Google Drive is a simple word processor.  But do we really need it?
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Proposal: shared folder
+ </h3>
+ We create a shared folder into which new design documents are placed.  Proposed permissions are:
+ <ul>
+  <li>
+   HTCondor dev team: Can Edit - This is full access; people can create documents, delete them, and modify the permissions (although the latter can be removed?).  Should only be given to people we trust with similar access to the Wiki and AFS.
+  </li>
+  <li>
+   Close collaborators: Can Edit
+  </li>
+  <li>
+   Public: Can View
+  </li>
+ </ul>
+ <p>
+  It is not possible to set "Can Comment" on a folder, you need to set it on a file-by-file basis.  So if comments are desired from people without edit access, it will be need to be added for each file.
+ </p>
+ <p>
+  The SWAMP team are using this solution.
+ </p>
+ <p>
+  On the up side, access is centrally controlled.  Adding a new team member is easy.  There is also a single place to find all new design documents; which Miron values.  It's also a single folder to download if you want to backup the entire thing in one shot.
+ </p>
+ <p>
+  On the down side, permission to create or edit documents is very chunky. Settings to the folder override settings on individual documents, so it's possible to add someone to the folder permissions and accidentally grant access to a file contained inside that should have more restricted distribution.  But, is this a problem in practice?  It's similar to the current permissions system on the wiki.
+ </p>
+ <p>
+  DoIT doesn't provide role accounts, so the folder needs to be owned by an individual.  They promise that even if the person leaves, the folder will persist.  Anyone with "edit" access can modify the access permissions, so that's okay.  Also, the folder can be assigned to someone else.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Proposal: individual file management
+ </h3>
+ Individuals just create their own design documents, perhaps with a title prefix of "Design Document:" so they are easy to find.  They are marked as "Public: Can Comment" (risk of abuse is low).  If other people need edit access, it's granted on an as-needed basis.  (We can also only grant comment access on an as-needed basis in a pinch.)  The very rare design document with security ramifications won't be public; people are added as needed.
+ <p>
+  On the up side, eliminates challenges of the folder being removed, and it's very hard to accidentally or intentionally damage a design document unless you're the original author or were very explicitly granted edit access.
+ </p>
+ <p>
+  On the down side, there is no single place to find all new design documents. Does anyone care? They'll be linked from the individual tickets, similar to how it is today.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Challenges and Questions
+ </h3>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Offline support
+ </h4>
+ <p>
+  Around June 28th, 2013, DoIT enabled Offline support. You'll need to explicitly enable it, and be sure connect online before going offline so you'll have the most recent versions.
+  <a class="external" href="https://kb.wisc.edu/googleapps/page.php?id=31141">
+   How to enable offline mode
+  </a>
+ </p>
+ <p>
+  Offline support is Chrome only.
+ </p>
+ <p>
+  Merging of offline and online charges are automatically resolved by Google without any notification.  Conflicts are silently resolved
+  <em>
+   which means work could potentially silently disappear.
+  </em>
+  A quick test merged pretty well, but if an offline user added a sentence to the middle of a paragraph and an online user deleted the paragraph, the paragraph will be gone, including the new sentence.  The history will contain no evidence of the lost content.
+ </p>
+ <p>
+  The actual risk is hard to guess.  If most people are just adding comments, I'm betting it's extremely safe.  If two people are making heavy edits, the risk is probably high.
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Backups
+ </h4>
+ <p>
+  To reduce our dependency on Google, we can keep local, exported copies as a backup. Google drive can export docx, odt, rtf, pdf, txt, and html.
+ </p>
+ <p>
+  We can manually make backups. You can export documents individually using File &gt; Download as. You can download a batch in a zip file.
+  <a class="external" href="http://googlesystem.blogspot.com/2009/10/export-google-docs.html">
+   It looks like this
+  </a>
+  ,
+although the menu option is now "Download" not "Export":
+ </p>
+ <p>
+  We can automate the backups using the Google Drive API.  It would probably involve
+  <a class="external" href="https://developers.google.com/drive/v2/reference/files/list">
+   enumerating the files
+  </a>
+  then
+  <a class="external" href="https://developers.google.com/drive/manage-downloads">
+   exporting them
+  </a>
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Google Drive Desktop
+ </h4>
+ <p>
+  Google Drive Desktop nearly useless for our purposes.  For native Google Drive formats, the "file" that ends up on disk is just a link to the web site.
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  How do permissions interact?
+ </h4>
+ <p>
+  Changes to the shared's folder's permissions are pushed down to the contained files, even if those files have had their permissions set specially.
+ </p>
+ <p>
+  If you create a file outside of the folder, then move it into the folder, it will add the permissions that the folder grants to itself.  If you move it back out, it reverts to its previous permissions.  There may be a several second lag before the change in permissions is visible.
+ </p>
+ <p>
+  (All verified by testing.)
+ </p>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  What if someone leaves the UW?
+ </h4>
+ <p>
+  DoIT Help Desk said, in a June 19th, 2013 message to Alan ("Subject: Re: UW Madison Google Apps: ensuring documents survive a team member leaving(Case 618712)"):
+ </p>
+ <div class="blockquote">
+  <table width="95%">
+   <tbody>
+    <tr>
+     <td>
+     </td>
+     <td>
+      If a file owned by the user who leaves (we'll continue with your "bucky"
+example), is saved in the google group, the file will remain, even after
+bucky has left the University. The other team members won't be able to
+edit this document, unless they were given editing privileges before
+bucky left. Alternatively, if you need to give people editing
+privileges, you can copy the document and another member of the team can
+just recreate it with themselves as the owner, adding in editors as
+needed. Folders shared by bucky will also remain even after he leaves.
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  What if someone closes their non-UW account?
+ </h4>
+ <p>
+  Probably unlikely; how often does someone close their Google account?  But there is a risk we'd lose the documents.  Proposed: documents must be owned by someone using a UW account.  Likely flow: non-UW member creates the file and works on it.  Eventually someone from the UW copies the file and that becomes the official copy.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Links
+ </h3>
+ UW's sites/information
+ <ul>
+  <li>
+   <a class="external" href="https://kb.wisc.edu/googleapps/page.php?id=31141">
+    How to enable offline mode
+   </a>
+  </li>
+  <li>
+   <a class="external" href="https://kb.wisc.edu/googleapps/page.php?id=19067">
+    Benefits of Use
+   </a>
+  </li>
+  <li>
+   <a class="external" href="https://kb.wisc.edu/googleapps/top.php?limit=120">
+    Knowledge Base
+   </a>
+  </li>
+  <li>
+   <a class="external" href="http://www.doit.wisc.edu/googleapps/faq/">
+    FAQ
+   </a>
+  </li>
+  <li>
+   <a class="external" href="http://www.doit.wisc.edu/googleapps/">
+    http://www.doit.wisc.edu/googleapps/
+   </a>
+  </li>
+  <li>
+   <a class="external" href="https://apps.google.wisc.edu/mailplus">
+    https://apps.google.wisc.edu/mailplus
+   </a>
+  </li>
+ </ul>
+</div>

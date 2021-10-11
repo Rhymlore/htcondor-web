@@ -1,0 +1,74 @@
+---
+title: How To Upgrade The Annex Runtime
+layout: wiki-page
+---
+<div id="content">
+ Amazon Web Services is deprecating support for the Node.js 8.10 runtime,
+used by
+ <strong>
+  condor_annex
+ </strong>
+ .  If you ran the
+ <strong>
+  condor_annex
+ </strong>
+ setup
+command with a version of HTCondor before 8.8.7 or 8.9.5, you should update your account to use the new runtime.  Accounts setup with version 8.8.7 and 8.9.5 (or later) of HTCondor will use the new runtime.  To update an already-setup account, follow the instructions below.
+ <p>
+ </p>
+ <hr/>
+ We've provided a small Python script,
+ <strong>
+  upgrade-runtime.py
+ </strong>
+ to update your account for you.
+ <p>
+ </p>
+ <ol>
+  <li>
+   Log into the machine where you run
+   <strong>
+    condor_annex
+   </strong>
+   .  If you can't run condor_annex immediately after logging in, do whatever you do so that you can, and then proceed to the next step.
+  </li>
+  <li>
+   Run
+   <div class="code">
+    <pre class="code">pip install --user boto3</pre>
+   </div>
+   This installs a Python library, if it isn't already present, needed by the script.
+  </li>
+  <li>
+   Download the script:
+   <div class="code">
+    <pre class="code">wget https://htcondor-wiki.cs.wisc.edu/index.cgi/attach_get/1032/upgrade-runtime.py</pre>
+   </div>
+  </li>
+  <li>
+   Run it:
+   <div class="code">
+    <pre class="code">python2 ./upgrade-runtime.py</pre>
+   </div>
+  </li>
+ </ol>
+ <p>
+  If the script reports a failure, contact us for assistance.
+ </p>
+ <h3>
+  Attachments:
+ </h3>
+ <blockquote>
+  <ul>
+   <li>
+    <a href="attach_get/1032/upgrade-runtime.py">
+     upgrade-runtime.py
+    </a>
+    3487 bytes added by tlmiller on 2019-Nov-25 22:22:05 UTC.
+    <br/>
+    A script to help users update the condor_annex runtime on AWS.
+    <br/>
+   </li>
+  </ul>
+ </blockquote>
+</div>

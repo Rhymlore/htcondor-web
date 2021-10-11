@@ -1,0 +1,98 @@
+---
+js_extension:
+    -   src: "https://unpkg.com/lunr/lunr.js"
+        loading:
+    -   src: "/assets/js/tickets.js"
+        loading: "defer"
+
+css_extension:
+    -   href: "/assets/css/search_bar.css"
+
+layout: container-default
+---
+
+<h2>Ticket Archive</h2>
+<div class="row mb-4">
+    <div class="col-6">
+        <div id="search-bar" class="search-bar" hidden>
+            <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Search Tickets</span>
+                <input id="ticket-search" type="text" class="form-control" aria-describedby="inputGroup-sizing-lg">
+            </div>
+            <div id="results-dropdown" class="results-dropdown w-100">
+                <div id="search-results" class="mb-4"></div>
+            </div>
+        </div>
+        <div id="search-loading">
+            <div class="row">
+                <div class="col-auto">
+                    Search Loading...
+                </div>
+                <div class="col">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="ticket" class="" hidden>
+    <h2 id="title"></h2>
+    <div id="description"></div>
+
+    <h3>Remarks:</h3>
+    <div id="remarks"></div>
+
+    <h3>Properties:</h3>
+    <div id="properties" class="row mb-4">
+        <div class="col-12 col-md-6">
+            <table>
+                <tr><th>Type:</th><td id="type"></td></tr>
+                <tr><th>Status:</th><td id="status"></td></tr>
+                <tr><th>Fixed Version:</th><td id="fixed-version"></td></tr>
+                <tr><th>Priority:</th><td id="priority"></td></tr>
+                <tr><th>Assigned To:</th><td id="assigned-to"></td></tr>
+                <tr><th>Creator:</th><td id="creator"></td></tr>
+                <tr><th>Customer Group:</th><td id="customer-group"></td></tr>
+                <tr><th>Notify:</th><td id="notify"></td></tr>
+            </table>
+        </div>
+        <div class="col-12 col-md-6">
+            <table>
+                <tr><th>Last Change:</th><td id="last-change"></td></tr>
+                <tr><th>Created:</th><td id="created"></td></tr>
+                <tr><th>Broken Version:</th><td id="broken-version"></td></tr>
+                <tr><th>Subsystem:</th><td id="subsystem"></td></tr>
+                <tr><th>Derived From:</th><td id="derived-from"></td></tr>
+                <tr><th>Rust:</th><td id="rust"></td></tr>
+                <tr><th>Visibility:</th><td id="visibility"></td></tr>
+                <tr><th>Due Date:</th><td id="due-date"></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="derived-tickets">
+        <h3>Derived Tickets:</h3>
+        <div id="derived-tickets-content"></div>
+    </div>
+
+    <div id="check-ins">
+        <h3>Check Ins:</h3>
+        <div id="check-ins-content"></div>
+    </div>
+
+    <div id="attachments">
+        <h3>Attachments:</h3>
+        <div id="attachments-content"></div>
+    </div>
+</div>
+
+
+
+
+

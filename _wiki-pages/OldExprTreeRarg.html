@@ -1,0 +1,15 @@
+---
+title: Old Expr Tree Rarg
+layout: wiki-page
+---
+<div id="content">
+ Most or all of the callsites for RArg() are obtaining the attribute value in an assignment operation. In new
+ <span class="quote">
+  ClassAds
+ </span>
+ , the attribute name and value are kept separate and the
+ <span class="quote">
+  ExprTree
+ </span>
+ is only the value. The callsites will have to be updated to reflect this.
+</div>

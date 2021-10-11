@@ -1,0 +1,178 @@
+---
+title: Heterogeneous Submit Batch
+layout: wiki-page
+---
+<div id="content">
+ Here are two methods for enabling heterogeneous submission of jobs.  These are jobs that may run on a variety of platforms, such as both Windows and Linux.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  If Perl is available on all execute hosts
+ </h3>
+ <p>
+  A single batch script can be defined to work on all Windows and Linux machines.  If Perl is available on all potential execute machines, then depend on it, and write a Perl batch script.  Name the script with the extension
+  <code>
+   .pl
+  </code>
+  , and Windows machines will use this extension to identify and run it as a Perl script. The first line of the Perl script will have
+  <code>
+   #!
+  </code>
+  , letting Linux machines know what to do.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  TJ's shabang hack
+ </h3>
+ <p>
+  Three parts to this set up make it work:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Create a small Windows console application that returns 0. Name this application
+   <code>
+    #!.exe
+   </code>
+   <br/>
+   <br/>
+   Here is C++ source, assuming it is named
+   <code>
+    success.cpp
+   </code>
+   , that can be compiled to produce
+   <code>
+    #!.exe
+   </code>
+   :
+   <div class="code">
+    <pre class="code">// Force the linker to include KERNEL32.LIB
+#pragma comment(linker, "/defaultlib:kernel32.lib")
+extern "C" void __stdcall ExitProcess(unsigned int uExitCode);
+extern "C" void __cdecl begin( void ) { ExitProcess(0); }
+</pre>
+   </div>
+   <br/>
+   This code could be compiled with the Microsoft C++ compiler like this
+   <div class="verbatim">
+    <pre>  cl success.cpp /link /subsystem:console /entry:begin kernel32.lib
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Send file
+   <code>
+    #!.exe
+   </code>
+   along with the job.
+Assuming that this file is in the current working directory at
+submission, the submit description file will contain
+   <div class="code">
+    <pre class="code">  should_transfer_files = IF_NEEDED
+  transfer_input_files = #!.exe
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   The following batch script, named with a
+   <code>
+    .bat
+   </code>
+   extension,
+becomes the executable:
+   <div class="code">
+    <pre class="code">#!/bin/bash
+#!&amp;&amp; @goto windows_part
+
+echo 'Linux'
+ls -l
+
+exit 0
+:windows_part
+@echo off
+
+@echo Windows
+dir
+
+</pre>
+   </div>
+   <br/>
+   On Linux, this works as a normal bash script; the
+   <code>
+    exit 0
+   </code>
+   stops the script before it gets to the label
+   <code>
+    windows_part
+   </code>
+   .
+What Windows sees is a
+   <code>
+    .bat
+   </code>
+   file, so it runs in the command shell.
+The first line is
+   <code>
+    #!/bin/bash
+   </code>
+   ,
+and Windows interprets that line as:
+   <em>
+    run the program
+   </em>
+   <code>
+    #!.exe
+   </code>
+   <em>
+    and pass it
+   </em>
+   <code>
+    /bin/bash
+   </code>
+   <em>
+    as arguments.
+   </em>
+   The second line is
+   <code>
+    #!&amp;&amp; @goto windows_part
+   </code>
+   ,
+which Windows interprets  as:
+   <em>
+    run the program
+   </em>
+   <code>
+    #!
+   </code>
+   ,
+   <em>
+    and if it succeeds,
+goto the
+   </em>
+   <code>
+    windows_part
+   </code>
+   <em>
+    label in this script.
+   </em>
+  </li>
+ </ul>
+ <p>
+  So, you have one script, that contains both Linux and Windows commands.
+It works on Windows as long as you have the program named
+  <code>
+   #!.exe
+  </code>
+  in the current directory (or in the path) that returns success.
+ </p>
+</div>

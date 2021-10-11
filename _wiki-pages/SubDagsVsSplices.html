@@ -1,0 +1,422 @@
+---
+title: Sub Dags Vs Splices
+layout: wiki-page
+---
+<div id="content">
+ This document is an explanation of why you might want to use the DAGMan
+ <em>
+  external sub-DAG
+ </em>
+ and
+ <em>
+  splice
+ </em>
+ features, and which one you might want to use in a particular situation.  (See
+ <a class="external" href="http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html#SECTION003108900000000000000">
+  http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html#SECTION003108900000000000000
+ </a>
+ and
+ <a class="external" href="http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html#SECTION0031081000000000000000">
+  http://research.cs.wisc.edu/htcondor/manual/v8.5/2_10DAGMan_Applications.html#SECTION0031081000000000000000
+ </a>
+ for detailed information about external sub-DAGs and splices,
+respectively.)
+ <p>
+  <strong>
+   When should I use one of these features?
+  </strong>
+ </p>
+ <p>
+  Both external sub-DAGs and splices allow you to compose a large workflow from
+various sub-pieces that are defined in individual DAG files.  This is the
+basic motivation for using either external sub-DAGs or splices:  you want to
+create a single workflow from a number of DAG files, either because the
+smaller DAG files already exist, or because it's easier to deal with
+sub-parts of the workflow.  (One use case might be that you have sub-workflows
+that you want to combine in different ways to make different overall
+workflows.)
+ </p>
+ <p>
+  Some reasons to use external sub-DAGs or splices:
+ </p>
+ <ul>
+  <li>
+   Create a workflow from separate sub-workflows
+  </li>
+  <li>
+   Dynamically create parts of the workflow (external sub-DAGs only)
+  </li>
+  <li>
+   Re-try multiple nodes as a unit (external sub-DAGs only)
+  </li>
+  <li>
+   Short-circuit parts of the workflow (external sub-DAGs only)
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Feature comparison
+  </strong>
+ </p>
+ <p>
+  Here's a table comparing external sub-DAGs and splices.  Note that the bold entries are the ones that are advantageous for a given feature.
+ </p>
+ <p>
+  <table border="1" cellspacing="0">
+   <tbody>
+    <tr>
+     <td>
+      <strong>
+       Feature
+      </strong>
+     </td>
+     <td>
+      <strong>
+       External sub-DAGs
+      </strong>
+     </td>
+     <td>
+      <strong>
+       Splices
+      </strong>
+     </td>
+     <td>
+      <strong>
+       Notes
+      </strong>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to incorporate separate sub-workflow files
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Rescue DAG(s) created upon failure
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      DAG recovery (e.g., from submit machine crash)
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Creates multiple DAGMan instances in the queue
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+      <strong>
+       no
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Possible combinatorial explosion of dependencies (see below)
+     </td>
+     <td>
+      <strong>
+       no
+      </strong>
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+      Until we implement socket nodes for splices
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Sub-workflow files must exist at submission
+     </td>
+     <td>
+      <strong>
+       no
+      </strong>
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      PRE/POST scripts allowed on sub-workflows
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+      Until we implement socket nodes for splices
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to retry sub-workflows
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Job/script throttling applies across entire workflow
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Separate job/script throttles for each sub-workflow
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Node categories can apply across entire workflow
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to set priority on sub-workflows as nodes
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to reduce workflow memory footprint
+     </td>
+     <td>
+      <strong>
+       yes?
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+      If used properly
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to have separate final nodes in sub-workflows
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to abort sub-workflows individually
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to associate variables with sub-workflow nodes
+     </td>
+     <td>
+      <strong>
+       yes
+      </strong>
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Ability to configure sub-workflows individually
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+      no
+     </td>
+     <td>
+      Can be good or bad
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Separate node status files, etc., for sub-workflows
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+      <strong>
+       no
+      </strong>
+     </td>
+     <td>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      A single halt file or condor_hold suspends the entire workflow
+     </td>
+     <td>
+      <strong>
+       no
+      </strong>
+     </td>
+     <td>
+      yes
+     </td>
+     <td>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </p>
+ <p>
+  <strong>
+   Possible combinatorial explosion of dependencies
+  </strong>
+ </p>
+ <p>
+  When one splice is the immediate parent of another splice, it is possible for
+an extremely large number of dependencies to be created.  This is because
+every "terminal" node of the parent splice becomes a parent of every "inital"
+node in the child splice.  So, for example, if the parent splice has 1000
+"terminal" nodes and the child splice has 1000 "initial" nodes, 1 million dependencies will be created.  (A "terminal" node is a node that has no
+children within its splice; and an "initial" node is a node that has no
+parents within its splice.)
+ </p>
+ <p>
+  <strong>
+   Should I use external sub-DAGs or splices?
+  </strong>
+ </p>
+ <p>
+  The simple answer is that, unless you need one of the features that's
+available with external sub-DAGs but not with splices (see the table above), you should use splices.
+Splices are generally simpler and have less overhead than external sub-DAGs
+(unless the workflow is specifically designed to minimize the external
+sub-DAG overhead).
+Also, workflow-wide throttling is generally more useful than separate
+throttles for sub-parts of the workflow.
+ </p>
+ <p>
+  <strong>
+   How to use external sub-DAGs to reduce workflow memory footprint
+  </strong>
+ </p>
+ <p>
+  (Coming soon!)
+ </p>
+ <p>
+  Note:  This document is valid for HTCondor version 8.5.5.
+ </p>
+</div>

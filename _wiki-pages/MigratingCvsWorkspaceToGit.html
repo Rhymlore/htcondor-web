@@ -1,0 +1,53 @@
+---
+title: Migrating Cvs Workspace To Git
+layout: wiki-page
+---
+<div id="content">
+ During the transition period between CVS and GIT, developers will have CVS workspaces which contain changes that have to be moved over to a git workspace. Currently, the HTCondor source code CVS repository is frozen and in read only mode. So what you do is this:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Prepare the our code in the CVS workspace we have
+$ cd /old/cvs/workspace
+
+# If your workspace was behind the times, then this will update it to where
+# the CVS repository was frozen.
+$ cvs update
+
+# resolve any conflicts
+
+# cd to the toplevel (containing config/ src/ imake/ etc.) directory and
+# produce a patch file
+$ cvs -q diff -u &gt;&amp; cdiff
+
+# edit the top of the patch file to remove any lines denoted with ?
+$ vim ....
+
+# prepare a git repository (as in previous stages in this tutorial) and
+# ensure that you've checked out the corresponding branch as from the workspace
+# you are getting your changes.
+$ git clone /p/condor/repository/CONDOR_SRC.git
+$ git branch &lt;your_branch&gt; origin/&lt;your_branch&gt;
+$ git checkout &lt;your_branch&gt;
+
+# then copy the cdiff file to the toplevel of the git workspace
+$ cp /old/cvs/workspace/cdiff ./CONDOR_SRC
+
+# Then patch the workspace using GNU patch
+$ cd ./CONDOR_SRC
+$ patch -p0 &lt; cdiff
+
+# If any of the patches do not apply cleanly, resolve conflicts.
+
+# At this point check the diffs to ensure you changed what you thought you
+# changed. Do be careful to get this correct.
+$ git diff
+
+# Then commit your changes
+$ git commit -a
+
+# and push
+$ git push
+</pre>
+ </div>
+</div>

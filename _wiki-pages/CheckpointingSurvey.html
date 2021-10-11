@@ -1,0 +1,75 @@
+---
+title: Checkpointing Survey
+layout: wiki-page
+---
+<div id="content">
+ This is just notes on checkpointing options, both that exist for Condor and in other systems:
+ <p>
+ </p>
+ <ul>
+  <li>
+   HTCondor's standard universe: Links in a custom library that replaces system calls with wrapped versions so state can be saved; checkpoints (and restores) inside of a signal handler.
+  </li>
+  <li>
+   <a class="external" href="http://dmtcp.sourceforge.net/">
+    DMTCP (Distributed MultiThreaded CheckPointing
+   </a>
+   (See
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/DmtcpCondor' | relative_url }}" title="Dmtcp Condor">
+     DmtcpCondor
+    </a>
+   </span>
+   ): Uses ptrace(?)
+  </li>
+  <li>
+   <a class="external" href="http://criu.org">
+    CRIU (Checkpoint/Restore In Userspace)
+   </a>
+   - See also
+   <a class="external" href="https://lwn.net/Articles/525675/">
+    This LWN article
+   </a>
+   : Some kernel changes
+  </li>
+  <li>
+   <a class="external" href="https://ftg.lbl.gov/projects/CheckpointRestart/">
+    BLCR (Berkeley Lab Checkpoint/Restart)
+   </a>
+   : requires kernal changes
+  </li>
+  <li>
+   <a class="external" href="https://ckpt.wiki.kernel.org/index.php/Main_Page">
+    c/r (Linux Checkpoint/Restart)
+   </a>
+   - No news since 2010.
+   <a class="external" href="https://lwn.net/Articles/375855/">
+    LWN article
+   </a>
+  </li>
+  <li>
+   <a class="external" href="http://cryopid.berlios.de/">
+    CryoPID
+   </a>
+   - No news since 2005
+  </li>
+  <li>
+   <a class="external" href="http://checkpointing.org/">
+    Checkpointing
+   </a>
+   -List of others, circa 2011
+  </li>
+  <li>
+   <a class="external" href="http://openvz.org/Main_Page">
+    OpenVZ
+   </a>
+   - Check on. May be built on CRIU
+  </li>
+  <li>
+   <a class="external" href="http://systems.cs.columbia.edu/projects/zap/">
+    ZAP
+   </a>
+   - Circa 2008
+  </li>
+ </ul>
+</div>

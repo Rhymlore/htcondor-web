@@ -1,0 +1,70 @@
+---
+title: How To Set User Priority
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to set user priority factors automatically by domain or other username pattern
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  Suppose you have a HTCondor pool that runs jobs from several different groups of users who submit their jobs from different domains: physics.wisc.edu, biology.wisc.edu, and chemistry.wisc.edu.  Further suppose that there is an agreement between these departments about what their relative priority should be in the HTCondor pool.  How can you implement it?
+ </p>
+ <p>
+  First, you must answer this question: do you want each department to get an agreed-upon share of the pool?  If so, you probably instead want to use
+  <span class="quote">
+   Group Accounting
+  </span>
+  .  If you really do want to adjust the user priority factors of individual users submitting from the different domains, then read on.
+ </p>
+ <p>
+  In the simple case where there are just two domains, there is a built-in method in the HTCondor configuration file that lets you boost the priority factor of all domains but one:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">ACCOUNTANT_LOCAL_DOMAIN = "physics.wisc.edu"
+# prio factor for users in "physics.wisc.edu" domain:
+DEFAULT_PRIO_FACTOR = 1.0
+# prio factor for everyone else:
+REMOTE_PRIO_FACTOR = 10.0
+</pre>
+ </div>
+ <p>
+  In the more general case where you want to set the priority factor in different ways for several domains or user name patters, there is no built-in method in the HTCondor configuration.  You can either adjust priority factors manually with condor_userprio or automate this process with a script (to be run periodically by HTCondor or cron).  Here is an example script:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+
+condor_userprio -allusers | awk '/@/{print $1} {}' | while read user
+do
+  factor=1
+  case "$user" in
+    ( *@physics.wisc.edu ) factor=1 ;;
+    ( *@biology.wisc.edu ) factor=10 ;;
+    ( *@chemistry.wisc.edu ) factor=100 ;;
+  esac
+  condor_userprio -setfactor $user $factor
+done
+</pre>
+ </div>
+ <p>
+  Be aware that if you run such a script, then any modifications to user priorities that you make manually with condor_userprio will be overwritten by the script when it runs!
+ </p>
+ <p>
+  Since a user may show up and claim machines before this script runs and adjusts their priority factor, you might way want to set the default priority factor quite high (i.e. very bad priority).  This will prevent them from getting many resources until their factor is adjusted:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">DEFAULT_PRIO_FACTOR = 100000
+REMOTE_PRIO_FACTOR = 100000
+</pre>
+ </div>
+</div>

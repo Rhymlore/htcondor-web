@@ -1,0 +1,73 @@
+---
+title: Avoiding Black Holes
+layout: wiki-page
+---
+<div id="content">
+ This recipe is known to work with HTCondor 6.6
+ <p>
+  A common problem is when some execute machine is misconfigured or broken in such a way that it still accepts HTCondor jobs, but can't run them correctly.  If jobs exit quickly on this kind of machine, it can quickly eat many of the jobs in your queue.  We call this a "black hole" machine.  Some conditions observed to cause black holes are documented
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BlackHoleConditions' | relative_url }}" title="Black Hole Conditions">
+    in this wiki
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  To work around black hole machines, you can do the following in your job submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">match_list_length = 5
+</pre>
+ </div>
+ <p>
+  This tells HTCondor to save the last five machine names in your job ad in the following attributes:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">LastMatchName0 = "current-machine"
+LastMatchName1 = "next-most-recent-Name"
+LastMatchName2 = "next-next-most-recent-Macine"
+...
+</pre>
+ </div>
+ <p>
+  You can then tell HTCondor that if a job is requeued, not to retry it on a recent machine -- note this starts with LastMatch1, not 0, which is the current machine:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">Requirements = target.name =!= LastMatchName1 &amp;&amp; target.name =!= LastMatchName2 ...
+</pre>
+ </div>
+ <p>
+  One problem with this solution is that the
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/LastMatchName' | relative_url }}" title="Last Match Name">
+    LastMatchName
+   </a>
+  </span>
+  attributes contain the slot number.  Usually, a black hole machine has problems across all slots in one machine.  The following recipe works for HTCondor 7.6 and later, but avoids the slot problem
+ </p>
+ <p>
+  Add the following line to your submit file
+ </p>
+ <div class="code">
+  <pre class="code">job_machine_attrs = Machine
+job_machine_attrs_history_length = 5
+requirements = target.machine =!= MachineAttrMachine1 &amp;&amp; target.machine =!= MachineAttrMachine2
+</pre>
+ </div>
+ <p>
+  You may also the the
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/HowToAutoRetryElsewhere' | relative_url }}" title="How To Auto Retry Elsewhere">
+    HowToAutoRetryElsewhere
+   </a>
+  </span>
+  recipe of interest.
+ </p>
+</div>

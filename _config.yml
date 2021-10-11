@@ -15,6 +15,10 @@ collections:
     output: true
     permalink: /security/vulnerabilities/:path/
     layout: vulnerabilities
+  wiki-pages:
+    permalink: /wiki-archive/pages/:path/
+    output: true
+
 
 defaults:
   -

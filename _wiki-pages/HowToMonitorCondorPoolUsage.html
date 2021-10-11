@@ -1,0 +1,41 @@
+---
+title: How To Monitor Condor Pool Usage
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to monitor HTCondor pool usage
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to see accumulated usage per user
+ </h3>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_userprio -usage -allusers
+</pre>
+ </div>
+ <p>
+  If you want to track usage over time, one way is to save the results from the above command periodically (e.g. every day) and then build reports from this historical data.  Some working scripts that do this (used on the Wisconsin GLOW pool) may be found
+  <a class="external" href="http://www.hep.wisc.edu/~dan/condor_usage/">
+   here
+  </a>
+  .
+ </p>
+ <p>
+  The
+  <a class="external" href="http://www.cs.wisc.edu/condor/manual/v7.0/3_2Installation.html#SECTION00428000000000000000">
+   CondorView
+  </a>
+  tool may be used to interactively view historical statistics for a queue.
+ </p>
+</div>

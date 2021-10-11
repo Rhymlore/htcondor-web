@@ -1,0 +1,105 @@
+---
+title: Plan To Replace Grid Community Toolkit
+layout: wiki-page
+---
+<div id="content">
+ <span class="subsection">
+  <h3>
+   Plan to replace Grid Community Toolkit functionality in the HTCondor Software Suite
+  </h3>
+ </span>
+ <p>
+  The HTCondor Software Suite (HTCSS) is working to retire the use of the
+  <a class="external" href="https://gridcf.org/gct-docs/">
+   Grid Community  Toolkit
+  </a>
+  libraries (or GCT, which is a fork of the former Globus Toolkit).  The functionality provided by the GCT is rapidly being replaced by the use of IDTOKENS,
+  <span class="quote">
+   SciTokens
+  </span>
+  , and plain SSL within the ecosystem.  Currently, HTCSS uses these libraries for:
+ </p>
+ <ul>
+  <li>
+   Grid jobs submitted to GRAM endpoints
+  </li>
+  <li>
+   Grid jobs submitted to CREAM endpoints
+  </li>
+  <li>
+   Grid jobs submitted to the ARC CE
+  </li>
+  <li>
+   GSI authentication
+  </li>
+  <li>
+   Proxy delegation
+  </li>
+ </ul>
+ <p>
+  The Center for High Throughput Computing plans to gradually reduce use of GCT with support fully ending before 1 January 2023; at that point, only proxy delegation and ARC CE submission (through the REST API) will be supported.  Major planned milestones in this timeline include:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   April 2021: HTCondor 9.0.0 is released marking the start of the a new release series, which will continue with full GCT support
+   <em>
+    except
+   </em>
+   that CREAM and GRAM support will be dropped.
+  </li>
+  <li>
+   May 2021: HTCondor 9.1.x is released with the following changes:
+   <ul>
+    <li>
+     Enables the use of the new ARC CE REST interface without GCT.
+    </li>
+   </ul>
+  </li>
+  <li>
+   July 2021: HTCondor 9.1.x will include the following changes:
+   <ul>
+    <li>
+     Performs proxy delegation without GCT.
+    </li>
+    <li>
+     Removes GSI from default list of authentication methods in both HTCondor and HTCondor-CE (note: GSI will still be available via explicitly configuring
+     <code>
+      AUTHENTICATION_METHODS
+     </code>
+     )
+    </li>
+    <li>
+     Warnings printed to stderr if GSI used by tools.
+    </li>
+    <li>
+     Warnings printed in logs if GSI used by daemons.
+    </li>
+   </ul>
+  </li>
+  <li>
+   October 2021: HTCondor 9.3.0 default build has GCT removed (i.e. binaries distributed will not include GCT).
+   <ul>
+    <li>
+     GSI authentication between HTCondor daemons and tools will no longer work.
+    </li>
+    <li>
+     Submission to the ARC CE gridftp interface will no longer work (grid universe type 'nordugrid').
+    </li>
+   </ul>
+  </li>
+  <li>
+   Mar 2022: HTCondor 10.0.0 is released with GCT removed.
+  </li>
+  <li>
+   Sep 2022: Support for HTCondor 9.0.x release series ends. No supported HTCondor code relies on GCT.
+  </li>
+ </ul>
+ <p>
+  CHTC is interested in feedback on the above timeline and in working with HTCSS stakeholders to build a transition plan.
+ </p>
+ <p>
+  As a critical security library, we depend on external support for the GCT.  If the external maintenance for GCT security patches ends earlier than the HTCondor support, the above timeline may need to shorten or the support policy adjusted.
+ </p>
+</div>

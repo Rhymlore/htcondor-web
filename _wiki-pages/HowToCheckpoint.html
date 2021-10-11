@@ -1,0 +1,30 @@
+---
+title: How To Checkpoint
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to checkpoint vanilla universe jobs
+  </h2>
+ </span>
+ <p>
+  HTCondor's standard universe provides automatic checkpointing so that jobs can resume from where they left off when interrupted.  However, not all jobs can be linked with the standard universe libraries.  One very nice solution to checkpointing vanilla universe jobs is described by the University of Cambridge eScience Centre
+  <a class="external" href="http://www.escience.cam.ac.uk/projects/camgrid/blcr.html">
+   here
+  </a>
+  .
+ </p>
+ <p>
+  There is also always the least fancy checkpoint solution: have the job save it's own state so that it can restart from where it left off.  This requires extra work on the part of the application developer, but it is sometimes quite a bit more efficient than an automatic checkpoint solution that saves the entire contents of the job's memory.  If you recommend this option to a user, keep in mind the following: if the job is using HTCondor's file transfer mode, and there is any chance of the job being preempted, then the user should set the following in the submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">when_to_transfer_output = ON_EXIT_OR_EVICT
+</pre>
+ </div>
+ <p>
+  For this to work, the job should intercept HTCondor's soft-kill signal (SIGTERM), save its state, and exit before HTCondor's KILL expression gives up and hard-kills the job (default 10 minutes).  If the job consists of more than one process (e.g. a shell script that runs some other program), then the kill signal must be intercepted by the parent process, which should do whatever is appropriate, such as sending the kill signal to its child process, so that the child knows to save state and shut down.
+ </p>
+</div>

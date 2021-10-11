@@ -1,0 +1,93 @@
+---
+title: How To Run One Command On Each Machine
+layout: wiki-page
+---
+<div id="content">
+ Running a single command on every machine in the pool can be accomplished by submitting a set of HTCondor jobs using a single submit description file of the following form:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = X
+requirements = TARGET.name == MY.TargetSlot
+
++TargetSlot = "slot1@machine1"
+queue
+
++TargetSlot = "slot1@machine2"
+queue
+
++TargetSlot = "slot1@machine3"
+queue
+
+ .
+ .
+ .
+
+</pre>
+ </div>
+ <p>
+  There will be one  +TargetSlot and one queue command for each machine in the pool.
+ </p>
+ <p>
+  A list of machine names for all machines in the pool may be obtained using the condor_status command:
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -constraint 'SlotID==1' -format "%s\n" Name
+</pre>
+ </div>
+ <p>
+  And, you can have HTCondor do most of the work for you in generating the
+above submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">&gt; cat &lt;&lt;EOF &gt; runit.sub
+universe = vanilla
+executable = X
+requirements = TARGET.name == MY.TargetSlot
+
+EOF
+
+&gt; condor_status -constraint 'SlotID==1' -format '+TargetSlot = "%s"\nqueue\n\n' Name &gt;&gt; runit.sub
+</pre>
+ </div>
+ <p>
+  --
+ </p>
+ <p>
+  If you are ok with different clusters for each job -
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">$ cat do_cmd.sub
+cmd = da_cmd
+requirements = TARGET.SlotId == 1 &amp;&amp; TARGET.Machine == "$(machine)"
+queue
+$ for m in $(condor_status -master); do condor_submit -a machine=$m do_cmd.sub; done
+</pre>
+ </div>
+ <p>
+  If you want it in a single cluster -
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+
+cmd=$1; shift
+args=$@
+
+(
+ echo "cmd = $cmd"
+ echo "args = $args"
+ echo "requirements = TARGET.SlotId == 1 &amp;&amp; TARGET.Machine == My.TargetMachine"
+ for machine in $(condor_status -master); do
+    echo "+TargetMachine = \"$machine\""
+    echo "queue"
+ done
+) | condor_submit
+</pre>
+ </div>
+</div>

@@ -1,0 +1,83 @@
+---
+title: Experimental Panda Monitor
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  This documentation is for EXPERIMENTAL features.
+ </strong>
+ <p>
+  <strong>
+   Both the feature and the documentation are subject to change without notice.
+  </strong>
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Introduction
+ </h2>
+ <p>
+  The PanDA monitor forwards job
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  changes from a schedd to a PanDA monitor's RESTful update interface.  Enabling this feature will add some overhead to the schedd, and an additional process to its machines (where most of the work will be done).
+ </p>
+ <p>
+  This experimental feature consists of two parts: a schedd plug-in and a separate process, the panda daemon.  The former streams updates (without blocking) to the latter, which buffers the stream and periodically sends batched commands (add, update, remove) to the RESTful interface.  Updates will be dropped if the daemon's buffers fill up.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Configuration
+ </h2>
+ <p>
+  This experimental feature is enabled by setting SCHEDD.PLUGIN_DIR or SCHEDD.PLUGINS appropriately.  In many cases, setting SCHEDD.PLUGIN_DIR to $(LIBEXEC) will work, but it's safer to set SCHEDD.PLUGINS to include the plugin binary (panda-plugin.so).
+ </p>
+ <p>
+  The following is a list of configuration settings.
+ </p>
+ <p>
+  PANDA_URL A URL.  Where's the RESTful interface?  No default.
+ </p>
+ <p>
+  PANDAD A path.  Points to the pandad binary and defaults to $(LIBEXEC)/pandad.
+ </p>
+ <p>
+  PANDA_UPDATE_TIMEOUT An integer, in seconds.  How long (forever, if 0) should the panda daemon wait for any particular update to complete before giving up?  (Which causes updates to be lost.)  Defaults to 0.
+ </p>
+ <p>
+  PANDA_QUEUE_SIZE An integer, in bytes.  How large of a buffer should the panda daemon provide?  Defaults to 131072.  Updates may be lost if the buffer is too small.
+ </p>
+ <p>
+  PANDA_QUEUE_GRACE An integer, in seconds.  For how long, in seconds, should the panda daemon continue to accept entries into the buffer after it exceeds PANDA_QUEUE_SIZE?  Useful for dealing with bursty traffic.  Defaults to 3.
+ </p>
+ <p>
+  PANDA_STATISTICS_LOG  A path.  Points to a file on disk where you'd like the panda daemon to occasionally write statistics about its performance.  Mostly for debugging.  Defaults to '/tmp/pandaStatisticsLog'.
+ </p>
+ <p>
+  PANDA_JOB_ATTRIBUTES A space-separated list.  If you only want to send a subset of job attributes, list those attributes in this configuration macro.  No default, but if the macro is unset or empty, the daemon sends all attributes.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Random Thoughts
+ </h2>
+ <p>
+  If you set PANDA_QUEUE_GRACE to one more than PANDA_UPDATE_TIMEOUT, you should only lose that single timed-out connection's updates.
+ </p>
+ <p>
+  Updates happen no more than once a second, although on an idle schedd, they may happen less often.
+ </p>
+ <p>
+  By "updates", the previous sentence means "one ADD command, one UPDATE command, and one REMOVE command" (in that order).  This is probably true elsewhere on this page.
+ </p>
+</div>

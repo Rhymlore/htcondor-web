@@ -1,0 +1,144 @@
+---
+title: How To Shut Down Condor
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to shut down HTCondor without killing jobs
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to shut down a single execute node without killing jobs
+ </h3>
+ <p>
+  Issue the following command from the central manager, or, depending on your security policy, from wherever and as whomever you need to be to issue administrative commands.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -startd -peaceful &lt;hostname&gt;
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to shut down the whole pool without killing any jobs
+ </h3>
+ <p>
+  Initiate a peaceful shutdown of all execute nodes.  Issue the following command from the central manager, or, depending on your security policy, from wherever and as whomever you need to be to issue administrative commands.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -all -startd -peaceful
+</pre>
+ </div>
+ <p>
+  Once condor_status reports that the pool is empty of startds, shut everything else off:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -all -master
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to shut down a submit node after finishing all existing jobs in the queue
+ </h3>
+ <p>
+  Disable new submissions to the schedd by adding the following to the configuration file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">MAX_JOBS_SUBMITTED=0
+</pre>
+ </div>
+ <p>
+  Once all jobs have completed, turn off HTCondor by issuing the following command from the central manager, or, depending on your security policy, from wherever and as whomever you need to be to issue administrative commands.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -schedd -peaceful &lt;hostname&gt;
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to shut down a submit node after finishing all running jobs in the queue
+ </h3>
+ <p>
+  As of HTCondor 7.1.1, you can do this by issuing the following command from the central manager, or, depending on your seucrity policy, from wherever and as whomever you need to be to issue administrative commands.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -schedd -peaceful &lt;hostname&gt;
+</pre>
+ </div>
+ <p>
+  In versions prior to HTCondor 7.1.1, you can put all idle jobs on hold and then wait for the running jobs to finish.  Run the following command as a user with administrative privileges in the queue (e.g. root).
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_hold -constraint 'JobStatus == 1'
+</pre>
+ </div>
+ <p>
+  In this case, you may also wish to disable the submission of new jobs by adding the following to your configuration:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">MAX_JOBS_SUBMITTED=0
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to shut down a submit node temporarily (e.g. to reboot the machine) without waiting for jobs to finish but doing as little damage as possible
+ </h3>
+ <p>
+  Just shut down the schedd normally (graceful shutdown).  Issue the following command from the central manager, or, depending on your seucrity policy, from wherever and as whomever you need to be to issue administrative commands.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_off -schedd &lt;hostname&gt;
+</pre>
+ </div>
+ <p>
+  During graceful shutdown of the schedd, all running standard universe jobs are stopped and checkpointed.  All other jobs are left running (if they have a non-zero
+  <span class="quote">
+   JobLeaseDuration
+  </span>
+  , which is 20 minutes by default).  The schedd gracefully disconnects from them in the hope of being able to later reconnect to the running jobs when it starts back up.  If the lease runs out before the schedd reconnects to the jobs, then they are killed.  Therefore, if you need a longer down time, you should increase the lease.  You can increase the default by adding the following to your HTCondor configuration:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">JobLeaseDuration = 5400
+SUBMIT_EXPRS = $(SUBMIT_EXPRS) JobLeaseDuration
+</pre>
+ </div>
+</div>

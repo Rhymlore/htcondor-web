@@ -1,0 +1,36 @@
+---
+title: Why Windows Hibernation Fails
+layout: wiki-page
+---
+<div id="content">
+ Condor Hibernation support for Windows
+ <p>
+  Details on supported HTCondor power management.
+  <a class="external" href="http://research.cs.wisc.edu/htcondor/manual/v8.3/3_15Power_Management.html">
+   http://research.cs.wisc.edu/htcondor/manual/v8.3/3_15Power_Management.html
+  </a>
+ </p>
+ <p>
+  Windows Caveats
+ </p>
+ <p>
+  Windows hibernation consists of several sleep states S1-S4 with the higher the number meaning the deeper the sleep.  To see what sleep states are supported on your machine please rely on the powercfg.exe tool as this is more accurate than the windows control panel applet for power
+see:
+  <a class="external" href="http://support.microsoft.com/kb/2605795">
+   http://support.microsoft.com/kb/2605795
+  </a>
+  .
+ </p>
+ <p>
+  'powercfg.exe /a'  will examine your machine and report what states are supported.   However even if you have a supported mode that you would like to use there might be hardware or drivers on the system that will prevent hibernation at the desired mode.
+ </p>
+ <p>
+  To get a full report of any conflicts and identify blocking hardware/processess you can run "powercfg.exe /devicequery s1_supported" for each one of the modes and compare the list.
+ </p>
+ <p>
+  If you would like a deeper report of the power capabilites and conflicts please use "powercfg.exe /energy"
+ </p>
+ <p>
+  HTCondor will support the mode requested provided that the hardware supports it and that it is not being hampered by a conflict.
+ </p>
+</div>

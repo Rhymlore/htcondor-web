@@ -1,0 +1,108 @@
+---
+title: Testing Thoughts
+layout: wiki-page
+---
+<div id="content">
+ Changes to release process
+ <ul>
+  <li>
+   How long do we need to run on CSL/NMI/CHTC?
+  </li>
+  <li>
+   How much notice can we give to CSL/NMI/CHTC?
+  </li>
+  <li>
+   We need release notes ahead of beta testers upgrade
+  </li>
+  <li>
+   Can we change the HTCondor release version to include the run id?
+  </li>
+ </ul>
+ <p>
+  Test pool?
+ </p>
+ <ul>
+  <li>
+   Should we run a test pool that we upgrade before the pre-release to NMI/CHTC?
+   <ul>
+    <li>
+     Should NMI have a shadow pool that functions as the test pool?
+    </li>
+   </ul>
+  </li>
+  <li>
+   Maybe NMI should not be running the development series?
+  </li>
+  <li>
+   Can we submit VMs to CHTC?  The VMs can have any version of HTCondor installed
+  </li>
+ </ul>
+ <p>
+  Testing of tarballs:
+ </p>
+ <ul>
+  <li>
+   Still working on integrating the tarball tests in
+  </li>
+  <li>
+   RPM/Deb tests up next
+  </li>
+  <li>
+   Should we do extra manual tests before release checking for things that are hard to automate?  Examples:
+   <ul>
+    <li>
+     Difference in tarball size between this and last version
+    </li>
+    <li>
+     Difference in number of files between this and last version
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  Testing cross version
+ </p>
+ <ul>
+  <li>
+   Should we run a test that validates compatibility between HTCondor releases, esp. point release?
+   <ul>
+    <li>
+     Could we do this in NMI using "parallel" ability?
+    </li>
+    <li>
+     If not automated in NMI what about just doing a manual test before release?
+    </li>
+   </ul>
+  </li>
+ </ul>
+ <p>
+  Platform list
+ </p>
+ <ul>
+  <li>
+   Meet with NMI and HTCondor to get platforms to drop
+  </li>
+  <li>
+   Likely candidates include AIX, HPUX
+  </li>
+ </ul>
+ <p>
+  Improvements to build status page:
+ </p>
+ <ul>
+  <li>
+   Change tasks to be sorted by the order they run (rather than alpha order)
+  </li>
+  <li>
+   Change colors so that tests which have not yet run are not green (make them gray?)
+  </li>
+ </ul>
+ <p>
+  Improvements to builds:
+ </p>
+ <ul>
+  <li>
+   Stop running NMI ports tests on anything except appropriate branch (it currently does not need to run on master or V7_4)
+  </li>
+ </ul>
+</div>

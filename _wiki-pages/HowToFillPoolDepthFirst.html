@@ -1,0 +1,40 @@
+---
+title: How To Fill Pool Depth First
+layout: wiki-page
+---
+<div id="content">
+ This HOWTO gives an example configuration to fill jobs depth-first so all the slots on a machine are used before using another machine.
+ <p>
+  Known to work with HTCondor v8.6.0 or later.
+ </p>
+ <p>
+  Append the following to the condor_config[.local]
+  <strong>
+   on your pool's central manager
+  </strong>
+  node:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Change the value of NEGOTIATOR_PRE_JOB_RANK from the default
+# value (which is mostly best-fit) to a value that will tend to fill up
+# all the slots on a server before moving to another.
+# The expression below states the following:
+#   1) First sort jobs first according to machine rank.
+#   2) Next prefer slots that are unclaimed (idle) over slots
+#      that are already running a job.
+#   3) Next, prefer to use the highest slot number.  This will
+#      fill machines depth first, and is what we are adding here to the default.
+#   4) Finally, to break ties, do best fit on CPU and Memory.
+NEGOTIATOR_PRE_JOB_RANK = (10000000 * My.Rank) + \
+     (1000000 * (RemoteOwner =?= UNDEFINED)) + \
+     (100000 * SlotId) + \
+     (-10000 * Cpus) - Memory
+# If execute nodes are using partitionable slots, SlotId is always
+# equal to 1, so this knob
+# will state we want to fill fill depth first.  See http://tinyurl.com/y75k3k7p
+NEGOTIATOR_DEPTH_FIRST = True
+</pre>
+ </div>
+</div>

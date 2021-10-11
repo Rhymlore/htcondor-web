@@ -1,0 +1,194 @@
+---
+title: Brain Dump Alan De Smet Ht Condor View
+layout: wiki-page
+---
+<div id="content">
+ I developed the HTML/Javascript front end for HTCondor View, the successor to Condor View. It's built on
+ <a class="external" href="https://github.com/apenwarr/afterquery">
+  Afterquery
+ </a>
+ , but is very heavily forked from it now. Todd T is developing the back end.
+ <p>
+  The code is on the master branch, in the "view" subdirectory.
+ </p>
+ <p>
+  While the entire history should be in the master branch, if you want access to the original Git repo it was developed in, see /afs/cs.wisc.edu/u/a/d/adesmet/public/html/view .
+ </p>
+ <p>
+  Tracking ticket:
+  <a class="external" href="https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=5351">
+   https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=5351
+  </a>
+ </p>
+ <p>
+  "Upstream" at the moment is
+  <a class="external" href="https://github.com/AlanDeSmet/afterquery">
+   https://github.com/AlanDeSmet/afterquery
+  </a>
+  ; it's where I've been trying to break things into small pieces in homes of getting them merged into the ultimate upstream at
+  <a class="external" href="https://github.com/apenwarr/afterquery">
+   https://github.com/apenwarr/afterquery
+  </a>
+  .
+  <em>
+   It does not include everything in the local git repo
+  </em>
+  (nor, probably, should it, as the local repo is expected to be very HTCondor specific). As of February 1, 2016, no pull requests have been accepted or acknowledged.
+ </p>
+ <p>
+  Notes on the file format and naming convention are at
+  <span class="ticket">
+   <a class="new" href="../../tickets/?ticket=5412" title="HTCondor View: rolling file name format">
+    #5412
+   </a>
+  </span>
+  : HTCondor View: rolling file name format
+ </p>
+ <p>
+  Files in the view subdirectory:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   index.html  - Full fledged example of usage; multiple graphs on one page.
+   <p>
+   </p>
+  </li>
+  <li>
+   ranger.html - Example of using HTCondorViewRanged (UI for selecting date range).  Requires data created by make-view-test-data.
+   <p>
+   </p>
+  </li>
+  <li>
+   fullscreen.html - Used when you click the "full screen" link for a graph.
+   <p>
+   </p>
+  </li>
+  <li>
+   edit.html   - Used when you click the "edit" link for a graph.
+   <p>
+   </p>
+  </li>
+  <li>
+   syntax.html - Documents writing queries. Linked from edit.html.
+   <p>
+   </p>
+  </li>
+  <li>
+   json.html   - Documents the file format for the data. Linked from edit.html.
+   <p>
+   </p>
+  </li>
+  <li>
+   HTCondor-View.svg - Logo, shown at top of web pages.
+   <p>
+   </p>
+  </li>
+  <li>
+   htcondorview.css - HTCondor View specific formatting.
+   <p>
+   </p>
+  </li>
+  <li>
+   htcondor.css - HTCondor web formatting not specifically for HTCondor View.
+   <p>
+   </p>
+  </li>
+  <li>
+   htcondorview.js - (Almost) all of the Javascript for implementing the graphs.  Includes the objects:
+   <p>
+   </p>
+   <ul>
+    <li>
+     HTCondorView - General display. Built on
+     <span class="wiki">
+      <a class="missing" href="{{ '/wiki-archive/pages/AfterqueryObj' | relative_url }}" title="Afterquery Obj">
+       AfterqueryObj
+      </a>
+     </span>
+     <p>
+     </p>
+    </li>
+    <li>
+     HTCondorViewDataFiles - Internal to HTCondorView; calculates which files to download for a given date range.
+     <p>
+     </p>
+    </li>
+    <li>
+     HTCondorViewRanged - Extension of HTCondorView, adding a UI for selecting a date range.
+     <p>
+     </p>
+    </li>
+    <li>
+     Date extensions - For working with ISO 8601 week-of-year dates.
+     <p>
+     </p>
+    </li>
+    <li>
+     <span class="wiki">
+      <a class="missing" href="{{ '/wiki-archive/pages/AfterqueryObj' | relative_url }}" title="Afterquery Obj">
+       AfterqueryObj
+      </a>
+     </span>
+     - Graphing library. Based on Afterquery, but with an object oriented interface.
+     <p>
+     </p>
+    </li>
+    <li>
+     <span class="wiki">
+      <a class="missing" href="{{ '/wiki-archive/pages/HeatGrid' | relative_url }}" title="Heat Grid">
+       HeatGrid
+      </a>
+     </span>
+     - Adds support for heatgrid graphs.
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   postscript.js - Used to detect success or failure of JSONP loads.  Must be a separate file.
+   <p>
+   </p>
+  </li>
+  <li>
+   make-view-test-data - Creates test data suitable for use with HTCondorViewRange/ranger.html
+   <p>
+   </p>
+  </li>
+  <li>
+   test.html   - Testing various possible data file formats. Relies on data in test-data/
+   <p>
+   </p>
+  </li>
+  <li>
+   test-data/* - Data files for test.html
+   <p>
+   </p>
+  </li>
+  <li>
+   make-date-test - Generates a web page that does a brute force test of ISO 8601 week-of-year date handling.
+   <p>
+   </p>
+  </li>
+  <li>
+   make-test-data - Generates simple test data. Used to create examples in syntax.html, and to create test-data/*
+   <p>
+   </p>
+  </li>
+  <li>
+   date-calc.html - Tests calculations by HTCondorViewDateFiles.  Currently broken.
+   <p>
+   </p>
+  </li>
+  <li>
+   foo.cgi-    - Simple /bin/bash CGI to serve JSON files, adding JSONP wrappers if requested.
+   <p>
+   </p>
+  </li>
+  <li>
+   TODO        - Random notes.
+  </li>
+ </ul>
+</div>

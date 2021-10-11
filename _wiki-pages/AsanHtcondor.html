@@ -1,0 +1,88 @@
+---
+title: Asan Htcondor
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Building, Running and Testing HTCondor with the Address Sanitizer (asan) under Linux
+  </h2>
+ </span>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">NOTE </pre>
+  <pre class="snip">I've only run this with a non-rootly personal condor</pre>
+ </div>
+ <p>
+  <strong>
+   ALSO NOTE
+  </strong>
+  :  asan does not work correctly with the ancient compilers and library packages included with Centos 7!   It is known to work on Fedora 32 and on recent Ubuntu.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   on your build container/server, install asan libraries if not already there; e.g. on Fedora, do
+   <div class="code">
+    <pre class="code">yum install -y libasan
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   cd to a checked out source directory
+   <div class="code">
+    <pre class="code">cd condor
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   mkdir a new binary directory and cd there
+   <div class="code">
+    <pre class="code">mkdir asan
+cd asan
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   configure with -DWITH_ADDRESS_SANITIZER:bool=true, and any other needed cmake options, and make
+   <div class="code">
+    <pre class="code">rm ../CMakeCache.txt
+../configure_uw -DWITH_ADDRESS_SANITIZER:bool=true ..
+make install
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   make a directory for asan to write files to, and start the condor master with ASAN_OPTIONS pointing to this directory:
+   <div class="code">
+    <pre class="code">mkdir /tmp/asan
+ASAN_OPTIONS="log_path=/tmp/asan/condor" condor_master
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Run tests, submit jobs, and condor_off -master.  One file per process will be in /tmp/asan.
+   <p>
+   </p>
+  </li>
+  <li>
+   If brave, run the whole test suite under asan:
+   <div class="code">
+    <pre class="code">ASAN_OPTIONS="log_path=/tmp/asan/condor" ctest
+</pre>
+   </div>
+  </li>
+ </ol>
+</div>

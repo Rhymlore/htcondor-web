@@ -1,0 +1,70 @@
+---
+title: How To Configure Two Node Pool
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   On Linux
+  </h2>
+ </span>
+ <p>
+  Install two instances of condor in two seperate directories on a single machine using condor_config using installation procedure detailed in the manual. Configure them with the following settings:
+ </p>
+ <p>
+  In this guide, condor1 will be a central manager,submit node (COLLECTOR, MASTER, NEGOTIATOR, SCHEDD). condor2 (MASTER, STARTD) will be a execute only node. Configure each of these instances independently.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">//An example config for condor1
+$./condor_configure --install=. --prefix=mycondor1/ --local-dir={dir}/mycondor1/ --type=manager,submit
+//An example config for condor2
+$./condor_configure --install=. --prefix=mycondor2 --local-dir={dir}/mycondor2/ --type=execute
+</pre>
+ </div>
+ <p>
+  In two seperate shells, source each of the shell files in the release directory of condor1 and condor2, respectively.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">$ source condor.sh
+</pre>
+ </div>
+ <p>
+  In each of the condor_config.local (or just condor_config) files set the Lock to different values for each instance.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">LOCK = /tmp/condor-lock.0.317763962390931 %in condor1's config
+
+LOCK = /tmp/condor-lock.0.317763456546765 %in condor2's config</pre>
+ </div>
+ <p>
+  In condor2's local config file, set
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">COLLECTOR_HOST = {mycomputer} </pre>
+ </div>
+ <p>
+  where mycomputer is your machine's name.
+ </p>
+ <p>
+  In condor1's local config file, ensure that COLLECTOR_HOST is set appropriately.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">COLLECTOR_HOST = $(FULL_HOSTNAME)</pre>
+ </div>
+ <p>
+  This links condor2 to the collector of condor1.
+ </p>
+ <p>
+  Both condor instances should now be ready to start and run together.
+ </p>
+</div>

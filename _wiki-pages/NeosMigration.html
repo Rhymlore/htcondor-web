@@ -1,0 +1,287 @@
+---
+title: Neos Migration
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Overview
+  </h2>
+ </span>
+ This wiki provide information about NEOS server migration from ANL to WID/MIR. There are 3 main components that we need to migrate.
+ <ol>
+  <li>
+   NEOS Web Portal and Database
+  </li>
+  <li>
+   NEOS Solvers
+  </li>
+  <li>
+   NEOS Wiki
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Contact Person
+ </h3>
+ <span class="subsubsection">
+  <h4>
+   HTCondor
+  </h4>
+ </span>
+ <ul>
+  <li>
+   Greg Thain
+  </li>
+  <li>
+   Thawan Kooburat
+  </li>
+ </ul>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  ANL
+ </h4>
+ <ul>
+  <li>
+   Jason Sarich - jason.sarich at gmail.com [NEOS Developer]
+  </li>
+  <li>
+   Sven Leyffer - leyffer at mcs.anl.gov [NEOS Wiki]
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Action Items
+ </h3>
+ <ul>
+  <li>
+   Obtain license for AMPL, GAMS and Intel Compilers
+  </li>
+  <li>
+   Test running all solvers on our site
+  </li>
+  <li>
+   Download NEOS documentation and change link to local site
+  </li>
+  <li>
+   Setup rsync to transfer job archive
+  </li>
+  <li>
+   Obtain and import NEOS database dump
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Completed
+ </h3>
+ <ul>
+  <li>
+   Migrated NEOS Wiki
+   <a class="external" href="http://neos2.chtc.wisc.edu/NEOS">
+    http://neos2.chtc.wisc.edu/NEOS
+   </a>
+  </li>
+  <li>
+   Setup testing NEOS site
+   <a class="external" href="http://neos1.chtc.wisc.edu/neos/">
+    http://neos1.chtc.wisc.edu/neos/
+   </a>
+   <ul>
+    <li>
+     Running solvers: HelloNEOS, MINLP, filter
+    </li>
+   </ul>
+  </li>
+  <li>
+   Installed GAMS and AMPL
+  </li>
+  <li>
+   Use HTCondor to manage NEOS daemons
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Development
+ </h3>
+ <ul>
+  <li>
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/NeosDevelop' | relative_url }}" title="Neos Develop">
+     Neos Development Wiki
+    </a>
+   </span>
+  </li>
+ </ul>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Related documents
+ </h3>
+ <ul>
+  <li>
+   NEOS worksheet -
+   <a class="external" href="http://docs.google.com/leaf?id=0B78BChQNqEaqNGQyYWQwNDgtYTcyMS00NTM2LTg1ZTAtYjk0YTA1ZDE3NmM0&amp;hl=en">
+    http://docs.google.com/leaf?id=0B78BChQNqEaqNGQyYWQwNDgtYTcyMS00NTM2LTg1ZTAtYjk0YTA1ZDE3NmM0&amp;hl=en
+   </a>
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Migration Plan
+ </h2>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  NEOS Web Portal Migration
+ </h3>
+ <span class="subsubsection">
+  <h4>
+   Source
+  </h4>
+ </span>
+ <ol>
+  <li>
+   Dump NEOS database
+  </li>
+  <li>
+   Tar job archive area
+  </li>
+  <li>
+   Gather all solver XMLs
+  </li>
+ </ol>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Destination
+ </h4>
+ <ol>
+  <li>
+   Setup the NEOS server
+  </li>
+  <li>
+   Import NEOS database
+  </li>
+  <li>
+   ? Start NEOS scheduler
+  </li>
+  <li>
+   Register all solver from XMLs
+  </li>
+  <li>
+   Extract job archive area
+  </li>
+  <li>
+   ? Start NEOS web portal
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  NEOS Solvers
+ </h3>
+ <span class="subsubsection">
+  <h4>
+   Source
+  </h4>
+ </span>
+ <ol>
+  <li>
+   ?
+  </li>
+ </ol>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Destination
+ </h4>
+ <ol>
+  <li>
+   Start NEOS solver daemons
+  </li>
+ </ol>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  NEOS Wiki
+ </h3>
+ <span class="subsubsection">
+  <h4>
+   Source
+  </h4>
+ </span>
+ <ol>
+  <li>
+   Dump NEOS Wiki database (or tables with NEOS wiki's prefix)
+  </li>
+  <li>
+   Tar flat files in 'wiki' folder
+  </li>
+ </ol>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Destination
+ </h4>
+ <ol>
+  <li>
+   Import NEOS wiki database
+  </li>
+  <li>
+   Restore 'wiki' folder
+  </li>
+ </ol>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  References
+ </h2>
+ <ul>
+  <li>
+   NEOS server setup -
+   <a class="external" href="http://neos.mcs.anl.gov/neos/SolverHowTo.html">
+    http://neos.mcs.anl.gov/neos/SolverHowTo.html
+   </a>
+  </li>
+  <li>
+   Moving Wiki -
+   <a class="external" href="http://www.mediawiki.org/wiki/Manual:Moving_a_wiki">
+    http://www.mediawiki.org/wiki/Manual:Moving_a_wiki
+   </a>
+  </li>
+ </ul>
+</div>

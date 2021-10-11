@@ -1,0 +1,32 @@
+---
+title: Random Wisdom
+layout: wiki-page
+---
+<div id="content">
+ Ben (26 Nov 2008) - From a brief look at the code, is seems that the firewall code looks for the current firewall profile using a simple sleep(10*1000) as a
+polling interval, as you suggested, which it tries WINDOWS_FIREWALL_FAILURE_RETRY times (which defaults to 60 itself) which is 10*1000*60 milliseconds, or 10 minutes. So, if the firewall is off, this would account for the consistent delay in startup.
+ <p>
+  Result - Start/restart HTCondor on Windows more quickly: WINDOWS_FIREWALL_IS_OFF=TRUE
+ </p>
+ <p>
+  Ian Chesal (23 Nov 2008) on statically linking C++:
+  <a class="external" href="http://www.trilithium.com/johan/2005/06/static-libstdc/">
+   http://www.trilithium.com/johan/2005/06/static-libstdc/
+  </a>
+ </p>
+ <p>
+  Doug (16 Sept 2008) on remote dynamic linking:
+  <a class="external" href="http://www.cse.nd.edu/~ccl/software/howto/remotelink.shtml">
+   http://www.cse.nd.edu/~ccl/software/howto/remotelink.shtml
+  </a>
+ </p>
+ <p>
+  Uniform distribution of jobs across physical machines, discussed on condor-users in July 2008:
+  <a class="external" href="https://lists.cs.wisc.edu/archive/condor-users/2008-July/msg00033.shtml">
+   https://lists.cs.wisc.edu/archive/condor-users/2008-July/msg00033.shtml
+  </a>
+ </p>
+ <p>
+  Todd (6 Nov 2008) on input files and $$: As of 7.1.4 pass --disable to condor_submit or add SUBMIT_SKIP_FILECHECKS=TRUE to the submit file
+ </p>
+</div>

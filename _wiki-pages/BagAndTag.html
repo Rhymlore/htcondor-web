@@ -1,0 +1,124 @@
+---
+title: Bag And Tag
+layout: wiki-page
+---
+<div id="content">
+ Every few months, I get grumpy when my "git branch -a" command fills up the screen and it looks like there is a bunch of branches that are not being worked on, or that have been merged, or can otherwise be archived. So, I will move the "dead wood" branches from the branches to tags.
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  What gets bag-n-tagged
+ </h3>
+ I just run a script that looks for branches that are more than 90 days old:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">git for-each-ref --format='%(refname)' refs/remotes/origin | {
+    exp=$(( $(date +'%s') - 7776000 ));
+    while read ref; do
+        if test ${exp} -gt $(git show -s --pretty=format:'%ct' $ref); then
+            echo $ref
+        fi
+    done;
+}
+</pre>
+ </div>
+ <p>
+  I then email htcondor-devel to politely ask if I can bag-n-tag the branches listed.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  When a branch gets bag-n-tagged
+ </h3>
+ I create a tag with the name of the branch, ending in "-tag".  So branch "foo" will get tagged with tag "foo-tag".  I run the following git commands
+ <div class="code">
+  <pre class="code">git tag -a -m "Bag-n-tag branch foo" foo-tag foo # To create the foo-tag tag
+git push origin tag foo-tag # To publish the new tag
+git push origin :refs/heads/foo # To delete the branch
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  How to resurrect a branch
+ </h3>
+ If a branch is overzealously deleted, it is easy to restore.  You may still have the old reference around, so you could run
+ <div class="code">
+  <pre class="code">git push origin refs/remotes/origin/foo:refs/heads/foo
+</pre>
+ </div>
+ to simply copy the old reference back to the condor repository
+ <p>
+  If you have only the tag, you can do the following
+ </p>
+ <div class="code">
+  <pre class="code">git branch foo foo-tag^{}
+git push origin foo:foo
+</pre>
+ </div>
+ to restore the branch.
+ <p>
+  Here is the actual script:
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/bash
+
+GIT_DIR=/p/condor/repository/CONDOR_SRC.git
+export GIT_DIR
+
+bag_n_tag() {
+        trimmed_branch_name=$(echo $1 | sed 's|^refs/remotes/origin/||;s|^refs/heads/||')
+        origin_ref=refs/remotes/origin/${trimmed_branch_name}
+        cat &lt;&lt;TAGCOMMANDS
+git tag -a -m "Bag-n-tag branch ${trimmed_branch_name}" ${trimmed_branch_name}-tag "${origin_ref}" || { echo "Failed to create tag ${trimmed_branch_name}-tag"; exit 1; }
+git push origin tag ${trimmed_branch_name}-tag || { echo "Failed to push tag ${trimmed_branch_name}-tag to origin"; exit 1; }
+git push origin :refs/heads/${trimmed_branch_name} || { echo "Failed to delete branch ${trimmed_branch_name} from origin"; exit 1; }
+TAGCOMMANDS
+echo
+}
+
+ctime=$(date +'%s')
+ctime=$(( $ctime - 7776000 ))
+git for-each-ref refs/heads | while read sha1 type refname
+do
+#       echo $refname
+        branchname=$(if test "$type" != "commit"; then
+                exit 0
+        fi
+# This should never happen, but being paranoid...
+        if echo "$refname" | grep -qE 'refs/tags'; then
+                exit 0;
+        fi
+        commitdate="$(git log --pretty=format:'%ct' -1 $sha1)"
+        if test "$commitdate" -gt "$ctime"; then
+                exit 0;
+        fi
+        echo $refname)
+        if test -n "$branchname"; then
+                bag_n_tag "$branchname"
+        fi
+done
+</pre>
+ </div>
+ The following script accepts output from the above program and produces a readable output that can be emailed to htcondor-devel:
+ <div class="code">
+  <pre class="code">#!/bin/bash
+
+grep '^git tag' | \
+sed 's/.\+refs\/remotes\/origin\//refs\/remotes\/origin\//;s/ ||.\+//' | \
+while read ref; \
+         do echo "${ref##*/} $(git rev-list --count --left-right origin/master...${ref} | awk '{if($2 == "0") print "merged"; else print "unmerged"}') $(git log -1 --pretty=format:'%ct %an' $ref)"; done | \
+sort -k2,2 -k4 | \
+while read branch status authd author; \
+        do printf "%-45s %10s %s %s\n" "$branch" "$status" "$(date -d @$authd +'%F')" "$author";
+done
+</pre>
+ </div>
+</div>

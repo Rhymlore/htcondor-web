@@ -1,0 +1,130 @@
+---
+title: Run Cms Jobs At Bsc
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Running CMS Jobs at BSC via a Shared Filesystem
+  </h2>
+ </span>
+ <p>
+  CMS researchers at PIC (Port d’Informació Científica) are interested in running jobs originating at CERN on the Mare Nostrum system at BSC (Barcelona Supercomputing Center). Access to Mare Nostrum is highly restrictive, particularly with regards to networking. We are experimenting with a solution where jobs are forwarded to Mare Nostrum execute nodes via a shared filesystem link. The approach is outlined in this document:
+ </p>
+ <p>
+  <a class="external" href="https://docs.google.com/document/d/1GGOc3pgidfv_qunaKqzjbvKPF8CD_RF30KkqMtwBC0U/edit?usp=sharing">
+   https://docs.google.com/document/d/1GGOc3pgidfv_qunaKqzjbvKPF8CD_RF30KkqMtwBC0U/edit?usp=sharing
+  </a>
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Implementation Details
+ </h3>
+ <p>
+  We have a working proof-of-concept implementation, which has been tested with 4
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/MareNostrum' | relative_url }}" title="Mare Nostrum">
+    MareNostrum
+   </a>
+  </span>
+  nodes running sleep jobs. Here, we give details of the current code.
+ </p>
+ <p>
+  Machines:
+ </p>
+ <ul>
+  <li>
+   vocms0824.cern.ch: A CMS submit point that flocks to the test pool at PIC.
+  </li>
+  <li>
+   cm05-hpc.pic.es: The central manager for the test pool.
+  </li>
+  <li>
+   htcbridge01.pic.es: Runs the proxy startds that talk with the schedd and actual execute nodes (via filesystem).
+  </li>
+  <li>
+   td513.pic.es: A stand-in execute node to allow testing without any BSC machines.
+  </li>
+  <li>
+   dt01.bsc.es:
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/MareNostrum' | relative_url }}" title="Mare Nostrum">
+     MareNostrum
+    </a>
+   </span>
+   data transfer machine, used for sshfs.
+  </li>
+  <li>
+   mn1.bsc.es:
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/MareNostrum' | relative_url }}" title="Mare Nostrum">
+     MareNostrum
+    </a>
+   </span>
+   login machine, used for Slurm job submission.
+  </li>
+ </ul>
+ <p>
+  All of the code is available under /home/jfrey/bsc_glidein/ on htcbridge01.pic.es. A copy is saved at /afs/cs.wisc.edu/p/condor/workspaces/jfrey/bsc_glidein.tar.gz. It relies on some changes to the condor_starter, which currently sit on an unmerged branch in the HTCondor repository (see
+  <span class="ticket">
+   <a class="active" href="../../tickets/?ticket=6843" title="Allow starter to forward its job to a remote resource for execution">
+    #6843
+   </a>
+  </span>
+  ).
+The Condor binaries used on htcbrid01.pic.es are in /home/jfrey/condor-remoteproc/.The condor_starter (plus libraries) that runs on the
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/MareNostrum' | relative_url }}" title="Mare Nostrum">
+    MareNostrum
+   </a>
+  </span>
+  nodes is pre-installed in /home/ifae96/ifae96618/release_dir/.
+ </p>
+ <p>
+  To run the current system, a user must have accounts on cm05-hpc.pic.es and mn1.bsc.es. They then run the following command on cm05-hpc.pic.es:
+ </p>
+ <ul>
+  <li>
+   /home/jfrey/bsc_glidein/bin/launch_glidein &lt;bsc-username&gt; &lt;node-cnt&gt;
+  </li>
+ </ul>
+ <p>
+  This will create an sshfs mount to BSC, submit a Slurm job at
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/MareNostrum' | relative_url }}" title="Mare Nostrum">
+    MareNostrum
+   </a>
+  </span>
+  , and configure and launch a startd locally.
+ </p>
+ <p>
+  The shut down an instance of the current system, the user should run the following command from the same directory on cm05-hpc.pic.es:
+ </p>
+ <ul>
+  <li>
+   /home/jfrey/bsc_glidein/bin/stop_glidein
+  </li>
+ </ul>
+ <p>
+  This will remove the sshfs mount and stop the Condor daemons. It doesn't remove the Slurm job.
+ </p>
+ <h3>
+  Attachments:
+ </h3>
+ <blockquote>
+  <ul>
+   <li>
+    <a href="attach_get/1062/bsc_glidein.tar.gz">
+     bsc_glidein.tar.gz
+    </a>
+    6699 bytes added by jfrey on 2021-Jun-29 19:16:29 UTC.
+    <br/>
+    Scripts for BSC split-starter setup.
+    <br/>
+   </li>
+  </ul>
+ </blockquote>
+</div>

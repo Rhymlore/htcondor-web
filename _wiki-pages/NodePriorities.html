@@ -1,0 +1,16 @@
+---
+title: Node Priorities
+layout: wiki-page
+---
+<div id="content">
+ This is obsolete!  Needs updates because priorities were simplified a while ago...
+ <p>
+  How priorities are propagated: There are two meanings here---propagation from parent nodes to child nodes, and from parent condor_dagmans to child nested dags.
+ </p>
+ <p>
+  Priorities can be set using the -priority flag to condor_submit_dag or condor_dagman. This is the default priority for all nodes in this dagman. condor_dagman then looks at the PRIORITY value given for a job in the DAGman file; condor_dagman chooses the larger value as the priority of the job. This priority is appended to the condor_submit command by adding a '-append' flag, with associated attribute name and value, to the command. Thus, if condor_dagman assigns a priority to a node, it overrides any "priority = ..." in the submit file. If a nested dag node has a priority, condor_dagman appends that priority to the condor_dagman command line.
+ </p>
+ <p>
+  For propagating from parent to child nodes: When a child job is ready to run, condor_dagman looks at the priority of each of its parents. condor_dagman takes the largest parent priority and then compares it to a PRIORITY command for the node, if given. The larger priority wins, and gets assigned to the child as the priority.
+ </p>
+</div>

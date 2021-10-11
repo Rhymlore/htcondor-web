@@ -1,0 +1,42 @@
+---
+title: How To Disable Fair Sharing
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to disable fair sharing
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  By default, HTCondor adjusts user priorities over time based on how many slots the user claims.  A user who has recently used a lot of the pool will therefore tend to have a worse priority than one who has used it less.
+ </p>
+ <p>
+  If you wish to disable HTCondor's automatic adjustment of user priorities, you can effectively do so with the following configuration setting:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">PRIORITY_HALFLIFE = 1.0e100
+</pre>
+ </div>
+ <p>
+  Then a user's priority will be effectively constant.  Note this means that if all your users have the same priority factor, machines will essentially be assigned in a round-robin manner across all users without regard to how much usage a user received in the past.
+ </p>
+ <p>
+  Of course, you could still adjust the relative priority of users, as usual:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_userprio -setfactor &lt;user1&gt; 10
+condor_userprio -setfactor &lt;user2&gt; 20
+</pre>
+ </div>
+ <p>
+  In the example above, user1 should be able to claim twice as many machines as user2 (because user priorities are inversely proportional to share of the pool).
+ </p>
+</div>

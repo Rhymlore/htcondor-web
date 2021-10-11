@@ -17,14 +17,7 @@ $navbar-light-active-color: $primary;
 }
 
 
-@import 'bootstrap/bootstrap-grid';
-@import 'bootstrap/bootstrap-utilities';
-@import 'bootstrap/bootstrap-reboot';
-@import 'bootstrap/navbar';
-@import 'bootstrap/nav';
-@import 'bootstrap/transitions';
-@import 'bootstrap/alert';
-@import 'bootstrap/tables';
+@import 'bootstrap/bootstrap';
 @import "custom";
 
 #skip-link {

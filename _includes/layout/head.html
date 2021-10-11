@@ -37,6 +37,9 @@
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
+    {% for js in include.js %}
+        <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
+    {% endfor %}
 
     {% if jekyll.environment == 'production' %}
 
@@ -54,5 +57,8 @@
     {% endif %}
 
     <link href="{{ '/assets/css/style-v1.css' | relative_url }}" media="screen, tv, projection" title="Default" rel="stylesheet">
+    {% for css in include.css %}
+        <link href="{{ css.href | relative_url }}" media="screen, tv, projection" title="Default" rel="stylesheet">
+    {% endfor %}
 
 </head>

@@ -1,0 +1,33 @@
+---
+title: Brain Dump Alan De Smet Web Download Stats
+layout: wiki-page
+---
+<div id="content">
+ WWW Page Statistics
+ <p>
+  Downloads made through our web interface (
+  <a class="external" href="https://research.cs.wisc.edu/htcondor/downloads/">
+   https://research.cs.wisc.edu/htcondor/downloads/
+  </a>
+  ) go through a script that logs the download information.  That is outside of the scope of this.
+ </p>
+ <p>
+  Downloads using the Debian/Apt or Yum, however, are not logged.  The CSL will not provide raw logs for privacy reasons. They will email us weekly summaries, which is what we use. Who gets the logs is specified in
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   /afs/cs.wisc.edu/p/condor/public/html/htcondor/debian/.statinfo
+  </li>
+  <li>
+   /afs/cs.wisc.edu/p/condor/public/html/htcondor/yum/.statinfo
+  </li>
+ </ul>
+ <p>
+  condor-admin@cs.wisc.edu is the primary recipient. The messages are caught by /afs/cs.wisc.edu/p/condor/home/rust/scripts/filter_mail and saved into /p/condor/public/license/native-packages.mbox . Assuming everything is working correctly, you can ignore this.
+ </p>
+ <p>
+  As a backup, put your own email address into the .statinfo files. Just archive away the messages as they arrive.
+ </p>
+</div>

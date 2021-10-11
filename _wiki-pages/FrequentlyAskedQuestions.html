@@ -1,0 +1,62 @@
+---
+title: Frequently Asked Questions
+layout: wiki-page
+---
+<div id="content">
+ If you have a new question, enter it on this page and leave the
+ <em>
+  Answer:
+ </em>
+ section blank.  Someone will eventually add text that
+provides an answer.  At least, that's the theory...
+ <p>
+  <em>
+   Question:
+  </em>
+  Can CVSTrac be run in a chroot jail?
+ </p>
+ <p>
+  <em>
+   Answer:
+  </em>
+  See
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/ChrootJailForCvstrac' | relative_url }}" title="Chroot Jail For Cvstrac">
+    ChrootJailForCvstrac
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  <em>
+   Question:
+  </em>
+  I don't want CVSTrac to change my CVSROOT/passwd file. How do I keep it
+from changing that file when I add new users to CVSTrac?
+ </p>
+ <p>
+  <em>
+   Answer:
+  </em>
+  CVSTrac will not change the CVSROOT/passwd file if you turn off
+write permission on that file.  There is also an option under
+the Setup menu that an administrator can use to turn off CVSROOT/passwd
+writing.
+ </p>
+ <p>
+  <em>
+   Question:
+  </em>
+  I have multiple projects in the same CVS repository.  How can I set
+of separate CVSTrac instances for each project?
+ </p>
+ <p>
+  <em>
+   Answer:
+  </em>
+  There is an option under the Setup menu that will cause CVSTrac to
+ignore all files whose names do not match a specified prefix.
+If all of your projects have distinct prefixes, you can use this
+option to restrict each CVSTrac instance to a single project.
+ </p>
+</div>

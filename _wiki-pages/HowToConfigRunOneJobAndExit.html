@@ -1,0 +1,53 @@
+---
+title: How To Config Run One Job And Exit
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to configure HTCondor on a worker node to run one job and then exit
+  </h2>
+ </span>
+ <p>
+  This recipe configures the master and startd on an execute node to exit after the startd runs precisely one job to completion.  This behavior is often desirable in a glide-in situation.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#
+# Tell the master to wait a real long time before restarting the startd,
+# since when the startd exits we don't want to restart it, we want to go
+# away.
+#
+MASTER_BACKOFF_CONSTANT = 999999
+
+#
+# Set CLAIM_WORKLIFE to one second.  This tells the startd to go back
+# to Unclaimed/Idle state after any job that runs for more than one
+# second completes.
+#
+CLAIM_WORKLIFE = 1
+
+#
+# Modify Start expression so we will not accept a second job after
+# the first one completes and the startd goes back to Idle.
+#
+START = (TotalTimeClaimedBusy =?= UNDEFINED || \\
+         TotalTimeClaimedBusy =?= 0 ) \\
+         &amp;&amp;  ( $(START) )
+
+#
+# Shutdown startd if we are currently idle and have ever been busy
+# in the past.
+#
+STARTD.DAEMON_SHUTDOWN = (Activity=="Idle") &amp;&amp; \
+   ((TotalTimeClaimedBusy =!= UNDEFINED) &amp;&amp; (TotalTimeClaimedBusy &gt; 0))
+
+#
+# Shutdown the master if the startd exits.  Note that if
+# STARTD_StartTime is zero, that the startd is not currently running.
+#
+MASTER.DAEMON_SHUTDOWN = (STARTD_StartTime =?= 0)
+</pre>
+ </div>
+</div>

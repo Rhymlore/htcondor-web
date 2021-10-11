@@ -1,0 +1,355 @@
+---
+title: Formatting Wiki Pages
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  Paragraphs
+ </strong>
+ <p>
+  Use one or more blank lines to separate paragraphs.  If the
+first line of a paragraph begins with a tab or with two or
+more spaces, then that whole paragraph is shown verbatim
+(that is, within &lt;pre&gt;...&lt;/pre&gt; markup in HTML.)  The
+formatting rules below do not apply to verbatim paragraphs.
+ </p>
+ <p>
+  <strong class="two">
+   Fonts
+  </strong>
+ </p>
+ <p>
+  Text contained between asterisks is rendered in a
+  <strong>
+   bold font.
+  </strong>
+  If you use two or three asterisks in a row, instead of just
+one, the bold text is also shown in a larger font.
+Text between underscores is rendered in an
+  <em>
+   italic font.
+  </em>
+  Text between equals is rendered in a
+  <code>
+   fixed font.
+  </code>
+  All font markers must start at the beginning of a word and must
+finish at the end of a word within the same paragraph.
+ </p>
+ <p>
+  <strong class="two">
+   Lists
+  </strong>
+ </p>
+ <p>
+  If a line begins with the characters "*:" followed by a space or
+tab, then that line becomes an item in a bullet list.  Similarly,
+if the line begins with "N:" (where N is any number including a
+multi-digit number) then the line becomes an item in an
+enumeration list. Enumeration items are automatically renumbered
+so the values of N do not need to be in accending order.
+ </p>
+ <p>
+  Lines that begin with "_:" are indented like a
+bullet list but do not display the bullet.
+ </p>
+ <p>
+  Make nested lists by adding colons.  For example, to make a
+second level bullet, begin the line with "*::".
+ </p>
+ <p>
+  <strong class="two">
+   Hyperlinks
+  </strong>
+ </p>
+ <p>
+  Links to other pages are created automatically whenever the name
+of another wiki page is mentioned in the text.  (See
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/WikiPageNames' | relative_url }}" title="Wiki Page Names">
+    WikiPageNames
+   </a>
+  </span>
+  .)
+If you want to use alternative text, use the form
+"
+  <span class="quote">
+   {wiki: TITLE TEXT}
+  </span>
+  ".
+If you want to put a
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/CamelCase' | relative_url }}" title="Camel Case">
+    CamelCase
+   </a>
+  </span>
+  word in your text but you do not
+want it to become a hyperlink, enclose the name in
+"
+  <span class="quote">
+   {quote: ...}
+  </span>
+  ".
+ </p>
+ <p>
+  A link to an external website is created for every URL beginning
+with "http:", "https:", "ftp:", or "mailto:".  If the URL ends with
+".jpg", ".jpeg", ".gif", or ".png" then the image that the URL points
+to is displayed inline on the wiki page.  You can also create an
+inline image using markup like this: "
+  <span class="quote">
+   {image: URL}
+  </span>
+  ".
+Using the
+  <span class="quote">
+   {image:...}
+  </span>
+  markup allows the image URL to be
+relative.  This allows an image stored in an
+attachment to be displayed inline.
+ </p>
+ <p>
+  Text of the form
+  <strong>
+   #NNN
+  </strong>
+  where the
+  <strong>
+   NNN
+  </strong>
+  is a valid ticket number
+becomes a hyperlink to the ticket.  Text of the form
+  <strong>
+   [NNN]
+  </strong>
+  where
+  <strong>
+   NNN
+  </strong>
+  is a valid check-in or milestone number becomes a hyperlink
+to that check-in or milestone.  This hyperlinks only work if the
+user has permission to read tickets, check-ins, and/or milestones.
+ </p>
+ <p>
+  A pathname for any file in the repository becomes a hyperlink to its
+"rlog" page. This only works if the user has check-out permissions.
+ </p>
+ <p>
+  To create a hyperlink on arbitrary text, use "
+  <span class="quote">
+   {link: ...}
+  </span>
+  "
+markup.  Any text of the form:  "
+  <span class="quote">
+   {link: URL PHRASE}
+  </span>
+  "
+displays PHRASE as hyperlink to URL.  URL can be an absolute
+URL beginning with a prefix like "http:", or it can be a
+relative URL referring to another page within the same CVSTrac
+server.  For example, to create a link to a report, one might
+write: "
+  <span class="quote">
+   {link: rptview?rn=1 Active Tickets}
+  </span>
+  ".
+ </p>
+ <p>
+  <strong class="two">
+   Horizontal Lines
+  </strong>
+ </p>
+ <p>
+  A horizontal line (the &lt;hr&gt; markup of HTML) is generated
+whenever four or more "-" characters appear on a line by
+themselves.
+ </p>
+ <p>
+  <strong class="two">
+   Tables
+  </strong>
+ </p>
+ <p>
+  A table is created by starting a line with a "|" character, separating each
+cell with a "|", and ending each row with a "|". For example, a 3x3 table is
+created with:
+ </p>
+ <p>
+ </p>
+ <pre>  |cell 1|cell 2|cell 3|
+  |cell 4|cell 5|cell 6|
+  |cell 7|cell 8|cell 9|
+</pre>
+ <p>
+  <strong class="two">
+   Reports
+  </strong>
+ </p>
+ <p>
+  A
+  <a href="reportlist">
+   report
+  </a>
+  can be embedded on any page using the
+"
+  <span class="quote">
+   {report: rn}
+  </span>
+  " markup. A report can have text flow around
+it using the "
+  <span class="quote">
+   {leftreport: rn}
+  </span>
+  " or "
+  <span class="quote">
+   {rightreport: rn}
+  </span>
+  "
+markups. Note that the report number
+  <em>
+   rn
+  </em>
+  is not the same as the order
+in the
+  <a href="reportlist">
+   report listing
+  </a>
+  ; follow the link for the report
+in order to get that.
+ </p>
+ <p>
+  <strong class="two">
+   Other Markup Rules
+  </strong>
+ </p>
+ <p>
+  The special markup "
+  <span class="quote">
+   {linebreak}
+  </span>
+  " will be rendered
+as a line break or hard return.  The content of
+"
+  <span class="quote">
+   {quote: ...}
+  </span>
+  " markup is shown verbatim.
+ </p>
+ <p>
+ </p>
+ <div class="markups">
+  <h3>
+   Custom Markup Rules
+  </h3>
+  <p>
+   The following are custom markup rules implemented
+on this server.
+  </p>
+  <p>
+   The format for the "Fixed Version" and "Broken Version" entries is v070102 (where that represents 7.1.2).  Broken Version is the earliest known version with the problem.  Fixed Version is when the fixed is planned for (new/open/stalled tickets) or when it actually shipped (resolved)
+  </p>
+  <p>
+   <span class="quote">
+    {blockquote}
+   </span>
+   an indented block quote
+   <span class="quote">
+    {endblockquote}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {code}
+   </span>
+   an indented code block
+   <span class="quote">
+    {endcode}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {comment: an inline comment that will be in square brackets, prefaced by username, highlighted in yellow}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {pre: foo}
+   </span>
+   maps to &lt;pre class="foo"&gt;
+  </p>
+  <p>
+   Link to an NMI Drupal node.
+   <span class="quote">
+    {drupalnode: Drupal-node number}, for example: {drupalnode: 1440}
+   </span>
+  </p>
+  <p>
+   ends a previous div
+  </p>
+  <p>
+   <span class="quote">
+    {file &lt;name&gt;}
+   </span>
+   an indented example file named &lt;name&gt;
+   <span class="quote">
+    {endfile}
+   </span>
+  </p>
+  <p>
+   Provide an html anchor to that point in the document.
+  </p>
+  <p>
+   <span class="quote">
+    {section: Top level section header}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {snip: &lt;remark&gt;}
+   </span>
+   an indented example file or fragment with optional &lt;remark&gt;
+   <span class="quote">
+    {endsnip}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {strike}
+   </span>
+   some text
+   <span class="quote">
+    {endstrike}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {subsection: Second level subsection header}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {subsubsection: Third level subsubsection header}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {term}
+   </span>
+   an indented shell/terminal command
+   <span class="quote">
+    {endterm}
+   </span>
+  </p>
+  <p>
+   <span class="quote">
+    {verbatim}
+   </span>
+   an indented verbatim block
+   <span class="quote">
+    {endverbatim}
+   </span>
+  </p>
+ </div>
+</div>

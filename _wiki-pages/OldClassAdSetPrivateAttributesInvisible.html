@@ -1,0 +1,24 @@
+---
+title: Old Class Ad Set Private Attributes Invisible
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ have no concept of private or invisible attributes. This invisibility appears to only be used for dPrint() and some calls to put(). We could modify the put() in new
+ <span class="quote">
+  ClassAds
+ </span>
+ to take an optional second argument which indicates whether to include the statically-defined list of private attributes. We would also modify dPrint() and/or the unparser class to omit the private attributes.
+ <p>
+  There is also a static method called ClassAdAttributeIsPrivate(), which could become a free-standing function.
+ </p>
+ <p>
+  developer time: 1-2 hours
+ </p>
+ <p>
+  Progress: dPrint() now omits private attributes.
+ </p>
+</div>

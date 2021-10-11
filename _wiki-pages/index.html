@@ -1,0 +1,11 @@
+---
+layout: container-default
+permalink: /wiki-archive/pages/index.html
+---
+
+<h2>All Wiki Pages</h2>
+{% for page in site.wiki-pages %}
+<div class="row">
+    <a href="{{ page.url | relative_url }}"><b>{{ page.title }}</b></a>
+</div>
+{% endfor %}

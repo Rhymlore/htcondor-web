@@ -1,0 +1,217 @@
+---
+title: Releasing Class Ads
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Punchlist for creating a new ClassAds release
+  </h2>
+ </span>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Ensure
+   <code>
+    src/classad/CHANGELOG
+   </code>
+   has all relevant changes. Add a section for the new version if necessary.
+   <p>
+   </p>
+  </li>
+  <li>
+   Update the version number and release date in the follow files:
+   <ul>
+    <li>
+     <code>
+      src/classad/CHANGELOG
+     </code>
+    </li>
+    <li>
+     <code>
+      src/classad/do_packaging
+     </code>
+     : DIST_VERSION
+    </li>
+    <li>
+     <code>
+      src/classad/README
+     </code>
+     : first line
+    </li>
+    <li>
+     <code>
+      src/classad/classad.cpp
+     </code>
+     : ClassAdLibraryVersion()
+     <strong>
+      Update both functions with this name!
+     </strong>
+    </li>
+    <li>
+     <code>
+      src/classad/Doxyfile
+     </code>
+     : PROJECT_NUMBER
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   Update the shared library version number in
+   <code>
+    src/classad/Makefile.am.m4
+   </code>
+   . Look for these two lines:
+   <div class="code">
+    <pre class="code">libclassad_la_LDFLAGS = -version-info 1:0:0
+libclassad_ns_la_LDFLAGS = -version-info 1:0:0
+</pre>
+   </div>
+   If the ABI has changed (such that programs linked against an older
+version won't work with the new version), you should increment the first
+number and set the second and third ones to zero. If the ABI has only been
+expanded (new symbols added), increment the first and third numbers, and
+set the second one to zero. If the ABI hasn't changed, then increment the
+second number.
+See
+   <a class="external" href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN135">
+    http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN135
+   </a>
+   for examples of things that will change the ABI incompatibly.
+  </li>
+ </ul>
+ <p>
+  This ABI compliance checker program may be useful:
+  <a class="external" href="http://ispras.linuxfoundation.org/index.php/ABI_compliance_checker">
+   http://ispras.linuxfoundation.org/index.php/ABI_compliance_checker
+  </a>
+ </p>
+ <p>
+  <em>
+   Note:
+  </em>
+  The version given here isn't quite the version you'll see on the
+.so files. Libtool converts it like so:
+  <code>
+   -version-info
+  </code>
+  <em>
+   A:B:C
+  </em>
+  results in
+  <code>
+   libclassad.so.
+  </code>
+  <em>
+   &lt;A-C&gt;.&lt;C&gt;.&lt;B&gt;
+  </em>
+  .
+When releasing a version with incompatible ABI changes, you can end up
+with a big jump in the major version of the .so if you just increment A
+and set B and C to zero. Instead, you can set the
+new version like so:
+  <code>
+   -version-info
+  </code>
+  <em>
+   &lt;1+A-C&gt;:0:0
+  </em>
+  . This will result in the
+major version of the .so incrementing by one.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   run
+   <code>
+    do_packaging
+   </code>
+   in
+   <code>
+    src/classad
+   </code>
+   <p>
+   </p>
+  </li>
+  <li>
+   Ensure the release builds successfully
+   <div class="code">
+    <pre class="code">cd classads-1.0.8
+./configure
+make
+make check
+cd ..
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Edit TAGS and add a new tag name for this version.
+   <p>
+   </p>
+  </li>
+  <li>
+   Ensure all of your changes are committed.
+   <p>
+   </p>
+  </li>
+  <li>
+   Tag the release:
+   <div class="code">
+    <pre class="code">git tag classads_1_0_8
+git push origin classads_1_0_8
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Copy the release tarball into
+   <code>
+    /p/condor/public/ftp/classad/c++/
+   </code>
+   .
+   <p>
+   </p>
+  </li>
+  <li>
+   Copy
+   <code>
+    src/classad/CHANGELOG
+   </code>
+   to
+   <code>
+    /p/condor/public/html/classad/c++changelogs/changes-&lt;version&gt;.txt
+   </code>
+   .
+   <p>
+   </p>
+  </li>
+  <li>
+   Update
+   <code>
+    /p/condor/public/html/classad/classad.html
+   </code>
+   to mention the new release.
+   <p>
+   </p>
+  </li>
+  <li>
+   Update the Doxygen webpages:
+  </li>
+ </ul>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">/unsup/doxygen-1.7.1/bin/doxygen
+mv /p/condor/public/html/classad/c++doc /p/condor/public/html/classad/c++doc.old
+cp -r doc/html /p/condor/public/html/classad/c++doc
+rm -rf /p/condor/public/html/classad/c++doc.old
+</pre>
+ </div>
+</div>

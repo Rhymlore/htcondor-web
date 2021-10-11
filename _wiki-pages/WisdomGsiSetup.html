@@ -1,0 +1,78 @@
+---
+title: Wisdom Gsi Setup
+layout: wiki-page
+---
+<div id="content">
+ Untar the attached file somewhere, then:
+ <ol>
+  <li>
+   chmod 644 /path/to/gsi_keys/hostcert.pem
+  </li>
+  <li>
+   chmod 600 /path/to/gsi_keys/hostkey.pem /path/to/gsi_keys/hostproxycert
+  </li>
+ </ol>
+ <p>
+  Now to setup the HTCondor daemons:
+ </p>
+ <ol>
+  <li>
+   in condor_config set GSI_DAEMON_DIRECTORY = /path/to/gsi_keys
+  </li>
+  <li>
+   in condor_config set GRIDMAP = /path/to/gsi_keys/mapfiles/grid-mapfile
+  </li>
+  <li>
+   in condor_config set SEC_DEFAULT_AUTHENTICATION = REQUIRED
+  </li>
+  <li>
+   in condor_config set SEC_DEFAULT_AUTHENTICATION_METHODS = GSI
+  </li>
+  <li>
+   For HTCondor 7.9.x and later in condor_config set GSI_SKIP_HOST_CHECK=true
+and that should do it on the HTCondor daemon side of things.
+  </li>
+ </ol>
+ <p>
+  Optionally, edit
+  <code>
+   /path/to/gsi_keys/mapfiles/grid-mapfile
+  </code>
+  and replace
+  <code>
+   USERNAME_HERE
+  </code>
+  with your username. This is not necessary to get the daemons to start up, but needed for condor_submit.
+ </p>
+ <p>
+  On the client side, for simple testing without the need for grid-proxy-init and friends, you could just set the following environment variable for the tools to use:
+ </p>
+ <p>
+ </p>
+ <pre>   setenv X509_USER_PROXY /path/to/gsi_keys/hostproxycert</pre>
+ <h3>
+  Attachments:
+ </h3>
+ <blockquote>
+  <ul>
+   <li>
+    <a href="attach_get/1014/gsi_keys.tgz">
+     gsi_keys.tgz
+    </a>
+    4841 bytes added by zmiller on 2018-Apr-05 19:18:26 UTC.
+    <br/>
+    Files needed for simple HTCondor GSI security setup; includes self-signed certs. Useful for testing.
+    <br/>
+   </li>
+   <li>
+    <a href="attach_get/1015/generate_gsi.tgz">
+     generate_gsi.tgz
+    </a>
+    4849 bytes added by zmiller on 2018-Apr-05 19:19:39 UTC.
+    <br/>
+    Scripts and configuration files needed to generate a self-signed CA cert and a set of GSI keys.  See README inside.
+    <br/>
+   </li>
+  </ul>
+ </blockquote>
+</div>

@@ -1,0 +1,63 @@
+---
+title: How To Configure Fair Share
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to configure a user's fair share of the pool
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  To see the current priorities and priority factors for users, use the following command:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_userprio -all -allusers
+</pre>
+ </div>
+ <p>
+  To configure things so that user A can use 2x the number of machines as user B based on their user priorities, set user B's priority factor to be 4 times that of user A.  Example:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_userprio -setfactor B 4.0
+condor_userprio -setfactor A 1.0
+</pre>
+ </div>
+ <p>
+  Why should the priority factor be 4 times instead of 2 times?  Recall that effective priority is the real priority times the priority factor.  A user's fair share of the pool is inversely proportional to their effective priority.  A user's real priority over time tends towards the number of machines they have been using recently.  Working backwards...  At steady state, A's real user priority will be 2x that of user B, because A will be using 2x the number of machines on average.  But we want B's
+  <em>
+   effective
+  </em>
+  priority to be 2x user A's, because that is what will allow A to be claiming 2x the number of machines as B.  This gives the following equations:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">PrioFactorB * RealPriorityB = 2 * PrioFactorA * RealPriorityA
+RealPriorityA/RealPriorityB = 2.0
+
+Therefore ...
+
+PrioFactorB/PrioFactorA = 4.0
+</pre>
+ </div>
+ <p>
+  Note that if your pool uses startd RANK to give some users/jobs high priority on some machines, adjusting the user priority will only have an effect when two users with equal startd RANK are competing.  This is because a match with a higher startd RANK will preempt a match with a lower startd RANK, even if the latter has a higher user priority.
+ </p>
+ <p>
+  This section explained how to manually adjust individual user priority factors.  If you want to automatically adjust priority factors for many users, you may want to take a look at
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/HowToSetUserPriority' | relative_url }}" title="How To Set User Priority">
+    How to set user priority factors automatically by domain or other username pattern
+   </a>
+  </span>
+  .
+ </p>
+</div>

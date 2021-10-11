@@ -1,0 +1,28 @@
+---
+title: Massif Htcondor
+layout: wiki-page
+---
+<div id="content">
+ Sometimes a condor tool or daemon is using a lot of memory, but isn't leaking,
+according to valgrind, but just has a lot of memory in use.
+ <p>
+  Valgrind's massif tool is an easy way to see what lines of code are responsible
+for the most memory allocations.  To run massif, simply
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Run the program under question under massif with valgrind --tool=massif my_program my_program_args
+  </li>
+  <li>
+   When the program exits (it will run much more slowly than usual), it will emit a file to the current directory called massif.xxxx where xxxx is the pid of the instrumented program
+  </li>
+  <li>
+   ms_print massif.xxx will print out a textual description of the memory allocations made in the program
+  </li>
+  <li>
+   If your system has KDE support, massif-visualizer may also show this info as a graphical program.
+  </li>
+ </ol>
+</div>

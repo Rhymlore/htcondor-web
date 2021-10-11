@@ -1,0 +1,94 @@
+---
+title: How To Config Job Monitoringand Debugging
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to configure pseudo-interactive job monitoring/debugging
+  </h2>
+ </span>
+ <p>
+  Known to work in HTCondor version: 7.0
+ </p>
+ <p>
+  Note: as of HTCondor 7.3.2, condor_ssh_to_job can be used in unix to do interactive debugging of jobs.  In many cases, this is more convenient, but in some cases, it still may be useful to set up special slots as described in the recipe below.
+ </p>
+ <p>
+  This is based on
+  <a class="external" href="http://www.cs.wisc.edu/condor/CondorWeek2008/condor_presentations/sfiligoi_monitoring.pdf">
+   Igor Sfiligoi's talk
+  </a>
+  at HTCondor Week 2008.
+ </p>
+ <p>
+  The basic idea is to add an extra slot for each normal job execution slot.  This extra slot will run commands from the user whose job is running on the corresponding execution slot.  Typical commands would be things like 'ls' or 'top'.
+ </p>
+ <p>
+  The following configuration assumes a single cpu machine.  It should be easy to extend it to multiple cpus.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Enable multiple slots
+NUM_CPUS = 2
+SLOT_TYPE_1 = cpus=1, memory=1%, swap=1%, disk=1%
+NUM_SLOTS_TYPE_1 = 1
+SLOT_TYPE_2 = cpus=1, memory=99%, swap=99%, disk=99%
+NUM_SLOTS_TYPE_2 = 1
+
+# Enable cross_slot information flow
+STARTD_SLOT_EXPRS = $(STARTD_SLOT_EXPRS) State, RemoteUser
+
+# Config one slot for monitoring and one for jobs
+SLOT1_SLOT2_MATCH = (slot2_State=?="Claimed")&amp;&amp;(slot2_RemoteUser=?=User)
+SLOT1_START = $(SLOT1_SLOT2_MATCH) &amp;&amp; (JOB_Is_Monitor)
+SLOT2_START = &lt;your old START condition&gt;
+START = ((SlotID == 1) &amp;&amp; ($(SLOT1_START))) || \
+        ((SlotID == 2) &amp;&amp; ($(SLOT2_START)))
+
+SLOT1_IsMonitorSlot = True
+SLOT2_MyMonitorSlot = "slot1"
+HAS_MONITOR_SLOT = True
+STARTD_ATTRS = $(STARTD_ATTRS) IsMonitorSlot MyMonitorSlot HAS_MONITOR_SLOT
+</pre>
+ </div>
+ <p>
+  You could then use
+  <a class="external" href="http://home.fnal.gov/~sfiligoi/condor_monitoring/job_monitor.tgz">
+   Igor's example job monitoring tool
+  </a>
+  extracted from
+  <a class="external" href="http://www.uscms.org/SoftwareComputing/Grid/WMS/glideinWMS/">
+   glideinWMS
+  </a>
+  to submit jobs to the monitoring slot.  The basic idea is to figure out where the job is running (by using condor_q) and then submit a job with the following in its submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">+JOB_Is_Monitor=True
+Requirements=(Name=?=”slot1@&lt;node running job&gt;”)
+</pre>
+ </div>
+ <p>
+  As Igor notes, the drawbacks of this method are:
+ </p>
+ <ul>
+  <li>
+   It takes a negotiation cycle to get back results.  Depending on your pool this could be a few seconds to minutes.
+  </li>
+  <li>
+   Cross slot information is only updated every few minutes, so it might take a few minutes after the job starts up before you can begin debugging it.
+  </li>
+  <li>
+   The number of slots in your pool doubles.
+  </li>
+ </ul>
+ <p>
+  One (untested) idea for how to speed things up a bit and avoid doubling the visible slots in the pool is to have the startds advertise to two central managers, one for normal jobs and one for monitoring jobs.  (You can do that by simply listing both collectors in COLLECTOR_HOST.)  You can use COLLECTOR_REQUIREMENTS to prune out all but the normal job execution slots in one collector and all but job monitoring slots in the other collector.  A different idea is to have the job itself start up its own startd which joins a monitoring pool (private to the user?) and accepts monitoring jobs.
+ </p>
+ <p>
+  That said, the basic idea works just fine, so don't be afraid to use it as is.
+ </p>
+</div>

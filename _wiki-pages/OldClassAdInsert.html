@@ -1,0 +1,38 @@
+---
+title: Old Class Ad Insert
+layout: wiki-page
+---
+<div id="content">
+ This method has two variants:
+ <ul>
+  <li>
+   int Insert(const char*, bool check_for_dups=true)
+  </li>
+  <li>
+   int Insert(ExprTree*, bool check_for_dups=true)
+  </li>
+ </ul>
+ <p>
+  New
+  <span class="quote">
+   ClassAds
+  </span>
+  already have a compatibility version of the first variant. But it doesn't handle string escaping properly. It also leaks memory and allows multiple attributes to be inserted in a single call.
+ </p>
+ <p>
+  For the second variant, we'd probably use new
+  <span class="quote">
+   ClassAds
+  </span>
+  ' Insert(), which takes the attribute name and value as separate arguments. The ExprTree's passed in as arguments come from calls to NextExpr(), Lookup(), or Parse() near the callsite. These should be straightforward to update.
+ </p>
+ <p>
+  The check_for_dups argument does not appear to be used anywhere.
+ </p>
+ <p>
+  Developer time: 1 day
+ </p>
+ <p>
+  Progress: First variant now behaves properly.
+ </p>
+</div>

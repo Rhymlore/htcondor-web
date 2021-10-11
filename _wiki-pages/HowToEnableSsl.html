@@ -1,0 +1,68 @@
+---
+title: How To Enable Ssl
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to enable SSL authentication
+  </h2>
+ </span>
+ <p>
+  This is assuming that you already have certificates.  If you are using puppet, they may already exist in the
+  <code>
+   /var/lib/puppet/ssl/
+  </code>
+  directory.
+ </p>
+ <p>
+  If you need to generate your own certificates, there is a
+  <a class="external" href="http://www.cs.wisc.edu/~zmiller/ca-howto/">
+   basic tutorial available
+  </a>
+  .
+ </p>
+ <p>
+  You need to specify a certificate for the daemons to use when acting as a client and also as a server.  Often, these are the same certificate.  You also need to specify the root of trust, where the CA certificate(s) live.  The below example is again assuming the puppet default.
+ </p>
+ <p>
+  Add the following to your condor_config.local file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code"># Require SSL for daemon-to-daemon communications
+SEC_DAEMON_INTEGRITY = REQUIRED
+SEC_DAEMON_AUTHENTICATION = REQUIRED
+SEC_DAEMON_AUTHENTICATION_METHODS = SSL
+SEC_NEGOTIATOR_INTEGRITY = REQUIRED
+SEC_NEGOTIATOR_AUTHENTICATION = REQUIRED
+SEC_NEGOTIATOR_AUTHENTICATION_METHODS = SSL
+
+# If you have a mapfile, set this to the HTCondor canonical name instead
+ALLOW_DAEMON = ssl@unmapped
+
+# SSL cert and key locations
+SSL_DIR = /var/lib/puppet/ssl
+AUTH_SSL_CLIENT_CAFILE = $(SSL_DIR)/certs/ca.pem
+AUTH_SSL_CLIENT_CERTFILE = $(SSL_DIR)/certs/$(FULL_HOSTNAME).pem
+AUTH_SSL_CLIENT_KEYFILE = $(SSL_DIR)/private_keys/$(FULL_HOSTNAME).pem
+AUTH_SSL_SERVER_CAFILE = $(SSL_DIR)/certs/ca.pem
+AUTH_SSL_SERVER_CERTFILE = $(SSL_DIR)/certs/$(FULL_HOSTNAME).pem
+AUTH_SSL_SERVER_KEYFILE = $(SSL_DIR)/private_keys/$(FULL_HOSTNAME).pem
+
+# For Windows:
+SEC_CLIENT_AUTHENTICATION_METHODS = NTSSPI, SSL
+
+# For Linux:
+SEC_CLIENT_AUTHENTICATION_METHODS = FS, SSL
+</pre>
+ </div>
+ <p>
+  Finally, reconfigure your pool to have the new settings take effect:
+ </p>
+ <div class="code">
+  <pre class="code">condor_reconfig -all
+</pre>
+ </div>
+</div>

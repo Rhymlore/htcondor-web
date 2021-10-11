@@ -1,0 +1,107 @@
+---
+title: How To Run Jobs Only On Machines With Pre Installed Software
+layout: wiki-page
+---
+<div id="content">
+ The naive way to do this is to know ahead of time exactly which machines have the software, and then constrain the
+ <code>
+  Requirements
+ </code>
+ expression of the job so that it only matches those machines.  Knowing ahead of time is problematic and difficult to maintain as the pool changes.  A better solution uses this two-step process.
+ <p>
+  First, each machine that has the special software installed needs to advertise its availability in its machine
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  . Second, the job identifies in its submit description file that it requires a machine that has the special software.
+ </p>
+ <p>
+  A machine advertises the presence of special software in its local configuration file, as in this example:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">HAS_MY_SOFTWARE = True
+</pre>
+ </div>
+ <p>
+  Also, if
+  <code>
+   STARTD_ATTRS
+  </code>
+  is already defined in that file, add
+  <code>
+   HAS_MY_SOFTWARE
+  </code>
+  to the list. If
+  <code>
+   STARTD_ATTRS
+  </code>
+  is not already in
+that local configuration file, add the line:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">STARTD_ATTRS = HAS_MY_SOFTWARE, $(STARTD_ATTRS)
+</pre>
+ </div>
+ <p>
+  For this configuration change to take effect, the condor_startd on that machine
+needs to be reconfigured. Use
+  <code>
+   condor_reconfig -startd
+  </code>
+  .  Each machine with
+the configuration change must be reconfigured.
+ </p>
+ <p>
+  Double check that this has been correctly implemented by running the condor_status command:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">condor_status -constraint HAS_MY_SOFTWARE
+</pre>
+ </div>
+ <p>
+  Jobs that need to run on the machines with the special software installedadd a
+  <code>
+   Requirements
+  </code>
+  command to their submit description file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">Requirements = (HAS_MY_SOFTWARE =?= True)
+</pre>
+ </div>
+ <p>
+  Be sure to use
+  <strong>
+   =?=
+  </strong>
+  instead of
+  <strong>
+   ==
+  </strong>
+  , so that if a machine does not have
+the
+  <code>
+   HAS_MY_SOFTWARE
+  </code>
+  configuration variable defined, the job's
+  <code>
+   Requirements
+  </code>
+  expression will not evaluate to
+  <code>
+   Undefined
+  </code>
+  , preventing the job from
+running anywhere.
+ </p>
+</div>

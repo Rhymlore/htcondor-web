@@ -1,0 +1,234 @@
+---
+title: Testing Condor On Windows
+layout: wiki-page
+---
+<div id="content">
+ Look here for BT's instructions:
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/BtsTestingCondorOnWindows' | relative_url }}" title="Bts Testing Condor On Windows">
+   BT's Testing Condor On Windows
+  </a>
+ </span>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Requirements
+ </h2>
+ <p>
+ </p>
+ <ul>
+  <li>
+   Install Active-State Perl
+  </li>
+  <li>
+   Make a git clone of the HTCondor repo OR unpack the source tarball
+  </li>
+  <li>
+   Build HTCondor for Windows:
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnWindows' | relative_url }}" title="Building Htcondor On Windows">
+     Instructions
+    </a>
+   </span>
+  </li>
+ </ul>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Preparing for testing
+ </h2>
+ <p>
+  The easiest way to get an ititial Windows HTCondor test environment
+is to build HTCondor from git.  It is possible to download the HTCondor MSI or tarball and test that, but you will need to also have the tests and the msconfig tools that you get from a git clone or from the source tarball.
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Testing needs
+ </h2>
+ <p>
+  There are five things needed for testing on windows that need to be assembled
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   built HTCondor release_dir or equivalent (unpack the .ZIP release)
+  </li>
+  <li>
+   all sources for src/condor_tests including subdirectories
+  </li>
+  <li>
+   Condor.PM, CondorUtils.pm, CondorTest.pm, CondorPersonal.pm and run_test.pl from src/condor_scripts
+  </li>
+  <li>
+   built tests
+  </li>
+  <li>
+   working personal HTCondor config
+  </li>
+ </ol>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Get tests from the HTCondor sources
+ </h2>
+ <p>
+  You must copy some files from the condor sources into into the directory you wish to test in.
+ </p>
+ <p>
+ </p>
+ <div class="term">
+  <pre class="term">set SRCDIR=\scratch\CONDOR_SRC
+set testdir=\scratch\test001
+mkdir %testdir%
+xcopy /S /E /Q /Y "%SRCDIR%\src\condor_tests\*" "%testdir%\condor_tests\"
+xcopy /Q /Y "%SRCDIR%\src\condor_scripts\*.pm" "%testdir%\condor_tests\"
+xcopy /Q /Y "%SRCDIR%\src\condor_scripts\*.pl" "%testdir%\condor_tests\"
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Install HTCondor in the test dir and create a configuration
+ </h2>
+ <p>
+  CD to the directory where HTCondor is built (where your condor.sln file is), build the tests, and install HTCondor into the testing directory.
+ </p>
+ <p>
+  Install HTCondor into the testing dir
+ </p>
+ <div class="term">
+  <pre class="term">cd \scratch\build
+set testdir=\scratch\test001
+cmake -DBUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=%testdir% -P cmake_install.cmake
+rem BUILD_TYPE sould be Debug or RelWithDebInfo depending on what you built.
+</pre>
+ </div>
+ <p>
+  Create a HTCondor configuration that all of the tests will derive from.
+Assuming the environment variable SRCDIR points to HTCondor sources you can use these commands:
+ </p>
+ <div class="term">
+  <pre class="term">pushd "%testdir%"
+cscript "%SRCDIR%\msconfig\init_config.wsf" ETC=etc PERSONAL=Y RUNJOBS=A
+mkdir log
+mkdir spool
+mkdir execute
+echo NUM_CPUS = 8 &gt;&gt; "%testdir%\condor_config"
+popd
+</pre>
+ </div>
+ <p>
+  If the machine you are running tests on has fewer than 5 DETECTED_CPUS some
+tests are known to fail. To be safe set NUM_CPUS to 8.
+ </p>
+ <p>
+  The  init_config.wsf script can be used to pass arguments to msconfig\WiX\config.vbs which will create a condor_config file in much the same way that condor_install does on *nix builds. The ETC argument tells it where to find condor_config.generic
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Build and Install the tests
+ </h2>
+ <p>
+  Build the tests and copy them into the testing dir. Run these commands
+in your HTCondor build directory.  There are some tests that will still run
+if you skip this step.
+ </p>
+ <div class="term">
+  <pre class="term">devenv condor.sln /Build Debug /Project BLD_TESTS
+xcopy /Q /Y src\condor_tests\list_* "%testdir%\condor_tests\"
+xcopy /Q /Y src\condor_tests\Debug\*.exe "%testdir%\condor_tests\"
+xcopy /Q /Y src\condor_tests\Debug\*.pdb "%testdir%\condor_tests\"
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Setup environment and start HTCondor
+ </h2>
+ <p>
+  Set PATH and CONDOR_CONFIG environment variables
+ </p>
+ <div class="term">
+  <pre class="term">set CONDOR_CONFIG=%testdir%\condor_config
+set PATH=%testdir%\bin;%PATH%
+</pre>
+ </div>
+ <p>
+  Start HTCondor and verify that it is running. This step is optional for some tests. You can tell which tests require a running HTCondor by looking at the
+  <strong>
+   Test_Requirements
+  </strong>
+  file.
+ </p>
+ <div class="term">
+  <pre class="term">start %testdir%\bin\condor_master -f -t
+</pre>
+ </div>
+ <p>
+  If you are using a very recent version of HTCondor (8.5.3 or later) you can use the new -wait option for condor_who
+ </p>
+ <div class="term">
+  <pre class="term">condor_who -wait:60 "NumDead &gt; 0 || AllAlive"
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Run a test
+ </h2>
+ <p>
+  You should now be able to run single tests in the testing location you chose.
+Tests in the
+  <strong>
+   Windows_SkipList
+  </strong>
+  file are known not to work on Windows.
+For instance to run test XXX.run:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">cd %testdir%\condor_tests
+run_test.pl -d . -t XXX.run
+</pre>
+ </div>
+ <p>
+  For versions of HTCondor prior to 8.4.10, you will use use
+  <code>
+   batch_test.pl
+  </code>
+  in instead of
+  <code>
+   run_test.pl
+  </code>
+ </p>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Results
+ </h2>
+ <p>
+  Test XXX.run will typically have output and error files xxx.out and xxx.err in the same directory in which the test ran. Sometimes there will be additional files in a XXX.saveme subdirectory.
+ </p>
+</div>

@@ -1,0 +1,28 @@
+---
+title: Current Test Problems
+layout: wiki-page
+---
+<div id="content">
+ The test suite currently suffers from several heisenbugs.  In an effort to squash these, and make life easier for future wranglers, here is what I know about them:
+ <p>
+  * SOAP failure because of access to free memory in abortTran (
+  <span class="ticket">
+   <a class="resolved" href="../../tickets/?ticket=310" title="Fix SOAP seg-fault on Solaris">
+    #310
+   </a>
+  </span>
+  ) FIXED!
+ </p>
+ <p>
+  * job-vmu-network fails because the job inside the vm tries to communicate by writing to the virtual floppy.  For some unknown reason, only  part of this write is seen by the outside work, though it succeeds inside. (
+  <span class="ticket">
+   <a class="defer" href="../../tickets/?ticket=45" title="VM universe network test failures">
+    #45
+   </a>
+  </span>
+  )
+ </p>
+ <p>
+  * job_core_timedeferral_local fails on windows. FIXED.  condor_tests use perl's Net::Domain::hostfqdn() function to get the fdhn.  The hosts file on windows was hosed, returning the wrong name, so the collector started on the default port.  This was fine until multiple test slots on the same machine ran.
+ </p>
+</div>

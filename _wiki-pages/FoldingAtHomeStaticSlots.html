@@ -1,0 +1,120 @@
+---
+title: Folding At Home Static Slots
+layout: wiki-page
+---
+<div id="content">
+ <span class="subsubsection">
+  <h4>
+   Audience
+  </h4>
+ </span>
+ If you have a HTCondor pool that is
+ <strong>
+  not
+ </strong>
+ configured to use Partitionable slots and you wish to run Folding@home as backfill jobs on those slots using the recipe
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/HowToConfigureFoldingAtHome' | relative_url }}" title="How To Configure Folding At Home">
+   here
+  </a>
+ </span>
+ <p>
+  <span class="subsubsection">
+  </span>
+ </p>
+ <h4>
+  Strategy
+ </h4>
+ We will use HTCondor's "fetch work" configuration to run a script on each execute machine that periodically generates a job classad for Folding@Home work.  Those jobs will have a retirement time of 0 so that they can be pre-empted by jobs sent from a Schedd.  These jobs will all be run by a dedicated user named
+ <strong>
+  backfill
+ </strong>
+ , and the Startd will give negative RANK jobs from the
+ <strong>
+  backfill
+ </strong>
+ user.
+ <p>
+  The configuration fragment below can be customized by modifying
+  <code>
+   FAH_Owner
+  </code>
+  ,
+  <code>
+   FAH_HOME
+  </code>
+  and
+  <code>
+   FAH_Executable
+  </code>
+  configuration variables near the top of the file.
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">backfill_folding_at_home.config </pre>
+  <pre class="snip"># The local user to run FAH jobs as, you must create this user
+#
+FAH_Owner = backfill
+
+# Folding at home settings, change to match your install path and work directory
+# Each slot will use a subdirectory under this path named from the slotid of the slot
+# e.g.  /opt/fah/slot2, /opt/fah/slot3, etc.
+#
+FAH_HOME = /opt/fah
+FAH_Executable = /usr/bin/FAHClient
+
+# Arguments to the Folding@Home client for each slot, change this to match
+# the cpus and memory of your slots
+#
+# Checkpoint every N minutes, default is 15
+FAH_CheckpointArg = 15
+FAH_CpusArg       = 1
+FAH_MemArg        = $(DETECTED_MEMORY)/$(DETECTED_CPUS)*1024*1024
+
+FAH_Arguments = --config $(FAH_HOME)/config.xml \
+                --data-directory . \
+                --checkpoint $INT(FAH_CheckpointArg) \
+                --client-threads $INT(FAH_CpusArg) \
+                --memory $INT(FAH_MemArg) \
+                --cpus $(FAH_CpusArg)
+
+# the script that HTCondor will use to get FAH jobs, steal this script from HTCondor website
+#
+# this script extracts slot id from stdin and
+# puts it into the environment as _CONDOR_BACKFILL_SLOTID=&lt;SlotId&gt;
+# then runs
+#    condor_config_val -macro '$(FAH_JOB)'
+# to generate a job classad for that slot
+#
+FAH_HOOK_FETCH_WORK = $(FAH_HOME)/fetch_work
+
+#
+# Template for the Folding@Home job that the FAH_FETCH_SCRIPT will return
+#
+FAH_JOB @=end
+  Cmd = "$(FAH_Executable)"
+  Iwd = "$(FAH_HOME)/slot$(BACKFILL_SLOTID)"
+  Owner = "$(FAH_Owner)"
+  User = "$(FAH_Owner)@$(UID_DOMAIN)"
+  JobUniverse = 5
+  Arguments = "$(FAH_Arguments)"
+  Out = "fah.out"
+  Err = "fah.err"
+  NiceUser = true
+  Requirements = (State == "Unclaimed") &amp;&amp; ($(StateTimer) &gt; 1200)
+  MaxJobRetirementTime = 0
+  JobLeaseDuration = 604800
+  RequestCpus = $INT(FAH_CpusArg)
+  RequestMemory = $INT(FAH_MemArg)
+@end
+
+#
+# Enable work fetch for Folding@Home jobs and rank them
+# lower than normal jobs
+#
+STARTD_JOB_HOOK_KEYWORD = FAH
+RANK = $(RANK:0) - (Owner == "$(FAH_Owner)")
+
+
+</pre>
+ </div>
+</div>

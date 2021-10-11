@@ -1,0 +1,71 @@
+---
+title: Commit Messages
+layout: wiki-page
+---
+<div id="content">
+ A good commit message makes reviewing your changes later easier, and is especially helpful when the release wrangler is ensuring that the version history is complete.
+ <p>
+  A commit message should have:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   The
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/GitTrac' | relative_url }}" title="Git Trac">
+     GitTrac
+    </a>
+   </span>
+   ticket number, in the form
+   <span class="ticket">
+    <a class="new" href="../../tickets/?ticket=123" title="Grand unified param() system: Phase 1">
+     #123
+    </a>
+   </span>
+   .  Note that you cannot have a "#" at the start of a line; Git will think it's a comment.  Common techniques include putting the comment at the end of the line, or enclosing it in parenthesis like (
+   <span class="ticket">
+    <a class="new" href="../../tickets/?ticket=123" title="Grand unified param() system: Phase 1">
+     #123
+    </a>
+   </span>
+   ), or putting it in a gliss.  If multiple tickets are involved, feel free to list them all.  If zero tickets are involved, consider creating a ticket so people have a place to discuss the change and a convenient place to point to for all relevant information.
+   <ul>
+    <li>
+     Why? This number makes correlating the version history easier (assuming you include the ticket number in a comment in the version history like you should).  It also means that the ticket can include links to the relevant commits.
+    </li>
+   </ul>
+   <p>
+   </p>
+  </li>
+  <li>
+   A brief description of what you changed.
+   <p>
+   </p>
+  </li>
+  <li>
+   Optionally, some extended discussion on what you changed, if you think it useful.
+   <p>
+   </p>
+  </li>
+  <li>
+   Remember to update the
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/VersionHistoryHowTo' | relative_url }}" title="Version History How To">
+     Version History!
+    </a>
+   </span>
+   . If you are confident that this change should not be mentioned in the version history, include a brief note explaining why - for instance, is it entirely invisible to the user (internal cleanup) or does it fix a bug that was never released?
+   <p>
+   </p>
+  </li>
+  <li>
+   When you are ready to push your changes back to the central repo via git push, be certain to read and follow our
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/GitPushChecklist' | relative_url }}" title="Git Push Checklist">
+     GitPushChecklist
+    </a>
+   </span>
+  </li>
+ </ul>
+</div>

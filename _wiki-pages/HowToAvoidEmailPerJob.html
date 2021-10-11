@@ -1,0 +1,20 @@
+---
+title: How To Avoid Email Per Job
+layout: wiki-page
+---
+<div id="content">
+ Generally you shouldn't ignore all of the mail HTCondor sends,
+but you can reduce the amount you get by telling HTCondor that you don't
+want to be notified every time a job successfully completes, only when
+a job experiences an error.
+To do this, include a line in your submit file like the following:
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">Notification = Error
+</pre>
+ </div>
+ <p>
+  See the Notification parameter in the condor_q man page on for more information.
+ </p>
+</div>

@@ -1,0 +1,67 @@
+---
+title: Adding New Component To Build Tree
+layout: wiki-page
+---
+<div id="content">
+ How to add a new component into the build system:
+ <p>
+  (By Carey. Loosely based on YIM dialogue with Peter Keller)
+ </p>
+ <p>
+  Here we use terms "source" and "build" workspace. The "source" ws is what CVS makes when you do a check out. The "build" workspace is where you build, it has symmlinks to the source files in the "source" workspace, the Makefile, etc.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Add your source files to a subdirectory in the source workspace, entitled "condor_X", where
+X is the name of your component (make sure it's prefixed with "condor_")
+  </li>
+  <li>
+   Copy the Imakefile from ../condor_dcskel into your condor_X source directory
+  </li>
+  <li>
+   Edit the Imakefile as necessary
+	- you need to include $(DAEMONCORE_LIB) into LIB= section iff your component is a
+   <span class="wiki">
+    <a class="missing" href="{{ '/wiki-archive/pages/DaemonCore' | relative_url }}" title="Daemon Core">
+     DaemonCore
+    </a>
+   </span>
+   process (e.g. condor_startd , as opposed to a standalone tool like condor_submit)
+  </li>
+  <li>
+   In the ../Imakefile (the main Imakefile), make the following changes:
+   <ol>
+    <li>
+     Add your entry to the #define Programs... section (before dcskel in that section)
+    </li>
+    <li>
+     !!!add just the name "X", NOT "condor_X"!!!
+    </li>
+    <li>
+     Add  object_target(X) right before object_target(dcskel)
+    </li>
+   </ol>
+   <p>
+   </p>
+  </li>
+  <li>
+   Go to your build workspace and do
+   <ol>
+    <li>
+     make reallyclean
+    </li>
+    <li>
+     condor_imake			// This should create a dir and a Makefile for your new component in the build space
+    </li>
+    <li>
+     make
+    </li>
+    <li>
+     make release
+    </li>
+   </ol>
+  </li>
+ </ol>
+</div>

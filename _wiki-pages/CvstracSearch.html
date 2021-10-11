@@ -1,0 +1,53 @@
+---
+title: Cvstrac Search
+layout: wiki-page
+---
+<div id="content">
+ <strong class="three">
+  CVSTrac Search
+ </strong>
+ <p>
+  CVSTrac allows for full-text searching on
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/CvstracTicket' | relative_url }}" title="Cvstrac Ticket">
+    ticket
+   </a>
+  </span>
+  title,
+remarks and descriptions,
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/CvstracCheckin' | relative_url }}" title="Cvstrac Checkin">
+    check-in comments
+   </a>
+  </span>
+  ,
+and
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/CvstracWiki' | relative_url }}" title="Cvstrac Wiki">
+    wiki pages
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  Additionally, it can search for attachment and repository filenames. This is a
+convenient way to navigate to files deep in a repository.
+ </p>
+ <p>
+  CVSTrac
+  <em>
+   cannot
+  </em>
+  currently do full-text searches on the contents of files.
+ </p>
+ <p>
+  <strong class="two">
+   Search Syntax
+  </strong>
+ </p>
+ <p>
+  There is not special syntax. The search algorithm takes all the search keywords
+and scores them against the various database fields. Results are returned in
+decreasing score order.
+ </p>
+</div>

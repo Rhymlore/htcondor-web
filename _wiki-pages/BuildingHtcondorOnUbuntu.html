@@ -1,0 +1,132 @@
+---
+title: Building Htcondor On Ubuntu
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Building HTCondor on Ubuntu 14.04+
+  </h2>
+ </span>
+ <p>
+  As of version 7.5.5, HTCondor uses cmake to configure the build.  For instructions on building HTCondor prior to that, see
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnUnixOld' | relative_url }}" title="Building Htcondor On Unix Old">
+    BuildingHtcondorOnUnixOld
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  For Instructions on building HTCondor inside Win10's Wubuntu box, see
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnWinWubuntu' | relative_url }}" title="Building Htcondor On Win Wubuntu">
+    BuildingHtcondorOnWinWubuntu
+   </a>
+  </span>
+  .
+For Instructions on building HTCondor on RHEL or Centos 6, see
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnUnix' | relative_url }}" title="Building Htcondor On Unix">
+    BuildingHtcondorOnUnix
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  From some experimentation, here's a list of pre-requisite  necessary for a UW-style build on Ubuntu 14.04 as of version 8.5.0:
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   cmake
+  </li>
+  <li>
+   automake
+  </li>
+  <li>
+   perl
+  </li>
+  <li>
+   gcc
+  </li>
+  <li>
+   libicu-dev
+  </li>
+  <li>
+   libboost-all-dev
+  </li>
+  <li>
+   libpcre3-dev
+  </li>
+  <li>
+   libkeyutils-dev
+  </li>
+  <li>
+   libkrb5-dev
+  </li>
+  <li>
+   libssl-dev
+  </li>
+  <li>
+   uuid-dev
+  </li>
+  <li>
+   libxml2-dev
+  </li>
+  <li>
+   libpam-dev
+  </li>
+  <li>
+   zlibc
+  </li>
+  <li>
+   libltdl-dev
+  </li>
+  <li>
+   libtool
+  </li>
+  <li>
+   byacc
+  </li>
+  <li>
+   libX11-dev
+  </li>
+  <li>
+   libcurl3-dev
+  </li>
+  <li>
+   libarchive-tar-perl
+  </li>
+  <li>
+   libexpat-dev
+  </li>
+  <li>
+   python-dev
+  </li>
+  <li>
+   bison
+  </li>
+  <li>
+   flex
+  </li>
+  <li>
+   libnss3-dev
+  </li>
+  <li>
+   libc-ares-dev
+  </li>
+  <li>
+   libldap-dev
+  </li>
+ </ul>
+ <p>
+  For next steps please continue from section "Getting the source" at
+  <span class="wiki">
+   <a href="{{ '/wiki-archive/pages/BuildingHtcondorOnUnix' | relative_url }}" title="Building Htcondor On Unix">
+    BuildingHtcondorOnUnix
+   </a>
+  </span>
+ </p>
+</div>

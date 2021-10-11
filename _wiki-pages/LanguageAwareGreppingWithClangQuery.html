@@ -1,0 +1,55 @@
+---
+title: Language Aware Grepping With Clang Query
+layout: wiki-page
+---
+<div id="content">
+ <strong>
+  clang-query
+ </strong>
+ is a tool that performs tree pattern matching against a C++ parse tree.  As such, it is useful for finding call sites in the condor code.  Consider the following problem.  We want to find all the places in the source code where vector::reserve is called.  We can't just grep for "reserve", as other classes have methods named reserve.  In the worst case, there may even be a #define for reserve, further obfuscating the call sites.
+ <p>
+  Prerequisites include
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Installation of clang
+  </li>
+  <li>
+   Existing of a compile_commands.json file in the root of the condor source tree.  Note that cmake can produce this, and the default "configure_uw" script includes the command to generate this as a side-effect of compiling.
+  </li>
+  <li>
+   An in-source build.  I'm sure there's a way to work around this, but I haven't found it.
+  </li>
+ </ol>
+ <p>
+  Given the above, clang-query can find source code matches when run like this
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">clang-query -f file_with_pattern source_file.cpp
+</pre>
+ </div>
+ <p>
+  The magic, of course, is in the pattern.  Here is an example pattern that finds all calls to "reserve" from the vector class"
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">let bind-root true
+let m1 cxxMemberCallExpr( callee(cxxMethodDecl(hasName("reserve"))), thisPointerType(namedDecl(hasName("vector"))))
+m m1
+</pre>
+ </div>
+ <p>
+  In theory, clang-query can take an arbitrary number of source file arguments, but in my experience, it crashes after some large number, so I feed it files one at a time, grepping them out of the compile_commands.json database, like so
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">grep '"file":' compile_commands.json  | tr -d '"' | awk '{print $2}' | xargs -n 1 clang-query -f findVectors
+</pre>
+ </div>
+</div>

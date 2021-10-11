@@ -1,0 +1,103 @@
+---
+title: Git Squash
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Squashing Git Commits
+  </h2>
+ </span>
+ <p>
+  To combine several sequential commits in git to a single commit, use
+  <code>
+   git rebase -i
+  </code>
+  to
+  <em>
+   squash
+  </em>
+  the commits.
+ </p>
+ <p>
+  <strong>
+   Note
+  </strong>
+  : You can't do this after you've pushed any of the commits.
+ </p>
+ <p>
+ </p>
+ <ol>
+  <li>
+   Run:
+   <code>
+    git rebase -i origin/&lt;branch&gt;
+   </code>
+   <ul>
+    <li>
+     Git will bring up your commits in your selected editor.  You'll start with something like this:
+     <div class="verbatim">
+      <pre>pick bccd911 Checkpoint: blah blah
+pick 6d4e448 Added SomeStupidFunction() which does nothing interesting
+pick 690109e Ooops: Added return value to SomeStupidFunction
+
+# Rebase 33612d0..690109e onto 33612d0
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+</pre>
+     </div>
+    </li>
+    <li>
+     In this case, I want to combine "squash" all of the above into a single commit, so I edit it to be something like this (just the non-comment lines):
+     <div class="verbatim">
+      <pre>pick bccd911 Checkpoint: blah blah
+s 6d4e448 Added SomeStupidFunction() which does nothing interesting
+s 690109e Ooops: Added return value to SomeStupidFunction
+</pre>
+     </div>
+    </li>
+    <li>
+     Save your edits and exit the editor
+     <ul>
+      <li>
+       <strong>
+        Note
+       </strong>
+       : Edits to the commit messages here will have no affect.
+      </li>
+      <li>
+       <strong>
+        Note
+       </strong>
+       : If you delete a commit line, it'll literally be deleted from git -- you most likely don't want to do this!
+      </li>
+     </ul>
+    </li>
+    <li>
+     This will tell git to "squash" the second and third commits into the first.  Git will then bring up your editor again to allow you to write up the new combined commit message.  In my case, I edited it to this:
+     <div class="verbatim">
+      <pre>Implemented SomeStupidFunction() which does nothing interesting.
+</pre>
+     </div>
+    </li>
+   </ul>
+  </li>
+  <li>
+   Re-run the above git log to verify that you have what you expected:
+   <ul>
+    <li>
+     <code>
+      git log origin/&lt;branch&gt;..&lt;branch&gt;
+     </code>
+    </li>
+   </ul>
+  </li>
+ </ol>
+</div>

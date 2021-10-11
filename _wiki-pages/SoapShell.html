@@ -1,0 +1,109 @@
+---
+title: Soap Shell
+layout: wiki-page
+---
+<div id="content">
+ <strong class="two">
+  Pithy condor_soapshell documentation
+ </strong>
+ <p>
+  If/when this makes it into the manual, this page can go away.  Until then, this page documents the condor_soapshell; development of this service is tracked in ticket
+  <span class="ticket">
+   <a class="resolved" href="../../tickets/?ticket=662" title="Create a SOAP-based command-line tool execution service">
+    #662
+   </a>
+  </span>
+  .
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Config file setup
+ </h3>
+ <p>
+  Since it is a regular daemon core daemon, all the config options common to all HTCondor daemons are applicable.  In addition, the following parameters can be set:
+ </p>
+ <p>
+ </p>
+ <pre>   SOAPSHELL_AUTHORIZED_COMMANDS = cmdName,cmdPath,defaultArgs,defaultEnvironment,...
+</pre>
+ <p>
+  So for each command you want users to be able to run, there will be four
+comma seperated tuples in SOAPSHELL_AUTHROIZED_COMMANDS.  Note that spaces
+are considered part of the values (so paths can have spaces) - only commas delimit
+between tokens.  Here is an example:
+ </p>
+ <p>
+ </p>
+ <pre>   SOAPSHELL_AUTHORIZED_COMMANDS = date,/bin/date,,
+</pre>
+ <p>
+  The above says the only authorized command is "date", and if a request arrives
+asking for command "date", then the service will run /bin/date with no default
+args and no default environment variables.
+ </p>
+ <p>
+  Here is an example that shows configuring two commands:
+ </p>
+ <p>
+ </p>
+ <pre>   SOAPSHELL_AUTHORIZED_COMMANDS = date,/bin/date,,,ps,/bin/ps,-elf,
+</pre>
+ <p>
+  The above says there are two authorized commands, "date" as before and "ps". If ps is requested, the service will run /bin/ps with -elf command-line args, and no default environment variables.
+ </p>
+ <p>
+  The syntax for arguments and environment variables is just like it would appear
+in a HTCondor submit file.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Using condor_soapshell
+ </h3>
+ <p>
+  You can then run the service as yourself from the command line like:
+ </p>
+ <p>
+ </p>
+ <pre>   ./condor_soapshell -f -t -p 8080
+</pre>
+ <p>
+  This will run it in the foreground, with the log going to the terminal, and
+listening for incoming SOAP requests on port 8080.
+ </p>
+ <p>
+  The methods in the WSDL allow you to send a request class ad either as a
+  <span class="quote">
+   ClassAdStruct
+  </span>
+  just like SOAP calls to the schedd or collector, or as a string of newline separated class ad attributes.  The request class ad looks like:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">Cmd = "cmdName"    (this must be a cmdName listed in SOAPSHELL_AUTHORIZED_COMMANDS)
+Arguments = "--whatever"   (this is optional)
+Environment = "foo=bar"    (this is optional)
+In = "IUAOXIUS="   (base64 encoded data to be used as stdin; this is optional)
+INPUT_FILE_NAME_1 = "file-name"
+INPUT_FILE_DATA_1 = "ADJALSJJ="
+INPUT_FILE_DATA_2 = ....
+INPUT_FILE_DATA_2 = ....
+</pre>
+ </div>
+ <p>
+  You can specify as many input files as you want.
+ </p>
+ <p>
+  The result class ad returned by the service will contain attributes for EXIT_STATUS, STDOUT and STDERR (base64 encoded), and a REQUEST_ID.
+ </p>
+ <p>
+  All programs will be run in a temporary subdirectory that will be removed
+when the program completes.
+ </p>
+</div>

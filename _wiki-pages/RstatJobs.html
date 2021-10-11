@@ -1,0 +1,134 @@
+---
+title: Rstat Jobs
+layout: wiki-page
+---
+<div id="content">
+ See also, and eventually merge into,
+ <span class="wiki">
+  <a href="{{ '/wiki-archive/pages/RunningRincondorPool' | relative_url }}" title="Running Rincondor Pool">
+   RunningRincondorPool
+  </a>
+ </span>
+ <p>
+  From Kerry Creeron at the Laboratory for Molecular and Computational Genomics here at UW:
+ </p>
+ <p>
+  I got R to successfully run on HTCondor. Here are my results:
+ </p>
+ <p>
+  First off, Nathan gave me the suggestion to use the 'tar' command to put
+together the R binary executable and all the libraries  needed to run your
+program together in your file, and then to use a shell script to untar the
+archive on the remote machine. I extended the concept further to preserve
+the directory structure of the input files that you used, as well.
+ </p>
+ <p>
+  Secondly, when invoking R, I use
+ </p>
+ <div class="code">
+  <pre class="code">R --vanilla &lt; inputfile.r</pre>
+ </div>
+ <p>
+  to run the program. Apparently R doesn't support standard
+ </p>
+ <div class="code">
+  <pre class="code">R arg1 arg2 arg3</pre>
+ </div>
+ style command-line arguments. Though I could easily be wrong about this. Either way, it seemed to be the simplest solution.
+ <p>
+  1. I needed to compile the R binary from source. For whatever reason, simply
+taking the binary from the
+  <code>
+   /usr/bin/
+  </code>
+  directory did not work. I used version
+2.11.1, because it appears to be the latest that our version of CentoOS
+supports, though there isn't necessarily any reason that a newer version of
+R couldn't be used. I also chose R version 2.11.1 because in order to get
+MCMCpack, one of the libraries that your program requires, to install using
+CRAN (similar to CPAN on perl), a version of R  at least2.10 was needed.
+ </p>
+ <p>
+  2. Next, I turned to getting the libraries to work. I initially investigated
+using environment variables like the
+  <code>
+   R_LIBS_USER
+  </code>
+  to set where the remote
+computer is supposed to look for libraries, but that did not work. So,
+instead, I chose to insert the following line into the R program to change
+the default library search directories to look to the current directory
+first:
+ </p>
+ <div class="code">
+  <pre class="code">.libPaths(c(".","/usr/lib64/R/library","/usr/share/R/library"))
+</pre>
+ </div>
+ This should be inserted at the beginning of any programs you want to
+HTCondor-ize. For an example, look at
+ <code>
+  test.r
+ </code>
+ .
+ <p>
+  3. Next, you'll need to make sure that all the libraries are included in the
+tar file. The file
+  <code>
+   tarcmd.txt
+  </code>
+  as follows:
+ </p>
+ <div class="code">
+  <pre class="code">tar -cf r.tar ./R -C /usr/lib64/R/library/ MASS/ coda/ MCMCpack/ lattice/  -C /exports/scratch/&lt;user&gt;/04-2010/ ch01/refsigs/sig104_A.txt ch01/sigsnp/sigint104_A.txt
+</pre>
+ </div>
+ contains the tar command I used to tar the R executable (which I also copied
+into the same directory), the libraries, and your input files. I tarred the
+input files because I wanted to preserve the directory structure and didn't
+want to have to modify your R code.
+ <p>
+  4. The next issue was that the output directories don't exist on the remote
+machine, so I included in
+  <code>
+   r.sh
+  </code>
+  (the shell script) a few
+  <code>
+   mkdir -p
+  </code>
+  commands to
+create the output directories. The output files don't actually have to exist
+on the remote machine---just the directories.
+ </p>
+ <p>
+  Just a side note:
+  <code>
+   &lt;user&gt;
+  </code>
+  , your R files currently have all the file paths
+specified with back slashes ("\\"). On Linux, this will not work. The
+filenames will need forward slashes instead.
+ </p>
+ <p>
+  5. The output files aren't currently being transferred from the remote
+machine back to the submit machine. What needs to be done is to add the
+output files to the job file so that they are transferred when the job
+terminates. I will insert this code when I get the chance.
+ </p>
+ <p>
+  6. The job file also needs to have a constraint that requires that the
+machine is 64-bit. I tested the R binary on a 32-bit machine and it
+didn't work, so I assume that's why.
+ </p>
+ <p>
+  7. All told, running the job took about 5 minutes on the remote machine. So,
+I don't know how that compares to what you've tried on
+  <code>
+   &lt;machine&gt;
+  </code>
+  .
+ </p>
+ <p>
+  Kerry
+ </p>
+</div>

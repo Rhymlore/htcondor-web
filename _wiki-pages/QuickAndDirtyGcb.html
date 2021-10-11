@@ -1,0 +1,72 @@
+---
+title: Quick And Dirty Gcb
+layout: wiki-page
+---
+<div id="content">
+ This is an incomplete draft.  GCB is no longer part of HTCondor; this is only preserved for historic purposes.
+ <p>
+  GCB, or Generic Connection Brokering, allows HTCondor installations behind firewalls and NATs to communicate with machines on the other side.  Two sets of machines behind different firewalls can even communicate.
+ </p>
+ <p>
+  (It is possible to put large holes in your firewall or NAT to allow incoming and outgoing connections instead of using GCB.)
+ </p>
+ <p>
+  For example, assume that you have existing use of GCB brokers on the machines
+192.168.0.101, 192.168.0.102, and 192.168.0.103.
+ </p>
+ <p>
+ </p>
+ <ul>
+  <li>
+   <strong>
+    TODO
+   </strong>
+   Document standing up the GCB brokers
+  </li>
+  <li>
+   The following goes in your HTCondor configuration file.  These setting must be visible to all HTCondor machines that need to use the GCB broker.  If a daemon communicates with machines outside of your firewall or NAT for any reason, it will need GCB configured.
+   <div class="code">
+    <pre class="code"># Turn on GCB
+# Note: this automatically turns on BIND_ALL_INTERFACES.
+NET_REMAP_ENABLE=TRUE
+
+# The only valid option is GCB here.
+NET_REMAP_SERVICE = GCB
+
+# IP addresses of GCB brokers.  Also add it to $(ETC)/GCB-routing-table,
+# or else GCB routed connections will be unnecessarily slow.
+NET_REMAP_INAGENT = 192.168.0.101, 192.168.0.102, 192.168.0.103
+
+# This is used to determine which IP addresses are GCB brokers, potentially
+# allowing us to be more clever and avoid the broker.
+NET_REMAP_ROUTE = $(ETC)/GCB-routing-table
+
+# This is used to identify machines that can route to each other without
+# hitting any NATs, firewalls, or the like.  This lets us skip GCB entirely in
+# these circumstances.  It's an arbitrary string used in comparisons; it only
+# needs to be unique among all daemons talking to this pool.
+PRIVATE_NETWORK_NAME = my.network.example.internal
+</pre>
+   </div>
+   <p>
+   </p>
+  </li>
+  <li>
+   Create a GCB-routing-table containing the following:
+   <div class="code">
+    <pre class="code"># All GCB broker addresses set in NET_REMAP_INAGENT should be
+# listed here with "/32 GCB" appended.  This significantly
+# improves local scalability.  It is safe to list brokers you are
+# not using.
+
+192.168.0.100
+192.168.0.101
+192.168.0.102
+192.168.0.103
+192.168.0.104
+192.168.0.105
+</pre>
+   </div>
+  </li>
+ </ul>
+</div>

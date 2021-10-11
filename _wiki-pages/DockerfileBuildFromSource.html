@@ -1,0 +1,42 @@
+---
+title: Dockerfile Build From Source
+layout: wiki-page
+---
+<div id="content">
+ If Docker is installed on your system, you can use it to easily checkout and build HTCondor from source. Assuming you have sudo access to docker, simply
+ <p>
+ </p>
+ <ol>
+  <li>
+   mkdir some_directory
+  </li>
+  <li>
+   cd some_directory
+  </li>
+  <li>
+   Copy the attached text into a file named "Dockerfile" in this directory.
+  </li>
+  <li>
+   sudo docker build .
+  </li>
+ </ol>
+ <p>
+  This may take some time, but will create a docker container with checkout-out and built sources.  You can use the docker commit command to turn the container back into an image.
+ </p>
+ <h3>
+  Attachments:
+ </h3>
+ <blockquote>
+  <ul>
+   <li>
+    <a href="attach_get/1021/Dockerfile">
+     Dockerfile
+    </a>
+    703 bytes added by gthain on 2018-Nov-26 16:27:17 UTC.
+    <br/>
+    Docker build file to build a centos 7 HTCondor from source
+    <br/>
+   </li>
+  </ul>
+ </blockquote>
+</div>

@@ -1,0 +1,108 @@
+---
+title: Job Fails Under Condor
+layout: wiki-page
+---
+<div id="content">
+ "I have a job that runs on the command line; but it crashes when run
+under HTCondor." -- probably many of us have faced a problem like
+this.
+ <p>
+  We recently worked with a user who had a job that exhibited this
+behavior (it segfaulted when run under HTCondor).  It
+took us a while to figure out what the cause was -- environment variables
+under HTCondor differed only trivially from the command line (the job
+was using "getenv = true"), and the command line arguments were exactly
+the same.
+ </p>
+ <p>
+  We eventually figured out that the job was crashing because the file
+descriptor limit when run under HTCondor was higher than when it was
+run from the command line(!).  This was a bit of a surprise, and clearly
+indicates problems in the code of the program; but it also points up
+an important, and somewhat non-obvious, way in which running a job under
+HTCondor differs from running it on the command line.
+ </p>
+ <p>
+  (HTCondor jobs inherit their limits from the HTCondor daemon that
+spawns them.  In the case of the file descriptor limit, some HTCondor
+daemons need higher limits that most user jobs typically need.
+We are considering changing this in the future, but this is the
+current situation.)
+ </p>
+ <p>
+  At any rate, system limits are something to keep in mind when debugging
+this type of problem.
+ </p>
+ <p>
+  Another thing that is likely to be different between running on the
+command line and running under HTCondor is the umask setting (controlling
+the permissions of files created by the job).  This is one more thing
+to check if you are having problems with jobs not working correctly
+under HTCondor.
+ </p>
+ <p>
+  Here's an example of a job that prints out the limits, changes the
+stack size limit, and prints out the limits again.
+ </p>
+ <p>
+  # File: change_limits.csh
+ </p>
+ <p>
+ </p>
+ <pre>  #! /bin/csh
+  limit
+  echo ""
+  echo "Changing stacksize"
+  limit stacksize 4096
+  echo ""
+  limit
+</pre>
+ <p>
+  # File: change_limits.sub
+ </p>
+ <p>
+ </p>
+ <pre>  universe = vanilla
+  executable = change_limits.csh
+  output = change_limits.out
+  queue
+</pre>
+ <p>
+  # File: change_limits.out
+ </p>
+ <p>
+ </p>
+ <pre>  cputime      unlimited
+  filesize     unlimited
+  datasize     unlimited
+  stacksize    unlimited
+  coredumpsize unlimited
+  memoryuse    unlimited
+  vmemoryuse   unlimited
+  descriptors  1024
+  memorylocked 64 kbytes
+  maxproc      1024
+</pre>
+ <p>
+ </p>
+ <pre>  Changing stacksize
+</pre>
+ <p>
+ </p>
+ <pre>  cputime      unlimited
+  filesize     unlimited
+  datasize     unlimited
+  stacksize    4096 kbytes
+  coredumpsize unlimited
+  memoryuse    unlimited
+  vmemoryuse   unlimited
+  descriptors  1024
+  memorylocked 64 kbytes
+  maxproc      1024
+</pre>
+ <p>
+  Note that the limits on your process under HTCondor will depend on your
+HTCondor configuration.  Also, the limits may vary according to which
+universe your job runs under.
+ </p>
+</div>

@@ -1,0 +1,34 @@
+---
+title: Partionable Slots Design Document
+layout: wiki-page
+---
+<div id="content">
+ Work to support Paritionable slots in HTCondor is an ongoing effort.
+ <p>
+  Current support for partitionable slots in HTCondor:
+ </p>
+ <p>
+  A startd can be configured to support zero or more paritionable slots, in addition to the traditional static slots.  Static and partitionable slots can be mixed, and we do see demand from user for having machines running with both static and partitionable slots.  This can be to have a static slot for administrative purposes, or to support specific kinds of resources like GPUs.  Partitionable slots can be given fixed or remaining amounts of disk, cpu and memory resources.  Today, the negotiatior knows nothing special about partitionable slots -- they are advertised to the collector, matched in the negotiator, just like a static slot, and assigned to a schedd.  Only when the claim is in the schedd does their partitionable nature become noticed.  When the schedd claims a partitionable slot, the startd splits the claim into the requested amount (perhaps rounded by itself), creating a new claim we call the dynamic slot, and decrements the existing partitionable slot, so that it represents the remaining claim.  The schedd can then repeatedly try to claim the partitionable leftovers until they are exhausted.  However, the partitionable slot never itself goes into the claimed state, it stays unclaimed for the whole life cycle.  Defragmentation is handled by a defragmentation daemon, which periodically sends draining
+requests to selected startds, in order to drain the whole machine.
+ </p>
+ <p>
+  Problems with current support for partitionable slots
+ </p>
+ <p>
+  There are several operational problems with the current partitionable slot implementation.  These stem from a few root causes.
+ </p>
+ <p>
+  The first root cause is that the negotiator doesn't know about partitioning, and hands out the whole resource, or tries to, to the schedd.  This means that in cases where there are many resources per machine, and each submitter, for whatever reason, is only allowed to currently use less than a whole machine's worth of resources, the negotiator will fail to match the resource to the job, because it can only allocate the full slot to the submitter.  A related problem is that it is impossible to specify a policy where the admin can "fill up" one machine with jobs before moving on to the next machine.  Again, this is because the negotiator believes it is matching one job to a resource which eventually may split into multiples.  Because the negotiator implements concurrency limits, these don't work correctly in the paritionable slot case either.  Another result of this is that startd rank doesn't work correctly -- the rank and the match only apply to the partitionable slot, not to the dynamic slot which is created by the start at claim time.  A minor consequence is that the partitionable slot stays unclaimed, which is confusing in condor_status output.
+ </p>
+ <p>
+  Another root cause of several problems is that there is no naming or identification of partitionable slots.  While static slots aren't explicitly named, many sites use the slotd as a de-facto name.  For example, one static slot might be special in some way, and be bound to jobs that need licenses
+or whole machine slots, or GPUs or other specialness.  Because the slot id of dynamic slots is dynamic, there is no fixed binding even of the slot id to a name, and thus there is no way to consistently identify dynamnic or partitionable slots.  A related problem is that the CPU affinity knobs are bound to slot ids, which don't really exist as one might expect in the partitionable slot world, so there is no way to express the common idiom of "use Linux CPU affinity to give each slot one core".  Yet another problem related to this is custom slot attributes.  With static slots, there is the ability to set SLOTxx_SomeConfigKnob, to just change the config knob for that slot.  This is not possible in the partitionable slot world.  Perhaps the most common example of this is the Start expression itself -- this is global per startd, instead of per slot, or per slot type.
+ </p>
+ <p>
+  Proposed fixes
+ </p>
+ <p>
+  To improve upon this situation, in this work we will make the partitionable slots named and claimable.  Each partitionable slot will have it's own id, and it will be possible to assign configuration values and classad attributes to the partitionable slot, which are copied into that slot's dynamic slot at claim time.  Specifcally, it should be possible for each slot type to have it's own START expression, independent of the other slot types.  The workflow will also be changed to that the negotiator and schedd will collaborate to claim the partitionable slot, and only perform fast leftover claimed from the claimed partitionable slot.  This will show up in the condor_status output, so that the partitionable slot
+will, less confusingly, end up in the Claimed/busy state.
+ </p>
+</div>

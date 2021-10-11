@@ -1,0 +1,145 @@
+---
+title: Vary Arguments By Proc Id
+layout: wiki-page
+---
+<div id="content">
+ You might want to submit a job repeatedly, varying the arguments for each run.  The core technique is to queue multiple jobs in a single submit file, using submit macros and
+ <span class="wiki">
+  <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   ClassAd
+  </a>
+ </span>
+ expressions to calculate the argument.
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Monotonically increasing count
+ </h2>
+ <p>
+  You can use $(Process) in your submit file to get a monotonically increasing count.  This is also useful if you need an arbitrary unique identifier.  For example, to submit 10 jobs, where the first job will get the argument "0", the second job "1", and so on, you could use:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments  = $(Process)
+queue 10
+</pre>
+ </div>
+ <p>
+  As of HTCondor 8.3.5 you can do simple math in the submit file using $INT() or $REAL().  The technique is to use a temporary variable to declare the mathematical expressions, and then refer to the temporary variable using the $INT() or $REAL() macro expansion to evaluate and print the result.  The $INT() and $REAL() expansions take an optional argument to control the formatting of the result.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+tmp1 = $(Process) + 1
+tmp2 = $(Process) * 2.0
+arguments = $INT(tmp1) $REAL(tmp2,%.3f)
+queue 10
+</pre>
+ </div>
+ <p>
+  Prior to 8.3.5 you can do math by using the deferred expansion of
+$$([]), in which case you'll use $(ProcId) instead of $(Process).  For example, this passes two arguments, the first starts a 1 and increases by 1 for each job, the second starts at 0 and increases by 2 for each job:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments  = $$([ProcId+1]) $$([ProcId*2])
+queue 10
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Selection from a list
+ </h2>
+ In versions of HTCondor starting with 8.3.5, you can use the Process variable to select an item from a list using the $CHOICE() macro.
+ <p>
+  In this example, there will be 6 jobs submitted, the first will have arguments=Alan, the second will have arguments=Betty, etc.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments = $CHOICE(Process, Alan, Betty, Claire, Dan, Eva, Frank)
+queue 6
+</pre>
+ </div>
+ <p>
+  The list can also be a submit variable like this. This example produces the same resulting jobs as the above example.
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments = $CHOICE(Process, Names)
+Names = Alan, Betty, Claire, John, Harry, Sally
+queue 6
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Random selection
+ </h2>
+ <p>
+  If you want each job to have a randomly assigned argument, you can use $RANDOM_CHOICE.  The random selection is not guaranteed to be cryptographically strong, nor necessarily suitable for scientific use.
+ </p>
+ <p>
+  In this example, HTCondor assigns each job two random choices; an integer from 1 to 3, and a random name:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments  = $RANDOM_CHOICE(1,2,3) $RANDOM_CHOICE(Alan, Betty, Claire)
+queue 10
+</pre>
+ </div>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Permute a list (pre 8.3.5 method)
+ </h2>
+ <p>
+  Prior to 8.3.5 If you want to permute some other element, you can use $$([ ]) to evalute arbitrary
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  expressions.  This is particularly useful combined with lists.  If you wanted to permute the 3 names, you could do this:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments  = $$([names[ProcId])
++names     = {"Alan", "Betty", "Claire"}
+queue 3
+</pre>
+ </div>
+ <p>
+  Note that if you try to index into a non-existant list element, HTCondor will be unable to determine the final argument string and the job will be put on hold.  If you want to loop over the list, you can use modulus arthimatic and the list of the list:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">executable = myprogram.exe
+arguments  = $$([names[ProcId%size(names)]])
++names     = {"Alan", "Betty", "Claire"}
+queue 50
+</pre>
+ </div>
+</div>

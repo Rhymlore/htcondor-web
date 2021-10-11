@@ -1,0 +1,38 @@
+---
+title: How To Printf Sizes And Offsets
+layout: wiki-page
+---
+<div id="content">
+ From this link.
+ <p>
+  See 7.19.6.1/7 in the C99 standard, or the more convenient POSIX documentation of formatting codes:
+ </p>
+ <p>
+  <a class="external" href="http://pubs.opengroup.org/onlinepubs/009695399/functions/fprintf.html">
+   http://pubs.opengroup.org/onlinepubs/009695399/functions/fprintf.html
+  </a>
+ </p>
+ <p>
+  To print off_t:
+ </p>
+ <div class="code">
+  <pre class="code">printf("%jd\n", (intmax_t)x);</pre>
+ </div>
+ To print size_t:
+ <div class="code">
+  <pre class="code">printf("%zu\n", x);</pre>
+ </div>
+ To print ssize_t:
+ <div class="code">
+  <pre class="code">printf("%zd\n", x);</pre>
+ </div>
+ <p>
+  from
+  <span class="quote">
+   StackOverflow:
+  </span>
+  <a class="external" href="http://stackoverflow.com/questions/586928/how-should-i-print-types-like-off-t-and-size-t">
+   http://stackoverflow.com/questions/586928/how-should-i-print-types-like-off-t-and-size-t
+  </a>
+ </p>
+</div>

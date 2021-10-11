@@ -1,0 +1,84 @@
+---
+title: How To Adjust Environment
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   How to adjust the job's environment for the execute machine
+  </h2>
+ </span>
+ <p>
+  Known to work with HTCondor version: 7.0
+ </p>
+ <p>
+  If you simply need to insert an environment variable, you can do that by putting the following in your configuration file on the execute machine:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">STARTER_JOB_ENVIRONMENT = "APP1_PATH=/opt/app1 APP2_PATH=/opt/app2"
+</pre>
+ </div>
+ <p>
+  If you need to dynamically modify an environment variable, you can do that in a wrapper script around the job.  Here is what you would put in the configuration file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">USER_JOB_WRAPPER=/path/to/condor_job_wrapper
+</pre>
+ </div>
+ <p>
+  Then you would create a file named condor_job_wrapper (or whatever name you choose), make it executable, and put in something like the following:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">#!/bin/sh
+
+# insert /s/std/bin into the PATH
+export PATH=/s/std/bin:$PATH
+
+exec "$@"
+</pre>
+ </div>
+ <p>
+  Another way for information from the machine to enter the job environment is to publish the information in the machine
+  <span class="quote">
+   ClassAd
+  </span>
+  and leave it up to the user to insert it into the job's environment via the $$() mechanism, which substitutes in values from the target
+  <span class="quote">
+   ClassAd
+  </span>
+  .  Example machine configuration:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">APP1_PATH = "/opt/app1"
+APP2_PATH = "/opt/app2"
+STARTD_ATTRS = $(STARTD_ATTRS) APP1_PATH APP2_PATH
+</pre>
+ </div>
+ <p>
+  Then the user can insert this information into the job environment by putting the following in the job submit file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">environment = "APP1_PATH=$$(APP1_PATH) APP2_PATH=$$(APP2_PATH)"
+</pre>
+ </div>
+ <p>
+  If it is expected that the job may run on machines where these attributes of the machine
+  <span class="quote">
+   ClassAd
+  </span>
+  are not defined, a default value should be specified like this.  For example, if it should just be empty when undefined, use this:
+ </p>
+ <div class="code">
+  <pre class="code">APP1_PATH=$$(APP1_PATH:)</pre>
+ </div>
+</div>

@@ -1,0 +1,57 @@
+---
+title: Gratia Probe
+layout: wiki-page
+---
+<div id="content">
+ Gratia is an accounting system used in OSG. At each grid site it gathers usage information from the local batch system using a
+ <em>
+  probe
+ </em>
+ that is specific to the type of batch system being used.
+ <p>
+  So for example on the gatekeeper for a site running HTCondor, the HTCondor probe will be run out of cron every so often. When it runs, it queries HTCondor's history as maintained by the SchedD and for each newly completed job it finds it will take usage information out of that job's
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  , reformat it into a Gratia
+  <em>
+   usage record
+  </em>
+  , and send it to the Gratia database.
+ </p>
+ <p>
+  The Gratia probe for HTCondor was initially developed at Fermi. In its initial implementation it worked by scanning a directory for user log files for jobs run via GRAM. These user log files were generated via a patched version of the HTCondor job manager for GRAM. For any eviction record or completion record found in these log files, the probe would then use condor_history to get full details for the given job and send a record to Gratia. There were a few drawbacks to this approach, most significantly the potential for lost records and the common occurrence of duplicate records.
+ </p>
+ <p>
+  At some point, Flightworthy became responsible for maintaining the HTCondor Gratia probe. Aside from fixing issues and answering questions as they came up, we also made a few improvements.
+ </p>
+ <p>
+  The first improvement involved addressing the issue of lost records and duplicate records. The solution involved the addition of the PER_JOB_HISTORY_DIR feature to the SchedD. This made the probe's job much easier since it then only needs to look in the PER_JOB_HISTORY_DIR for new files (which appear whenever a job leaves the queue). For each file, the probe sends a record to gratia then deletes the file. I think most sites in OSG now use the probe in this way.
+ </p>
+ <p>
+  A second improvement was the addition of a command-line option to the probe that would tell it to only process certain ads. This worked using a very basic form of
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  constraint (It's basic since the probe is written in Perl and we don't have a Perl
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+    ClassAd
+   </a>
+  </span>
+  library). The motivation behind this feature was a limitation in Gratia such that a single probe can only send usage records for a single logical "site". Apparently some OSG setups have a single SchedD accepting jobs from mulitple gatekeepers. In this case the each gatekeeper can be configured to put a site ID in the
+  <span class="wiki">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
+    ClassAds
+   </a>
+  </span>
+  for jobs they submit. Then one HTCondor Gratia probe can be run for each gatekeeper, each only processing ads that contain the corresponding gatekeeper ID.
+ </p>
+ <p>
+  Our main contact for the Gratia probe is Chris Green at Fermi (greenc@fnal.gov). Contact him to get CVS access for the probe's source code. Philippe Canal (pcanal@fnal.gov) also is part of the Gratia team and sometimes questions regarding the state and/or workings of the probe.
+ </p>
+</div>

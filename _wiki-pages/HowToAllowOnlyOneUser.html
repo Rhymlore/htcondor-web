@@ -1,0 +1,95 @@
+---
+title: How To Allow Only One User
+layout: wiki-page
+---
+<div id="content">
+ Sometimes you may want to limit a set of machines to either
+ <p>
+ </p>
+ <ol>
+  <li>
+   only run jobs from a specific user or set of users, or
+   <p>
+   </p>
+  </li>
+  <li>
+   only allow ONE active user per execute node, so that on a execute node using partitionable slots, if UserA lands on machine Execute1 and uses say 2
+out of 10 cpus, then UserA is also allowed to claim more slots on
+that machine and UserB would not be allowed. Once UserA jobs have completed on Execute1, then if UserB landed on that machine, only userB would then be allowed to claim additional slots/resources on Execute1.
+  </li>
+ </ol>
+ <p>
+  We give recipes for each of the above scenarios below.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Only run jobs from a specific user or set of users
+ </h3>
+ <p>
+  To specify that a given machine should only run certain users' jobs,
+and always run the jobs regardless of other activity on the machine,
+load average, etc.,
+place the following entry in the
+machine's HTCondor configuration file:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">START = ( (User == "userfoo@baz.edu") || \
+          (User == "userbar@baz.edu") )
+</pre>
+ </div>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Only allow ONE active user per execute node
+ </h3>
+ <p>
+  Imagine you only want to allow ONE active user per execute machine on machine configured to use partitionable slots.  This may be a security requirement at some sites.  So the idea is  if UserA lands on machine Execute1 and uses say 2
+out of 10 cpus, then UserA is also allowed to claim more slots on
+that machine and UserB would not be allowed. Once UserA jobs have completed on Execute1, then if UserB landed on that machine, only userB would then be allowed to claim additional slots/resources on Execute1.
+ </p>
+ <p>
+  To accomplish this on HTCondor v8.4 or above, append the following into the condor_config file(s) of the machines where you only want one user per node:
+ </p>
+ <p>
+ </p>
+ <div class="code">
+  <pre class="code">START = ( $(START) ) &amp;&amp; \
+        ifThenElse(PartitionableSlot=?=True &amp;&amp; UpdatesLost=!=UNDEFINED, \
+                size(ChildRemoteUser)==0 || member(User,ChildRemoteUser), \
+                RemoteUser=?=UNDEFINED || User=?=RemoteUser)
+</pre>
+ </div>
+ <p>
+  The expression above leverages the fact that
+  <code>
+   User
+  </code>
+  is an attribute in the job classad that identifies the submitting user.
+Attribute
+  <code>
+   RemoteUser
+  </code>
+  is in a slot ad, and equals the user of whomever claimed the slot.
+Attribute
+  <code>
+   ChildRemoteUser
+  </code>
+  is in the partitionable slot ad in the collector, and will be
+a classad list containing the all
+  <code>
+   RemoteUser
+  </code>
+  values of all the dynamic slots created under that partitionable slot.
+ </p>
+ <p>
+  The above configuration is a bit complicated.  We hope to make the idea of one user claiming
+an entire machine more straightforward in a future release.
+ </p>
+</div>

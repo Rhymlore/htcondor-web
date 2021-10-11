@@ -1,0 +1,78 @@
+---
+title: Experimental Overlayed File Transfer
+layout: wiki-page
+---
+<div id="content">
+ <em>
+  This is documentation for an EXPERIMENTAL feature, and the feature is subject to change without notice!
+ </em>
+ <p>
+  <span class="section">
+  </span>
+ </p>
+ <h2>
+  Experimental Overlapped File Transfer
+ </h2>
+ <p>
+  This experimental feature introduced in HTCondor version 8.1.6 allows a pipelined use of an execute slot by overlapping the execution of one job with the transferring of output from the previous job.  This work is detailed in
+  <span class="ticket">
+   <a class="resolved" href="../../tickets/?ticket=4291" title="Overlayed I/O with dedicated transfer slots">
+    #4291
+   </a>
+  </span>
+  .  The motivation behind this feature is that the amount of time used for transferring output files back to the submit host can be significant, while the CPU usage during the transfer is minimal.  The goal is a more productive use of the CPU during this transfer time, by allowing it to start on a new job.
+ </p>
+ <p>
+  In implementation, an execute slot is paired with minimal-resource slot by configuration, and both slots are claimed together. These minimal-resource slots are called
+  <em>
+   transfer slots
+  </em>
+  or
+  <em>
+   buddy slots
+  </em>
+  . A job begins its execution on the execute slot. When the job is done with its CPU-intensive phase, it invokes a condor_chirp command.  HTCondor then moves the job from the execute slot to its paired transfer slot, provided that transfer slot is not being used by a prior job for that prior job's output transfer.  And, the execute slot can then be matched with a new job.
+ </p>
+ <p>
+  It is assumed that the job is doing its own output transfer.
+ </p>
+ <p>
+  This implementation is only for static slots.
+ </p>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  Configuration to Enable the Overlapped File Transfer
+ </h3>
+ <p>
+  A single metaknob configures all static slots on a machine to use this experimental feature:
+ </p>
+ <p>
+ </p>
+ <pre>  USE EXPERIMENTAL : Async_Stageout
+</pre>
+ <p>
+  <span class="subsection">
+  </span>
+ </p>
+ <h3>
+  What the Job Needs to Do
+ </h3>
+ <p>
+  The job needs to identify
+when it is done with its execute phase and is about to enter its output transfer phase.
+To do so, the job invokes the the undocumented condor_chirp command:
+ </p>
+ <p>
+ </p>
+ <pre>  condor_chirp phase output
+</pre>
+ <p>
+  In order to use chirp commands, the job's submit description file must contain
+ </p>
+ <p>
+ </p>
+ <pre>  +WantIOProxy = true</pre>
+</div>

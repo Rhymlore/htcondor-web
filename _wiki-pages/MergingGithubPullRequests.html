@@ -1,0 +1,143 @@
+---
+title: Merging Github Pull Requests
+layout: wiki-page
+---
+<div id="content">
+ <br/>
+ To merge a pull request from github into your htcondor repository, you need to add github as a remote repository, and then create a new branch from the pull request.
+ <strong>
+  Following these directions will preserve authorship and timestamps.
+ </strong>
+ <p>
+  Adding github as a remote repository is something you only need to do once for a given repo:
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">One-time config: add the github htcondor repository as a remote repository called github</pre>
+  <pre class="snip">git remote add github https://github.com/htcondor/htcondor.git
+</pre>
+ </div>
+ <p>
+  Here is the general form for converting a github pull request to a branch.  Below this you will see many specific examples showing the convention for branch naming and commands to run in various different scenarios.
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">General: fetch a pull request ID from remote github creating branch BRANCHNAME</pre>
+  <pre class="snip">git fetch github pull/ID/head:BRANCHNAME
+</pre>
+ </div>
+ <p>
+  <br/>
+  <strong>
+   MAKE A GITTRAC TICKET FOR THE PULL REQUEST.
+  </strong>
+ </p>
+ <p>
+  Create a new ticket, fill in the description with the reason for the change, fill in the customer group if known, the target release, etc.  Add a remark with a  code review signing off on the changes. Examples below use ticket number 9999.
+ </p>
+ <p>
+  <strong>
+   IT IS VERY IMPORTANT THAT YOUR MERGE THE PULL REQUEST INTO THE BRANCH IT WAS CREATED FROM.
+  </strong>
+ </p>
+ <p>
+  Most people create pull requests off of the master branch.  Look at the pull request on github, and near the top, directly under the title you will see a line similar to this:
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example message on github website</pre>
+  <pre class="snip">zmiller wants to merge 1 commit into htcondor:master from zmiller:changing-some-htcondor-code
+</pre>
+ </div>
+ <p>
+  Now that you know the target branch, create a new branch with the correct name and the gittrac ticket number from the ticket you created above.  You will also need to know the pull request number for this step.
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example 1: create a branch targeting *master* (V8_9 in this example) for the github pull request (ID 107 here) and the gittrac ticket (9999 here)</pre>
+  <pre class="snip">git fetch github pull/107/head:V8_9-gt9999-branch
+</pre>
+ </div>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example 2: create a branch targeting *stable* (V8_8 in this example) for the github pull request (ID 107 here) and the gittrac ticket (9999 here)</pre>
+  <pre class="snip">git fetch github pull/107/head:V8_8-gt9999-branch
+</pre>
+ </div>
+ <p>
+  Now check out the target branch and merge the branch containing the pull request.  There are two cases below.
+ </p>
+ <p>
+  <strong>
+   MOST LIKELY
+  </strong>
+  , the pull request was made from master.  So you probably want to just do this:
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example: check out the master and merge the V8_9-gt9999-branch created above</pre>
+  <pre class="snip">git checkout master
+git pull
+git merge V8_9-gt9999-branch  # ADD THE GITTRAC TICKET NUMBER TO MERGE COMMIT MESSAGE!!
+git push origin master
+</pre>
+ </div>
+ <p>
+  Then, if the pull request was made from master but should also apply to the stable branch (because it's a bug fix), then cherry-pick the commit(s) back to the correct branch.
+  <strong>
+   There may be more than one commit in a pull request.
+  </strong>
+  If this is the case, make sure you do them in the correct chronological order.  If you are picking into a release branch consult with TimT and TJ first.
+ </p>
+ <p>
+  One way to find the commit hashes is from the github.com website.  While viewing the pull request click on the "Commits" tab and you will see a list.
+ </p>
+ <p>
+  Another way to get the commit hashes is by running "git log" while you still have the master branch checked out.  You are searching for the individual commit(s) in the pull request, NOT the commit of the merge you just did to master.  Search for appropriate keywords from the pull request, or for the committer's username, or "github.com".  Make sure you get all commits contained in the pull request, and in the right chronological order.  It's probably better to get them using the first method (i.e. directly from github.com).
+ </p>
+ <p>
+  Ideally, find the commits in gittrac (they will be in the Timeline when the original committer made them, NOT when you merged) and add edit the commit message(s) to include the ticket number.
+ </p>
+ <p>
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example: Cherry-pick the commit(s) back to stable (V8_8-branch in this example)</pre>
+  <pre class="snip">git checkout V8_8-branch
+git pull
+git cherry-pick &lt;commit-hash-1&gt;
+git cherry-pick &lt;commit-hash-2&gt;
+...
+git push origin V8_8-branch
+</pre>
+ </div>
+ <p>
+  Again, find the commits in gittrac (this time they will be in the Timeline when you did the cherry-pick) and add edit the commit message(s) to include the ticket number.
+ </p>
+ <p>
+  <strong>
+   THIS IS EXTREMELY RARE
+  </strong>
+  , but if the pull request was targeted for stable (or a release branch), merge the pull request branch to the target branch and then do the normal merges forward.  Consult with TimT and TJ if dealing with a release branch.
+ </p>
+ <div class="snip">
+  <pre class="sniplabel">Example: Merge the pull request into a stable branch (V8_8-branch in this example) and then forward into master</pre>
+  <pre class="snip">git checkout V8_8-branch
+git pull
+git merge V8_8-gt9999-branch  # ADD THE GITTRAC TICKET NUMBER TO MERGE COMMIT MESSAGE!!
+git push origin V8_8-branch
+git checkout master
+git pull
+git merge V8_8-branch
+git push origin master
+</pre>
+ </div>
+ <p>
+  <br/>
+  <strong>
+   THAT'S IT FOR MERGING!
+  </strong>
+  If you targeted the correct branch, the pull request should automatically close when gethub detects the SHA was merged.  Don't forget to add documentation and Version History if needed and reference the associated gittrac ticket number so everything is nicely grouped togther under the one ticket.
+  <br/>
+  <br/>
+ </p>
+</div>

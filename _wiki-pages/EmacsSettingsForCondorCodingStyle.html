@@ -1,0 +1,44 @@
+---
+title: Emacs Settings For Condor Coding Style
+layout: wiki-page
+---
+<div id="content">
+ <span class="section">
+  <h2>
+   Emacs Settings for HTCondor Coding Style
+  </h2>
+ </span>
+ <p>
+  You're a new HTCondor developer. You've read the HTCondor coding guidelines (
+  <code>
+   src/CODING_GUIDELINES
+  </code>
+  from any HTCondor source tree you've checked out of CVS). Like any sane person, you prefer to use emacs to edit the HTCondor source. ;)
+ </p>
+ <p>
+  Here's what you should put the following into your .emacs file and emacs will do all the right things whenever you edit a file that puts you into c-mode:
+ </p>
+ <hr/>
+ <div class="code">
+  <pre class="code">;; set up c-mode for HTCondor
+
+(setq c-mode-common-hook
+      (function (lambda ()
+		  (setq c-basic-offset 4)
+		  (setq c-comment-only-line-offset 4)
+		  (setq c-indent-level 4)
+		  (setq c-brace-imaginary-offset 0)
+		  (setq c-brace-offset 0)
+		  (setq c-argdecl-indent 0)
+		  (setq c-label-offset -4)
+		  (setq c-continued-statement-offset 4)
+		  (setq c-continued-brace-offset -4)
+		  (setq c-tab-always-indent nil)
+		  (setq tab-width 4)
+		  (line-number-mode 1)
+		  ))
+)
+</pre>
+ </div>
+ <hr/>
+</div>

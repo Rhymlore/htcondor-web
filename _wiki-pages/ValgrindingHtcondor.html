@@ -1,0 +1,68 @@
+---
+title: Valgrinding Htcondor
+layout: wiki-page
+---
+<div id="content">
+ Running the tests under
+ <a class="external" href="http://valgrind.org/">
+  Valgrind
+ </a>
+ is a tricky.
+ <p>
+ </p>
+ <ol>
+  <li>
+   Start with setting up to run tests following the instructions at
+   <span class="wiki">
+    <a href="{{ '/wiki-archive/pages/TestingCondorOnUnix' | relative_url }}" title="Testing Condor On Unix">
+     TestingCondorOnUnix
+    </a>
+   </span>
+  </li>
+  <li>
+   <div class="code">
+    <pre class="code">cd src/condor_tests</pre>
+   </div>
+  </li>
+  <li>
+   <div class="code">
+    <pre class="code">mkdir valgrind-results</pre>
+   </div>
+  </li>
+  <li>
+   <div class="code">
+    <pre class="code">OUTDIR=`pwd`/valgrind-results</pre>
+   </div>
+  </li>
+  <li>
+   Start up a copy of HTCondor for those tests that rely on a running instance.  Use a command line similar to:
+   <div class="code">
+    <pre class="code">exec valgrind --verbose --trace-children=yes --child-silent-after-fork=yes \
+  --trace-children-skip=/usr/bin/*,/bin/* --time-stamp=yes \
+  --log-file=$OUTDIR/log-%p \  --xml=yes --xml-file=$OUTDIR/xml-%p \
+  condor_master
+</pre>
+   </div>
+  </li>
+  <li>
+   Run the tests under Valgrind using run-tests. This example tries to run every test, you might want to run a subset.
+   <div class="code">
+    <pre class="code">../condor_scripts/run-tests *.run</pre>
+   </div>
+  </li>
+  <li>
+   Wait many hours. Output is written to $OUTDIR.
+  </li>
+  <li>
+   <div class="code">
+    <pre class="code">../condor_scripts/process-logs $OUTDIR</pre>
+   </div>
+  </li>
+  <li>
+   Wait 10 minutes or so.
+  </li>
+ </ol>
+ <p>
+  HTML reports are now in ./out. There will be one file per executable with the name being the basename. These are less useful. There are numbered files with each number indicating a unique stack trace (only HTCondor layers are considered for that comparison). Those are more useful.
+ </p>
+</div>

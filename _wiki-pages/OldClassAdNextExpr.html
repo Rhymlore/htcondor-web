@@ -1,0 +1,40 @@
+---
+title: Old Class Ad Next Expr
+layout: wiki-page
+---
+<div id="content">
+ New
+ <span class="quote">
+  ClassAds
+ </span>
+ provide an iterator via the begin() and end() methods to traverse all of the attributes in the ad. The iterator doesn't handle any chained ad.
+ <p>
+  One callsite is in Quill's jobqueuecollection.cpp. This site may require handling of chained ads.
+ </p>
+ <p>
+  One difference between old
+  <span class="quote">
+   ClassAds
+  </span>
+  ' NextExpr() and new
+  <span class="quote">
+   ClassAds
+  </span>
+  ' iterator is that the former returns an
+  <span class="quote">
+   ExprTree
+  </span>
+  of the assignment operator (including attribute name and value) while the latter returns an
+  <span class="quote">
+   ExprTree
+  </span>
+  of just the attribute value. This shouldn't be a problem, as all of the callsites immediately use the
+  <span class="quote">
+   ExprTree
+  </span>
+  to either copy into a new ad or unparse into a string.
+ </p>
+ <p>
+  Developer time: half day to examine jobqueuecollection.cpp, plus 1-2 weeks student time to update callsites
+ </p>
+</div>
