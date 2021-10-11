@@ -1,0 +1,6 @@
+---
+layout: blank
+---
+{% for page in site.pages %}
+  {{ page.title }}
+{% endfor %}
