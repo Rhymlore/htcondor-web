@@ -36,6 +36,7 @@
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     {% for js in include.js %}
         <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
     {% endfor %}

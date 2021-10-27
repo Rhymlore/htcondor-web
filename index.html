@@ -19,8 +19,14 @@ title: Home
     </div>
     <div id="#new-container" class="news col-12 col-md-4 mb-2">
         <div class="p-2 bg-light">
-            <h4>Latest News</h4>
-
+            <h4 class="d-flex flex-row flex-md-column flex-lg-row">
+                Latest News
+                <div class="ms-auto ms-md-0 ms-lg-auto">
+                    <a href="https://twitter.com/htcondor?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-dnt="true" data-show-count="false">
+                        Follow @HTCondor
+                    </a>
+                </div>
+            </h4>
             {% assign news = site.news | sort | reverse %}
             {% for item in news limit:5 %}
             {% include news_item.html %}
