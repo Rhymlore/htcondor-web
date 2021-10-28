@@ -17,6 +17,27 @@
                                 <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
                             </li>
                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="documentation-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    Documentation
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="documentation-toggle">
+                                    <li class="dropstart">
+                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-doc-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            HTCondor
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="htcondor-doc-toggle">
+                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/">Feature&#11023;</a></li>
+                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/v9_0/">Long Term Support&#11023;</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link dropdown-item" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/" >
+                                            HTCondor-CE&#11023;
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="software-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                     Software
                                 </a>
