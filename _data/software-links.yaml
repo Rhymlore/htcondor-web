@@ -1,0 +1,28 @@
+- software: HTCondor
+  links:
+    - path: /htcondor/overview/
+      class:
+      label: Overview
+    - path: /htcondor/download/
+      class:
+      label: Download
+    - path: "https://htcondor.readthedocs.io/en/latest/"
+      class:
+      label: Documentation&#11023;
+    - path: "https://htcondor.readthedocs.io/en/latest/version-history/"
+      class:
+      label: Release Notes&#11023;
+- software: HTCondor-CE
+  links:
+    - path: /htcondor-ce/overview/
+      class:
+      label: Overview
+    - path: /htcondor-ce/download/
+      class:
+      label: Download
+    - path: "https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/"
+      class:
+      label: Documentation&#11023;
+    - path: "https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history"
+      class:
+      label: Release Notes&#11023;

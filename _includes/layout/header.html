@@ -16,8 +16,34 @@
                             <li class="nav-item">
                                 <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {% if '/downloads.html' == page.url %}active{% endif %}" href="{{ '/downloads' | relative_url }}">Downloads</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="software-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    Software
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="software-toggle">
+                                    <li class="dropstart">
+                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            HTCondor
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="htcondor-toggle">
+                                            <li><a class="dropdown-item" href="{{ '/htcondor/overview' | relative_url }}">Overview</a></li>
+                                            <li><a class="dropdown-item" href="{{ '/htcondor/download' | relative_url }}">Download</a></li>
+                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/">Documentation&#11023;</a></li>
+                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropstart">
+                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-ce-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            HTCondor-CE
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="htcondor-ce-toggle">
+                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/overview' | relative_url }}">Overview</a></li>
+                                            <li><a class="dropdown-item" href="htcondor-ce/download">Download</a></li>
+                                            <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Documentation&#11023;</a></li>
+                                            <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Release Notes&#11023;</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {% if '/publications.html' == page.url %}active{% endif %}" href="{{ '/publications' | relative_url }}">Publications</a>

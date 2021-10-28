@@ -19,7 +19,6 @@ collections:
     permalink: /wiki-archive/pages/:path/
     output: true
 
-
 defaults:
   -
     scope:
