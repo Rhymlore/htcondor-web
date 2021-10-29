@@ -1,11 +1,21 @@
 ---
 layout: subpage
-title: HTCondor Downloads
+title: HTCSS Downloads
 ---
-
-<div class="row">
+<div class="mb-4">
+    <p>
+        HTCSS has two components of software to be downloaded. Each component
+        features the option to use either the Current or Long Term Support Channel depending on your needs.
+    </p>
+    <ul>
+        <li><a href="#HTCSS"><b>HTCondor</b></a></li>
+        <li><a href="#HTCondor-CE"><b>HTCondor-CE</b></a></li>
+    </ul>
+</div>
+<h2 id="HTCSS">HTCondor</h2>
+<div class="row p-2 mb-4 bg-light">
     <div class="col-12 col-md-6">
-        <h2>Current Channel</h2>
+        <h3>Current Channel</h3>
 
         <p>The current channel distributes HTCondor's new features and also
         incorporates bug fixes.</p>
@@ -14,31 +24,74 @@ title: HTCondor Downloads
 
         <p style="font-size: large; text-align: center;"><a href="https://htcondor.readthedocs.io/en/latest/getting-htcondor/">Get HTCondor (current channel)</a></p>
 
-        <p>In this channel, the second number in the HTCondor version will be odd.</p>
+        <p>In this channel, the second number in the HTCondor version will be non-zero (9.<b>X</b>.<b>Y</b>). </p>
     </div>
     <div class="col-12 col-md-6">
 
-        <h2>Stable Channels</h2>
+        <h3>Long Term Support (LTS) Channels</h3>
 
-        <p>The stable channels distribute only bug fixes to a particular, fixed set of
-        features from the current channel.  As a result, each stable channel tends to
+        <p>The Long Term Support channels distribute only bug fixes to a particular, fixed set of
+        features from the current channel.  As a result, each LTS channel tends to
         become more stable over time; read the <a href="https://htcondor.readthedocs.io/en/latest/version-history/">release notes</a>
         from the current channel to make sure you aren't missing any features you
         need.</p>
         <p>If you can't regularly upgrade your machines, this may be the channel
         for you.</p>
         <p>Periodically, we will update the set of features that we support with
-        bug fixes and start a new stable channel.  This will not the change the set
+        bug fixes and start a new LTS channel.  This will not the change the set
         of features available to an existing or automatically-updated installation of
-        a stable channel; you have to make the decision to change manually.  However,
-        after a time, we will stop issuing additional bug fixes for older stable
+        a LTS channel; you have to make the decision to change manually.  However,
+        after a time, we will stop issuing additional bug fixes for older LTS
         channels.</p>
-        <p>The following link always goes to the instructions for the newest stable
+        <p>The following link always goes to the instructions for the newest LTS
         channel.</p>
 
-        <p style="font-size: large; text-align: center;"><a href="https://htcondor.readthedocs.io/en/v9_0/getting-htcondor/index.html">Get HTCondor (stable channel)</a></p>
+        <p style="font-size: large; text-align: center;"><a href="https://htcondor.readthedocs.io/en/v9_0/getting-htcondor/index.html">Get HTCondor (LTS channel)</a></p>
 
-        <p>In this channel, the second number in the HTCondor version will be even.</p>
+        <p>In this channel, the second number in the HTCondor version will be 0 (9.<b>0</b>.<b>Y</b>).</p>
+    </div>
+</div>
+
+<h2 id="HTCondor-CE">HTCondor-CE</h2>
+<div class="row p-2 mb-4 bg-light">
+    <div class="col-12 col-md-6">
+        <h3>Current Channel</h3>
+        <p>
+            The current channel distributes HTCondor-CE's new features and also
+            incorporates bug fixes.
+        </p>
+        <p>
+            Most people should use choose this channel and stay up-to-date with
+            HTCondor-CE's latest features.
+        </p>
+        <p><a href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Get HTCondor-CE ( Current Channel )</a></p>
+    </div>
+    <div class="col-12 col-md-6">
+        <h3>Long Term Support Channel</h3>
+        <p>
+            The Long Term Support channels distribute only bug fixes to a particular, fixed set of
+            features from the current channel.  As a result, each LTS channel tends to
+            become more stable over time; read the <a href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">release notes</a>
+            from the current channel to make sure you aren't missing any features you
+            need.
+        </p>
+        <p>
+            If you can't regularly upgrade your machines, this may be the channel
+            for you.
+        </p>
+        <p>
+            Periodically, we will update the set of features that we support with
+            bug fixes and start a new LTS channel.  This will not the change the set
+            of features available to an existing or automatically-updated installation of
+            a LTS channel; you have to make the decision to change manually.  However,
+            after a time, we will stop issuing additional bug fixes for older LTS
+            channels.
+        </p>
+        <p>
+            The following link always goes to the instructions for the newest LTS
+            channel.
+        </p>
+        <p><a href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Get HTCondor-CE ( LTS Channel )</a></p>
     </div>
 </div>
 <p class="text-center text-danger p-3 bg-light">
