@@ -1,0 +1,37 @@
+---
+layout: container-default
+---
+{% assign software =  site.data.software-links | map: "software" %}
+{% assign current_software = page.name | remove: ".html" %}
+
+<div class="row">
+    <div class="col-3">
+        <ul class="nav nav-pills flex-column">
+            {% for ware in software %}
+            {% assign downcase_name = ware | downcase %}
+            <li class="nav-item">
+                <a
+                        class="nav-link {% if downcase_name == current_software %}active{% endif %}"
+                        href="{{ '/documentation/' | append: downcase_name | append: '/' | relative_url }}"
+                >
+                    {{ ware }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-9">
+        {% for page in site.software %}
+        {% assign id =  page.url | split: "/" %}
+        {% if id contains current_software %}
+        {% if id contains "documentation" %}
+        <h1><span class="text-secondary">{{ page.software }}</span> Documentation</h1>
+        {{ page.content }}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        <!-- This only fires if on the index* page -->
+        {{ content }}
+    </div>
+</div>
