@@ -3,7 +3,9 @@ layout: default
 ---
 <div class="container">
     <div class="row">
-        {% include layout/software-side-nav.html %}
+        <div class="col-3 col-xl-2 bg-light mb-4 py-2 me-2">
+            {% include layout/software-side-nav.html %}
+        </div>
         <div class="col">
             <h1 class="text-secondary">{{ page.software }}</h1>
             {{ content }}

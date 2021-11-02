@@ -27,7 +27,7 @@ at the the same time.
 <HR NOSHADE>
 
 
-<h2>Fee-based Support for HTCondor</h2>
+<h2 id="fee-based-support-for-htcondor" >Fee-based Support for HTCondor</h2>
 <p>For users who require additional support for HTCondor beyond the free
 support listed above, there are several options. 
 </p>
@@ -35,6 +35,7 @@ support listed above, there are several options.
 The HTCondor Team provides fee-based support, and maintains a
 <a href="http://research.cs.wisc.edu/htcondor/uw-support/">web page</A> detailing the services provided.
 </p>
+<h3 id="external-support">External Support Options</h3>
 <p>
 The list below are other organizations that the HTCondor Team knows
 are providing support, integration, consulting, products, or other services on
