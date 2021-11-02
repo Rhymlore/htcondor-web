@@ -18,6 +18,9 @@ collections:
   wiki-pages:
     permalink: /wiki-archive/pages/:path/
     output: true
+  software:
+    permalink: /:path/
+    output: true
 
 defaults:
   -
