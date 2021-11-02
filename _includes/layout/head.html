@@ -43,7 +43,11 @@
     {% if jekyll.environment == 'production' %}
 
     <meta name="google-site-verification" content="lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ" />
-    <link rel="canonical" href="https://htcondor.org{{page.url}}">
+    {% unless page.canonical %}
+        <link rel="canonical" href="https://htcondor.org{{page.url}}">
+    {% else %}
+        <link rel="canonical" href="{{ page.canonical }}">
+    {% endunless %}
 
     {% if site.google_analytics %}
     {% include analytics.html %}

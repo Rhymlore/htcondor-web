@@ -17,27 +17,6 @@
                                 <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="documentation-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                    Documentation
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="documentation-toggle">
-                                    <li class="dropstart">
-                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-doc-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            HTCondor
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="htcondor-doc-toggle">
-                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/">Feature&#11023;</a></li>
-                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/v9_0/">Long Term Support&#11023;</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link dropdown-item" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/" >
-                                            HTCondor-CE&#11023;
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="software-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                     Software
                                 </a>
@@ -47,9 +26,9 @@
                                             HTCondor
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="htcondor-toggle">
-                                            <li><a class="dropdown-item" href="{{ '/htcondor/overview' | relative_url }}">Overview</a></li>
-                                            <li><a class="dropdown-item" href="{{ '/htcondor/download' | relative_url }}">Download</a></li>
-                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/">Documentation&#11023;</a></li>
+                                            <li><a class="dropdown-item" href="{{ '/htcondor/overview/' | relative_url }}">Overview</a></li>
+                                            <li><a class="dropdown-item" href="{{ '/htcondor/download/' | relative_url }}">Download</a></li>
+                                            <li><a class="dropdown-item" href="{{ '/htcondor/documentation/' | relative_url }}">Documentation</a></li>
                                             <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></li>
                                         </ul>
                                     </li>
@@ -58,11 +37,28 @@
                                             HTCondor-CE
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="htcondor-ce-toggle">
-                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/overview' | relative_url }}">Overview</a></li>
-                                            <li><a class="dropdown-item" href="htcondor-ce/download">Download</a></li>
-                                            <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Documentation&#11023;</a></li>
+                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/overview/' | relative_url }}">Overview</a></li>
+                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/download/' | relative_url }}">Download</a></li>
+                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/documentation/' | relative_url }}">Documentation</a></li>
                                             <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Release Notes&#11023;</a></li>
                                         </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="documentation-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    Documentation
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="documentation-toggle">
+                                    <li class="dropstart">
+                                        <a class="nav-link dropdown-item" href="{{ '/htcondor/documentation' | relative_url }}">
+                                            HTCondor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link dropdown-item" href="{{ '/htcondor-ce/documentation' | relative_url }}" >
+                                            HTCondor-CE
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -74,7 +70,7 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="height:40px">
             {% include google-search-bar.html %}
         </div>
     </div>
