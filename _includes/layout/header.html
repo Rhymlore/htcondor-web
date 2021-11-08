@@ -1,75 +1,182 @@
 <header id="header" class="bg-light mb-4 ">
     <div class="container-xxl">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navBar navbar-expand-lg navbar-light w-100">
-                    <a href="{{ '/index.html' | relative_url }}" class="d-none d-md-inline"><img height="64" alt="Condor High Throughput Computing" src="{{ '/assets/images/CondorTitle.png' | relative_url }}" style="border:0"></a>
-                    <a href="{{ '/index.html' | relative_url }}" class="d-inline d-md-none"><img height="64" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}" style="border:0"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
-                            <li class="nav-item">
-                                <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="software-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                    Software
+        <nav id="mobile-header" class="py-3 d-flex d-lg-none navbar navBar navbar-expand-lg navbar-light w-100">
+            <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}" style="border:0"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="software-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            Software
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="software-toggle">
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" id="htcondor-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    HTCondor
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="software-toggle">
-                                    <li class="dropstart">
-                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            HTCondor
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="htcondor-toggle">
-                                            <li><a class="dropdown-item" href="{{ '/htcondor/overview/' | relative_url }}">Overview</a></li>
-                                            <li><a class="dropdown-item" href="{{ '/htcondor/download/' | relative_url }}">Download</a></li>
-                                            <li><a class="dropdown-item" href="{{ '/htcondor/documentation/' | relative_url }}">Documentation</a></li>
-                                            <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropstart">
-                                        <a class="nav-link dropdown-item dropdown-toggle" href="#" id="htcondor-ce-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            HTCondor-CE
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="htcondor-ce-toggle">
-                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/overview/' | relative_url }}">Overview</a></li>
-                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/download/' | relative_url }}">Download</a></li>
-                                            <li><a class="dropdown-item" href="{{ 'htcondor-ce/documentation/' | relative_url }}">Documentation</a></li>
-                                            <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Release Notes&#11023;</a></li>
-                                        </ul>
-                                    </li>
+                                <ul class="dropdown-menu" aria-labelledby="htcondor-toggle">
+                                    <li><a class="dropdown-item" href="{{ '/htcondor/overview/' | relative_url }}">Overview</a></li>
+                                    <li><a class="dropdown-item" href="{{ '/htcondor/download/' | relative_url }}">Download</a></li>
+                                    <li><a class="dropdown-item" href="{{ '/htcondor/documentation/' | relative_url }}">Documentation</a></li>
+                                    <li><a class="dropdown-item" href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="documentation-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                    Documentation
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" id="htcondor-ce-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    HTCondor-CE
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="documentation-toggle">
-                                    <li class="dropstart">
-                                        <a class="nav-link dropdown-item" href="{{ '/htcondor/documentation' | relative_url }}">
-                                            HTCondor
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link dropdown-item" href="{{ '/htcondor-ce/documentation' | relative_url }}" >
-                                            HTCondor-CE
-                                        </a>
-                                    </li>
+                                <ul class="dropdown-menu" aria-labelledby="htcondor-ce-toggle">
+                                    <li><a class="dropdown-item" href="{{ 'htcondor-ce/overview/' | relative_url }}">Overview</a></li>
+                                    <li><a class="dropdown-item" href="{{ 'htcondor-ce/download/' | relative_url }}">Download</a></li>
+                                    <li><a class="dropdown-item" href="{{ 'htcondor-ce/documentation/' | relative_url }}">Documentation</a></li>
+                                    <li><a class="dropdown-item" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Release Notes&#11023;</a></li>
                                 </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="mailto:htcondor-admin@cs.wisc.edu">Contact Us</a>
-                            </li>
-                            <li class="nav-item ms-2">
-                                <div style="height:40px; width: 250px;">
-                                    {% include google-search-bar.html %}
-                                </div>
                             </li>
                         </ul>
-                    </div>
-                </nav>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="help-support-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            Documentation
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="help-support-toggle">
+                            <li class="dropdown">
+                                <a class="nav-link dropdown-item" href="{{ '/htcondor/documentation' | relative_url }}">
+                                    HTCondor
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link dropdown-item" href="{{ '/htcondor-ce/documentation' | relative_url }}" >
+                                    HTCondor-CE
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:htcondor-admin@cs.wisc.edu">Contact Us</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <div style="height:40px; width: 250px;">
+                            {% include google-search-bar.html %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="desktop-header" class="d-none d-lg-block">
+            <nav class="navbar py-3 navBar navbar-expand-lg navbar-light w-100">
+                <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/CondorTitle.png' | relative_url }}"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/new.html' == page.url %}active{% endif %}" href="{{ '/new' | relative_url }}">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drawer-toggle dropdown-toggle" href="#" id="software-desktop-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Software
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drawer-toggle dropdown-toggle" href="#" id="help-support-desktop-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Help & Support
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drawer-toggle dropdown-toggle" href="#" id="community-desktop-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Community
+                            </a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <div style="height:40px; width: 250px;">
+                                {% include google-search-bar.html %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div id="header-drawer" class="border d-none d-lg-block" hidden>
+        <div class="container-xxl">
+            <div id="software-desktop-drawer" class="drawer row justify-content-center" hidden>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>HTCondor</th></tr>
+                        <tr><td><a href="{{ '/htcondor/overview/' | relative_url }}">Overview</a></td></tr>
+                        <tr><td><a href="{{ '/htcondor/documentation/' | relative_url }}">Documentation</a></td></tr>
+                        <tr><td><a href="{{ '/htcondor/download/' | relative_url }}">Download</a></td></tr>
+                        <tr><td><a href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></td></tr>
+                    </table>
+                </div>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>HTCondor-CE</th></tr>
+                        <tr><td><a href="{{ '/htcondor-ce/overview/' | relative_url }}">Overview</a></td></tr>
+                        <tr><td><a href="{{ '/htcondor-ce/documentation/' | relative_url }}">Documentation</a></td></tr>
+                        <tr><td><a href="{{ '/htcondor-ce/download/' | relative_url }}">Download</a></td></tr>
+                        <tr><td><a href="https://htcondor.readthedocs.io/en/latest/version-history/index.html">Release Notes&#11023;</a></td></tr>
+                    </table>
+                </div>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>General</th></tr>
+                        <tr><td><a href="{{ '/manual/' | relative_url }}">Documentation</a></td></tr>
+                        <tr><td><a href="{{ '/downloads/' | relative_url }}">Download</a></td></tr>
+                        <tr><td><a href="{{ '/security/' | relative_url }}">Security</a></td></tr>
+                        <tr><td><a href="{{ '/license/' | relative_url }}">License</a></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div id="help-support-desktop-drawer" class="drawer row justify-content-center" hidden>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>Documentation</th></tr>
+                        <tr><td><a href="{{ '/documentation/htcondor/' | relative_url }}">HTCondor</a></td></tr>
+                        <tr><td><a href="{{ '/documentation/htcondor-ce/' | relative_url }}">HTCondor-CE</a></td></tr>
+                    </table>
+                </div>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>Email Lists</th></tr>
+                        <tr><td><a href="https://lists.cs.wisc.edu/mailman/listinfo/htcondor-users">Users&#11023;</a></td></tr>
+                        <tr><td><a href="https://lists.cs.wisc.edu/mailman/listinfo/htcondor-world">World&#11023;</a></td></tr>
+                        <tr><td><a href="https://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel">Developers&#11023;</a></td></tr>
+                    </table>
+                </div>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>Professional Support</th></tr>
+                        <tr><td><a href="mailto:htcondor-admin@cs.wisc.edu">Support Email&#11023;</a></td></tr>
+                        <tr><td><a href="{{ '/uw-support/' | relative_url }}">Internal Contract Support</a></td></tr>
+                        <tr><td><a href="{{ '/htcondor-support#external-support/' | relative_url }}">Outside Support</a></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div id="community-desktop-drawer" class="drawer row justify-content-center" hidden>
+                <div class="col-auto mx-4 my-2">
+                    <table>
+                        <tr><th>HTCondor Week</th></tr>
+                        <tr><td><a href="https://agenda.hep.wisc.edu/event/1579/">Most Recent</a></td></tr>
+                        <tr><td><a href="{{ '/past_condor_weeks.html' | relative_url }}">Content Archives</a></td></tr>
+                    </table>
+                    <table>
+                        <tr><th>General</th></tr>
+                        <tr><td><a href="https://agenda.hep.wisc.edu/event/1579/">Staff &#11023;</a></td></tr>
+                        <tr><td><a href="https://chtc.cs.wisc.edu/jobs">Jobs</a></td></tr>
+                    </table>
+                    <table>
+                        <tr><th>CHTC</th></tr>
+                        <tr><td><a href="https://agenda.hep.wisc.edu/event/1579/">Staff &#11023;</a></td></tr>
+                        <tr><td><a href="https://chtc.cs.wisc.edu/jobs">Jobs</a></td></tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

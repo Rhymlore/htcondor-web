@@ -1,15 +1,16 @@
 ---
-layout: default
+layout: container-default
 ---
-<div class="container">
-    <div class="row">
-        <div class="col-3 col-xl-2 bg-light mb-4 py-2 me-2">
+<div class="row flex-column flex-md-row">
+    <div class="col-12 col-md-3 col-xl-2 bg-light mb-4 py-2 me-2 d-none d-md-block">
+        {% include layout/software-side-nav.html %}
+    </div>
+    <div class="col">
+        <h1 class="text-secondary">{{ page.software }}</h1>
+        <div class="d-block d-md-none bg-light py-2 my-2">
             {% include layout/software-side-nav.html %}
         </div>
-        <div class="col">
-            <h1 class="text-secondary">{{ page.software }}</h1>
-            {{ content }}
-        </div>
+        {{ content }}
     </div>
 </div>
 
