@@ -16,9 +16,30 @@ $navbar-light-active-color: $primary;
   }
 }
 
-
 @import 'bootstrap/bootstrap';
 @import "custom";
+
+#follow-twitter {
+  display:flex;
+  flex-direction: row;
+  height: 20px;
+  width: auto;
+  font-size: .8rem;
+  color: white;
+  border-radius: 10px;
+  background-color: $primary;
+  transition: background-color .2s;
+  div:first-of-type {
+    margin: auto 0px auto 8px;
+  }
+  div:last-of-type {
+    margin: auto 8px auto 6px;
+  }
+}
+
+#follow-twitter:hover {
+  background-color: lighten($primary, 20);
+}
 
 #skip-link {
   left: 50%;
