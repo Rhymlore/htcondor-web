@@ -13,6 +13,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="{{ '/assets/images/favicons/browserconfig.xml' | relative_url }}">
     <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="HTCondor">
@@ -35,6 +37,7 @@
     <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
+    <script src="{{ '/assets/js/header.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
     {% for js in include.js %}
         <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
@@ -43,7 +46,11 @@
     {% if jekyll.environment == 'production' %}
 
     <meta name="google-site-verification" content="lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ" />
-    <link rel="canonical" href="https://htcondor.org{{page.url}}">
+    {% unless page.canonical %}
+        <link rel="canonical" href="https://htcondor.org{{page.url}}">
+    {% else %}
+        <link rel="canonical" href="{{ page.canonical }}">
+    {% endunless %}
 
     {% if site.google_analytics %}
     {% include analytics.html %}

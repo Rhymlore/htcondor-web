@@ -1,6 +1,49 @@
-<div id="footer" class="border-top mt-auto">
-    <div class="container py-4">
-        <div class="row">
+<footer id="footer" class="bg-light pt-4 mt-auto">
+    <div class="container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-auto me-4 d-none d-lg-flex">
+                <img class="my-auto" height="65" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}" />
+            </div>
+            <div class="col-12 col-sm-10 col-lg-7">
+                <div class="row justify-content-between my-2">
+                    <div class="col-auto my-2">
+                        <table>
+                            <tr><th>Suite</th></tr>
+                            <tr><td><a href="{{ '/htcondor/' | relative_url }}">HTCondor</a></td></tr>
+                            <tr><td><a href="{{ '/htcondor-ce/' | relative_url }}">HTCondor-CE</a></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-auto my-2">
+                        <table>
+                            <tr><th>Software</th></tr>
+                            <tr><td><a href="{{ '/manual/' | relative_url }}">Documentation</a></td></tr>
+                            <tr><td><a href="{{ '/downloads/' | relative_url }}">Download</a></td></tr>
+                            <tr><td><a href="{{ '/security/' | relative_url }}">Security</a></td></tr>
+                            <tr><td><a href="{{ '/license/' | relative_url }}">License</a></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-auto my-2">
+                        <table>
+                            <tr><th>Community</th></tr>
+                            <tr><td><a href="{{ '/mail-lists/' | relative_url }}">Email Lists</a></td></tr>
+                            <tr><td><a href="{{ '/past_condor_weeks.html/' | relative_url }}">HTCondor Week</a></td></tr>
+                            <tr><td><a href="{{ '/release-notes/' | relative_url }}">Contribute</a></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-auto my-2">
+                        <table>
+                            <tr><th>Support</th></tr>
+                            <tr><td><a href="mailto:htcondor-admin@cs.wisc.edu">Support Email</a></td></tr>
+                            <tr><td><a href="{{ '/mail-lists/' | relative_url }}">Email Lists</a></td></tr>
+                            <tr><td><a href="{{ '/uw-support/' | relative_url }}">Contract Support</a></td></tr>
+                            <tr><td><a href="{{ '/htcondor-support#external-support/' | relative_url }}">Outside Support</a></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row py-4">
             <div class="col text-center">
                 For comments or questions about this website, please email
                 <a href="mailto:htcondor-admin@cs.wisc.edu">htcondor-admin@cs.wisc.edu</a><br />
@@ -11,5 +54,5 @@
             </div>
         </div>
     </div>
-</div>
+</footer>
 

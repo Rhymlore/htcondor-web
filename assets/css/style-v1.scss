@@ -2,12 +2,14 @@
 
 ---
 
-$primary: #3d5c7a;
+$primary: #424242;
 $secondary: #d31145;
 
 $navbar-light-color: $primary;
 $navbar-light-hover-color: lighten($primary, 25);
 $navbar-light-active-color: $primary;
+
+$font-family-base: "trebuchet ms", verdana, helvetica, arial, sans-serif;
 
 #main-copy {
   h1, h2, h3, h4 {
@@ -61,4 +63,27 @@ $navbar-light-active-color: $primary;
   transform: translateY(0%);
 }
 
+main {
+  min-height: 80vh;
+}
+
 pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px; font-family: monospace; }
+
+#header-drawer {
+  width: 100%;
+  position: absolute;
+  background-color: $gray-200;
+  z-index: 99;
+  box-shadow: 0px 10px 20px $gray-500;
+  .drawer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+
+footer {
+  a {
+    color: $text-muted
+  }
+}

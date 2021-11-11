@@ -1,27 +1,21 @@
 ---
-layout: subpage
-title: HTCondor Manuals
+layout: documentation
 ---
 
+<h1>Documentation</h1>
 <p>
-    <a href="http://research.cs.wisc.edu/htcondor">HTCondor</a>
-    provides extensive documentation, for both users and system administrators.
+    HTCondor has expanded its offerings! Select the software you wish to read the documentation on from the
+    offerings to the side or below.
 </p>
-<p>
-    The <a href="quickstart.html">HTCondor Quick Start Guide</a> is a good
-    place to begin.
-</p>
-<p>
-    For more details and a full reference to HTCondor's capabilities and
-    configuration, see the <em>HTCondor Manual</em>.
-    The HTCondor Manual may be viewed online or downloaded to your site.
-</p>
-<p>
-    The <a href="https://htcondor.readthedocs.io/en/latest/">Latest Manual</a> documents the current development (feature) release.
-</p>
-<p>
-    The <a href="https://htcondor.readthedocs.io/en/v9_0/">Version 9.0 Manual</a> documents the current stable release.
-</p>
-<p>
-    If you are looking for Phoenix Software International's software development and library management system for z/VSE or z/OS, click <a href="http://www.phoenixsoftware.com">here</a>
-</p>
+<div class="row my-2">
+    <div class="col-12 col-md-6 my-2">
+        <a class="btn w-100 btn-primary" href="{{ '/documentation/htcondor/' | relative_url }}">
+            <h1 class="text-white">HTCondor</h1>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 my-2">
+        <a class="btn w-100 btn-primary" href="{{ '/documentation/htcondor-ce/' | relative_url }}">
+            <h1 class="text-white">HTCondor-CE</h1>
+        </a>
+    </div>
+</div>

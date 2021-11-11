@@ -1,0 +1,51 @@
+---
+layout: software-page
+software: HTCondor-CE
+title: HTCondor-CE - Overview
+---
+
+<p>The <a href="#what-is-htcondor-ce">HTCondor-CE</a> software is a <em>Compute Entrypoint</em> (CE) based on <a href="http://htcondor.org">HTCondor</a> for sites
+    that are part of a larger computing grid
+    (e.g. <a href="https://www.egi.eu/">European Grid Infrastructure</a>, <a href="https://opensciencegrid.org/">Open Science Grid</a>).
+    As such, HTCondor-CE serves as a "door" for incoming resource allocation requests (RARs) — it handles authorization and
+    delegation of these requests to a grid site's local batch system.
+    Supported batch systems include
+    <a href="http://www.univa.com/products/">Grid Engine</a>,
+    <a href="http://htcondor.org">HTCondor</a>,
+    <a href="https://www.ibm.com/us-en/marketplace/hpc-workload-management">LSF</a>,
+    <a href="https://www.altair.com/pbs-professional/">PBS Pro</a>/<a href="https://adaptivecomputing.com/cherry-services/torque-resource-manager/">Torque</a>,
+    and <a href="https://slurm.schedmd.com/">Slurm</a>.</p>
+<p>For an introduction to HTCondor-CE, watch our <a href="https://www.youtube.com/embed/6IWaMbofG7M">recorded webinar</a> from the EGI
+    Community Webinar Programme:</p>
+<iframe class="mb-4" width="560" height="315" src="https://www.youtube.com/embed/6IWaMbofG7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+
+<h3 id="what-is-a-compute-entrypoint">What is a Compute Entrypoint?</h3>
+<p>A Compute Entrypoint (CE) is the door for remote organizations to submit requests to temporarily allocate local compute
+    resources.
+    These resource allocation requests are submitted as <strong>pilot jobs</strong> that create an environment for end-user jobs to match
+    and ultimately run within the pilot job.
+    CEs are made up of a thin layer of software that you install on a machine that already has the ability to submit and
+    manage jobs in your local batch system.</p>
+<h3 id="what-is-htcondor-ce">What is HTCondor-CE?</h3>
+<p>HTCondor-CE is a special configuration of the HTCondor software designed as a Compute Entrypoint.
+    It is configured to use the HTCondor <a href="https://htcondor.readthedocs.io/en/v9_0/grid-computing/job-router.html">Job Router daemon</a>
+    to delegate resource allocation requests by transforming and submitting them to the site’s batch system.</p>
+<p>Benefits of running the HTCondor-CE:</p>
+<ul>
+    <li><strong>Scalability:</strong> HTCondor-CE is capable of supporting ~16k concurrent RARs</li>
+    <li><strong>Debugging tools:</strong> HTCondor-CE offers
+        <a href="v5/troubleshooting/troubleshooting/#htcondor-ce-troubleshooting-tools">many tools to help troubleshoot</a> issues with RARs</li>
+    <li><strong>Routing as configuration:</strong> HTCondor-CE’s mechanism to transform and submit RARs is customized via configuration
+        variables, which means that customizations will persist across upgrades and will not involve modification of
+        software internals to route jobs</li>
+</ul>
+
+
+
+
+
+
+
+
+
