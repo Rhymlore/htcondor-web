@@ -5,8 +5,8 @@ layout: container-default
 {% assign current_software = page.name | remove: ".html" %}
 
 <div class="row">
-    <div class="col-3">
-        <ul class="nav nav-pills flex-column">
+    <div class="col-12 col-md-3 mb-3">
+        <ul class="nav nav-pills flex-row flex-md-column">
             {% for ware in software %}
             {% assign downcase_name = ware | downcase %}
                 <li class="nav-item">
@@ -20,7 +20,7 @@ layout: container-default
             {% endfor %}
         </ul>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-md-9">
         {% for page in site.software %}
         {% assign id =  page.url | split: "/" %}
         {% if id contains current_software %}
