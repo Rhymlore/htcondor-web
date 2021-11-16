@@ -3,7 +3,7 @@ name: Deploy production version of the Website on htcondor.org
 on:
   push:
     branches:
-      - production
+      - master
 
 jobs:
   Build-And-Deploy-Production:
