@@ -46,7 +46,7 @@ jobs:
           git add _site -f
           git commit -m "Build Production Website"
 
-          site_ref=$(git subtree split --prefix _site {{ github.ref_name }})
+          site_ref=$(git subtree split --prefix _site ${{ github.ref_name }})
           ret_val=$?
 
           if [ $ret_val -ne 0 ]; then
