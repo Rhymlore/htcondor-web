@@ -45,7 +45,16 @@ jobs:
           # Commit the build then use 'git subtree' to create a branch with just the _site contents
           git add _site -f
           git commit -m "Build Production Website"
-          git checkout -b split-branch `git subtree split --prefix _site production`
+
+          site_ref=$(git subtree split --prefix _site {{ github.ref_name }})
+          ret_val=$?
+
+          if [ $ret_val -ne 0 ]; then
+            echo $site_ref
+            exit 1
+          fi
+
+          git checkout -b split-branch $site_ref
 
           # Push to Production
           git push ${{ env.production_url }} HEAD:main --force
