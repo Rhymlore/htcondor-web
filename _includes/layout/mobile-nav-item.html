@@ -1,0 +1,21 @@
+{% assign nav_item = include.nav_item %}
+
+{% assign dropdown = "" %}
+{% if nav_item.dropdowns %}
+    {% assign dropdown = "dropdown" %}
+{% endif%}
+
+<li class="nav-item {{ dropdown }}">
+    {% unless nav_item.dropdowns %}
+        <a class="nav-link" href="{{ nav_item.url | relative_url }}">{{ nav_item.name }}</a>
+    {% else %}
+        <a class="nav-link dropdown-toggle" href="#" id="{{ nav_item.id }}-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            {{ nav_item.name }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="{{ nav_item.id }}-toggle">
+            {% for dropdown in nav_item.dropdowns %}
+                {% include layout/dropdown.html dropdown=dropdown %}
+            {% endfor %}
+        </ul>
+    {% endunless %}
+</li>
