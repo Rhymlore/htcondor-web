@@ -1,0 +1,12 @@
+{% assign dropdown = include.dropdown %}
+
+<li class="dropdown">
+    <a class="dropdown-item dropdown-toggle" href="#" id="{{ sub_sub_item.id }}-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ dropdown.name }}
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="{{ sub_sub_item.id }}-toggle">
+        {% for dropdown_item in dropdown.dropdown_items %}
+            <li><a class="dropdown-item" href="{{ dropdown_item.url | relative_url }}">{{ dropdown_item.name }}</a></li>
+        {% endfor %}
+    </ul>
+</li>
