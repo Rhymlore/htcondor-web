@@ -1,6 +1,6 @@
 
-<header id="header" class="bg-light">
-    <div class="container-xxl px-xxl-0">
+<header id="header" class="">
+    <div class="container-xxl">
         <nav id="mobile-header" class="py-3 d-flex d-lg-none navbar navBar navbar-expand-lg navbar-light w-100">
             <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}" style="border:0"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile-navbar" aria-controls="mobile-navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,10 +23,12 @@
             <nav class="navbar py-3 navBar navbar-expand-lg navbar-light w-100">
                 <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}"></a>
                 <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-2 mt-auto">
                         {% for nav_item in site.data.header-links.nav_items %}
                             {% include layout/desktop-nav-item.html nav_item=nav_item %}
                         {% endfor %}
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
                         <li class="nav-item ms-2">
                             <div style="height:40px; width: 250px;">
                                 {% include google-search-bar.html %}

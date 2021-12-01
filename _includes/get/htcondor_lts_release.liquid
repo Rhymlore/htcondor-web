@@ -1,0 +1,15 @@
+{% assign releases = site.news | where: "release_type", "HTCondor"%}
+
+{% assign htcondor_lts_release = releases[0] %}
+
+{% for release in releases %}
+
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+
+    {% if release_numbers[1] == "0"  %}
+        {% if release.release_number > htcondor_lts_release.release_number %}
+            {% assign htcondor_lts_release = release %}
+        {% endif %}
+    {% endif %}
+
+{% endfor %}

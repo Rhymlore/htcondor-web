@@ -3,10 +3,9 @@ layout: default
 title: Home
 ---
 
-
 <div class="">
-    <div class="container-xxl py-4 py-lg-5">
-        <div class="row">
+    <div class="container-xxl">
+        <div class="row py-4 py-lg-5">
             <div class="col-12 col-md-8">
                 <h2>Computing with HTCSS</h2>
                 <p>
@@ -26,18 +25,8 @@ title: Home
             </div>
             <div id="#new-container" class="news col-12 col-md-4 mb-2">
                 <div class="p-2 bg-light">
-                    <h4 class="d-flex flex-row flex-md-column flex-lg-row">
+                    <h4>
                         Latest News
-                        <a class="d-flex me-0 m-auto m-md-0 me-lg-0 m-lg-auto text-decoration-none" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">
-                            <div id="follow-twitter">
-                                <div id="twitter-icon">
-                                    <img height="12px" src="{{ '/assets/images/twitter.svg' | relative_url }}" alt="Twitter Logo"/>
-                                </div>
-                                <div>
-                                    Follow @HTCondor
-                                </div>
-                            </div>
-                        </a>
                     </h4>
                     {% assign news = site.news | sort | reverse %}
                     {% for item in news limit:5 %}
@@ -45,6 +34,90 @@ title: Home
                     {% endfor %}
 
                     <div class="more"><a href="new.html">More News &raquo;</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <img src="{{ 'assets/images/python-logo.jpg' | relative_url }}" class="card-img-top" alt="Python Logo">
+                <div class="card-body border-top">
+                    <h3>HTCondor comes with Python Bindings!</h3>
+                    <hr/>
+                    <a href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html">
+                        <div class="row">
+                            <div class="col-auto d-flex">
+                                <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                            </div>
+                            <div class="col">
+                                Explore more with our Intro and Advanced Tutorials
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="height:506px">
+                <div class="px-2 pt-1">
+                    <a class="twitter-timeline" height="500px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            {% include get/htcondor_ce_feature_release.liquid %}
+            {% include get/htcondor_ce_lts_release.liquid %}
+            {% include get/htcondor_feature_release.liquid %}
+            {% include get/htcondor_lts_release.liquid %}
+            <div class="card">
+                <div class="card-body">
+                    <h3>Recent Releases</h3>
+                    <hr/>
+                    <div class="mb-2">
+                        <h4><a class="text-secondary" href="{{ '/htcondor/download/' | relative_url }}">HTCondor</a></h4>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Feature</span>
+                                <span class="text-muted">{{ htcondor_feature_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_feature_release.release_number }}</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Long Term Support</span>
+                                <span class="text-muted">{{ htcondor_lts_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_lts_release.release_number }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4><a class="text-secondary" href="{{ '/htcondor-ce/download/' | relative_url }}">HTCondor-CE</a></h4>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Feature</span>
+                                <span class="text-muted">{{ htcondor_ce_feature_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_ce_feature_release.release_number }}</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Long Term Support</span>
+                                <span class="text-muted">{{ htcondor_ce_lts_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_ce_lts_release.release_number }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
