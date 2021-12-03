@@ -1,0 +1,13 @@
+content: '
+
+  Condor Version 6.1.16 is now released, and is available on the <a href="downloads/">
+  downloads</a> page.
+
+  '
+date: 2000-09-01
+layout: news
+link: downloads/
+og_title: <a href=\"downloads/\">Condor Version 6.1.16 released!</a>
+release_number: 6.1.16
+release_type: HTCondor
+title: Condor Version 6.1.16 released!

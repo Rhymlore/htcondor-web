@@ -1,0 +1,18 @@
+content: "\nThe HTCondor team is pleased to announce the release of HTCondor 9.0.2.\n\
+  A stable series release contains significant bug fixes.\n\nHighlights of this release\
+  \ are:\n- HTCondor can be set up to use only FIPS 140-2 approved security functions\n\
+  - If the Singularity test fails, the job goes idle rather than getting held\n- Can\
+  \ divide GPU memory, when making multiple GPU entries for a single GPU\n- Startd\
+  \ and Schedd cron job maximum line length increased to 64k bytes\n- Added first\
+  \ class submit keywords for SciTokens\n- Fixed MUNGE authentication\n- Fixed Windows\
+  \ installer to work when the install location isn't C:\\Condor\n\nMore details about\
+  \ the fixes can be found in the <a href=\"https://htcondor.readthedocs.io/en/v9_0/version-history/stable-release-series-90.html#version-9-0-2\"\
+  > Version History</a>.\n\nHTCondor 9.0.2 binaries and source code are available\
+  \ from our <a href=\"http://htcondor.org/downloads/\">Downloads</a> page. \n"
+date: 2021-07-08
+layout: news
+link: null
+og_title: HTCondor 9.0.2 released!
+release_number: 9.0.2
+release_type: HTCondor
+title: HTCondor 9.0.2 released!

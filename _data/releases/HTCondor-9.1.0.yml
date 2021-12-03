@@ -1,0 +1,21 @@
+content: "\nThe HTCondor team is pleased to announce the release of HTCondor 9.1.0.\
+  \ This development series release contains new features that are under development.\
+  \ This release contains all of the bug fixes from the 9.0.1 stable release.\n\n\
+  Enhancements in the release include:\n-   Support for submitting to ARC-CE via the\
+  \ REST interface\n-   DAGMan can put failed jobs on hold (user can correct problems\
+  \ and release)\n-   Can run gdb and ptrace within Docker containers\n-   A small\
+  \ Docker test job is run on the execute node to verify functionality\n-   The number\
+  \ of instructions executed is reported in the job Ad on Linux\n\nTry out our  <a\
+  \ href=\"https://htcondor.readthedocs.io/en/v9_1/getting-htcondor/index.html\">\
+  \ new helpful installation scripts</a>.\n\nA complete list of new features and fixed\
+  \ bugs can be found in the <a href=\"https://htcondor.readthedocs.io/en/v9_1/version-history/development-release-series-91.html#version-9-1-0\"\
+  > Development Version History</a> and the <a href=\"https://htcondor.readthedocs.io/en/v9_1/version-history/stable-release-series-90.html#version-9-0-1\"\
+  > Stable Version History</a>.\n\nHTCondor 9.1.0 binaries and source code are available\
+  \ from our <a href=\"http://htcondor.org/downloads/\">Downloads</a> page. \n"
+date: 2021-05-20
+layout: news
+link: null
+og_title: HTCondor 9.1.0 released!
+release_number: 9.1.0
+release_type: HTCondor
+title: HTCondor 9.1.0 released!
