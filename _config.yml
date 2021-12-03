@@ -21,6 +21,9 @@ collections:
   software:
     permalink: /:path/
     output: true
+  user-stories:
+    permalink: /user-stories/:path/
+    output: true
 
 defaults:
   -

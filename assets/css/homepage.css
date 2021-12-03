@@ -1,0 +1,17 @@
+---
+    layout: blank
+---
+
+#hero-image {
+    background: url({{ '/assets/images/USGS-collage.jpg' | relative_url }}) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#hero-content-container {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
+    min-height: 300px;
+}

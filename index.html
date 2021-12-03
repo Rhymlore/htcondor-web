@@ -1,40 +1,31 @@
 ---
 layout: default
 title: Home
+css_extension:
+-   href: "/assets/css/homepage.css"
 ---
 
-<div class="">
+<div id="hero-image" class="vh-75 vh-md-50">
     <div class="container-xxl">
-        <div class="row py-4 py-lg-5">
-            <div class="col-12 col-md-8">
-                <h2>Computing with HTCSS</h2>
-                <p>
-                    <b>HTCSS provides an array of services for automating and managing batch workloads and computing resources.</b>
-                </p>
-                <p>
-                    Whether your idea of large scale computing is your desktop or a planet-wide pool of resources, HTCSS provides the technologies for managing workloads and all your computing resources.  HTCSS consists of four main components: the Access Point (AP), the Central Manager (CM), the Execution Point (EP), and the Compute Element (CE).
-                </p>
-            </div>
-            <div id="#new-container" class="news col-12 col-md-4 mb-2">
-                <div class="p-2 bg-light">
-                    <h4>
-                        Latest News
-                    </h4>
-                    {% assign news = site.news | sort | reverse %}
-                    {% for item in news limit:5 %}
-                    {% include news_item.html %}
-                    {% endfor %}
-
-                    <div class="more"><a href="new.html">More News &raquo;</a></div>
+        <div class="row">
+            <div class="col-12 col-md-5 col-xxl-5">
+                {% include /get/user_story_0.liquid %}
+                <div class="p-3 my-5 d-flex flex-column" id="hero-content-container">
+                    <h3>{{ user_story_0.title }}</h3>
+                    <hr>
+                    <p style="min-height: 150px">
+                        {{ user_story_0.excerpt }}
+                    </p>
+                    <a class="mt-auto me-auto btn btn-primary" href="{{ user_story_0.url | relative_url }}">Read More</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="container-xxl">
-    <div class="row">
+    <div class="row my-5">
         <div class="col-4">
-            <div class="card">
+            <div class="card h-100">
                 <img src="{{ 'assets/images/python-logo.jpg' | relative_url }}" class="card-img-top" alt="Python Logo">
                 <div class="card-body border-top">
                     <h3>HTCondor comes with Python Bindings!</h3>
@@ -53,9 +44,9 @@ title: Home
             </div>
         </div>
         <div class="col-4">
-            <div class="card" style="height:506px">
+            <div class="card h-100" style="height:591px">
                 <div class="px-2 pt-1">
-                    <a class="twitter-timeline" height="500px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <a class="twitter-timeline" height="485px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </div>
@@ -64,7 +55,7 @@ title: Home
             {% include get/htcondor_ce_lts_release.liquid %}
             {% include get/htcondor_feature_release.liquid %}
             {% include get/htcondor_lts_release.liquid %}
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-body">
                     <h3>Recent Releases</h3>
                     <hr/>
