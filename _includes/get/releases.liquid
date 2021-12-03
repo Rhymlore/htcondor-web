@@ -1,0 +1,5 @@
+{% assign releases = "" | split : "" %}
+
+{% for release in site.data.releases %}
+    {% assign releases = releases | push: release[1] %}
+{% endfor %}

@@ -1,4 +1,5 @@
-{% assign releases = site.news | where: "release_type", "HTCondor"%}
+{% include /get/releases.liquid %}
+{% assign releases = releases | where: "release_type", "HTCondor"%}
 
 {% assign htcondor_feature_release = releases[0] %}
 
