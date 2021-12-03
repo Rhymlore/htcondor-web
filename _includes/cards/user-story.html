@@ -1,0 +1,15 @@
+<a href="{{ data.url | relative_url }}">
+    <div class="card h-100">
+        <img height="250" src="{{ data.card_image | relative_url }}" class="card-img-top" alt="News">
+        <div class="card-body border-top">
+            <h3><a class="text-decoration-none" href="{{ data.url }}">{{ data.title }}</a></h3>
+            <div>
+                <span class="text-muted">{{ data.date | date: "%B %e, %Y"}}</span>
+            </div>
+            <hr/>
+            <p>
+                {{ data.excerpt }}
+            </p>
+        </div>
+    </div>
+</a>
