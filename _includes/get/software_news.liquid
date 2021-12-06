@@ -1,0 +1,14 @@
+{% assign news = site.news | sort: "date" | reverse %}
+
+{% if include.id != "" %}
+    {% assign news = news | where: "id", include.id %}
+    {% assign software_news = news[0] %}
+{% else %}
+    {% if include.index %}
+        {% assign software_news = news[include.index] %}
+    {% else %}
+        {% assign software_news = news[0] %}
+    {% endif %}
+{% endif %}
+
+

@@ -27,33 +27,18 @@ js_extension:
 </div>
 <div class="container-xxl">
     <div class="row my-5">
-        <div class="col-4">
+        <div class="col-4 mb-4">
             <div class="card h-100" style="height:591px">
                 <div class="px-2 pt-1">
                     <a class="twitter-timeline" height="485px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card h-100">
-                <img src="{{ 'assets/images/python-logo.jpg' | relative_url }}" class="card-img-top" alt="Python Logo">
-                <div class="card-body border-top">
-                    <h3>HTCondor comes with Python Bindings!</h3>
-                    <hr/>
-                    <a href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html">
-                        <div class="row">
-                            <div class="col-auto d-flex">
-                                <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
-                            </div>
-                            <div class="col">
-                                Explore more with our Intro and Advanced Tutorials
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <div class="col-4 mb-4">
+            {% include /get/software_news.liquid %}
+            {% include /cards/news-card.html news=software_news %}
         </div>
-        <div class="col-4">
+        <div class="col-4 mb-4">
             {% include get/htcondor_ce_feature_release.liquid %}
             {% include get/htcondor_ce_lts_release.liquid %}
             {% include get/htcondor_feature_release.liquid %}
@@ -107,15 +92,35 @@ js_extension:
                 </div>
             </div>
         </div>
+        <div class="col-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ 'assets/images/python-logo.jpg' | relative_url }}" class="card-img-top" alt="Python Logo">
+                <div class="card-body border-top">
+                    <h3>HTCondor comes with Python Bindings!</h3>
+                    <hr/>
+                    <a href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html">
+                        <div class="row">
+                            <div class="col-auto d-flex">
+                                <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                            </div>
+                            <div class="col">
+                                Explore more with our Intro and Advanced Tutorials
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 {% include /get/software_data.liquid %}
 
 
+
 <div class="bg-light">
     <div class="container-xxl py-4 p-md-5 px-xxl-0">
-        <h2 class="mb-4">HTCondor Software Suite</h2>
+        <h2 class="mb-5 text-center">HTCSS provides an array of services for automating and managing batch workloads and computing resources.</h2>
         <div id="software-display">
             <div class="row">
                 <div class="col-12 col-lg-5 col-xxl-4 d-lg-flex" id="htcss-accordion-container">
