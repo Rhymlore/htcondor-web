@@ -1,0 +1,8 @@
+{% for page in site.software %}
+    {% assign id =  page.url | split: "/" %}
+    {% if id contains include.software_name %}
+        {% if id contains include.page_name %}
+            {% assign software_page = page %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
