@@ -73,7 +73,7 @@ nav_items:
             url: https://agenda.hep.wisc.edu/event/1579/
           - name: Content Archives
             url: /past_condor_weeks.html
-          - name: Youtube Playlist
+          - name: Youtube Playlist  &#11023;
             url: https://youtube.com/playlist?list=PLO7gMRGDPNulf_yK_9Ue6yARxJh0gQXQI
       - name: CHTC
         id: chtc
