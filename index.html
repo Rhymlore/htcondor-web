@@ -27,7 +27,7 @@ js_extension:
 </div>
 <div class="container-xxl">
     <div class="row my-5">
-        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-1 order-3">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-1 order-3 d-none d-md-block">
             <div class="card h-100" style="height:591px">
                 <div class="px-2 pt-1">
                     <a class="twitter-timeline" height="485px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -92,9 +92,9 @@ js_extension:
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-4 order-4">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-4 order-4 d-none d-md-block">
             <div class="card h-100">
-                <img src="{{ 'assets/images/python-logo.jpg' | relative_url }}" class="card-img-top" alt="Python Logo">
+                <img src="{{ 'assets/images/python-logo.svg' | relative_url }}" class="card-img-top py-4 px-2" alt="Python Logo">
                 <div class="card-body border-top">
                     <h3>HTCondor comes with Python Bindings!</h3>
                     <hr/>
@@ -117,7 +117,7 @@ js_extension:
                     <h3>Exceptional Features</h3>
                     <hr/>
                     <div class="row">
-                        <div class="col-12 col-md-6 py-3">
+                        <div class="col-12 col-md-6">
                             <p class="fs-5">Compatible with your current Source Code</p>
                             <p>
                                 No special programming is required to use HTCondor. HTCondor is able to run non-interactive programs.
