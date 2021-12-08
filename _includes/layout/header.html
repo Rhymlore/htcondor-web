@@ -54,7 +54,7 @@
                                 <span class="text-muted">{{ news.date | date: "%B %e, %Y"}}</span>
                             </div>
                             <hr/>
-                            <a href="new">
+                            <a href="{{ '/new' | relative_url }}">
                                 <div class="row">
                                     <div class="col-auto d-flex">
                                         <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
@@ -90,7 +90,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5><a class="text-decoration-none" href="{{ user_story.url }}">{{ user_story.title }}</a></h5>
                             <hr/>
-                            <a href="user-stories">
+                            <a href="{{ '/user-stories' | relative_url }}">
                                 <div class="row">
                                     <div class="col-auto d-flex">
                                         <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
@@ -106,6 +106,22 @@
 
                 {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
                 {% assign dropdowns = community[0].dropdowns %}
+                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
+
+            </div>
+            <div id="about-desktop-drawer" class="drawer row justify-content-center" hidden>
+
+                <div class="d-none d-lg-block col-lg-4">
+                    <div class="card h-100">
+                        <img src="{{ '/assets/images/team-2021.jpg' | relative_url }}" class="card-img-top" alt="Card Image">
+                        <div class="card-body d-flex flex-column">
+                            <h5><a class="text-decoration-none" href="https://chtc.cs.wisc.edu/people">CHTC Team Photo</a></h5>
+                        </div>
+                    </div>
+                </div>
+
+                {% assign about = site.data.header-links.nav_items | where: "id", "about" %}
+                {% assign dropdowns = about[0].dropdowns %}
                 {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
             </div>

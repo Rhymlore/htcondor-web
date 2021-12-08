@@ -27,6 +27,8 @@ nav_items:
       - name: General
         id: general
         dropdown_items:
+          - name: News
+            url: /new
           - name: Documentation
             url: /manual/
           - name: Download
@@ -75,6 +77,21 @@ nav_items:
             url: /past_condor_weeks.html
           - name: Youtube Playlist  &#11023;
             url: https://youtube.com/playlist?list=PLO7gMRGDPNulf_yK_9Ue6yARxJh0gQXQI
+      - name: Users
+        id: users
+        dropdown_items:
+          - name: User Stories
+            url: /user-stories
+  - name: About
+    id: about
+    dropdowns:
+      - name: HTCSS
+        id: htcss
+        dropdown_items:
+          - name: Description
+            url: /description
+          - name: Logos
+            url: /logos
       - name: CHTC
         id: chtc
         dropdown_items:
@@ -82,6 +99,3 @@ nav_items:
             url: https://chtc.cs.wisc.edu/people
           - name: Jobs &#11023;
             url: https://chtc.cs.wisc.edu/jobs
-  - name: About
-    id: about
-    url: description.html
