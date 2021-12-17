@@ -1,0 +1,18 @@
+{% if include.href %}
+<a class="text-decoration-none d-block hover-border rounded h-100" href="{{ include.href }}">
+{% endif %}
+
+    <div class="card border-0 ">
+        <div class="p-2 d-flex flex-column">
+            <h6 class="text-decoration-none">
+                {{ include.title }}
+            </h6>
+            <div>
+                <span class="text-muted text-decoration-none">{{ include.subtitle }}</span>
+            </div>
+        </div>
+    </div>
+
+{% if include.href %}
+</a>
+{% endif %}

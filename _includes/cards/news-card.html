@@ -2,22 +2,9 @@
     {% assign news = include.news %}
 {% endif %}
 
-<div class="card h-100">
-    <div class="card-body d-flex flex-column">
-        <h3><a class="text-decoration-none" href="{{ news.url }}">{{ news.title }}</a></h3>
-        <div>
-            <span class="text-muted">{{ news.date | date: "%B %e, %Y"}}</span>
-        </div>
-        <hr/>
-        <p>
-            {% if include.content %}
-                {{ new.content }}
-            {% else %}
-                {{ news.excerpt }}
-            {% endif %}
-        </p>
-        <p class="mt-auto">
-            <a class="text-secondary" href="{{ news.url }}">Read More...</a>
-        </p>
-    </div>
-</div>
+{% include /cards/title-date-content.liquid
+    title=news.title
+    date=news.date
+    content=news.excerpt
+    title_href=news.url
+%}

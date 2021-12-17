@@ -1,0 +1,6 @@
+{% assign subtitle = include.date | date: "%B %e, %Y" %}
+{% include /cards/title-subtitle.html
+    title=include.title
+    subtitle=subtitle
+    href=include.href
+%}
