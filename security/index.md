@@ -1,11 +1,11 @@
 ---
 layout: subpage
 permalink:
-title: HTCondor Security
+title: HTCSS Security
 ---
 
 <p>
-This page contains information about security policies and procedures in the HTCondor system.
+This page contains information about security policies and procedures in the HTCSS.
 </p>
 
 <h3> Overview </h3>
