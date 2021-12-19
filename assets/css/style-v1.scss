@@ -13,6 +13,8 @@ $card-border-color: #4E4E50;
 $font-family-base: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $headings-font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
+$enable-negative-margins: true;
+
 @import 'bootstrap/bootstrap';
 @import "custom";
 
