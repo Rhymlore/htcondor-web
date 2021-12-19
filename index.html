@@ -36,16 +36,18 @@ js_extension:
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-2 order-2">
             {% capture content %}
-                {% assign sorted_news = site.news | reverse %}
-                {% for news in sorted_news limit: 4 %}
-                    <div class="mb-2">
-                        {% include /cards/title-date.liquid
-                            title=news.title
-                            date=news.date
-                            href=news.url
-                        %}
-                    </div>
-                {% endfor %}
+                <div class="ms-n2">
+                    {% assign sorted_news = site.news | reverse %}
+                    {% for news in sorted_news limit: 4 %}
+                        <div class="">
+                            {% include /cards/title-date.liquid
+                                title=news.title
+                                date=news.date
+                                href=news.url
+                            %}
+                        </div>
+                    {% endfor %}
+                </div>
             {% endcapture %}
             {% include /cards/title-subtitle-content.html
                 title="News"
