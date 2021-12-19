@@ -1,5 +1,4 @@
 content: '
-
   Condor 6.1.7 is now available for <a href="downloads/">download</a> for Alpha Linux
   and Intel Linux with glibc. There are no other new features, and no bug fixes from
   6.1.6, so we do not even provide binaries for 6.1.7 on any other platforms. On Alpha

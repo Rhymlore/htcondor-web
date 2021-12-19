@@ -1,0 +1,16 @@
+{% include /get/releases.liquid %}
+{% assign releases = releases | where: "release_type", "HTCondor"%}
+
+{% assign htcondor_feature_releases = "" | split : "" %}
+
+{% for release in releases %}
+
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+
+    {% if release_numbers[1] != "0"  %}
+        {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+    {% endif %}
+
+{% endfor %}
+
+{% assign htcondor_feature_releases = htcondor_feature_releases | sort: "date" | reverse %}

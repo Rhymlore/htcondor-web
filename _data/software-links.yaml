@@ -9,9 +9,12 @@
     - path: /htcondor/documentation/
       class:
       label: Documentation
+    - path: /htcondor/release-highlights/
+      class:
+      label: Release Highlights
     - path: "https://htcondor.readthedocs.io/en/latest/version-history/"
       class:
-      label: Release Notes&#11023;
+      label: Full Release Notes&#11023;
 - software: HTCondor-CE
   links:
     - path: /htcondor-ce/overview/
@@ -23,6 +26,9 @@
     - path: /htcondor-ce/documentation/
       class:
       label: Documentation
+    - path: /htcondor-ce/release-highlights/
+      class:
+      label: Release Highlights
     - path: "https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history"
       class:
-      label: Release Notes&#11023;
+      label: Full Release Notes&#11023;
