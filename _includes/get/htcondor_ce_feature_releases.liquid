@@ -12,3 +12,6 @@
     {% endif %}
 
 {% endfor %}
+
+{% assign htcondor_ce_feature_releases = htcondor_ce_feature_releases | sort: "date" | reverse %}
+
