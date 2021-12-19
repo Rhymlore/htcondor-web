@@ -59,8 +59,6 @@ nav_items:
       - name: Support
         id: support
         dropdown_items:
-          - name: Support Email&#11023;
-            url: mailto:htcondor-admin@cs.wisc.edu
           - name: Internal Contract Support
             url: /uw-support/
           - name: Outside Support

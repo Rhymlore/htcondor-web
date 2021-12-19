@@ -6,7 +6,7 @@ title: HTCondor Support
 <h2>Free Support for HTCondor</h2>
 <p>
 Free, community-based best effort support is available through the
-<a href="http://research.cs.wisc.edu/htcondor/mail-lists/">htcondor-users</A> 
+<a href="/mail-lists/">htcondor-users</A> 
 mailing list. HTCondor developers and users from around the world are 
 subscribed to the list and volunteer their time and effort to answer
 questions and share information about HTCondor.
@@ -33,7 +33,7 @@ support listed above, there are several options.
 </p>
 <p>
 The HTCondor Team provides fee-based support, and maintains a
-<a href="http://research.cs.wisc.edu/htcondor/uw-support/">web page</A> detailing the services provided.
+<a href="/uw-support/">web page</A> detailing the services provided.
 </p>
 <h3 id="external-support">External Support Options</h3>
 <p>
