@@ -5,7 +5,7 @@ meta:
     - '<meta name="robots" content="noindex">'
 ---
 
-<span class="text-danger">This page is deprecated, visit <a href="https://htcondor.org/downloads/htcondor-ce">the HTCondor-CE download page</a> for updated instructions.</span>
+<span class="text-danger">This page is deprecated, visit <a href="https://htcondor.org/downloads/htcondor">the HTCondor download page</a> for updated instructions.</span>
 <hr>
 
 <p>
