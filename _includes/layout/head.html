@@ -67,4 +67,8 @@
         <link href="{{ css.href | relative_url }}" media="screen, tv, projection" title="Default" rel="stylesheet">
     {% endfor %}
 
+    {% for meta in include.meta %}
+        {{ meta }}
+    {% endfor %}
+
 </head>
