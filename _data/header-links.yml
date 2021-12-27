@@ -35,8 +35,6 @@ nav_items:
             url: /downloads/
           - name: Security
             url: /security/
-          - name: License
-            url: /license
   - name: Help & Support
     id: help-and-support
     dropdowns:
