@@ -45,15 +45,6 @@ nav_items:
             url: /htcondor/documentation
           - name: HTCondor-CE
             url: /htcondor-ce/documentation
-      - name: Email Lists
-        id: email-lists
-        dropdown_items:
-          - name: Users&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-users
-          - name: World&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-world
-          - name: Developers&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel
       - name: Support
         id: support
         dropdown_items:
@@ -64,6 +55,15 @@ nav_items:
   - name: Community
     id: community
     dropdowns:
+      - name: Email Lists
+        id: email-lists
+        dropdown_items:
+          - name: Users
+            url: /mail-lists#user
+          - name: World
+            url: /mail-lists#world
+          - name: Developers
+            url: /mail-lists#developer
       - name: HTCondor Week
         id: htcondor-week
         dropdown_items:
@@ -84,7 +84,7 @@ nav_items:
       - name: HTCSS
         id: htcss
         dropdown_items:
-          - name: Description
+          - name: What is HTCSS?
             url: /description
           - name: Logos
             url: /logos
