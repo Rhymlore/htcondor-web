@@ -9,14 +9,14 @@ title: HTCondor - Download
 
 <div class="mb-4 card">
     <div class="card-body">
-        <h3><span class="text-secondary">{{ htcondor_feature_release.release_number }}</span> Feature Channel <span class="text-muted">(Previously Current Channel)</span></h3>
+        <h3><span class="text-secondary">{{ htcondor_feature_release.release_number }}</span> Feature Release</h3>
         <p>{{ htcondor_feature_release.date | date: "%B %e, %Y" }}</p>
         <div>
             {{ htcondor_feature_release.content | markdownify }}
         </div>
         <hr>
         <p>
-            The feature channel distributes HTCondor's new features and also
+            Feature releases distribute HTCondor's new features and also
             incorporates bug fixes. Most people should use choose this channel and stay up-to-date with
             HTCondor's latest features.
         </p>
@@ -28,15 +28,15 @@ title: HTCondor - Download
 </div>
 <div class="mb-4 card">
     <div class="card-body">
-        <h3><span class="text-secondary">{{ htcondor_lts_release.release_number }}</span> Long Term Support Channel</h3>
+        <h3><span class="text-secondary">{{ htcondor_lts_release.release_number }}</span> Long Term Support Release</h3>
         <p>{{ htcondor_lts_release.date | date: "%B %e, %Y" }}</p>
         <div>
             {{ htcondor_lts_release.content | markdownify }}
         </div>
         <hr>
         <p>
-            The Long Term Support channels distribute only bug fixes to a particular, fixed set of
-            features from the current channel.  As a result, each LTS channel tends to
+            Long Term Support (LTS) releases only bug fixes to a particular, fixed set of
+            features from the current LTS channel.  As a result, each LTS channel tends to
             become more stable over time; read the <a href="https://htcondor.readthedocs.io/en/latest/version-history/">release notes</a>
             from the current channel to make sure you aren't missing any features you
             need.
