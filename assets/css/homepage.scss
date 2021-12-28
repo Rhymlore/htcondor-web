@@ -29,6 +29,14 @@
 // Work with software-display.js to create the software display
 #desktop-software-brief-container {
     min-height: 600px;
+    background-color: #ececec;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #a1a1a1;
+    outline: 0;
+    box-shadow: 0px 0px 0px !important;
 }
 
 .accordion-header {
