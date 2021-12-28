@@ -26,8 +26,6 @@ nav_items:
             url: /htcondor-ce/documentation/
           - name: Release Highlights
             url: /htcondor-ce/release-highlights
-          - name: Release Notes&#11023;
-            url: https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history
       - name: General
         id: general
         dropdown_items:

@@ -122,6 +122,12 @@ pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 footer {
