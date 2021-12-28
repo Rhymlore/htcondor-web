@@ -24,6 +24,8 @@ nav_items:
             url: /htcondor-ce/download/
           - name: Documentation
             url: /htcondor-ce/documentation/
+          - name: Release Highlights
+            url: /htcondor-ce/release-highlights
           - name: Release Notes&#11023;
             url: https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history
       - name: General
@@ -31,12 +33,12 @@ nav_items:
         dropdown_items:
           - name: News
             url: /new
+          - name: Security
+            url: /security/
           - name: Documentation
             url: /manual/
           - name: Download
             url: /downloads/
-          - name: Security
-            url: /security/
   - name: Help & Support
     id: help-and-support
     dropdowns:

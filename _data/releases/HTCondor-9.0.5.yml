@@ -1,15 +1,13 @@
-content: "\nThe HTCondor team is pleased to announce the release of HTCondor 9.0.5.\n\
-  A stable series release contains significant bug fixes.\n\nHighlights of this release\
-  \ are:\n- Other authentication methods are tried if mapping fails using SciTokens\n\
-  - Fix rare crashes from successful condor\\_submit, which caused DAGMan issues\n\
-  - Fix bug where ExitCode attribute would be suppressed when OnExitHold fired\n-\
-  \ condor\\_who now suppresses spurious warnings coming from netstat\n- The online\
-  \ manual now has detailed instructions for installing on MacOS\n- Fix bug where\
-  \ misconfigured MIG devices confused condor\\_gpu\\_discovery\n- The transfer\\\
-  _checkpoint\\_file list may now include input files\n\nMore details about the fixes\
-  \ can be found in the <a href=\"https://htcondor.readthedocs.io/en/v9_0/version-history/stable-release-series-90.html#version-9-0-5\"\
-  > Version History</a>.\n\nHTCondor 9.0.5 binaries and source code are available\
-  \ from our <a href=\"http://htcondor.org/downloads/\">Downloads</a> page. \n"
+content: |
+  Highlights of this release are:
+  - Other authentication methods are tried if mapping fails using SciTokens
+  - Fix rare crashes from successful condor\_submit, which caused DAGMan issues
+  - Fix bug where ExitCode attribute would be suppressed when OnExitHold fired
+  -  condor\_who now suppresses spurious warnings coming from netstat
+  - The online  manual now has detailed instructions for installing on MacOS
+  - Fix bug where misconfigured MIG devices confused condor\_gpu\_discovery
+  - The transfer \_checkpoint\_file list may now include input files
+
 date: 2021-08-18
 layout: news
 link: null

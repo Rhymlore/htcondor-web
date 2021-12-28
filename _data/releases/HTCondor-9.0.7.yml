@@ -1,8 +1,4 @@
 content: |
-  The HTCondor Team is pleased to announce the HTCondor 9.0.7 LTS release.
-
-  A Long Term Support (LTS) release contains significant bug fixes.
-
   Highlights of this release are:
   - Fix bug where condor\_gpu\_discovery could crash with older CUDA libraries
   - Fix bug where condor\_watch\_q would fail on machines with older kernels
