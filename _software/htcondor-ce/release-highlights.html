@@ -4,31 +4,29 @@ software: HTCondor-CE
 title: HTCondor-CE - Release Highlights
 ---
 
-<div class="py-2">
-    <a class="btn btn-primary" href="#feature-channel">Feature Channel</a>
-    <a class="btn btn-primary" href="#long-term-support-channel">Long Term Support Channel</a>
-</div>
 <div class="mb-4 card">
     <div class="card-body">
-        <h3 id="feature-channel">Feature Channel <span class="text-muted">(Previously Current Channel)</span></h3>
-        {% include /get/htcondor_ce_feature_releases.liquid %}
-        {% for release in htcondor_ce_feature_releases %}
+        <h3 id="feature-channel">Latest Releases</h3>
+
+        {% include /get/htcondor_ce_releases_recent.liquid %}
+        {% for release in htcondor_ce_releases_recent %}
         <b>{{ release.release_number }}</b>
         <div>
             {{ release.content | markdownify }}
         </div>
         {% endfor %}
-    </div>
-</div>
-<div class="mb-4 card">
-    <div class="card-body">
-        <h3 id="long-term-support-channel">Long Term Support Channel</h3>
-        {% include /get/htcondor_ce_lts_releases.liquid %}
-        {% for release in htcondor_ce_lts_releases %}
-        <b>{{ release.release_number }}</b>
-        <div>
-            {{ release.content | markdownify }}
+
+        <div class="collapse" id="old-release-highlights">
+            {% include /get/htcondor_ce_releases_old.liquid %}
+            {% for release in htcondor_ce_releases_old %}
+            <b>{{ release.release_number }}</b>
+            <div>
+                {{ release.content | markdownify }}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-release-highlights" role="button" aria-expanded="false" aria-controls="old-release-highlights">
+            Expand all release highlights
+        </a>
     </div>
 </div>

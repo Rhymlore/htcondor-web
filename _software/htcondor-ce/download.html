@@ -4,54 +4,20 @@ software: HTCondor-CE
 title: HTCondor-CE - Download
 ---
 
-{% include get/htcondor_ce_feature_release.liquid %}
-{% include get/htcondor_ce_lts_release.liquid %}
+{% include get/htcondor_ce_release.liquid %}
 
 <div class="mb-4 card">
     <div class="card-body">
-        <h3><span class="text-secondary">{{ htcondor_ce_feature_release.release_number }}</span> Feature Channel</h3>
-        <p>{{ htcondor_ce_feature_release.date | date: "%B %e, %Y" }}</p>
+        <h3><span class="text-secondary">{{ htcondor_ce_release.release_number }}</span>Latest Release</h3>
+        <p>{{ htcondor_ce_release.date | date: "%B %e, %Y" }}</p>
         <div>
-            {{ htcondor_ce_feature_release.content | markdownify }}
+            {{ htcondor_ce_release.content | markdownify }}
         </div>
         <hr>
         <p>
             Feature releases distribute HTCondor's new features and also
             incorporates bug fixes. Most people should use choose this channel and stay up-to-date with
             HTCondor's latest features.
-        </p>
-        <div>
-            <a class="btn btn-primary me-3" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Installation Guide</a>
-            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Previous Release Notes</a>
-        </div>
-    </div>
-</div>
-<div class="mb-4 card">
-    <div class="card-body">
-        <h3><span class="text-secondary">{{ htcondor_ce_lts_release.release_number }}</span> Long Term Support Channel</h3>
-        <p>{{ htcondor_ce_lts_release.date | date: "%B %e, %Y" }}</p>
-        <div>
-            {{ htcondor_ce_lts_release.content | markdownify }}
-        </div>
-        <hr>
-        <p>
-            Long Term Support (LTS) releases distribute only bug fixes to a particular, fixed set of
-            features from the current channel.  As a result, each LTS channel tends to
-            become more stable over time; read the <a href="https://htcondor.readthedocs.io/en/latest/version-history/">release notes</a>
-            from the current channel to make sure you aren't missing any features you
-            need.
-        </p>
-        <p>
-            If you can't regularly upgrade your machines, this may be the channel
-            for you.
-        </p>
-        <p>
-            Periodically, we will update the set of features that we support with
-            bug fixes and start a new LTS channel.  This will not the change the set
-            of features available to an existing or automatically-updated installation of
-            a LTS channel; you have to make the decision to change manually.  However,
-            after a time, we will stop issuing additional bug fixes for older LTS
-            channels.
         </p>
         <div>
             <a class="btn btn-primary me-3" href="https://htcondor.com/htcondor-ce/v5/installation/htcondor-ce/">Installation Guide</a>

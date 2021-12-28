@@ -1,0 +1,15 @@
+{% include /get/htcondor_ce_releases.liquid %}
+
+{% assign htcondor_ce_releases_recent = "" | split : "" %}
+
+{% for release in htcondor_ce_releases %}
+
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+
+    {% if release_numbers[0] == "5"  %}
+        {% assign htcondor_ce_releases_recent = htcondor_ce_releases_recent | push: release %}
+    {% endif %}
+
+{% endfor %}
+
+{% assign htcondor_ce_releases_recent = htcondor_ce_releases_recent | sort: "date" | reverse %}

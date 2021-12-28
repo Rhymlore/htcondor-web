@@ -1,0 +1,12 @@
+{% include /get/releases.liquid %}
+{% assign releases = releases | where: "release_type", "HTCondor-CE"%}
+
+{% assign htcondor_ce_release = releases[0] %}
+
+{% for release in releases %}
+
+    {% if release.release_number > htcondor_ce_release.release_number %}
+        {% assign htcondor_ce_release = release %}
+    {% endif %}
+
+{% endfor %}
