@@ -73,11 +73,6 @@ nav_items:
             url: /past_condor_weeks.html
           - name: Youtube Playlist  &#11023;
             url: https://youtube.com/playlist?list=PLO7gMRGDPNulf_yK_9Ue6yARxJh0gQXQI
-      - name: Users
-        id: users
-        dropdown_items:
-          - name: User Stories
-            url: /user-stories
   - name: About
     id: about
     dropdowns:
