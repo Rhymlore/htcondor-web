@@ -46,6 +46,10 @@
                 {% include /get/software_news.liquid %}
                 {% assign news = software_news %}
 
+                {% assign software = site.data.header-links.nav_items | where: "id", "software" %}
+                {% assign dropdowns = software[0].dropdowns %}
+                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
+
                 <div class="d-none d-lg-block col-lg-4">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
@@ -67,10 +71,6 @@
                         </div>
                     </div>
                 </div>
-
-                {% assign software = site.data.header-links.nav_items | where: "id", "software" %}
-                {% assign dropdowns = software[0].dropdowns %}
-                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
             </div>
             <div id="help-and-support-desktop-drawer" class="drawer row justify-content-center" hidden>
