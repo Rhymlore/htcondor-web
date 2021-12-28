@@ -120,7 +120,14 @@
                     </div>
                 </div>
             </div>
+
             <div id="about-desktop-drawer" class="drawer row justify-content-center" hidden>
+
+
+
+                {% assign about = site.data.header-links.nav_items | where: "id", "about" %}
+                {% assign dropdowns = about[0].dropdowns %}
+                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
                 <div class="d-none d-lg-block col-lg-4">
                     <div class="card h-100">
@@ -130,11 +137,6 @@
                         </div>
                     </div>
                 </div>
-
-                {% assign about = site.data.header-links.nav_items | where: "id", "about" %}
-                {% assign dropdowns = about[0].dropdowns %}
-                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
-
             </div>
         </div>
     </div>
