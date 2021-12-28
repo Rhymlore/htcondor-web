@@ -1,9 +1,9 @@
 ---
 layout: subpage
-title: HTCSS User Stories
+title: HTCSS Featured Users
 ---
 
-{% assign user_stories = site.user-stories | sort: "date" | reverse %}
+{% assign user_stories = site.featured-users | sort: "date" | reverse %}
 
 <div class="row">
     {% for data in user_stories limit:3 %}

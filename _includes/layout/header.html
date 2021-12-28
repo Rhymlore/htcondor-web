@@ -82,30 +82,14 @@
             </div>
             <div id="community-desktop-drawer" class="drawer row justify-content-center" hidden>
 
-                {% include /get/user_story.liquid id="/user-stories/banq" %}
+                {% include /get/user_story.liquid id="/featured-users/banq" %}
+                {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
+                {% assign dropdowns = community[0].dropdowns %}
+                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
-                <div class="d-none d-xl-block col-xl-4">
-                    <div class="card h-100">
-                        <img src="{{ user_story.card_image | relative_url }}" class="card-img-top" alt="Card Image">
-                        <div class="card-body d-flex flex-column">
-                            <h5><a class="text-decoration-none" href="{{ user_story.url }}">{{ user_story.title }}</a></h5>
-                            <hr/>
-                            <a href="{{ '/user-stories' | relative_url }}">
-                                <div class="row">
-                                    <div class="col-auto d-flex">
-                                        <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
-                                    </div>
-                                    <div class="col">
-                                        View All User Stories
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-none d-md-block col-lg-4">
+                <div class="d-none d-md-block col-lg-4 my-2">
                     <a href="/featured-users"><b>Featured Users</b></a>
-                    {% assign sorted_user_stories = site.user-stories | sort: "date" | reverse %}
+                    {% assign sorted_user_stories = site.featured-users | sort: "date" | reverse %}
                     {% for user_story in sorted_user_stories limit: 4 %}
                     <div class="my-2">
                         {% include /cards/title-date.liquid
@@ -115,13 +99,26 @@
                         %}
                     </div>
                     {% endfor %}
-
                 </div>
-
-                {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
-                {% assign dropdowns = community[0].dropdowns %}
-                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
-
+                <div class="d-none d-xl-block col-xl-4 my-2">
+                    <div class="card h-100">
+                        <img src="{{ user_story.card_image | relative_url }}" class="card-img-top" alt="Card Image">
+                        <div class="card-body d-flex flex-column">
+                            <h5><a class="text-decoration-none" href="{{ user_story.url }}">{{ user_story.title }}</a></h5>
+                            <hr/>
+                            <a href="{{ '/featured-users' | relative_url }}">
+                                <div class="row">
+                                    <div class="col-auto d-flex">
+                                        <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                                    </div>
+                                    <div class="col">
+                                        View All Featured Users
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="about-desktop-drawer" class="drawer row justify-content-center" hidden>
 

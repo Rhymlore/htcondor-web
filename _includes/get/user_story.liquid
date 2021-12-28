@@ -1,4 +1,4 @@
-{% assign user_stories = site.user-stories | sort: "date" | reverse %}
+{% assign user_stories = site.featured-users | sort: "date" | reverse %}
 
 {% if include.id != "" %}
     {% assign user_stories = user_stories | where: "id", include.id %}
@@ -14,5 +14,6 @@
         {% assign user_story = user_stories[0] %}
     {% endif %}
 {% endif %}
+
 
 
