@@ -11,8 +11,10 @@ nav_items:
             url: /htcondor/download/
           - name: Documentation
             url: /htcondor/documentation/
-          - name: Release Notes&#11023;
-            url: https://htcondor.readthedocs.io/en/latest/version-history/index.html
+          - name: Release Highlights
+            url: /htcondor/release-highlights
+          - name: Release Schedule
+            url: /htcondor/release-plan
       - name: HTCondor-CE
         id: htcondor-ce
         dropdown_items:
