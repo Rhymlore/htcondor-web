@@ -7,8 +7,20 @@
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
 
-    {% if release_numbers[1] != "0"  %}
-        {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+    {%  if release_numbers[0] == 9 %}
+
+        {% if release_numbers[1] != "0"  %}
+            {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+        {% endif %}
+
+    {% else %}
+
+        {% assign is_feature_release = release_numbers[1] | modulo: 2 %}
+
+        {% if is_feature_release == 1 %}
+            {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+        {% endif %}
+
     {% endif %}
 
 {% endfor %}
