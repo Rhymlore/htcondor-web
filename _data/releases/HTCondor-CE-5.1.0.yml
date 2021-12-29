@@ -1,16 +1,13 @@
 content: |
   
   Highlights of this release are:
-  - Add support for ClassAd transforms to the JobRouter;
-  Add mapped user and X.509 attribute to local HTCondor pool AccountingGroup mappings
-  to Job Routers configured to use the ClassAd transform syntax;
-  - Accept BatchRuntime attributes from incoming jobs to set their maximum walltime;
-  - Update the HTCondor-CE
-  registry to Python 3;
-  - Enable SSL authentication by default for READ/WRITE authorization levels;
-  - APEL reporting scripts now use history files in the local HTCondor PER_JOB_HISTORY_DIR
-  to collect job data;
-  - Use the GlobalJobID attribute as the APEL record lrmsID.
+  - Add support for ClassAd transforms to the JobRouter
+  - Add mapped user and X.509 attribute to local HTCondor pool AccountingGroup mappings to Job Routers configured to use the ClassAd transform syntax;
+  - Accept BatchRuntime attributes from incoming jobs to set their maximum walltime
+  - Update the HTCondor-CE registry to Python 3
+  - Enable SSL authentication by default for READ/WRITE authorization levels
+  - APEL reporting scripts now use history files in the local HTCondor PER_JOB_HISTORY_DIR to collect job data
+  - Use the GlobalJobID attribute as the APEL record lrmsID
 
   Please refer to the [update instructions](https://htcondor.github.io/htcondor-ce/v5/releases/#updating-to-htcondor-ce-5\) to update to this version.
 
