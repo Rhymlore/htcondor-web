@@ -1,5 +1,5 @@
 ---
-layout: subpage
+layout: Markdown
 title: License Information
 ---
 

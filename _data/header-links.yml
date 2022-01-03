@@ -50,10 +50,12 @@ nav_items:
       - name: Support
         id: support
         dropdown_items:
-          - name: Internal Contract Support
+          - name: HTCSS Contract Support
             url: /uw-support/
-          - name: Outside Support
-            url: /htcondor-support#external-support/
+          - name: Community Mailing List
+            url: /mail-lists#user
+          - name: External Support Organizations
+            url: /htcondor-support#external-support-options
   - name: Community
     id: community
     dropdowns:
