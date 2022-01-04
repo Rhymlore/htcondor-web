@@ -1,15 +1,21 @@
-content: |
-  Highlights of this release are:
+content: 'Highlights of this release are:
+
   - Fix bug where condor\_gpu\_discovery could crash with older CUDA libraries
+
   - Fix bug where condor\_watch\_q would fail on machines with older kernels
+
   - condor\_watch\_q no longer has a limit on the number of job event log files
+
   - Fix bug where a startd could crash claiming a slot with p-slot preemption
+
   - Fix bug where a job start would not be recorded when a shadow reconnects
 
+  '
 date: 2021-11-02
 layout: news
 link: null
 og_title: HTCondor 9.0.7 released!
 release_number: 9.0.7
 release_type: HTCondor
+sort_key: 09.00.07
 title: HTCondor 9.0.7 released!

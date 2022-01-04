@@ -12,4 +12,4 @@
 
 {% endfor %}
 
-{% assign htcondor_lts_releases_recent = htcondor_lts_releases_recent | sort: "date" | reverse %}
+{% assign htcondor_lts_releases_recent = htcondor_lts_releases_recent | sort: "sort_key" | reverse %}

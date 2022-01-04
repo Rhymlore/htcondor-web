@@ -26,4 +26,4 @@
 
 {% endfor %}
 
-{% assign htcondor_feature_releases = htcondor_feature_releases | sort: "date" | reverse %}
+{% assign htcondor_feature_releases = htcondor_feature_releases | sort: "sort_key" | reverse %}

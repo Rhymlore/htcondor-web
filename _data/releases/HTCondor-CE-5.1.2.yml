@@ -1,18 +1,27 @@
-content: |
+content: '
 
   Highlights of this release are:
+
   - Fixed the default memory and CPU requests when using job router transforms
+
   - Apply default MaxJobs and MaxJobsIdle when using job router transforms
+
   - Improved SciTokens support in submission tools
+
   - Fixed --debug flag in condor\_ce\_run
+
   - Update configuration verification script to handle job router transforms
+
   - Corrected ownership of the HTCondor PER\_JOBS\_HISTORY\_DIR
+
   - Fix bug passing maximum wall time requests to the local batch system
 
+  '
 date: 2021-09-23
 layout: news
 link: null
 og_title: HTCondor-CE 5.1.2 released!
 release_number: 5.1.2
 release_type: HTCondor-CE
+sort_key: 05.01.02
 title: HTCondor-CE 5.1.2 released!
