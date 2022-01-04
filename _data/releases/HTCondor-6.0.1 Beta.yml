@@ -1,8 +1,4 @@
-content: '
-
-  You can read about what''s new</a> in this version.
-
-  '
+content: You can read about what's new in this version.
 date: 1998-06-01
 layout: news
 link: downloads/
