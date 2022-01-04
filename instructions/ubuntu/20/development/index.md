@@ -1,7 +1,12 @@
 ---
 layout: container-default
 title: HTCondor - Install Instructions - Ubuntu 20 Development
+meta:
+- '<meta name="robots" content="noindex">'
 ---
+
+<span class="text-danger">This page is deprecated, visit <a href="https://htcondor.org/downloads/htcondor">the HTCondor download page</a> for updated instructions.</span>
+<hr>
 
 <h1>Install Instructions</h1>
 

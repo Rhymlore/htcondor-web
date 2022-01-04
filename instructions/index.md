@@ -1,7 +1,12 @@
 ---
 layout: subpage
 title: Install Instructions
+meta: 
+    - '<meta name="robots" content="noindex">'
 ---
+
+<span class="text-danger">This page is deprecated, visit <a href="https://htcondor.org/downloads/htcondor">the HTCondor download page</a> for updated instructions.</span>
+<hr>
 
 <p>
     HTCondor is in the Debian and Ubuntu repositories as well as Enterprise Linux’s EPEL, but these versions may
