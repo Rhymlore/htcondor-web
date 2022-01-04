@@ -1,0 +1,15 @@
+title: HTCondor 9.4.0 released!
+og_title: HTCondor 9.4.0 released!
+link:
+date: 2021-12-02
+layout: news
+release_type: HTCondor
+release_number: 9.4.0
+sort_key: 09.04.00
+content: |
+  Enhancements in the release include:
+
+    - Initial implementation of Job Sets in the htcondor CLI tool
+    - The access point administrator can add keywords to the submit language
+    - Add submit commands that limit job run time
+    - Fix bug where self check-pointing jobs may be erroneously held

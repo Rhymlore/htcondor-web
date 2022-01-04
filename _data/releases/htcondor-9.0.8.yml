@@ -1,0 +1,17 @@
+title: HTCondor 9.0.8 released!
+og_title: HTCondor 9.0.8 released!
+link:
+date: 2021-12-02
+layout: news
+release_type: HTCondor
+release_number: 9.0.8
+sort_key: 09.00.08
+content: |
+  Highlights of this release are:
+
+    - Fix bug where huge values of ImageSize and others would end up negative
+    - Fix bug in how MAX\_JOBS\_PER\_OWNER applied to late materialization jobs
+    - Fix bug where the schedd could choose a slot with insufficient disk space
+    - Fix crash in ClassAd substr() function when the offset is out of range
+    - Fix bug in Kerberos code that can crash on macOS and could leak memory
+    - Fix bug where a job is ignored for 20 minutes if the startd claim fails
