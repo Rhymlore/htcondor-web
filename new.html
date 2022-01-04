@@ -3,6 +3,8 @@ layout: subpage
 title: What's new with HTCSS?
 ---
 
+
+
 {% assign news_articles = site.news | sort | reverse %}
 
 <div class="row">
@@ -14,7 +16,7 @@ title: What's new with HTCSS?
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="text-center">Visit the <a class="text-secondary" href="news-archive">News Archive</a> to view earlier articles</h5>
+                <h5 class="text-center">Visit the <a class="text-secondary" href="{{ 'news-archive' | relative_url }}">News Archive</a> to view earlier articles</h5>
             </div>
         </div>
     </div>

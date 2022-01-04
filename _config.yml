@@ -42,6 +42,10 @@ defaults:
       path: "/news"
     values:
       layout: "news"
+  - scope:
+      type: "featured-users"
+    values:
+      layout: "featured-users"
 
 sass:
   style: compressed
