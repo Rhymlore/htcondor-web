@@ -13,8 +13,6 @@ date: 2004-04-01
 layout: news
 link: null
 og_title: Condor 6.6.3 and 6.6.4 released!
-release_number:
-- 6.6.3
-- 6.6.4
+release_number: 6.6.3
 release_type: HTCondor
-title: Condor 6.6.3 and 6.6.4 released!
+title: Condor 6.6.3 released!

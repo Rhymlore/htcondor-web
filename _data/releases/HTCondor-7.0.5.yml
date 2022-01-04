@@ -17,8 +17,6 @@ date: 2008-10-07
 layout: news
 link: null
 og_title: Condor version 7.0.5 and 6.8.9 released
-release_number:
-- 7.0.5
-- 6.8.9
+release_number: 7.0.5
 release_type: HTCondor
-title: Condor version 7.0.5 and 6.8.9 released
+title: Condor version 7.0.5 released
