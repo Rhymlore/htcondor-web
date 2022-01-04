@@ -6,8 +6,9 @@
 {% for release in releases %}
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
+    {% assign first_number = release_numbers[0] |  times: 1 %}
 
-    {%  if release_numbers[0] == 9 %}
+    {% if first_number >= 9 %}
 
         {% if release_numbers[1] != "0"  %}
             {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
