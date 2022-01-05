@@ -1,6 +1,7 @@
 {% assign dropdown = include.dropdown %}
 
 <li class="dropdown">
+    {% if dropdown.dropdown_items %}
     <a class="dropdown-item dropdown-toggle" href="#" id="{{ sub_sub_item.id }}-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         {{ dropdown.name }}
     </a>
@@ -9,4 +10,9 @@
             <li><a class="dropdown-item" href="{{ dropdown_item.url | relative_url }}">{{ dropdown_item.name }}</a></li>
         {% endfor %}
     </ul>
+    {% else %}
+    <a class="dropdown-item" href="{{ dropdown.url | relative_url }}" >
+        {{ dropdown.name }}
+    </a>
+    {% endif %}
 </li>
