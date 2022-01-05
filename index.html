@@ -163,7 +163,7 @@ js_extension:
                     <div class="accordion accordion-flush">
                         {% for data in software_data limit: 1 %}
                         <div class="accordion-item">
-                            <div class="accordion-header" id="{{ data.id }}-desktop-header">
+                            <div class="accordion-header desktop-header" id="{{ data.id }}-desktop-header">
                                 <button id="{{ data.id }}-desktop-button" class="accordion-button">
                                     <div class="me-1">
                                         <h3>{{ data.name }}</h3>
@@ -177,7 +177,7 @@ js_extension:
                         {% endfor %}
                         {% for data in software_data offset: continue %}
                         <div class="accordion-item">
-                            <div class="accordion-header" id="{{ data.id }}-desktop-header">
+                            <div class="accordion-header desktop-header" id="{{ data.id }}-desktop-header">
                                 <button id="{{ data.id }}-desktop-button" class="accordion-button collapsed">
                                     <div class="me-1">
                                         <h3>{{ data.name }}</h3>
