@@ -3,10 +3,9 @@ title: Harnessing HTC-enabled precision mental health to capture the complexity 
 og_title: Harnessing HTC-enabled precision mental health to capture the complexity of smoking cessation
 link:
 date: 2021-12-16
-card_image: /assets/images/Gaylen-Fronk-square.jpg
-layout: news
+card_image: /assets/images/mental_health.jpeg
 excerpt: |
-Collaborating with CHTC research computing facilitation staff, UW-Madison researcher Gaylen Fronk is using HTC to improve cigarette cessation treatments by accounting for the complex differences among patients.
+    Collaborating with CHTC research computing facilitation staff, UW-Madison researcher Gaylen Fronk is using HTC to improve cigarette cessation treatments by accounting for the complex differences among patients.
 ---
 
 ***Collaborating with CHTC research computing facilitation staff, UW-Madison researcher Gaylen Fronk is using HTC to improve cigarette cessation treatments by accounting for the complex differences among patients.***
