@@ -1,0 +1,65 @@
+---
+    layout: blank
+---
+
+{% include /get/hero_story.liquid id=0 %}
+
+#hero-image {
+    background: url({{ hero_story.hero_image | relative_url }}) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#hero-content-container {
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 5px;
+    min-height: 300px;
+    z-index: 0;
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    #hero-content-container {
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        background-color: rgba(255, 255, 255, .4);
+    }
+}
+
+// Work with software-display.js to create the software display
+#desktop-software-brief-container {
+    min-height: 600px;
+    background-color: #ececec;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #a1a1a1;
+    outline: 0;
+    box-shadow: 0px 0px 0px !important;
+}
+
+.accordion-header {
+    button.collapsed {
+        background-color: white;
+    }
+}
+
+.accordion-header {
+    button {
+        background-color: #DEDDDD;
+    }
+}
+
+.desktop-software-brief {
+    height:0px;
+    overflow-y: hidden;
+    transition-property: height;
+    transition-duration: .25s;
+    transition-timing-function: ease-out;
+}
+
+.desktop-software-brief.open {
+    height: 100%;
+}

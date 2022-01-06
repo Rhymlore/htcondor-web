@@ -32,24 +32,43 @@
                     <div class="col-auto my-2">
                         <table>
                             <tr><th>Support</th></tr>
-                            <tr><td><a href="mailto:htcondor-admin@cs.wisc.edu">Support Email</a></td></tr>
-                            <tr><td><a href="{{ '/mail-lists/' | relative_url }}">Email Lists</a></td></tr>
-                            <tr><td><a href="{{ '/uw-support/' | relative_url }}">Contract Support</a></td></tr>
-                            <tr><td><a href="{{ '/htcondor-support#external-support/' | relative_url }}">Outside Support</a></td></tr>
+                            <tr><td><a href="{{ '/uw-support/' | relative_url }}">Internal Contract</a></td></tr>
+                            <tr><td><a href="{{ '/htcondor-support#external-support-options' | relative_url }}">External Organizations</a></td></tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row my-4 justify-content-center">
+            <div class="col-auto d-flex">
+                <a class="d-block m-auto" href="https://ls.wisc.edu/">
+                    {% include picture.html path="/assets/images/UW_Madison_Logo" alt="UW-Madison Logo" height="75px" extension="png" %}
+                </a>
+            </div>
+            <div class="col-auto d-flex">
+                <a class="px-3 d-block m-auto" href="https://www.nsf.org">
+                    {% include picture.html path="/assets/images/NSF_Logo" alt="NSF Logo" height="100px" %}
+                </a>
+            </div>
+            <div class="col-auto d-flex">
+                <a class="d-block m-auto" href="https://morgridge.org/">
+                    <img class="" height="40" src="{{ 'assets/images/Morgridge_Logo.svg' | relative_url }}" alt="Morgridge Logo" />
+                </a>
+            </div>
+        </div>
         <hr>
-        <div class="row py-4">
+        <div class="row py-3">
             <div class="col text-center">
                 For comments or questions about this website, please email
                 <a href="mailto:htcondor-admin@cs.wisc.edu">htcondor-admin@cs.wisc.edu</a><br />
                 This work is supported by <a href="https://www.nsf.gov/div/index.jsp?div=OAC">NSF</a> under Cooperative Agreement <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2030508">OAC-2030508</a> as part of the <a href="https://path-cc.io/">PATh Project</a>. <br />
-                <script type="text/javascript">
-                    document.write("Updated &raquo; "+lastMod(document.lastModified))
-                </script>
+            </div>
+        </div>
+        <div class="row justify-content-center pb-4">
+            <div class="col-lg-8 text-center">
+                <span class="text-center">
+                    If you are looking for Phoenix Software International's software development and library management system for z/VSE or z/OS, you can find more information on their <a href="http://www.phoenixsoftware.com">website</a>.
+                </span>
             </div>
         </div>
     </div>

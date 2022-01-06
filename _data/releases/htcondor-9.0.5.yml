@@ -1,0 +1,25 @@
+content: 'Highlights of this release are:
+
+  - Other authentication methods are tried if mapping fails using SciTokens
+
+  - Fix rare crashes from successful condor\_submit, which caused DAGMan issues
+
+  - Fix bug where ExitCode attribute would be suppressed when OnExitHold fired
+
+  - condor\_who now suppresses spurious warnings coming from netstat
+
+  - The online  manual now has detailed instructions for installing on MacOS
+
+  - Fix bug where misconfigured MIG devices confused condor\_gpu\_discovery
+
+  - The transfer \_checkpoint\_file list may now include input files
+
+  '
+date: 2021-08-18
+layout: news
+link: null
+og_title: HTCondor 9.0.5 released!
+release_number: 9.0.5
+release_type: HTCondor
+sort_key: 09.00.05
+title: HTCondor 9.0.5 released!

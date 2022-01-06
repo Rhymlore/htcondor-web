@@ -1,0 +1,19 @@
+content: 'This release contains important fixes for security issues. Affected users
+  should update as soon as possible.
+
+  More details on the security issues are in the Vulnerability Reports:
+
+
+  - [HTCONDOR-2021-01](/security/vulnerabilities/HTCONDOR-2021-0001)
+
+  - [HTCONDOR-2021-02](/security/vulnerabilities/HTCONDOR-2021-0002)
+
+  '
+date: 2021-01-27
+layout: news
+link: null
+og_title: 'HTCondor Security Release: 8.9.11'
+release_number: 8.9.11
+release_type: HTCondor
+sort_key: 08.09.11
+title: 'HTCondor Security Release: 8.9.11'

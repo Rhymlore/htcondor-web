@@ -1,0 +1,39 @@
+---
+layout: software-page
+software: HTCondor-CE
+title: HTCondor-CE Release Highlights
+---
+
+<div class="mb-4 card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-auto">
+                <h3>Latest Releases</h3>
+            </div>
+            <div class="col-auto d-flex ps-sm-0">
+                <b class="my-auto"><a class="text-muted" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Detailed Notes &#11023;</a></b>
+            </div>
+        </div>
+
+        {% include /get/htcondor_ce_releases_recent.liquid %}
+        {% for release in htcondor_ce_releases_recent %}
+        <b>{{ release.release_number }}</b>
+        <div>
+            {{ release.content | markdownify }}
+        </div>
+        {% endfor %}
+
+        <div class="collapse" id="old-release-highlights">
+            {% include /get/htcondor_ce_releases_old.liquid %}
+            {% for release in htcondor_ce_releases_old %}
+            <b>{{ release.release_number }}</b>
+            <div>
+                {{ release.content | markdownify }}
+            </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-release-highlights" role="button" aria-expanded="false" aria-controls="old-release-highlights">
+            Expand all release highlights
+        </a>
+    </div>
+</div>

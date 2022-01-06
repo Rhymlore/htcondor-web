@@ -1,5 +1,4 @@
 ---
-
 ---
 
 $primary: #424242;
@@ -9,17 +8,61 @@ $navbar-light-color: $primary;
 $navbar-light-hover-color: lighten($primary, 25);
 $navbar-light-active-color: $primary;
 
-$font-family-base: "trebuchet ms", verdana, helvetica, arial, sans-serif;
+$card-border-color: #4E4E50;
 
-#main-copy {
-  h1, h2, h3, h4 {
-    color: $primary;
-    font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
-  }
-}
+$font-family-base: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$headings-font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+$enable-negative-margins: true;
 
 @import 'bootstrap/bootstrap';
 @import "custom";
+
+a:hover {
+  transition-property: color;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+  color: $secondary;
+}
+
+.hover-border {
+  border: 1px solid white;
+}
+
+.hover-border:hover {
+  border: 1px solid #4E4E50;
+  transition-property: border;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+}
+
+.hover-shadow {
+  box-shadow: 0px 0px 0px #FFFFFF;
+  transition-property: box-shadow;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0px 0px 5px #9d9d9d
+}
+
+// Responsive Font Size
+html {
+  font-size: 14px;
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  html {
+    font-size: 18px;
+  }
+}
 
 #follow-twitter {
   display:flex;
@@ -72,18 +115,35 @@ pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px;
 #header-drawer {
   width: 100%;
   position: absolute;
+  left: 0;
   background-color: $gray-200;
   z-index: 99;
-  box-shadow: 0px 12px 20px $gray-500;
+  box-shadow: 0px 3px 4px $gray-600;
   .drawer {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
-
 
 footer {
   a {
-    color: $text-muted
+    text-decoration: none;
   }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-99 {
+  z-index: 99;
 }

@@ -1,0 +1,7 @@
+{% assign software_data = "" | split : "" %}
+
+{% for data in site.data.software %}
+    {% assign software_data = software_data | push: data[1] %}
+{% endfor %}
+
+{%  assign software_data = software_data | sort: "order" %}

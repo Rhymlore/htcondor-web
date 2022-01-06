@@ -1,7 +1,4 @@
 nav_items:
-  - name: News
-    id: news
-    url: /new.html
   - name: Software
     id: software
     dropdowns:
@@ -14,8 +11,10 @@ nav_items:
             url: /htcondor/download/
           - name: Documentation
             url: /htcondor/documentation/
-          - name: Release Notes&#11023;
-            url: https://htcondor.readthedocs.io/en/latest/version-history/index.html
+          - name: Release Highlights
+            url: /htcondor/release-highlights
+          - name: Release Schedule
+            url: /htcondor/release-plan
       - name: HTCondor-CE
         id: htcondor-ce
         dropdown_items:
@@ -25,19 +24,19 @@ nav_items:
             url: /htcondor-ce/download/
           - name: Documentation
             url: /htcondor-ce/documentation/
-          - name: Release Notes&#11023;
-            url: https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history
+          - name: Release Highlights
+            url: /htcondor-ce/release-highlights
       - name: General
         id: general
         dropdown_items:
+          - name: News
+            url: /new
+          - name: Security
+            url: /security/
           - name: Documentation
             url: /manual/
           - name: Download
             url: /downloads/
-          - name: Security
-            url: /security/
-          - name: License
-            url: /license
   - name: Help & Support
     id: help-and-support
     dropdowns:
@@ -48,27 +47,27 @@ nav_items:
             url: /htcondor/documentation
           - name: HTCondor-CE
             url: /htcondor-ce/documentation
-      - name: Email Lists
-        id: email-lists
-        dropdown_items:
-          - name: Users&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-users
-          - name: World&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-world
-          - name: Developers&#11023;
-            url: https://lists.cs.wisc.edu/mailman/listinfo/htcondor-devel
       - name: Support
         id: support
         dropdown_items:
-          - name: Support Email&#11023;
-            url: mailto:htcondor-admin@cs.wisc.edu
-          - name: Internal Contract Support
+          - name: HTCSS Contract Support
             url: /uw-support/
-          - name: Outside Support
-            url: /htcondor-support#external-support/
+          - name: Community Mailing List
+            url: /mail-lists#user
+          - name: External Support Organizations
+            url: /htcondor-support#external-support-options
   - name: Community
     id: community
     dropdowns:
+      - name: Email Lists
+        id: email-lists
+        dropdown_items:
+          - name: Users
+            url: /mail-lists#user
+          - name: World
+            url: /mail-lists#world
+          - name: Developers
+            url: /mail-lists#developer
       - name: HTCondor Week
         id: htcondor-week
         dropdown_items:
@@ -76,6 +75,22 @@ nav_items:
             url: https://agenda.hep.wisc.edu/event/1579/
           - name: Content Archives
             url: /past_condor_weeks.html
+          - name: Youtube Playlist  &#11023;
+            url: https://youtube.com/playlist?list=PLO7gMRGDPNulf_yK_9Ue6yARxJh0gQXQI
+      - name: Featured Users
+        id: featured-users
+        url: /featured-users
+        mobile_only: True
+  - name: About
+    id: about
+    dropdowns:
+      - name: HTCSS
+        id: htcss
+        dropdown_items:
+          - name: What is HTCSS?
+            url: /description
+          - name: Logos
+            url: /logos
       - name: CHTC
         id: chtc
         dropdown_items:

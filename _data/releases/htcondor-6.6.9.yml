@@ -1,0 +1,13 @@
+content: "\n6.6.9 is the latest release of our stable series. 6.6.9 contains several\
+  \ critical bug fixes and all users are encouraged to upgrade immediately. See the\
+  \ <a href=\"manual/latest-stable/9_Version_History.html\"> Version History and Release\
+  \ Notes</a> for details.  Condor 6.6.9 is available from our <a href=\"downloads/\"\
+  >Downloads</a> page.  \n"
+date: 2005-03-01
+layout: news
+link: null
+og_title: Condor 6.6.9 released!
+release_number: 6.6.9
+release_type: HTCondor
+sort_key: 06.06.09
+title: Condor 6.6.9 released!

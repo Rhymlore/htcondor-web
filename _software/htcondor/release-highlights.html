@@ -1,0 +1,74 @@
+---
+layout: software-page
+software: HTCondor
+title: HTCondor Release Highlights
+---
+
+<div class="py-2">
+  <a class="btn btn-primary" href="#feature-channel">Feature Channel</a>
+  <a class="btn btn-primary" href="#long-term-support-channel">Long Term Support Channel</a>
+</div>
+<div id="feature-channel" class="mb-4 card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-auto">
+        <h3>Feature Channel</h3>
+      </div>
+      <div class="col-auto d-flex ps-sm-0">
+        <b class="my-auto"><a class="text-muted" href="https://htcondor.readthedocs.io/en/latest/version-history/development-release-series-91.html">Detailed Notes &#11023;</a></b>
+      </div>
+    </div>
+    {% include /get/htcondor_feature_releases_recent.liquid %}
+    {% for release in htcondor_feature_releases_recent %}
+      <b>{{ release.release_number }}</b>
+      <div>
+        {{ release.content | markdownify }}
+      </div>
+    {% endfor %}
+
+    <div class="collapse" id="old-feature-release-highlights">
+      {% include /get/htcondor_feature_releases_old.liquid %}
+      {% for release in htcondor_feature_releases_old %}
+      <b>{{ release.release_number }}</b>
+      <div>
+        {{ release.content | markdownify }}
+      </div>
+      {% endfor %}
+    </div>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-feature-release-highlights" role="button" aria-expanded="false" aria-controls="old-feature-release-highlights">
+      Expand all Feature release highlights
+    </a>
+  </div>
+</div>
+<div id="long-term-support-channel" class="mb-4 card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-auto">
+        <h3>Long Term Support Channel</h3>
+      </div>
+      <div class="col-auto d-flex ps-sm-0">
+        <b class="my-auto"><a class="text-muted" href="https://htcondor.readthedocs.io/en/latest/version-history/stable-release-series-90.html">Detailed Notes &#11023;</a></b>
+      </div>
+    </div>
+    {% include /get/htcondor_lts_releases_recent.liquid %}
+    {% for release in htcondor_lts_releases_recent %}
+    <b>{{ release.release_number }}</b>
+    <div>
+      {{ release.content | markdownify }}
+    </div>
+    {% endfor %}
+
+    <div class="collapse" id="old-lts-release-highlights">
+      {% include /get/htcondor_lts_releases_old.liquid %}
+      {% for release in htcondor_lts_releases_old %}
+      <b>{{ release.release_number }}</b>
+      <div>
+        {{ release.content | markdownify }}
+      </div>
+      {% endfor %}
+    </div>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-lts-release-highlights" role="button" aria-expanded="false" aria-controls="old-lts-release-highlights">
+      Expand all LTS release highlights
+    </a>
+  </div>
+</div>

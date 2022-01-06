@@ -1,0 +1,22 @@
+content: 'Highlights of this release are:
+
+
+  - Improved restart time of HTCondor-CE View
+
+  - Fixed bug that caused HTCondor-CE to ignore incoming BatchRuntime requests
+
+  - Fixed RPM dependency issue when installing for non-HTCondor batch systems
+
+
+  Please refer to the [update instructions](https://htcondor.github.io/htcondor-ce/v5/releases/#updating-to-htcondor-ce-5\)
+  to update to this version.
+
+  '
+date: 2021-05-27
+layout: news
+link: null
+og_title: HTCondor-CE 5.1.1 released!
+release_number: 5.1.1
+release_type: HTCondor-CE
+sort_key: 05.01.01
+title: HTCondor-CE 5.1.1 released!

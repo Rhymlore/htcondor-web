@@ -21,6 +21,9 @@ collections:
   software:
     permalink: /:path/
     output: true
+  featured-users:
+    permalink: /featured-users/:path
+    output: true
 
 defaults:
   -
@@ -39,6 +42,10 @@ defaults:
       path: "/news"
     values:
       layout: "news"
+  - scope:
+      type: "featured-users"
+    values:
+      layout: "featured-users"
 
 sass:
   style: compressed

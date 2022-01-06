@@ -1,6 +1,6 @@
 
-<header id="header" class="bg-light">
-    <div class="container-xxl px-xxl-0">
+<header id="header" class="">
+    <div class="container-xxl">
         <nav id="mobile-header" class="py-3 d-flex d-lg-none navbar navBar navbar-expand-lg navbar-light w-100">
             <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}" style="border:0"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile-navbar" aria-controls="mobile-navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,12 +21,14 @@
         </nav>
         <div id="desktop-header" class="d-none d-lg-block">
             <nav class="navbar py-3 navBar navbar-expand-lg navbar-light w-100">
-                <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/CondorTitle.png' | relative_url }}"></a>
+                <a href="{{ '/index.html' | relative_url }}"><img height="50" alt="Condor High Throughput Computing" src="{{ '/assets/images/HTCondor_red_blk.svg' | relative_url }}"></a>
                 <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-2 mt-auto">
                         {% for nav_item in site.data.header-links.nav_items %}
                             {% include layout/desktop-nav-item.html nav_item=nav_item %}
                         {% endfor %}
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mt-auto">
                         <li class="nav-item ms-2">
                             <div style="height:40px; width: 250px;">
                                 {% include google-search-bar.html %}
@@ -41,9 +43,34 @@
         <div class="container-xxl">
             <div id="software-desktop-drawer" class="drawer row justify-content-center" hidden>
 
+                {% include /get/software_news.liquid %}
+                {% assign news = software_news %}
+
                 {% assign software = site.data.header-links.nav_items | where: "id", "software" %}
                 {% assign dropdowns = software[0].dropdowns %}
                 {% include layout/dropdown-tables.html dropdowns=dropdowns %}
+
+                <div class="d-none d-lg-block col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3><a class="text-decoration-none" href="{{ news.url | relative_url }}">{{ news.title }}</a></h3>
+                            <div>
+                                <span class="text-muted">{{ news.date | date: "%B %e, %Y"}}</span>
+                            </div>
+                            <hr/>
+                            <a href="{{ '/new' | relative_url }}">
+                                <div class="row">
+                                    <div class="col-auto d-flex">
+                                        <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                                    </div>
+                                    <div class="col">
+                                        View All Software News
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div id="help-and-support-desktop-drawer" class="drawer row justify-content-center" hidden>
@@ -55,10 +82,65 @@
             </div>
             <div id="community-desktop-drawer" class="drawer row justify-content-center" hidden>
 
+                {% include /get/user_story.liquid id="/featured-users/banq" %}
                 {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
                 {% assign dropdowns = community[0].dropdowns %}
                 {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
+                <div class="d-none d-md-block col-lg-4 my-2">
+                    <a href="{{ '/featured-users' | relative_url }}"><b>Featured Users</b></a>
+                    {% assign sorted_user_stories = site.featured-users | sort: "date" | reverse %}
+                    {% for user_story in sorted_user_stories limit: 4 %}
+                    <div class="my-2">
+                        {% include /cards/title-date.liquid
+                        title=user_story.title
+                        date=user_story.date
+                        href=user_story.url
+                        %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-none d-xl-block col-xl-4 my-2">
+                    <div class="card h-100">
+                        <img src="{{ user_story.card_image | relative_url }}" class="card-img-top" alt="Card Image">
+                        <div class="card-body d-flex flex-column">
+                            <h5><a class="text-decoration-none" href="{{ user_story.url | relative_url }}">{{ user_story.title }}</a></h5>
+                            <hr/>
+                            <a href="{{ '/featured-users' | relative_url }}">
+                                <div class="row">
+                                    <div class="col-auto d-flex">
+                                        <img class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                                    </div>
+                                    <div class="col">
+                                        View All Featured Users
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="about-desktop-drawer" class="drawer row justify-content-center" hidden>
+
+
+
+                {% assign about = site.data.header-links.nav_items | where: "id", "about" %}
+                {% assign dropdowns = about[0].dropdowns %}
+                {% include layout/dropdown-tables.html dropdowns=dropdowns %}
+
+                <div class="d-none d-lg-block col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5><a class="text-decoration-none" href="{{ '/description.html' | relative_url }}">What is HTCSS?</a></h5>
+                            <hr class="mb-2">
+                            <div>
+                                HTCondor Software Suite (HTCSS) provides an array of services for automating
+                                and managing batch workloads and computing resources.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

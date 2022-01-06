@@ -1,0 +1,24 @@
+content: '
+
+  Highlights of this release are:
+
+
+  - CUDA\_VISIBLE\_DEVICES can now contain GPU-<uuid> formatted values
+
+  - Fixed a bug that caused jobs to fail when using newer Singularity versions
+
+  - Fixed a bug in the Windows MSI installer for the latest Windows 10 version
+
+  - Fixed bugs relating to the transfer of standard out and error logs
+
+  - MacOS 11.x now reports as 10.16.x (which is better than reporting x.0)
+
+  '
+date: 2021-09-23
+layout: news
+link: null
+og_title: HTCondor 9.0.6 released!
+release_number: 9.0.6
+release_type: HTCondor
+sort_key: 09.00.06
+title: HTCondor 9.0.6 released!

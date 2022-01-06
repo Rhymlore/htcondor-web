@@ -1,0 +1,10 @@
+{% if include.news %}
+    {% assign news = include.news %}
+{% endif %}
+
+{% include /cards/title-date-content.liquid
+    title=news.title
+    date=news.date
+    content=news.excerpt
+    title_href=news.url
+%}

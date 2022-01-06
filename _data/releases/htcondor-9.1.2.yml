@@ -1,0 +1,20 @@
+content: 'This release contains important fixes for security issues.
+
+  Affected users should update as soon as possible. More details on the security
+
+  issues are in the Vulnerability Reports:
+
+
+  - [HTCONDOR-2021-03](/security/vulnerabilities/HTCONDOR-2021-0003.html)
+
+  - [HTCONDOR-2021-04](/security/vulnerabilities/HTCONDOR-2021-0004.html)
+
+  '
+date: 2021-07-29
+layout: news
+link: null
+og_title: 'HTCondor Security Release: 8.8.15, 9.0.4, and 9.1.2'
+release_number: 9.1.2
+release_type: HTCondor
+sort_key: 09.01.02
+title: 'HTCondor Security Release: 9.1.2'

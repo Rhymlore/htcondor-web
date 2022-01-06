@@ -1,181 +1,247 @@
 ---
 layout: default
 title: Home
+css_extension:
+-   href: "/assets/css/homepage.css"
+js_extension:
+-   src: "/assets/js/software-display.js"
+    loading: "defer"
 ---
 
-
-<div class="">
-    <div class="container-xxl py-4 py-lg-5">
+<div id="hero-image" class="vh-75 vh-md-50">
+    <div class="container-xxl">
         <div class="row">
-            <div class="col-12 col-md-8">
-                <h2>Computing with HTCSS</h2>
-                <p>
-                    <b>HTCSS provides an array of services for automating and managing batch workloads and computing resources.</b>
-                </p>
-                <p>
-                    Whether your idea of large scale computing is your desktop or a planet-wide pool of resources, HTCSS provides the technologies for managing workloads and all your computing resources.  HTCSS consists of four main components: the Access Point (AP), the Central Manager (CM), the Execution Point (EP), and the Compute Element (CE).
-                </p>
-                <p>
-                    <span class="text-danger">
-                        Note: The HTCondor Software Suite (HTCSS) was known as 'Condor' from 1988 <a href="https://lists.cs.wisc.edu/archive/condor-users/2012-October/msg00110.shtml">until its name changed</a> in 2012.
-                    </span>
-                    <span>
-                        If you are looking for Phoenix Software International's software development and library management system for z/VSE or z/OS, click <a href="http://www.phoenixsoftware.com">here</a>.
-                    </span>
-                </p>
+            <div class="col-12 col-md-5 col-xxl-5">
+                {% include /get/hero_story.liquid %}
+                <div class="p-3 my-3 d-flex flex-column" id="hero-content-container">
+                    <h3>{{ hero_story.title }}</h3>
+                    <hr>
+                    <p style="min-height: 150px">
+                        {{ hero_story.excerpt }}
+                    </p>
+                    <a class="mt-auto me-auto btn btn-primary" href="{{ hero_story.url | relative_url }}">Read About Featured User</a>
+                </div>
             </div>
-            <div id="#new-container" class="news col-12 col-md-4 mb-2">
-                <div class="p-2 bg-light">
-                    <h4 class="d-flex flex-row flex-md-column flex-lg-row">
-                        Latest News
-                        <a class="d-flex me-0 m-auto m-md-0 me-lg-0 m-lg-auto text-decoration-none" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">
-                            <div id="follow-twitter">
-                                <div id="twitter-icon">
-                                    <img height="12px" src="{{ '/assets/images/twitter.svg' | relative_url }}" alt="Twitter Logo"/>
+        </div>
+    </div>
+</div>
+<div class="mb-3 bg-light">
+    <div class="container-xxl">
+        <h4 class="p-5 text-center">HTCondor Software Suite (HTCSS) provides an array of services for automating and managing batch workloads and computing resources.</h4>
+    </div>
+</div>
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-1 order-3 d-none d-lg-block">
+            <div class="card h-100" style="height:591px">
+                <div class="px-2 pt-1">
+                    <a class="twitter-timeline" height="485px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-2 order-2">
+            {% capture content %}
+                <div class="ms-n2">
+                    {% assign sorted_news = site.news | reverse %}
+                    {% for news in sorted_news limit: 4 %}
+                        <div class="">
+                            {% include /cards/title-date.liquid
+                                title=news.title
+                                date=news.date
+                                href=news.url
+                            %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endcapture %}
+            {% include /cards/title-subtitle-content.html
+                title="News"
+                content=content
+                title_href="/new"
+            %}
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-3 order-1">
+            {% include get/htcondor_ce_release.liquid %}
+            {% include get/htcondor_feature_release.liquid %}
+            {% include get/htcondor_lts_release.liquid %}
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Latest Releases</h3>
+                    <hr/>
+                    <div class="mb-2">
+                        <h4><a class="text-secondary" href="{{ '/htcondor/overview/' | relative_url }}">HTCondor</a></h4>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Feature</span>
+                                <span class="text-muted">{{ htcondor_feature_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_feature_release.release_number }}</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Long Term Support</span>
+                                <span class="text-muted">{{ htcondor_lts_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_lts_release.release_number }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4><a class="text-secondary" href="{{ '/htcondor-ce/overview/' | relative_url }}">HTCondor-CE</a></h4>
+                        <div class="row justify-content-between">
+                            <div class="col-auto d-flex flex-column">
+                                <span class="fs-5">Latest</span>
+                                <span class="text-muted">{{ htcondor_ce_release.date | date: "%B %e, %Y" }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <span class="fs-1">{{ htcondor_ce_release.release_number }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include /get/software_data.liquid %}
+
+<div class="bg-light">
+    <div class="container-xxl py-3">
+        <div id="software-display">
+            <div class="row d-lg-none">
+                <div class="col-12 col-lg-5 col-xxl-4 d-lg-flex px-0" id="htcss-accordion-container">
+                    <div class="accordion accordion-flush" id="htcss-suite-accordion">
+                        {% for data in software_data limit: 1 %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="{{ data.id }}-header">
+                                    <button id="{{ data.id }}-button" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ data.id }}-body" aria-expanded="true" aria-controls="{{ data.id }}-body">
+                                        <div>
+                                            <h3>{{ data.name }}</h3>
+                                            <p>
+                                                {{ data.short_description }}
+                                            </p>
+                                        </div>
+                                    </button>
                                 </div>
-                                <div>
-                                    Follow @HTCondor
+                                <div id="{{ data.id }}-body" class="accordion-collapse collapse show d-lg-none" aria-labelledby="{{ data.id }}-header" data-bs-parent="#htcss-suite-accordion">
+                                    <div class="accordion-body">
+                                        {% include /get/software_page.liquid software_name=data.id page_name="brief" %}
+                                        {{ software_page.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for data in software_data offset: continue %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="{{ data.id }}-header">
+                                    <button id="{{ data.id }}-button" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ data.id }}-body" aria-expanded="false" aria-controls="{{ data.id }}-body">
+                                        <div>
+                                            <h3>{{ data.name }}</h3>
+                                            <p>
+                                                {{ data.short_description }}
+                                            </p>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div id="{{ data.id }}-body" class="accordion-collapse collapse d-lg-none" aria-labelledby="{{ data.id }}-header" data-bs-parent="#htcss-suite-accordion">
+                                    <div class="accordion-body">
+                                        {% include /get/software_page.liquid software_name=data.id page_name="brief" %}
+                                        {{ software_page.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                <div class="col-12 col-lg-5 col-xxl-4 d-lg-flex pe-0">
+                    <div class="accordion accordion-flush">
+                        {% for data in software_data limit: 1 %}
+                        <div class="accordion-item">
+                            <div class="accordion-header desktop-header" id="{{ data.id }}-desktop-header">
+                                <button id="{{ data.id }}-desktop-button" class="accordion-button">
+                                    <div class="me-1">
+                                        <h3>{{ data.name }}</h3>
+                                        <p>
+                                            {{ data.short_description }}
+                                        </p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% for data in software_data offset: continue %}
+                        <div class="accordion-item">
+                            <div class="accordion-header desktop-header" id="{{ data.id }}-desktop-header">
+                                <button id="{{ data.id }}-desktop-button" class="accordion-button collapsed">
+                                    <div class="me-1">
+                                        <h3>{{ data.name }}</h3>
+                                        <p>
+                                            {{ data.short_description }}
+                                        </p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="desktop-software-brief-container" class="col pt-3">
+                    {% for data in software_data limit: 1 %}
+                    <div id="{{ data.id }}-desktop-brief" class="desktop-software-brief open px-2">
+                        {% include /get/software_page.liquid software_name=data.id page_name="brief" %}
+                        {{ software_page.content }}
+                    </div>
+                    {% endfor %}
+                    {% for data in software_data offset: continue %}
+                    <div id="{{ data.id }}-desktop-brief" class="desktop-software-brief px-2">
+                        {% include /get/software_page.liquid software_name=data.id page_name="brief" %}
+                        {{ software_page.content }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-xxl my-4">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-4 mb-4 order-lg-4 order-4 d-block d-lg-none">
+            <div class="card h-100">
+                <img src="{{ 'assets/images/python-logo.svg' | relative_url }}" class="card-img-top py-4 px-2" alt="Python Logo">
+                <div class="card-body border-top">
+                    <h3>HTCondor comes with Python Bindings!</h3>
+                    <hr/>
+                    <div class="d-flex">
+                        <a class="mt-auto" href="https://htcondor.readthedocs.io/en/latest/apis/python-bindings/tutorials/index.html">
+                            <div class="row">
+                                <div class="col-auto d-flex">
+                                    <img alt="Arrow Up Right Circle" class="my-auto" height="30" src="{{ 'assets/images/arrow-up-right-circle.svg' | relative_url }}" />
+                                </div>
+                                <div class="col">
+                                    Explore more with our Intro and Advanced Tutorials
                                 </div>
                             </div>
                         </a>
-                    </h4>
-                    {% assign news = site.news | sort | reverse %}
-                    {% for item in news limit:5 %}
-                    {% include news_item.html %}
-                    {% endfor %}
-
-                    <div class="more"><a href="new.html">More News &raquo;</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="pb-5">
-    <div class="container-xxl py-4 p-md-5 px-xxl-0">
-        <h2 class="mb-4">HTCondor Software Suite</h2>
-        <div class="accordion accordion-flush" id="htcss-suite-accordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="htcondor-header">
-                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#htcondor-body" aria-expanded="false" aria-controls="htcondor-body">
-                        <div>
-                            <h3>HTCondor</h3>
-                            <p>
-                                HTCondor provides you with the ability to effectively utilize all the computing resources at your disposal.
-                            </p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="htcondor-body" class="accordion-collapse collapse" aria-labelledby="htcondor-header" data-bs-parent="#htcss-suite-accordion">
-                    <div class="accordion-body">
-                        <p>
-                            HTCondor is a software system that creates a High-Throughput Computing (HTC) environment. It
-                            effectively uses the computing power of machines connected over a network, be they a single
-                            cluster, a set of clusters on a campus, cloud resources either standalone or temporarily
-                            joined to a local cluster, or international grids. Power comes from the ability to effectively
-                            harness shared resources with distributed ownership.
-                        </p>
-                        <p>
-                            <a class="btn btn-primary" href="/htcondor/overview">
-                                Learn More About HTCondor
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="htcondor-ce-header">
-                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#htcondor-ce-body" aria-expanded="false" aria-controls="htcondor-ce-body">
-                        <div>
-                            <h3>HTCondor-CE</h3>
-                            <p>
-                                The entry point to remote computing resources.
-                            </p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="htcondor-ce-body" class="accordion-collapse collapse" aria-labelledby="htcondor-ce-header" data-bs-parent="#htcss-suite-accordion">
-                    <div class="accordion-body">
-                        <div class="row justify-content-between py-3">
-                            <div class="col-12 col-lg-5">
-                                <p>
-                                    The <a href="#what-is-htcondor-ce">HTCondor-CE</a> software is a <em>Compute Entrypoint</em> (CE) based on <a href="http://htcondor.org">HTCondor</a> for sites
-                                    that are part of a larger computing grid
-                                    (e.g. <a href="https://www.egi.eu/">European Grid Infrastructure</a>, <a href="https://opensciencegrid.org/">Open Science Grid</a>).
-                                    As such, HTCondor-CE serves as a "door" for incoming resource allocation requests (RARs) — it handles authorization and
-                                    delegation of these requests to a grid site's local batch system.
-                                    Supported batch systems include
-                                    <a href="http://www.univa.com/products/">Grid Engine</a>,
-                                    <a href="http://htcondor.org">HTCondor</a>,
-                                    <a href="https://www.ibm.com/us-en/marketplace/hpc-workload-management">LSF</a>,
-                                    <a href="https://www.altair.com/pbs-professional/">PBS Pro</a>/<a href="https://adaptivecomputing.com/cherry-services/torque-resource-manager/">Torque</a>,
-                                    and <a href="https://slurm.schedmd.com/">Slurm</a>.
-                                </p>
-                                <p>
-                                    For an introduction to HTCondor-CE, watch our <a href="https://www.youtube.com/embed/6IWaMbofG7M">recorded webinar</a> from the EGI
-                                    Community Webinar Programme.
-                                </p>
-                                <p>
-                                    <a class="btn btn-primary" href="/htcondor-ce/overview">
-                                        Learn More About HTCondor-CE
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="col d-none d-lg-flex">
-                                <div class="mx-auto">
-                                    <iframe class="mb-4" width="480" height="315" src="https://www.youtube.com/embed/6IWaMbofG7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="container-xxl py-0 px-4">
-
-    {% comment %}
-    This is "hotnews" template, used for relatively short lived news we
-    want to emphasize, like Condor Week.  Keep it brief and use with care.
-
-    To use, put the html you want in the below in the below capture block.
-    {% endcomment %}
-    {% capture content %}
-    {% endcapture %}
-    {% include hot_news.html %}
-
-    <div class="row my-5">
-        <div class="col-12 col-md-4 py-2 ps-4 p-2">
-            <h3>Software</h3>
-            <ul>
-                <li><a href="description.html">What is the HTCondor Software Suite (HTCSS)?</a></li>
-                <li><a href="downloads.html"><strong>Downloads</strong></a> including HTCondor and HTCondor-CE source and binaries.</li>
-                <li><a href="manual/"><strong>Documentation</strong></a> includes the Quick Start Guides and Manuals.</li>
-                <li><a href="htcondor-support/">Support Options</a> include community and professional solutions.</li>
-                <li><a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=DeveloperReleasePlan">Forthcoming release plans</a></li>
-                <li><a href="license.html">License Information</a></li>
-                <li><a href="security/">Security Information</a></li>
-            </ul>
-        </div>
-
-        <div class="col-12 col-md-4 py-2 ps-4 p-2 border-start border-end">
-            <h3>Community</h3>
-            <ul>
-                <li><a href="mail-lists/"><strong>Email Lists</strong></a> - ask questions and share experiences with users worldwide.</li>
-                <li><a href="https://agenda.hep.wisc.edu/event/1579/">HTCondor Week</a> is our annual community meeting in Madison, and we often have an annual meeting in Europe as well. <a href="past_condor_weeks.html">Materials from past meetings</a> include talks from science and industry, plus <strong>useful tutorials</strong>.</li>
-                <li><a href="http://condor-wiki.cs.wisc.edu/index.cgi/wiki">HTCondor Wiki</a> contains <a href="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=HowToAdminRecipes">FAQs</a>, bug tickets, and more. </li>
-                <li><a href="logos/">Official Logos</a></li>
-            </ul>
-        </div>
-
-        <div class="col-12 col-md-4 py-2 ps-4 p-2">
-            <h3>Research and Development</h3>
-            <ul>
-                <li><a href="http://chtc.cs.wisc.edu/jobs">Jobs</a> available in support of distributed computing at UW-Madison</li>
-                <li><a href="people.html">The CHTC Team</a> at the UW-Madison, and <a href="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=DeveloperHomePages">a list of code contributors and maintainers.</a></li>
-            </ul>
+        <div class="col-12 col-sm-6 col-lg-4 mb-4 order-lg-1 order-3 d-block d-lg-none">
+            <div class="card h-100" style="height:591px">
+                <div class="px-2 pt-1">
+                    <a class="twitter-timeline" height="485px" data-dnt="true" data-theme="light" href="https://twitter.com/HTCondor?ref_src=twsrc%5Etfw">Tweets by HTCondor</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 

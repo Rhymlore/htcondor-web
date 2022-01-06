@@ -1,0 +1,13 @@
+content: 'More details on the security issue are in the
+
+  [Vulnerability Report](/security/vulnerabilities/HTCONDOR-2017-0001.html).
+
+  '
+date: 2017-11-14
+layout: news
+link: null
+og_title: 'HTCondor Security Release: 8.6.8 and 8.7.5'
+release_number: 8.6.8
+release_type: HTCondor
+sort_key: 08.06.08
+title: 'HTCondor Security Release: 8.6.8'

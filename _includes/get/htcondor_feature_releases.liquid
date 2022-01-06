@@ -1,0 +1,29 @@
+{% include /get/releases.liquid %}
+{% assign releases = releases | where: "release_type", "HTCondor"%}
+
+{% assign htcondor_feature_releases = "" | split : "" %}
+
+{% for release in releases %}
+
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+    {% assign first_number = release_numbers[0] |  times: 1 %}
+
+    {% if first_number >= 9 %}
+
+        {% if release_numbers[1] != "0"  %}
+            {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+        {% endif %}
+
+    {% else %}
+
+        {% assign is_feature_release = release_numbers[1] | modulo: 2 %}
+
+        {% if is_feature_release == 1 %}
+            {% assign htcondor_feature_releases = htcondor_feature_releases | push: release %}
+        {% endif %}
+
+    {% endif %}
+
+{% endfor %}
+
+{% assign htcondor_feature_releases = htcondor_feature_releases | sort: "sort_key" | reverse %}

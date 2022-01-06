@@ -1,11 +1,13 @@
 {% assign dropdowns = include.dropdowns %}
 {% for dropdown in dropdowns %}
-    <div class="col-auto mx-4 my-2">
-        <table>
-            <tr><th>{{ dropdown.name }}</th></tr>
-            {% for dropdown_item in dropdown.dropdown_items %}
-                <tr><td><a href="{{ dropdown_item.url | relative_url }}">{{ dropdown_item.name }}</a></td></tr>
-            {% endfor %}
-        </table>
-    </div>
+    {% unless dropdown.mobile_only %}
+        <div class="col-auto mx-4 my-2 z-99">
+            <table>
+                <tr><th>{{ dropdown.name }}</th></tr>
+                {% for dropdown_item in dropdown.dropdown_items %}
+                    <tr><td><a href="{{ dropdown_item.url | relative_url }}">{{ dropdown_item.name }}</a></td></tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endunless %}
 {% endfor %}

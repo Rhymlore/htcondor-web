@@ -1,0 +1,19 @@
+{% assign user_stories = site.featured-users | sort: "date" | reverse %}
+
+{% if include.id != "" %}
+    {% assign user_stories = user_stories | where: "id", include.id %}
+    {% assign user_story = user_stories[0] %}
+{% else %}
+    {% if include.hero_image %}
+        {% assign user_stories = user_stories | where_exp: "hero-image", "hero-image != nil" %}
+    {% endif %}
+
+    {% if include.index %}
+        {% assign user_story = user_stories[include.index] %}
+    {% else %}
+        {% assign user_story = user_stories[0] %}
+    {% endif %}
+{% endif %}
+
+
+

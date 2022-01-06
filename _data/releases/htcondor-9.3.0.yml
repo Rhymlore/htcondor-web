@@ -1,0 +1,27 @@
+content: 'NOTE: Globus GSI has been removed from this release. If you are currently
+
+  using GSI, you must migrate to a different authorization mechanism.
+
+
+  Enhancements in the release include:
+
+
+  - Discontinue support for Globus GSI
+
+  - Discontinue support for grid type ''''nordugrid'''', use ''''arc'''' instead
+
+  - MacOS version strings now include the major version number (10 or 11)
+
+  - File transfer plugin sample code to aid in developing new plugins
+
+  - Add generic knob to set the slot user for all slots
+
+  '
+date: 2021-11-03
+layout: news
+link: null
+og_title: HTCondor 9.3.0 released!
+release_number: 9.3.0
+release_type: HTCondor
+sort_key: 09.03.00
+title: HTCondor 9.3.0 released!

@@ -1,0 +1,24 @@
+content: 'This release contains important fixes for security issues.
+
+  Affected users should update as soon as possible.
+
+
+  More details on the security issues are in the Vulnerability Reports:
+
+  - [HTCONDOR-2020-01](/security/vulnerabilities/HTCONDOR-2020-0001.html)
+
+  - [HTCONDOR-2020-02](/security/vulnerabilities/HTCONDOR-2020-0002.html)
+
+  - [HTCONDOR-2020-03](/security/vulnerabilities/HTCONDOR-2020-0003.html)
+
+  - [HTCONDOR-2020-04](/security/vulnerabilities/HTCONDOR-2020-0004.html)
+
+  '
+date: 2020-04-07
+layout: news
+link: null
+og_title: 'HTCondor Security Release: 8.8.8 and 8.9.6'
+release_number: 8.8.8
+release_type: HTCondor
+sort_key: 08.08.08
+title: 'HTCondor Security Release: 8.8.8'

@@ -1,0 +1,15 @@
+content: "\nThe HTCondor team is pleased to announce the release of HTCondor-CE 3.4.3.\
+  \  Highlights of this release are: Fixed a stacktrace with the BDII provider when\
+  \ \"HTCONDORCE_SPEC\" isn't defined in the local HTCondor configuration; Fixed a\
+  \ race condition that could result in removed jobs being put on hold.  A complete\
+  \ list of new features and fixed bugs can be found in the <a href=\"https://htcondor-ce.readthedocs.io/en/stable/releases/#htcondor-ce-3-version-history\"\
+  > version history</a>. HTCondor-CE 3.4.3 binaries are available from our <a href=\"\
+  http://htcondor.org/yum/\">YUM Repository</a>. \n"
+date: 2020-07-16
+layout: news
+link: null
+og_title: HTCondor-CE 3.4.3 released!
+release_number: 3.4.3
+release_type: HTCondor-CE
+sort_key: 03.04.03
+title: HTCondor-CE 3.4.3 released!
