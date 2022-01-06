@@ -115,6 +115,7 @@ pre { background-color: whitesmoke; padding: 15px; outline: lightgray solid 1px;
 #header-drawer {
   width: 100%;
   position: absolute;
+  left: 0;
   background-color: $gray-200;
   z-index: 99;
   box-shadow: 0px 3px 4px $gray-600;
@@ -137,4 +138,12 @@ footer {
   a:hover {
     text-decoration: underline;
   }
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-99 {
+  z-index: 99;
 }
