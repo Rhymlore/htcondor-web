@@ -12,9 +12,9 @@ nav_items:
           - name: Documentation
             url: /htcondor/documentation/
           - name: Release Highlights
-            url: /htcondor/release-highlights
+            url: /htcondor/release-highlights/
           - name: Release Schedule
-            url: /htcondor/release-plan
+            url: /htcondor/release-plan/
       - name: HTCondor-CE
         id: htcondor-ce
         dropdown_items:
@@ -25,12 +25,12 @@ nav_items:
           - name: Documentation
             url: /htcondor-ce/documentation/
           - name: Release Highlights
-            url: /htcondor-ce/release-highlights
+            url: /htcondor-ce/release-highlights/
       - name: General
         id: general
         dropdown_items:
           - name: News
-            url: /new
+            url: /new.html
           - name: Security
             url: /security/
           - name: Documentation
@@ -44,18 +44,18 @@ nav_items:
         id: documentation
         dropdown_items:
           - name: HTCondor
-            url: /htcondor/documentation
+            url: /htcondor/documentation/
           - name: HTCondor-CE
-            url: /htcondor-ce/documentation
+            url: /htcondor-ce/documentation/
       - name: Support
         id: support
         dropdown_items:
           - name: HTCSS Contract Support
             url: /uw-support/
           - name: Community Mailing List
-            url: /mail-lists#user
+            url: /mail-lists/#user
           - name: External Support Organizations
-            url: /htcondor-support#external-support-options
+            url: /htcondor-support/#external-support-options
   - name: Community
     id: community
     dropdowns:
@@ -63,11 +63,11 @@ nav_items:
         id: email-lists
         dropdown_items:
           - name: Users
-            url: /mail-lists#user
+            url: /mail-lists/#user
           - name: World
-            url: /mail-lists#world
+            url: /mail-lists/#world
           - name: Developers
-            url: /mail-lists#developer
+            url: /mail-lists/#developer
       - name: HTCondor Week
         id: htcondor-week
         dropdown_items:
@@ -79,7 +79,7 @@ nav_items:
             url: https://youtube.com/playlist?list=PLO7gMRGDPNulf_yK_9Ue6yARxJh0gQXQI
       - name: Featured Users
         id: featured-users
-        url: /featured-users
+        url: /featured-users.html
         mobile_only: True
   - name: About
     id: about
@@ -88,9 +88,9 @@ nav_items:
         id: htcss
         dropdown_items:
           - name: What is HTCSS?
-            url: /description
+            url: /description.html
           - name: Logos
-            url: /logos
+            url: /logos/
       - name: CHTC
         id: chtc
         dropdown_items:
