@@ -6,4 +6,4 @@ date: 2002-01-01
 layout: news
 ---
 
-Bypass, a tool for building interposition agents, is released under the GPL and is available from the <a href="bypass">Bypass</a> page.
+Bypass, a tool for building interposition agents, is released under the GPL and is available from the [Bypass] (Archived Url: 'bypass') page.

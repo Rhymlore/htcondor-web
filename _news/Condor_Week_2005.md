@@ -6,4 +6,4 @@ date: 2005-03-01
 layout: news
 ---
 
-We recently held our annual Condor Week conference. A                survey for attendees, photos, and presentations are                 <a href="CondorWeek2005">                now all available</a> for your perusal.
+We recently held our annual Condor Week conference. A                survey for attendees, photos, and presentations are                 [                now all available] (Archived Url: 'CondorWeek2005') for your perusal.

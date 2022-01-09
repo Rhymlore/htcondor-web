@@ -6,4 +6,4 @@ date: 2001-11-01
 layout: news
 ---
 
-The C++ standalone ClassAd library has been released. It is available under the LGPL license. It is available from the <a href="classad/"> ClassAds</a> page.
+The C++ standalone ClassAd library has been released. It is available under the LGPL license. It is available from the [ ClassAds] (Archived Url: 'classad/') page.

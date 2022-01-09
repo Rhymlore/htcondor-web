@@ -6,4 +6,4 @@ date: 2006-01-01
 layout: news
 ---
 
-Read about <a href="glow/">GLOW</a> in <a href="http://www.interactions.org/sgtw/">Science Grid This Week</a>.
+Read about [GLOW] (Archived Url: 'glow/') in [Science Grid This Week] (Archived Url: 'http://www.interactions.org/sgtw/').

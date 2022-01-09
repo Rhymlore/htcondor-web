@@ -6,4 +6,4 @@ date: 2005-08-01
 layout: news
 ---
 
-This <a href="http://www.nationalunderwriter.com/tech/news/viewFeatures.asp?articleID=975">cover story</a> in <a href="http://www.technologydecisions.com/">TechDecisions for Insurance</a> magazine profiles experiences of organizations in the insurance industry with Condor and grid computing. 	  
+This [cover story] (Archived Url: 'http://www.nationalunderwriter.com/tech/news/viewFeatures.asp?articleID=975') in [TechDecisions for Insurance] (Archived Url: 'http://www.technologydecisions.com/') magazine profiles experiences of organizations in the insurance industry with Condor and grid computing. 	  

@@ -6,4 +6,4 @@ date: 2005-05-01
 layout: news
 ---
 
- This article in <a href="http://www.byteandswitch.com/">Byte and Switch</a> mentions that the Hungarian ClusterGrid Project is using       Condor's flocking support.
+ This article in [Byte and Switch] (Archived Url: 'http://www.byteandswitch.com/') mentions that the Hungarian ClusterGrid Project is using       Condor's flocking support.

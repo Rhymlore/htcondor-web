@@ -6,4 +6,4 @@ date: 2004-04-01
 layout: news
 ---
 
-Presentations that were given can be  <a href="CondorWeek2004/presentations.html"> found online</a>. There are also <a href="CondorWeek2004/pictures/">a few pictures available</a>.
+Presentations that were given can be  [ found online] (Archived Url: 'CondorWeek2004/presentations.html'). There are also [a few pictures available] (Archived Url: 'CondorWeek2004/pictures/').

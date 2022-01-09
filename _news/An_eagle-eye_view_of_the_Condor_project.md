@@ -6,4 +6,4 @@ date: 2005-02-01
 layout: news
 ---
 
-This article by Jeff Mausolf is on IBM's <a href="http://www-136.ibm.com/developerworks/">developerWorks</a> web site.  "Condor addresses both of these problem areas by providing a single tool that can manage a cluster of dedicated compute nodes and effectively harness otherwise wasted cycles from idle desktop workstations." 
+This article by Jeff Mausolf is on IBM's [developerWorks] (Archived Url: 'http://www-136.ibm.com/developerworks/') web site.  "Condor addresses both of these problem areas by providing a single tool that can manage a cluster of dedicated compute nodes and effectively harness otherwise wasted cycles from idle desktop workstations." 
