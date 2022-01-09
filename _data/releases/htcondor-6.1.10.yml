@@ -4,8 +4,7 @@ content: '
   jobs introduced in 6.1.9. In addition, "clipped" support for Sparc Solaris 2.7 is
   available for the first time in 6.1.10. A few other minor features were added as
   well, including a -format option to condor_q. For complete details, you can read
-  about what''s new in this
-  version.
+  about what''s new in this version.
 
   '
 date: 1999-11-01

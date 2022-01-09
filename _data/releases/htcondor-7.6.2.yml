@@ -2,10 +2,8 @@ content: "\nThe Condor team is pleased to announce the release of Condor 7.6.2. 
   \ version fixes problems with <i>ssh_to_job</i>.  It fixes a crash in the schedd\
   \ that was common with parallel universe jobs.  7.6 still has a known problem running\
   \ parallel universe jobs that will be fixed in 7.6.3, which is planned for the first\
-  \ half of August.    See the <a href=\"manual/latest-stable/9_Version_History.html\"\
-  >Version History</a>  for a complete list of changes.  Condor 7.6.2 binaries and\
-  \ source code are available  from our Downloads page.\
-  \ \n"
+  \ half of August.    See the Version History  for a complete list of changes.  Condor\
+  \ 7.6.2 binaries and source code are available  from our Downloads page. \n"
 date: 2011-07-19
 layout: news
 link: null

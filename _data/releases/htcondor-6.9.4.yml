@@ -3,9 +3,9 @@ content: '
   The Condor Team announces the release of Condor 6.9.4. Condor 6.9.4 highlights include
   a new implementation of Quill that can store more information than ever before into
   a relational database, a new job type (universe) enabling jobs to utilize VMWare
-  and Xen virtual machines, and some performance improvements.  See the <a href="manual/latest-dev/9_Version_History.html">Version
-  History and Release Notes</a> for further details. Condor 6.9.4 is available from
-  our Downloads page.
+  and Xen virtual machines, and some performance improvements.  See the Version History
+  and Release Notes for further details. Condor 6.9.4 is available from our Downloads
+  page.
 
   '
 date: 2007-08-29

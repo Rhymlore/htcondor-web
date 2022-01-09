@@ -1,8 +1,7 @@
 content: "\nThe Condor Team is pleased to announce the release of Condor 7.4.3. This\
   \ is a stable release of Condor. This fixes several bugs in the 7.4.2 release. See\
-  \ the Version History\
-  \ for a complete list of changes.  Condor 7.4.3 binaries and source code are available\
-  \ from our Downloads page. \n"
+  \ the Version History for a complete list of changes.  Condor 7.4.3 binaries and\
+  \ source code are available from our Downloads page. \n"
 date: 2010-08-16
 layout: news
 link: null

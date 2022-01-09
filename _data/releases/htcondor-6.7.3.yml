@@ -4,11 +4,11 @@ content: '
   feature release. 6.7.3 is the first release to fully support  checkpointing on Linux
   distributions Fedora Core 1, 2, and 3.   6.7.3 also includes preliminary support
   for a new remote submission feature that will complement flocking and the grid universe.
-  See the  <a href="manual/latest-dev/9_Version_History.html">Version History and
-  Release Notes</a> for details. Condor 6.7.3 is available from our  Downloads
-  page. We believe 6.7.3 is fairly stable, but it is not recommended  for production
-  systems, unless you require checkpointing support for a  Linux distribution not
-  supported by our 6.6 releases. Users of previous  6.7 versions are urged to upgrade.
+  See the  Version History and Release Notes for details. Condor 6.7.3 is available
+  from our  Downloads page. We believe 6.7.3 is fairly stable, but it is not recommended  for
+  production systems, unless you require checkpointing support for a  Linux distribution
+  not supported by our 6.6 releases. Users of previous  6.7 versions are urged to
+  upgrade.
 
   '
 date: 2004-12-01

@@ -5,9 +5,8 @@ content: '
   startd which allow more accurate job eviction policies, enhancements to Condor''s
   privilege separation, and numerous bug fixes including a critical bug in standard
   universe introduce in 6.9.4 that could result in data corruption of binary files.  See
-  the <a href="manual/latest-dev/9_Version_History.html">Version History and Release
-  Notes</a> for further details and a complete list of changes. Condor 6.9.5 is available
-  from our Downloads page.
+  the Version History and Release Notes for further details and a complete list of
+  changes. Condor 6.9.5 is available from our Downloads page.
 
   '
 date: 2007-11-28

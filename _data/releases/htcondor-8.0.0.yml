@@ -4,9 +4,8 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.0
   \ with the version 7.8 stable series. This new version contains Bosco, support for\
   \ EC2 Spot instances, interactive jobs, improved job sandboxing, native python API\
   \ and several new tools. A complete list of bugs fixed and features can be found\
-  \ in the  Version History. HTCondor\
-  \ 8.0.0 binaries and source code are available from our Downloads\
-  \ page. \n"
+  \ in the  Version History. HTCondor 8.0.0 binaries and source code are available\
+  \ from our Downloads page. \n"
 date: 2013-06-06
 layout: news
 link: null

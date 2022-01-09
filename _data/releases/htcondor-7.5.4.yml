@@ -3,9 +3,8 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.5.4. 
   \ parallel jobs,  transfer of directories, condor_shared_port on Windows, and  improved\
   \ Amazon EC2 support. It also includes a security fix for users submitting Amazon\
   \ EC2 jobs (universe=grid and grid_resource=amazon) with the amazon_keypair_file.\
-  \ See the  Version History\
-  \ for a complete list of changes. Condor 7.5.4 binaries and source code are available\
-  \ from  our Downloads page. \n"
+  \ See the  Version History for a complete list of changes. Condor 7.5.4 binaries\
+  \ and source code are available from  our Downloads page. \n"
 date: 2010-10-20
 layout: news
 link: null

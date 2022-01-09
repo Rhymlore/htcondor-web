@@ -6,10 +6,9 @@ content: "\nThe Condor team is pleased to announce the release of Condor 7.7.1. 
   \ is that binaries built for a given platform may not be as portable to other platforms\
   \ as in the past.  We have also seen a very rare, intermittent problem with DAGMan\
   \ where the DAGMan program will ignore a successful job completion, and wait forever.\
-  \  We hope to resolve this problem in the next development release.  The <a href=\"\
-  manual/latest-dev/9_Version_History.html\">Version History</a>  has a list of the\
-  \ major changes.  Condor binaries and source code are available  from <a href=\"\
-  downloads/\">our Downloads page.</a> \n"
+  \  We hope to resolve this problem in the next development release.  The Version\
+  \ History  has a list of the major changes.  Condor binaries and source code are\
+  \ available  from our Downloads page. \n"
 date: 2011-09-12
 layout: news
 link: null

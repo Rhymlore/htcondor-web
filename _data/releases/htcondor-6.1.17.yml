@@ -1,9 +1,9 @@
 content: '
 
-  Condor Version 6.1.17 is now released, and is available on the <a href="downloads/">
-  downloads</a> page. <p> 6.1.17 adds full support for Solaris 8 and some bug fixes.
-  <p> 6.1.17 will likely be the last version of Condor until the 6.2.0 release. New
-  users should choose it over 6.0.3.
+  Condor Version 6.1.17 is now released, and is available on the  downloads page.
+  <p> 6.1.17 adds full support for Solaris 8 and some bug fixes. <p> 6.1.17 will likely
+  be the last version of Condor until the 6.2.0 release. New users should choose it
+  over 6.0.3.
 
   '
 date: 2001-02-01

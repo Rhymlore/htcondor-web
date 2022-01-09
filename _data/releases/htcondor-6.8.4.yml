@@ -2,9 +2,8 @@ content: '
 
   The Condor Team is pleased to announce the release of Condor 6.8.4. Condor 6.8.4
   is primarily a bugfix release, including fixes in Quill, DAGMan, and the "local
-  universe".  See the <a href="manual/latest-stable/9_Version_History.html">Version
-  History and Release Notes</a> for further details. Condor 6.8.4 is available from
-  our Downloads page.
+  universe".  See the Version History and Release Notes for further details. Condor
+  6.8.4 is available from our Downloads page.
 
   '
 date: 2007-02-05

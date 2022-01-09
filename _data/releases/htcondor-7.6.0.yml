@@ -1,7 +1,7 @@
 content: "\nThe Condor team is pleased to announce the release of Condor 7.6.0.  This\
   \ is the first entry in a new stable series, contains all  the features and bug\
-  \ fixes in the 7.5 development series.  See the <a href=\"manual/latest-stable/9_Version_History.html\"\
-  > version History</a> for a complete list of changes. \n"
+  \ fixes in the 7.5 development series.  See the  version History for a complete\
+  \ list of changes. \n"
 date: 2011-04-19
 layout: news
 link: null

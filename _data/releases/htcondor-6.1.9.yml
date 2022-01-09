@@ -1,13 +1,11 @@
 content: '
 
-  Condor 6.1.9 is now available from the <a href="downloads/">main site (Madison,
-  WI, USA)</a>. <p> Along with a whole series of bug fixes and new features, 6.1.9
-  is the first version of Condor to fully support all main Intel Linux distributions,
-  including the 2.2.X kernel, and all 3 versions of the C library now in use (libc5,
-  glibc 2.0 and glibc 2.1).   For more info on Condor support for Linux, please see
-  The Condor Linux README.  <p> For complete details,
-  you can read about what''s new
-  in this version.
+  Condor 6.1.9 is now available from the main site (Madison, WI, USA). <p> Along with
+  a whole series of bug fixes and new features, 6.1.9 is the first version of Condor
+  to fully support all main Intel Linux distributions, including the 2.2.X kernel,
+  and all 3 versions of the C library now in use (libc5, glibc 2.0 and glibc 2.1).   For
+  more info on Condor support for Linux, please see The Condor Linux README.  <p>
+  For complete details, you can read about what''s new in this version.
 
   '
 date: 1999-11-01

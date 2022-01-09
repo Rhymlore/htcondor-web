@@ -1,11 +1,9 @@
 content: '
 
-  The Condor Team is pleased to announce
-  the release of Condor 6.8.1. Condor 6.8.1 release fixes a number of important bugs,
-  including some potential security vulnerabilities.  All users are encouraged to
-  upgrade immediately. See the <a href="manual/latest-stable/9_Version_History.html">
-  Version History and Release Notes</a> for further details. Condor 6.8.1 is available
-  from our Downloads page.
+  The Condor Team is pleased to announce the release of Condor 6.8.1. Condor 6.8.1
+  release fixes a number of important bugs, including some potential security vulnerabilities.  All
+  users are encouraged to upgrade immediately. See the  Version History and Release
+  Notes for further details. Condor 6.8.1 is available from our Downloads page.
 
   '
 date: 2006-09-19

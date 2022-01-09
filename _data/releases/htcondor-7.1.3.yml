@@ -3,9 +3,8 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.1.3. 
   \ including the security related patches.  In addition, several new features have\
   \ been added such as Concurrency Limits (for management of resources such as floating\
   \ software licenses), IBM Blue Gene support, profile management on Windows, and\
-  \ more. See our Release Notes\
-  \ for more details. As usual, binaries and source code are available from  <a href=\"\
-  downloads/\">our Downloads page.</a>  \n"
+  \ more. See our Release Notes for more details. As usual, binaries and source code\
+  \ are available from  our Downloads page.  \n"
 date: 2008-10-07
 layout: news
 link: null
