@@ -2,7 +2,7 @@ content: '
 
   Condor 6.4.7 for both UNIX and Windows has been released. 6.4.7 corrects a critical
   bug with Condor that caused a misreporting of jobs in the pool.  It is available
-  from our <a href="downloads/">Downloads</a> page.
+  from our Downloads page.
 
   '
 date: 2003-01-01

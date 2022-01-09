@@ -9,7 +9,7 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.0
   \ compiled with gcc 4.8+, the default compiler on recent Fedora releases. A complete\
   \ list of bugs fixed can be found in the <a href=\"manual/v8.0.6/10_3Stable_Release.html\"\
   >Version History</a>. HTCondor 8.0.6 binaries and source code are available from\
-  \ our <a href=\"downloads/\">Downloads</a> page. \n"
+  \ our Downloads page. \n"
 date: 2014-02-11
 layout: news
 link: null

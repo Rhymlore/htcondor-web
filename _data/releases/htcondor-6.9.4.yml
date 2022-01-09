@@ -5,7 +5,7 @@ content: '
   a relational database, a new job type (universe) enabling jobs to utilize VMWare
   and Xen virtual machines, and some performance improvements.  See the <a href="manual/latest-dev/9_Version_History.html">Version
   History and Release Notes</a> for further details. Condor 6.9.4 is available from
-  our <a href="downloads/">Downloads</a> page.
+  our Downloads page.
 
   '
 date: 2007-08-29

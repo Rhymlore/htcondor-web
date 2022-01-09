@@ -7,7 +7,7 @@ content: '
 date: 2000-09-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.1.16 released!</a>
+og_title: Condor Version 6.1.16 released!
 release_number: 6.1.16
 release_type: HTCondor
 sort_key: 06.01.16

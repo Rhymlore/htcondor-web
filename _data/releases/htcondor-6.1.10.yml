@@ -4,14 +4,14 @@ content: '
   jobs introduced in 6.1.9. In addition, "clipped" support for Sparc Solaris 2.7 is
   available for the first time in 6.1.10. A few other minor features were added as
   well, including a -format option to condor_q. For complete details, you can read
-  about <a href="manual/latest-dev/9_Version_History.html">what''s new</a> in this
+  about what''s new in this
   version.
 
   '
 date: 1999-11-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.1.10 released!</a>
+og_title: Condor Version 6.1.10 released!
 release_number: 6.1.10
 release_type: HTCondor
 sort_key: 06.01.10

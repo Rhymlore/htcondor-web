@@ -3,9 +3,9 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.5.2. 
   \ in the scheduler daemon, improved user job log locking support for distributed\
   \ file systems, and DAGMan allowing lazy generation of DAGMan submit files in nested\
   \ DAGs. All bug fixes currently scheduled to go into 7.4.3 are included in 7.5.2.\
-  \ See the <a href=\"manual/latest-dev/9_Version_History.html\">Version History</a>\
+  \ See the Version History\
   \ for a complete list of changes.  Condor 7.5.2 binaries and source code are available\
-  \ from <a href=\"downloads/\">our Downloads page.</a> \n"
+  \ from our Downloads page. \n"
 date: 2010-04-26
 layout: news
 link: null

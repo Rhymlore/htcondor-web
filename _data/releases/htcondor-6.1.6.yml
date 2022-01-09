@@ -1,6 +1,6 @@
 content: '
 
-  Condor 6.1.6 is now available for <a href="downloads/">download</a>. Version 6.1.6
+  Condor 6.1.6 is now available for download. Version 6.1.6
   fixes many serious bugs from 6.1.5. In addition, it provides many new features,
   including the ability to dynamically reconfigure the number of virtual machines
   reported by the SMP startd, SMP support for Digital Unix machines and much more.
@@ -17,7 +17,7 @@ content: '
 date: 1999-06-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.1.6 Released</a>.
+og_title: Condor Version 6.1.6 Released.
 release_number: 6.1.6
 release_type: HTCondor
 sort_key: 06.01.06

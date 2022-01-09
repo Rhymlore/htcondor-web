@@ -4,7 +4,7 @@ content: '
   2.6 on Intel and Sparc platforms, Linux for Intel (libc5 and glibc), SGI IRIX 6.2
   through 6.4, Digital Unix 4.0, and HPUX 10.20. You can read about <a href="manual/latest-stable/9_Version_History.html">what''s
   new</a> in this version.  It contains only bug fixes to Condor Version 6.0.1. A
-  new <a href="version_number.html">development release</a> of Condor (version 6.1.0)
+  new development release of Condor (version 6.1.0)
   will be released soon with new features, such as support for running multiple jobs
   on SMP machines.
 
@@ -12,7 +12,7 @@ content: '
 date: 1998-10-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.0.2 Released</a>
+og_title: Condor Version 6.0.2 Released
 release_number: 6.0.2
 release_type: HTCondor
 sort_key: 06.00.02

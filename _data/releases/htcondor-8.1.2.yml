@@ -10,7 +10,7 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.1
   \ of the condor_shared_port daemon, condor_queue, and condor_status by increasing\
   \ concurrency. A complete list of bugs fixed and features can be found in the  <a\
   \ href=\"manual/v8.1.2/10_3Development_Release.html\">Version History</a>. HTCondor\
-  \ 8.1.2 binaries and source code are available from our <a href=\"downloads/\">Downloads</a>\
+  \ 8.1.2 binaries and source code are available from our Downloads\
   \ page. \n"
 date: 2013-10-31
 layout: news

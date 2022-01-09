@@ -5,7 +5,7 @@ content: '
   primary new feature in 6.9.0 is initial support for privilege separation using glexec.  See
   the <a href="manual/latest-dev/9_Version_History.html"> Version History and Release
   Notes</a> for further details. As a development release, 6.9.0 is <b>not</b> recommended
-  for production use.  Condor 6.9.0 is available from our <a href="downloads/">Downloads</a>
+  for production use.  Condor 6.9.0 is available from our Downloads
   page.
 
   '

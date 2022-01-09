@@ -7,7 +7,7 @@ content: '
   universe introduce in 6.9.4 that could result in data corruption of binary files.  See
   the <a href="manual/latest-dev/9_Version_History.html">Version History and Release
   Notes</a> for further details and a complete list of changes. Condor 6.9.5 is available
-  from our <a href="downloads/">Downloads</a> page.
+  from our Downloads page.
 
   '
 date: 2007-11-28

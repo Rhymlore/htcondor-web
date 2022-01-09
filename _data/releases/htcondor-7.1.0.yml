@@ -7,7 +7,7 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.1.0 (
   \ improved to better support nested DAGs.  DAGIrl has been added to better support\
   \ Irl workflows in the beginning of April.  See the <a href=\"manual/latest-dev/9_Version_History.html\"\
   >Version History</a> for a complete list of changes.  Condor 7.1.0 binaries and\
-  \ source code are available from <a href=\"downloads/\">our Downloads page</a>.\
+  \ source code are available from our Downloads page.\
   \ \n"
 date: 2008-04-01
 layout: news

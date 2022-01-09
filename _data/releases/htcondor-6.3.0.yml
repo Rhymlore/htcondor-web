@@ -5,7 +5,7 @@ content: '
   Future 6.3 releases will contain many new features, primarily in the areas of MPI
   support, Globus support,  firewall support, an improved DAGMan, improved error handling
   / propagation, and bandwidth regulation.  For more info on our version-number system,
-  please read <a href="version_number.html">this</a>. <p> The UNIX builds are now
+  please read this. <p> The UNIX builds are now
   available on the website. The primary focus of 6.3.0 has been in preliminary support
   for MPI jobs on dedicated clusters of  machines. 6.3.0 is not as well-tested as
   6.2.0, and undoubtedly contains a number of bugs. It should not be used by those
@@ -15,7 +15,7 @@ content: '
 date: 2001-03-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.3.0 released!</a>
+og_title: Condor Version 6.3.0 released!
 release_number: 6.3.0
 release_type: HTCondor
 sort_key: 06.03.00

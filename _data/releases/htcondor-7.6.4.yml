@@ -2,7 +2,7 @@ content: "\nThe Condor team is pleased to announce the release of Condor version
   \  This is the fourth release in the stable series.  This release fixes a rare,\
   \ but serious bug which can cause the collector to crash.  The <a href=\"manual/latest-stable/9_Version_History.html\"\
   >Version History</a>  has a list of the major changes.  Condor binaries and source\
-  \ code are available from <a href=\"downloads/\">our Downloads page.</a> \n"
+  \ code are available from our Downloads page. \n"
 date: 2011-10-24
 layout: news
 link: null

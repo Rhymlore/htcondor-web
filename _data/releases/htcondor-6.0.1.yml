@@ -9,7 +9,7 @@ content: '
 date: 1998-09-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.0.1 Released</a>
+og_title: Condor Version 6.0.1 Released
 release_number: 6.0.1
 release_type: HTCondor
 sort_key: 06.00.01

@@ -6,7 +6,7 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.0
   \ jobs from running, and VMware vm universe jobs removing useful devices. A complete\
   \ list of bugs fixed can be found in the <a href=\"manual/v8.0.5/10_3Stable_Release.html\"\
   >Version History</a>. HTCondor 8.0.5 binaries and source code are available from\
-  \ our <a href=\"downloads/\">Downloads</a> page. \n"
+  \ our Downloads page. \n"
 date: 2013-12-12
 layout: news
 link: null

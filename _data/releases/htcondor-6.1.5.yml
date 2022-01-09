@@ -1,6 +1,6 @@
 content: '
 
-  Condor 6.1.5 is now available for <a href="downloads/">download</a>. Version 6.1.5
+  Condor 6.1.5 is now available for download. Version 6.1.5
   fixes many bugs.  Major things that are fixed in this release are: Fortran under
   Linux, Redhat 5.2 support, condor_preen fixes, and others...   NOTE: condor_userprio,
   condor_stats, the -pool option to many Condor tools, and Condor PVM are all broken
@@ -12,7 +12,7 @@ content: '
 date: 1999-04-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.1.5 Released</a>.
+og_title: Condor Version 6.1.5 Released.
 release_number: 6.1.5
 release_type: HTCondor
 sort_key: 06.01.05

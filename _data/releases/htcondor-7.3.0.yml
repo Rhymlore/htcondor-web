@@ -3,7 +3,7 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.3.0. 
   \ new features, including improved support for private networks, scalability, controlling\
   \ cpu affinity, DAGMan enhancements, and more.  See the <a href=\"manual/latest-dev/9_Version_History.html\"\
   >version history</a> for a detailed list of changes. Condor 7.3.0 binaries and source\
-  \ code are available from <a href=\"downloads/\">our downloads page</a>. \n"
+  \ code are available from our downloads page. \n"
 date: 2009-02-24
 layout: news
 link: null

@@ -4,7 +4,7 @@ content: "\nThe Condor team is pleased to announce the release of Condor 7.6.2. 
   \ parallel universe jobs that will be fixed in 7.6.3, which is planned for the first\
   \ half of August.    See the <a href=\"manual/latest-stable/9_Version_History.html\"\
   >Version History</a>  for a complete list of changes.  Condor 7.6.2 binaries and\
-  \ source code are available  from <a href=\"downloads/\">our Downloads page.</a>\
+  \ source code are available  from our Downloads page.\
   \ \n"
 date: 2011-07-19
 layout: news

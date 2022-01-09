@@ -12,7 +12,7 @@ content: "\nThe Condor Team announces the release of Condor 7.0.5.  This release
   \ of November 3rd 2008). In addition, we took just the security bug fixes in v7.0.5\
   \ and back-ported them to v6.8; this effort has been released as version 6.8.9.\
   \ Binaries for both releases, as well as sources for v7.0.5, are available from\
-  \  <a href=\"downloads/\">our Downloads page</a>.  \n"
+  \  our Downloads page.  \n"
 date: 2008-10-07
 layout: news
 link: null
