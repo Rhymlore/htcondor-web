@@ -1,16 +1,14 @@
-content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.6.4.\
-  \ A stable series release contains significant bug fixes.  Highlights of this release\
-  \ are: Python bindings are now available on MacOSX; Fixed a bug where PASSWORD authentication\
-  \ could fail to exchange keys; Pslot preemption now properly handles custom resources,\
-  \ such as GPUs; condor_submit now checks X.509 proxy expiration.  More details about\
-  \ the fixes can be found in the <a href=\"http://htcondor.org/manual/v8.6.4/10_3Stable_Release.html\"\
-  >Version History</a>.  HTCondor 8.6.4 binaries and source code are available from\
-  \ our <a href=\"http://htcondor.org/downloads/\">Downloads</a> page. \n"
-date: 2017-06-22
-layout: news
-link: null
-og_title: HTCondor 8.6.4 released!
-release_number: 8.6.4
-release_type: HTCondor
-sort_key: 08.06.04
-title: HTCondor 8.6.4 released!
+content: '
+
+  - Python bindings are now available on MacOSX
+
+  - Fixed a bug where PASSWORD authentication could fail to exchange keys
+
+  - Pslot preemption now properly handles custom resources, such as GPUs
+
+  - condor_submit now checks X.509 proxy expiration
+
+  '
+date: '2017-06-22'
+release_type: htcondor
+version_number: 8.6.4
