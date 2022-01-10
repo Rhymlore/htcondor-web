@@ -45,7 +45,7 @@ protocols.  For instance, <a href="doc/condorg-hpdc10.pdf">HTCondor-G</a> is ful
 managed by <a href="http://www.globus.org">Globus</a>.
 <p>
 HTCondor is the product of <a href="publications.html">years of research</a> by the <a href="http://chtc.cs.wisc.edu">Center for High Throughput Computing</a> in the <a href="http://www.cs.wisc.edu">Department of Computer Sciences</a> at the 
-<a href="http://www.wisc.edu">University of
+<a href="https://www.wisc.edu/">University of
 Wisconsin-Madison (UW-Madison)</a>, and it was first installed as a production
 system in the UW-Madison Department of Computer Sciences <a href="doc/remoteunix.ps">over 15 years
 ago</a>. This HTCondor installation has since served as a major source of
