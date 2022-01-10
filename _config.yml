@@ -22,7 +22,7 @@ collections:
     permalink: /:path/
     output: true
   featured-users:
-    permalink: /featured-users/:path
+    permalink: /featured-users/:path:output_ext
     output: true
 
 defaults:
