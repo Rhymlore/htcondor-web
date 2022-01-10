@@ -3,7 +3,7 @@ content: 'This release contains an important fix for a security issue introduced
 
   Affected users should update as soon as possible.
 
-  More details on the security issue can be found on the [Vulnerability Page](/security/vulnerabilities/HTCONDOR-2014-0001)
+  More details on the security issue can be found on the [Vulnerability Page](/security/vulnerabilities/HTCONDOR-2014-0001.html)
 
   '
 date: 2014-07-07
