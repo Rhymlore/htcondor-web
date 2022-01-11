@@ -1,7 +1,7 @@
 ---
 title: Cardiff supplies UK National Grid Service with first Windows Condor Pool
 og_title: \"<a href=\"http://www.grid-support.ac.uk/content/blogsection/3/136\">Cardiff supplies UK National Grid Service with first Windows Condor Pool</a>\"
-link: http://www.grid-support.ac.uk/content/blogsection/3/136">Cardiff supplies UK National Grid Service with first Windows Condor Pool</a>
+link: 
 date: 2007-09-14
 layout: news
 ---

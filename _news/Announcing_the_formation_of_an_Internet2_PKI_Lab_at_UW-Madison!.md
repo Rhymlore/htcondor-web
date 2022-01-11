@@ -6,4 +6,4 @@ date: 2000-09-01
 layout: news
 ---
 
-The [press release] (Archived Url: 'http://mail.internet2.edu/guest/archives/I2-NEWS/log0010/msg00002.html'), the [Internet2 PKI Lab home page] (Archived Url: 'http://middleware.internet2.edu/pkilabs/'), and the [Internet2 PKI Lab at UW-Madison home page] (Archived Url: 'http://www.cs.wisc.edu/pkilab/')
+The <a href="http://mail.internet2.edu/guest/archives/I2-NEWS/log0010/msg00002.html" data-proofer-ignore>press release</a>, the <a href="http://middleware.internet2.edu/pkilabs/" data-proofer-ignore>Internet2 PKI Lab home page</a>, and the <a href="http://www.cs.wisc.edu/pkilab/" data-proofer-ignore>Internet2 PKI Lab at UW-Madison home page</a>

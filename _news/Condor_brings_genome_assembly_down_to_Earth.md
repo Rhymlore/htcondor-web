@@ -6,4 +6,4 @@ date: 2010-07-19
 layout: news
 ---
 
-[Condor is helping geneticists harness idle computers, avoiding the need for multimillion-dollar supercomputers.] (Archived Url: 'http://www.news.wisc.edu/18240')
+<a href="http://www.news.wisc.edu/18240" data-proofer-ignore>Condor is helping geneticists harness idle computers, avoiding the need for multimillion-dollar supercomputers.</a>

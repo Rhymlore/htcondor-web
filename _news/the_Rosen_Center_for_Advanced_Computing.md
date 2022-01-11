@@ -6,4 +6,4 @@ date: 2005-07-01
 layout: news
 ---
 
-Read about the Rosen Center for Advanced Computing (RCAC) at       Purdue University in the       [Teragrid news release] (Archived Url: 'http://www.teragrid.org/news/news05/0721.html').
+Read about the Rosen Center for Advanced Computing (RCAC) at       Purdue University in the       <a href="http://www.teragrid.org/news/news05/0721.html" data-proofer-ignore>Teragrid news release</a>.

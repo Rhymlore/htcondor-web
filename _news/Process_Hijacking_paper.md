@@ -1,7 +1,7 @@
 ---
 title: Process Hijacking paper
 og_title: <a href=\"publications.html\">Process Hijacking paper</a>
-link: publications.html
+link: /publications.html
 date: 1999-03-01
 layout: news
 ---

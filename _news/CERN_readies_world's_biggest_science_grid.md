@@ -6,4 +6,4 @@ date: 2005-03-01
 layout: news
 ---
 
-in [<em>Computerworld</em>] (Archived Url: 'http://www.computerworld.com/'). "Instead, CERN based its grid on the Globus Toolkit from the Globus Alliance, adding scheduling software from the University of Wisconsin's Condor project and tools developed in Italy under the European Union's DataGrid project."
+in <a href="http://www.computerworld.com/" data-proofer-ignore><em>Computerworld</em></a>. "Instead, CERN based its grid on the Globus Toolkit from the Globus Alliance, adding scheduling software from the University of Wisconsin's Condor project and tools developed in Italy under the European Union's DataGrid project."

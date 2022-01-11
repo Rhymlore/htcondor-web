@@ -6,4 +6,4 @@ date: 2012-07-03
 layout: news
 ---
 
-This Department of Energy Office of Science and the National Science Foundation award to the OSG will extend the reach of OSG capabilities that support research with computing power and data storage, as detailed in this [UW-Madison news release] (Archived Url: 'http://www.news.wisc.edu/releases/17411'). Condor is a significant component in the distributed high-throughput OSG middleware stack. 
+This Department of Energy Office of Science and the National Science Foundation award to the OSG will extend the reach of OSG capabilities that support research with computing power and data storage, as detailed in this <a href="http://www.news.wisc.edu/releases/17411" data-proofer-ignore>UW-Madison news release</a>. Condor is a significant component in the distributed high-throughput OSG middleware stack. 

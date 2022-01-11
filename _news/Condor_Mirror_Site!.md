@@ -6,4 +6,4 @@ date: 1999-06-01
 layout: news
 ---
 
-[Condor Downloads] (Archived Url: 'downloads') can now be downloaded from Bologna, Italy (courtesy of [Istituto Nazionale di Fisica Nucleare Sezione di Bologna] (Archived Url: 'http://www.bo.infn.it')).
+<a href="downloads" data-proofer-ignore>Condor Downloads</a> can now be downloaded from Bologna, Italy (courtesy of <a href="http://www.bo.infn.it" data-proofer-ignore>Istituto Nazionale di Fisica Nucleare Sezione di Bologna</a>).

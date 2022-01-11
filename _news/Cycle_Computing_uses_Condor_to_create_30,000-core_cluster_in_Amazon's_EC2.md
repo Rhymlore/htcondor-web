@@ -6,4 +6,4 @@ date: 2011-09-20
 layout: news
 ---
 
-[Cycle Computing has built a Condor-managed 30,000-core cluster on top of Amazon EC2.] (Archived Url: 'http://arstechnica.com/business/news/2011/09/30000-core-cluster-built-on-amazon-ec2-cloud.ars')  This builds on   [work presented at Condor Week 2011 where they built a 10,000-core cluster.] (Archived Url: 'CondorWeek2011/presentations/alderman-cycle-cloud.pdf') 
+<a href="http://arstechnica.com/business/news/2011/09/30000-core-cluster-built-on-amazon-ec2-cloud.ars" data-proofer-ignore>Cycle Computing has built a Condor-managed 30,000-core cluster on top of Amazon EC2.</a>  This builds on   <a href="CondorWeek2011/presentations/alderman-cycle-cloud.pdf" data-proofer-ignore>work presented at Condor Week 2011 where they built a 10,000-core cluster.</a> 

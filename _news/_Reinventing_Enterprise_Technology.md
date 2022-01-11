@@ -6,4 +6,4 @@ date: 2005-09-01
 layout: news
 ---
 
-This article in [eWEEK.com] (Archived Url: 'http://www.eweek.com/')       by Peter Coffee       discusses real problems and solutions to data and system challenges in academic and        commercial research.  
+This article in <a href="http://www.eweek.com/" data-proofer-ignore>eWEEK.com</a>       by Peter Coffee       discusses real problems and solutions to data and system challenges in academic and        commercial research.  

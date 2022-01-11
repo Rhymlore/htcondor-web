@@ -6,4 +6,4 @@ date: 1999-10-01
 layout: news
 ---
 
-The initial version of Condor NT is now available on the [ downloads] (Archived Url: 'downloads/') page.
+The initial version of Condor NT is now available on the <a href="downloads/" data-proofer-ignore> downloads</a> page.

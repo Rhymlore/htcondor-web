@@ -1,7 +1,7 @@
 ---
 title: UW holds Condor meeting
 og_title: \"<a href=\"http://www.madison.com/wsj/home/biz/index.php?ntid=82014\">UW holds Condor meeting</a>\"
-link: http://www.madison.com/wsj/home/biz/index.php?ntid=82014
+link:
 date: 2006-05-01
 layout: news
 ---
