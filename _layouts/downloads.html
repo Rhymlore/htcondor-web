@@ -12,7 +12,7 @@ layout: container-default
                 <li class="nav-item">
                     <a
                             class="nav-link {% if downcase_name == current_software %}active{% endif %}"
-                            href="{{ '/downloads/' | append: downcase_name | relative_url }}"
+                            href="{{ '/downloads/' | append: downcase_name | append: '.html' | relative_url }}"
                     >
                         {{ ware }}
                     </a>

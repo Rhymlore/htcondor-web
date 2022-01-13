@@ -1,7 +1,7 @@
 ---
 title: Registration open for European Condor Week 2006, June 26-29, Milan, Italy
 og_title: <a href=\"http://www.bo.infn.it/calcolo/CondorWeek2006/\">Registration open for European Condor Week 2006, June 26-29, Milan, Italy</a>
-link: http://www.bo.infn.it/calcolo/CondorWeek2006/
+link: 
 date: 2006-05-01
 layout: news
 ---

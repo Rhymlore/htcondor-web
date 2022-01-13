@@ -1,7 +1,7 @@
 ---
 title: Condor in production at Banesto, a major bank in Spain
 og_title: <a href=\"https://lists.cs.wisc.edu/archive/condor-users/2006-November/msg00063.shtml\">Condor in production at Banesto, a major bank in Spain</a>
-link: https://lists.cs.wisc.edu/archive/condor-users/2006-November/msg00063.shtml
+link: 
 date: 2006-11-01
 layout: news
 ---

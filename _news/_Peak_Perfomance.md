@@ -1,7 +1,7 @@
 ---
 title: Peak Perfomance
 og_title: \"<a href=\"http://www.nationalunderwriter.com/tech/news/viewFeatures.asp?articleID=975\"> Peak Perfomance</a>\"
-link: http://www.nationalunderwriter.com/tech/news/viewFeatures.asp?articleID=975
+link: 
 date: 2005-11-01
 layout: news
 ---

@@ -1,7 +1,7 @@
 ---
 title: More Condor Contrib Modules Released and Condor Version 6.1.1
 og_title: <a href=\"downloads/\">More Condor Contrib Modules Released and Condor Version 6.1.1</a>
-link: downloads/
+link: 
 date: 1998-12-01
 layout: news
 ---

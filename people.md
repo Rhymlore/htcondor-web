@@ -68,7 +68,7 @@ Allan Bricker<br/>
 Gregory Bronner<br/>
 Ben Burnett<br/>
 Jichuan Chang<br/>
-<a href="http://cs.wvutech.edu/ncoleman/">Nick Coleman</a><br/>
+Nick Coleman<br/>
 Peter Couvares<br/>
 Alan DeSmet<br/>
 <a href="http://pages.cs.wisc.edu/~dewitt/">David Dewitt</a><br/>
@@ -127,7 +127,7 @@ Bill Taylor<br/>
 <a href="https://www3.nd.edu/~dthain/">Douglas_Thain</a><br/>
 Michael Urban<br/>
 Venkataramani (Ven) Venkateshwaran<br/>
-<a href="/~hbwang">Hao Wang</a><br/> 
+Hao Wang<br/> 
 Jeff Weber<br/>
 Cathrin Weiss<br/>
 Derek Wright<br/>

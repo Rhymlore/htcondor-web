@@ -1,7 +1,7 @@
 ---
 title: "\"CERN readies world's biggest science grid\""
 og_title: \"<a href=\"http://www.computerworld.com/printthis/2005/0,4814,100543,00.html\">CERN readies world's biggest science grid</a>\"
-link: http://www.computerworld.com/printthis/2005/0,4814,100543,00.html
+link: 
 date: 2005-03-01
 layout: news
 ---

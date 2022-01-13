@@ -1,7 +1,7 @@
 ---
 title: Condor used to research genetic diseases
 og_title: <a href=\"http://www.newswise.com/articles/view/520969/\">Condor used to research genetic diseases</a>r
-link: http://www.newswise.com/articles/view/520969/
+link: 
 date: 2006-06-01
 layout: news
 ---

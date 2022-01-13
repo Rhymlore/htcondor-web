@@ -1,7 +1,7 @@
 ---
 title: Condor NT Version 6.1.16_preview released!
 og_title: <a href=\"downloads/\">Condor NT Version 6.1.16_preview released!</a>
-link: downloads/
+link: 
 date: 2000-09-01
 layout: news
 ---

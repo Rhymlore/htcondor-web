@@ -1,7 +1,7 @@
 ---
 title: An eagle-eye view of the Condor project
 og_title: \"<a href=\"http://www-128.ibm.com/developerworks/library/gr-condor/\">An eagle-eye view of the Condor project</a>\"
-link: http://www-128.ibm.com/developerworks/library/gr-condor/
+link: 
 date: 2005-02-01
 layout: news
 ---

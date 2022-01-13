@@ -1,7 +1,7 @@
 ---
 title: "Communicating outside the flock, Part 1: Condor-G with Globus at IBM's developerWorks"
 og_title: "<a href=\"http://www-128.ibm.com/developerworks/grid/library/gr-condorg1/\">Communicating outside the flock, Part 1: Condor-G with Globus</a>\" at <a href=\"http://www-128.ibm.com/developerworks/\">IBM's developerWorks</a>"
-link: http://www-128.ibm.com/developerworks/grid/library/gr-condorg1/
+link: 
 date: 2005-12-01
 layout: news
 ---

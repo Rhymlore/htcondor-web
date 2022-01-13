@@ -1,7 +1,7 @@
 ---
 title: "\"Reinventing Enterprise Technology\""
 og_title: \"<a href=\"http://www.eweek.com/article2/0,1895,1862988,00.asp\"> Reinventing Enterprise Technology</a>\"
-link: http://www.eweek.com/article2/0,1895,1862988,00.asp
+link: 
 date: 2005-09-01
 layout: news
 ---
