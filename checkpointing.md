@@ -41,8 +41,8 @@ The HTCondor distribution includes a checkpointing library,
 to provide checkpoints for Unix
 processes that are not submitted for execution under HTCondor.
 Information on using standalone checkpointing is available
-in Chapter 4, section 2, of the
-<A HREF="manual/v6.4/">6.4 manual</A>.
+in the
+<A HREF="{{ '/manual/' | relative_url }}">manual</A>.
 
 <h3>Periodic Checkpointing</h3>
 

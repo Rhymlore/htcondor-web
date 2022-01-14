@@ -7,7 +7,7 @@ title: HTCondor Download
 {% include get/htcondor_feature_release.liquid %}
 {% include get/htcondor_lts_release.liquid %}
 
-<div class="mb-4 card">
+<div id="feature-channel" class="mb-4 card">
     <div class="card-body">
         <h3><span class="text-secondary">{{ htcondor_feature_release.release_number }}</span> Feature Release</h3>
         <p>{{ htcondor_feature_release.date | date: "%B %e, %Y" }}</p>
@@ -26,7 +26,7 @@ title: HTCondor Download
         </div>
     </div>
 </div>
-<div class="mb-4 card">
+<div id="long-term-support-channel" class="mb-4 card">
     <div class="card-body">
         <h3><span class="text-secondary">{{ htcondor_lts_release.release_number }}</span> Long Term Support Release</h3>
         <p>{{ htcondor_lts_release.date | date: "%B %e, %Y" }}</p>
