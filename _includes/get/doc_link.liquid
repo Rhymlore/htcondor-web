@@ -1,0 +1,17 @@
+{% assign release = include.release | default: release %}
+
+{% assign release_numbers = release.release_number | strip | split: "." %}
+
+{% if release_numbers[0] == "9"  %}
+    {%  if release_numbers[1] == "0" %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/v9_0/version-history/stable-release-series-90.html#version-9-0-" | append: release_numbers[2] %}
+    {% elsif release_numbers[1] > "0" %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/v9_1/version-history/development-release-series-91.html#version-9-" | append: release_numbers[1] | append: "-" | append: release_numbers[2] %}
+    {% endif %}
+{% elsif release_numbers[0] > "9" %}
+    {%  if release_numbers[1] == "0" %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: release_numbers[0] | append: "_0/version-history/lts-release-" | append: release_numbers[0] | append: "-0.html#version-" | append: release_numbers[0] | append: "-0-" | append: release_numbers[2] %}
+    {% elsif release_numbers[1] > "0" %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: release_numbers[0] | append: "_x/version-history/feature-release-" | append: release_numbers[0] | append: "-x.html#version-" | append: release_numbers[0] | append: "-" | append: release_numbers[1] | append: "-" | append: release_numbers[2] %}
+    {% endif %}
+{% endif %}
