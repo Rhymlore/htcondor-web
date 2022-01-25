@@ -1,18 +1,32 @@
 {% assign software =  site.data.software-links | where: "software", page.software | first %}
 {% assign links = software.links %}
 
-
-<ul class="nav nav-pills flex-row flex-md-column">
-    {% for link in links %}
-        {% assign link_url = link.path | relative_url %}
-        {% assign current_url = page.url | remove: ".html" %}
-        <li class="nav-item mx-1">
-            <a
-                class="nav-link {{ link.class }} {% if link_url == current_url %}active{% endif %}"
-                href="{{ link.path | relative_url }}"
-            >
-                {{ link.label }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="dropdown">
+    <a
+            class="ps-3 d-block d-md-none text-decoration-none dropdown-toggle"
+            data-bs-toggle="collapse"
+            href="#software-navigation"
+            role="button"
+            aria-expanded="false"
+            aria-controls="software-navigation">
+        <span class="fs-4 my-auto">
+            Software Navigation
+        </span>
+    </a>
+    <div class="multi-collapse collapse d-md-block" id="software-navigation">
+        <ul class="nav nav-pills flex-column">
+            {% for link in links %}
+            {% assign link_url = link.path | relative_url %}
+            {% assign current_url = page.url | remove: ".html" %}
+            <li class="nav-item mx-1">
+                <a
+                        class="nav-link {{ link.class }} {% if link_url == current_url %}active{% endif %}"
+                        href="{{ link.path | relative_url }}"
+                >
+                    {{ link.label }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
