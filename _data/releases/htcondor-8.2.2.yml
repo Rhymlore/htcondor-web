@@ -4,9 +4,9 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor ver
   \ a bug fix in the detection of hyper-threaded cores on Linux and Mac OSX; a bug\
   \ fix for condor_q when using the -format option; the condor_collector daemon on\
   \ a Linux 3.14 or more recent kernel responds faster after a bug fix. A complete\
-  \ list of bugs fixed can be found in the <a href=\"manual/v8.2.2/10_3Stable_Release.html\"\
-  >Version History</a>. HTCondor 8.2.2 binaries and source code are available from\
-  \ our <a href=\"downloads/\">Downloads</a> page. \n"
+  \ list of bugs fixed can be found in the \
+  \ Version History. HTCondor 8.2.2 binaries and source code are available from\
+  \ our Downloads page. \n"
 date: 2014-08-07
 layout: news
 link: null

@@ -6,4 +6,4 @@ date: 2002-02-01
 layout: news
 ---
 
-<a href="nest">NeST 0.9</a> has been released. It is available under the GPL license.
+<a href="nest" data-proofer-ignore>NeST 0.9</a> has been released. It is available under the GPL license.

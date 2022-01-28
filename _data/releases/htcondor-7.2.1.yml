@@ -3,9 +3,8 @@ content: "\nThe Condor Team is pleased to announce the release of Condor 7.2.1. 
   \ after the release of Condor 7.2.0. This release also adds a native clipped port\
   \ to Debian 5.0 (Lenny), support for the gfortran compiler in standard universe,\
   \ support for standard output and error files larger than 2GB, and several other\
-  \ bug fixes. See the <a href=\"manual/latest-stable/9_Version_History.html\">version\
-  \ history</a> for a detailed list of changes. Condor 7.2.1 binaries and source code\
-  \ are available from <a href=\"downloads/\">our downloads page</a>. \n"
+  \ bug fixes. See the version history for a detailed list of changes. Condor 7.2.1\
+  \ binaries and source code are available from our downloads page. \n"
 date: 2009-02-20
 layout: news
 link: null

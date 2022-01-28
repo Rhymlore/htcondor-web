@@ -3,9 +3,8 @@ content: "\nThe HTCondor Team is pleased to announce the release of HTCondor ver
   \ version 8.0.2. Major new features include: the condor_startd daemon now advertises\
   \ statistics about preemption, parameter substitution in configuration now honors\
   \ per-daemon overrides. A complete list of bugs fixed and features can be found\
-  \ in the  <a href=\"manual/v8.1.1/10_3Development_Release.html\">Version History</a>.\
-  \ HTCondor 8.1.1 binaries and source code are available from our <a href=\"downloads/\"\
-  >Downloads</a> page. \n"
+  \ in the  Version History. HTCondor 8.1.1 binaries and source code are available\
+  \ from our Downloads page. \n"
 date: 2013-09-17
 layout: news
 link: null

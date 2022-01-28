@@ -13,7 +13,7 @@ collections:
     permalink: /news/:path/
   vulnerabilities:
     output: true
-    permalink: /security/vulnerabilities/:path
+    permalink: /security/vulnerabilities/:path:output_ext
     layout: vulnerabilities
   wiki-pages:
     permalink: /wiki-archive/pages/:path/
@@ -22,7 +22,7 @@ collections:
     permalink: /:path/
     output: true
   featured-users:
-    permalink: /featured-users/:path
+    permalink: /featured-users/:path:output_ext
     output: true
 
 defaults:

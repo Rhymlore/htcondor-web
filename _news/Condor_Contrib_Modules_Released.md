@@ -1,7 +1,7 @@
 ---
 title: Condor Contrib Modules Released
 og_title: <a href=\"downloads/\">Condor Contrib Modules Released</a>
-link: downloads/
+link: 
 date: 1998-12-01
 layout: news
 ---

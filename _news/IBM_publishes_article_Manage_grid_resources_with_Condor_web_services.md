@@ -1,7 +1,7 @@
 ---
 title: IBM publishes article "Manage grid resources with Condor web services"
 og_title: <a href=\"http://www-128.ibm.com/developerworks/edu/gr-dw-gr-wscondor.html\">IBM publishes article \"Manage grid resources with Condor web services\"</a>
-link: http://www-128.ibm.com/developerworks/edu/gr-dw-gr-wscondor.html
+link: 
 date: 2006-07-01
 layout: news
 ---

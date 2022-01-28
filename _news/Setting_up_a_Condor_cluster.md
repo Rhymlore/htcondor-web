@@ -1,7 +1,7 @@
 ---
 title: \"Setting up a Condor cluster\" at Linux.com
 og_title: \"<a href=\"http://www.linux.com/article.pl?sid=06/08/28/1435215\">Setting up a Condor cluster</a>\" at Linux.com
-link: http://www.linux.com/article.pl?sid=06/08/28/1435215
+link: 
 date: 2006-09-01
 layout: news
 ---

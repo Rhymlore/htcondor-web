@@ -4,7 +4,7 @@ content: '
   an important security fix that was incorrectly documented as being in the 7.8.5
   release.  This release is otherwise identical to the 7.8.5 release.  Affected users
   should upgrade as soon as possible.  More details on the security issue can be found
-  on the [Vulnerabilities Page](/security/vulnerabilities/CONDOR-2012-0003).'
+  on the [Vulnerabilities Page](/security/vulnerabilities/CONDOR-2012-0003.html).'
 date: 2012-10-25
 layout: news
 link: null

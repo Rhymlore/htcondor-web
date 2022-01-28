@@ -6,4 +6,4 @@ date: 2005-10-01
 layout: news
 ---
 
-entitled        "<a href="http://www.newswire.ca/en/releases/archive/October2005/18/c2517.html">Minister Dion Launches WindScope To Support Government's Wind Energy Commitment</a>".        The new WindScope software that utilizes Condor allows users to        determine the ideal location to install wind turbines.
+entitled        "<a href="http://www.newswire.ca/en/releases/archive/October2005/18/c2517.html" data-proofer-ignore>Minister Dion Launches WindScope To Support Government's Wind Energy Commitment</a>".        The new WindScope software that utilizes Condor allows users to        determine the ideal location to install wind turbines.

@@ -14,7 +14,7 @@ layout: wiki-page
  <p>
   To have some jobs preferentially run on some machines instead of others, see
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/HowToSteerJobs' | relative_url }}" title="How To Steer Jobs">
+   <a href="{{ '/wiki-archive/pages/HowToSteerJobs/index.html' | relative_url }}" title="How To Steer Jobs">
     How to steer jobs towards more desirable machines
    </a>
   </span>
@@ -58,7 +58,7 @@ STARTD_ATTRS = $(STARTD_ATTRS) IsAppInstallerMachine
  <p>
  </p>
  <div class="code">
-  <pre class="code">START = ($(START)) &amp;&amp; TARGET.Owner == href="{{ '/wiki-archive/pages/appinstaller' | relative_url }}" </pre>
+  <pre class="code">START = ($(START)) &amp;&amp; TARGET.Owner == "appinstaller" </pre>
  </div>
  <p>
   Instead of altering the configuration to modify APPEND_REQUIREMENTS for each and every job's requirements
