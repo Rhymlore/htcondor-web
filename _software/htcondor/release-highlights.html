@@ -20,7 +20,12 @@ title: HTCondor Release Highlights
     </div>
     {% include /get/htcondor_feature_releases_recent.liquid %}
     {% for release in htcondor_feature_releases_recent %}
+      {% include /get/doc_link.liquid %}
+      {% if doc_link %}
+      <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+      {% else %}
       <b>{{ release.release_number }}</b>
+      {% endif %}
       <div>
         {{ release.content | markdownify }}
       </div>
@@ -29,7 +34,12 @@ title: HTCondor Release Highlights
     <div class="collapse" id="old-feature-release-highlights">
       {% include /get/htcondor_feature_releases_old.liquid %}
       {% for release in htcondor_feature_releases_old %}
-      <b>{{ release.release_number }}</b>
+      {% include /get/doc_link.liquid %}
+      {% if doc_link %}
+        <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+      {% else %}
+        <b>{{ release.release_number }}</b>
+      {% endif %}
       <div>
         {{ release.content | markdownify }}
       </div>
@@ -52,10 +62,15 @@ title: HTCondor Release Highlights
     </div>
     {% include /get/htcondor_lts_releases_recent.liquid %}
     {% for release in htcondor_lts_releases_recent %}
-    <b>{{ release.release_number }}</b>
-    <div>
-      {{ release.content | markdownify }}
-    </div>
+      {% include /get/doc_link.liquid %}
+      {% if doc_link %}
+        <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+      {% else %}
+        <b>{{ release.release_number }}</b>
+      {% endif %}
+      <div>
+        {{ release.content | markdownify }}
+      </div>
     {% endfor %}
 
     <div class="collapse" id="old-lts-release-highlights">
