@@ -42,10 +42,10 @@ Rank = TARGET.Group =?= MY.MachineOwner
  <p>
   The above example requires that jobs be submitted with an additional custom attribute called
   <code>
-   href="{{ '/wiki-archive/pages/Group' | relative_url }}"   </code>
+   "Group"   </code>
   in this example, that declares what group they belong to.  See
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/HowToInsertCustomClassAd' | relative_url }}" title="How To Insert Custom Class Ad">
+   <a href="{{ '/wiki-archive/pages/HowToInsertCustomClassAd/index.html' | relative_url }}" title="How To Insert Custom Class Ad">
     How to insert custom ClassAd attributes into a job ad
    </a>
   </span>
@@ -54,7 +54,7 @@ Rank = TARGET.Group =?= MY.MachineOwner
  <p>
  </p>
  <div class="code">
-  <pre class="code">+Group = href="{{ '/wiki-archive/pages/biology' | relative_url }}" </pre>
+  <pre class="code">+Group = "biology" </pre>
  </div>
  <p>
   If group membership is not likely to change frequently, or you really don't want users to have to declare their group membership, you could configure the machine
@@ -87,13 +87,13 @@ RANK = stringListMember(TARGET.User,MY.MachineOwners)
   </code>
   is an arbitrary
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd/index.html' | relative_url }}" title="Class Ad">
     ClassAd
    </a>
   </span>
   expression, you can customize the policy in a variety of ways.  For example, there could be a group with second priority on the machines.  Or you could specify that some types of jobs (identified by some other
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd/index.html' | relative_url }}" title="Class Ad">
     ClassAd
    </a>
   </span>
@@ -114,7 +114,7 @@ RANK = stringListMember(TARGET.User,MY.MachineOwners)
   </code>
   as described in
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/HowToDisablePreemption' | relative_url }}" title="How To Disable Preemption">
+   <a href="{{ '/wiki-archive/pages/HowToDisablePreemption/index.html' | relative_url }}" title="How To Disable Preemption">
     How to disable preemption
    </a>
   </span>

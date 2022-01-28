@@ -62,7 +62,7 @@ layout: wiki-page
  <p>
   The ProcD was born out of the
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/PrivSep' | relative_url }}" title="Priv Sep">
+   <a href="{{ '/wiki-archive/pages/PrivSep/index.html' | relative_url }}" title="Priv Sep">
     PrivSep
    </a>
   </span>
@@ -74,7 +74,7 @@ layout: wiki-page
   </span>
   ). Even without the ProcD's supposed benefit for
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/PrivSep' | relative_url }}" title="Priv Sep">
+   <a href="{{ '/wiki-archive/pages/PrivSep/index.html' | relative_url }}" title="Priv Sep">
     PrivSep
    </a>
   </span>
@@ -83,13 +83,13 @@ layout: wiki-page
  <p>
   There are some important consequences of the ProcD's
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/PrivSep' | relative_url }}" title="Priv Sep">
+   <a href="{{ '/wiki-archive/pages/PrivSep/index.html' | relative_url }}" title="Priv Sep">
     PrivSep
    </a>
   </span>
   heritage. The fact that the ProcD is included in the "trusted" portion of the
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/PrivSep' | relative_url }}" title="Priv Sep">
+   <a href="{{ '/wiki-archive/pages/PrivSep/index.html' | relative_url }}" title="Priv Sep">
     PrivSep
    </a>
   </span>
@@ -114,7 +114,7 @@ layout: wiki-page
  <p>
   The ProcD relies on OS-level authorization mechanisms to ensure that only HTCondor can make requests of it. On Windows, everything is running as SYSTEM so this is simple. On UNIX, the ProcD runs as root but it must allow access to HTCondor deamons that may not be root (think
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/PrivSep' | relative_url }}" title="Priv Sep">
+   <a href="{{ '/wiki-archive/pages/PrivSep/index.html' | relative_url }}" title="Priv Sep">
     PrivSep
    </a>
   </span>
@@ -130,25 +130,25 @@ layout: wiki-page
  <p>
   Access to the ProcD from other HTCondor code is provided via
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/DaemonCore' | relative_url }}" title="Daemon Core">
+   <a class="missing" href="{{ '/wiki-archive/pages/DaemonCore/index.html' | relative_url }}" title="Daemon Core">
     DaemonCore
    </a>
   </span>
   . Create_Process has a parameter of type
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo' | relative_url }}" title="Family Info">
+   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo/index.html' | relative_url }}" title="Family Info">
     FamilyInfo
    </a>
   </span>
   that can be used when the created process should be registered as a subfamily with the ProcD. The
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo' | relative_url }}" title="Family Info">
+   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo/index.html' | relative_url }}" title="Family Info">
     FamilyInfo
    </a>
   </span>
   struct contains information regarding the maximum acceptable snapshot interval and what tracking methods to use. After the Create_Process call, the ProcD's services are accessible via other call into
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/DaemonCore' | relative_url }}" title="Daemon Core">
+   <a class="missing" href="{{ '/wiki-archive/pages/DaemonCore/index.html' | relative_url }}" title="Daemon Core">
     DaemonCore
    </a>
   </span>
@@ -157,31 +157,31 @@ layout: wiki-page
  <p>
   Each daemon can be configured to either use the ProcD for process tracking or to use the old school
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/KillFamily' | relative_url }}" title="Kill Family">
+   <a class="missing" href="{{ '/wiki-archive/pages/KillFamily/index.html' | relative_url }}" title="Kill Family">
     KillFamily
    </a>
   </span>
   class. The reason is that when the ProcD is enabled and it crashes, any daemon using it will EXCEPT. Early on in the ProcD's existence this happened to several of the Master daemons in our CS pool, which was enough to get the old
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/KillFamily' | relative_url }}" title="Kill Family">
+   <a class="missing" href="{{ '/wiki-archive/pages/KillFamily/index.html' | relative_url }}" title="Kill Family">
     KillFamily
    </a>
   </span>
   code back as an alternative. The
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyInterface' | relative_url }}" title="Proc Family Interface">
+   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyInterface/index.html' | relative_url }}" title="Proc Family Interface">
     ProcFamilyInterface
    </a>
   </span>
   ,
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyProxy' | relative_url }}" title="Proc Family Proxy">
+   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyProxy/index.html' | relative_url }}" title="Proc Family Proxy">
     ProcFamilyProxy
    </a>
   </span>
   , and
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ProxFamilyDirect' | relative_url }}" title="Prox Family Direct">
+   <a class="missing" href="{{ '/wiki-archive/pages/ProxFamilyDirect/index.html' | relative_url }}" title="Prox Family Direct">
     ProxFamilyDirect
    </a>
   </span>
@@ -190,7 +190,7 @@ layout: wiki-page
  <p>
   A HTCondor daemon configured to use a ProcD will share the ProcD of its parent if one is available. Environment variables are used to communicate whether this is the case. See the
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyProxy' | relative_url }}" title="Proc Family Proxy">
+   <a class="missing" href="{{ '/wiki-archive/pages/ProcFamilyProxy/index.html' | relative_url }}" title="Proc Family Proxy">
     ProcFamilyProxy
    </a>
   </span>
@@ -199,13 +199,13 @@ layout: wiki-page
  <p>
   A HTCondor daemon configured to use the ProcD will start it on-demand. Specifically, the first call to DaemonCore::Create_Process with a non-NULL
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo' | relative_url }}" title="Family Info">
+   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo/index.html' | relative_url }}" title="Family Info">
     FamilyInfo
    </a>
   </span>
   argument will result in the ProcD being spawned. Alternatively, a daemon can force the ProcD to be started with a call to DaemonCore::Proc_Family_Init. The SchedD does this since it never calls Create_Process with a non-NULL
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo' | relative_url }}" title="Family Info">
+   <a class="missing" href="{{ '/wiki-archive/pages/FamilyInfo/index.html' | relative_url }}" title="Family Info">
     FamilyInfo
    </a>
   </span>
@@ -221,7 +221,7 @@ layout: wiki-page
  <p>
   Oh yeah, then there's the
   <span class="wiki">
-   <a href="{{ '/wiki-archive/pages/OsgProcd' | relative_url }}" title="Osg Procd">
+   <a href="{{ '/wiki-archive/pages/OsgProcd/index.html' | relative_url }}" title="Osg Procd">
     OsgProcd
    </a>
   </span>

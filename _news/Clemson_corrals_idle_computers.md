@@ -1,7 +1,7 @@
 ---
 title: Clemson corrals idle computers
 og_title: \"<a href=\"http://www.myrtlebeachonline.com/news/local/story/225639.html\">Clemson corrals idle computers</a>\"
-link: http://www.myrtlebeachonline.com/news/local/story/225639.html">Clemson corrals idle computers</a>
+link: 
 date: 2007-10-22
 layout: news
 ---

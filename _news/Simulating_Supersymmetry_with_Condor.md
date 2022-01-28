@@ -1,7 +1,7 @@
 ---
 title: Simulating Supersymmetry with Condor
 og_title: <a href=\"http://www.interactions.org/sgtw/2006/0308/susy_more.html\">Simulating Supersymmetry with Condor</a>
-link: http://www.interactions.org/sgtw/2006/0308/susy_more.html
+link: 
 date: 2006-03-01
 layout: news
 ---

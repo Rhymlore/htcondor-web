@@ -6,4 +6,4 @@ date: 2004-03-01
 layout: news
 ---
 
-<a href="nest">NeST</a> version 0.9.6 has been released and is available for download.
+<a href="nest" data-proofer-ignore>NeST</a> version 0.9.6 has been released and is available for download.

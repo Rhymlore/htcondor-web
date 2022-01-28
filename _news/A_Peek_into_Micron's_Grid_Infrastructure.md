@@ -1,7 +1,7 @@
 ---
 title: A Peek into Micron's Grid Infrastructure
 og_title: <a href=\"http://www.gridtoday.com/grid/633762.html\">A Peek into Micron's Grid Infrastructure</a>
-link: http://www.gridtoday.com/grid/633762.html
+link: 
 date: 2006-04-01
 layout: news
 ---

@@ -4,9 +4,9 @@ content: "\nThe HTCondor Team is pleased to announce the release of HTCondor ver
   \ return to the queue; a workaround for a condor_schedd performance issue when handling\
   \ a large number of jobs; a bug fix to prevent the condor_kbdd from crashing on\
   \ Windows; a bug fix to correct the reporting of available disk on Windows. a complete\
-  \ list of bugs fixed and features can be found in the <a href=\"manual/v8.2.4/10_3Stable_Release.html\"\
-  >Version History</a>. HTCondor 8.2.4 binaries and source code are available from\
-  \ our <a href=\"downloads/\">Downloads</a> page. \n"
+  \ list of bugs fixed and features can be found in the\
+  \ Version History. HTCondor 8.2.4 binaries and source code are available from\
+  \ our Downloads page. \n"
 date: 2014-11-12
 layout: news
 link: null

@@ -11,7 +11,7 @@ layout: wiki-page
  <p>
   So for example on the gatekeeper for a site running HTCondor, the HTCondor probe will be run out of cron every so often. When it runs, it queries HTCondor's history as maintained by the SchedD and for each newly completed job it finds it will take usage information out of that job's
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd/index.html' | relative_url }}" title="Class Ad">
     ClassAd
    </a>
   </span>
@@ -33,19 +33,19 @@ layout: wiki-page
  <p>
   A second improvement was the addition of a command-line option to the probe that would tell it to only process certain ads. This worked using a very basic form of
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd/index.html' | relative_url }}" title="Class Ad">
     ClassAd
    </a>
   </span>
   constraint (It's basic since the probe is written in Perl and we don't have a Perl
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd' | relative_url }}" title="Class Ad">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAd/index.html' | relative_url }}" title="Class Ad">
     ClassAd
    </a>
   </span>
   library). The motivation behind this feature was a limitation in Gratia such that a single probe can only send usage records for a single logical "site". Apparently some OSG setups have a single SchedD accepting jobs from mulitple gatekeepers. In this case the each gatekeeper can be configured to put a site ID in the
   <span class="wiki">
-   <a class="missing" href="{{ '/wiki-archive/pages/ClassAds' | relative_url }}" title="Class Ads">
+   <a class="missing" href="{{ '/wiki-archive/pages/ClassAds/index.html' | relative_url }}" title="Class Ads">
     ClassAds
    </a>
   </span>

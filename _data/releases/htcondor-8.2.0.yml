@@ -14,9 +14,9 @@ content: "\nThe HTCondor team is pleased to announce the release of HTCondor 8.2
   \ disk load, and experimental support to allow the execution of a job to be overlaid\
   \ with the transfer of output files from the previous different job, and the new\
   \ condor_sos tool helps administrators manage overloaded daemons. A complete list\
-  \ of bugs fixed can be found in the <a href=\"manual/v8.2.0/10_3Stable_Release.html\"\
-  >Version History</a>. HTCondor 8.2.0 binaries and source code are available from\
-  \ our <a href=\"downloads/\">Downloads</a> page. \n"
+  \ of bugs fixed can be found in the\
+  \ Version History. HTCondor 8.2.0 binaries and source code are available from\
+  \ our Downloads page. \n"
 date: 2014-06-24
 layout: news
 link: null

@@ -1,7 +1,7 @@
 ---
 title: "Communicating outside the flock, Part 2: Integrate grid resources with Condor-G plus Globus Toolkit\" at IBM's developerWorks"
 og_title: "<a href=\"http://www-128.ibm.com/developerworks/grid/library/gr-condorg2/?ca=drs-\">Communicating outside the flock, Part 2: Integrate grid resources with Condor-G plus Globus Toolkit</a>\" at <a href=\"http://www-128.ibm.com/developerworks/\">IBM's developerWorks</a>"
-link: http://www-128.ibm.com/developerworks/grid/library/gr-condorg2/?ca=drs-
+link: 
 date: 2006-02-01
 layout: news
 ---

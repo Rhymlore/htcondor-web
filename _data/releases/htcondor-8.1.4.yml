@@ -5,9 +5,8 @@ content: "\nThe HTCondor Team is pleased to announce the release of HTCondor ver
   \ a new tool that does GPU discovery; improved scalability when using the shared\
   \ port service; Python 3 support; enhanced resilience due to the prompt detection\
   \ of network failures. A complete list of bugs fixed and features can be found in\
-  \ the <a href=\"manual/v8.1.4/10_3Development_Release.html\">Version History</a>.\
-  \ HTCondor 8.1.4 binaries and source code are available from our <a href=\"downloads/\"\
-  >Downloads</a> page. \n"
+  \ the Version History. HTCondor 8.1.4 binaries and source code are available from\
+  \ our Downloads page. \n"
 date: 2014-02-27
 layout: news
 link: null

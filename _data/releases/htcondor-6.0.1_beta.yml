@@ -2,7 +2,7 @@ content: You can read about what's new in this version.
 date: 1998-06-01
 layout: news
 link: downloads/
-og_title: <a href=\"downloads/\">Condor Version 6.0.1 beta Released</a>
+og_title: Condor Version 6.0.1 beta Released
 release_number: 6.0.1 Beta
 release_type: HTCondor
 sort_key: 06.00.001 Beta

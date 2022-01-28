@@ -1,7 +1,7 @@
 ---
 title: New Condor version number scheme
 og_title: <a href=\"version_number.html\">New Condor version number scheme</a>.
-link: version_number.html
+link: 
 date: 1998-09-01
 layout: news
 ---

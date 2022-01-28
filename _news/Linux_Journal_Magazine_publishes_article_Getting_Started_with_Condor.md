@@ -1,7 +1,7 @@
 ---
 title: Linux Journal Magazine publishes article "Getting Started with Condor"
 og_title: <a href=\"http://www.linuxjournal.com/node/9058/print\">Linux Journal Magazine publishes article \"Getting Started with Condor\"</a>
-link: http://www.linuxjournal.com/node/9058/print
+link: 
 date: 2006-10-01
 layout: news
 ---

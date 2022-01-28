@@ -1,7 +1,7 @@
 ---
 title: CondorView Client Contrib Module now available
 og_title: <a href=\"downloads/\">CondorView Client Contrib Module now available</a>
-link: downloads/
+link: 
 date: 1999-03-01
 layout: news
 ---
