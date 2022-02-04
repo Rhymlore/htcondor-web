@@ -1,0 +1,21 @@
+content: '
+
+  Highlights of this release are:
+
+  - The HTCondor-CE central collector requires SSL credentials from client CEs
+
+  - Fix BDII crash if an HTCondor Access Point is not available
+
+  - Fix formatting of APEL records that contain huge values
+
+  - HTCondor-CE client mapfiles are not installed on the central collector
+
+  '
+date: 2022-01-20
+layout: news
+link: null
+og_title: HTCondor-CE 5.1.3 released!
+release_number: 5.1.3
+release_type: HTCondor-CE
+sort_key: 05.01.03
+title: HTCondor-CE 5.1.3 released!
