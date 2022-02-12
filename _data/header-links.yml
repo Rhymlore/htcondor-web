@@ -98,3 +98,5 @@ nav_items:
             url: https://chtc.cs.wisc.edu/people
           - name: Jobs &#11023;
             url: https://chtc.cs.wisc.edu/jobs
+          - name: Research & Publications &#11023;
+            url: https://chtc.cs.wisc.edu/research
