@@ -1,0 +1,1 @@
+{% assign featured-users = site.featured-users | where_exp: "featured-user", "featured-user.publish_on contains site.key" | sort: "date" |  reverse %}

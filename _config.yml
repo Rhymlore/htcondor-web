@@ -1,6 +1,8 @@
 baseurl: ''
 exclude: [vendor, deploy_key.enc]
 
+key: htcondor
+
 google_analytics:
 
 markdown_ext : "md"
