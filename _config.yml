@@ -33,6 +33,7 @@ defaults:
       path: ""
     values:
       layout: "default"
+      image: https://htcondor.org/assets/images/Twitter_Image.jpg
   -
     scope:
       path: ""
@@ -56,4 +57,20 @@ plugins:
   - jekyll-redirect-from
   - jekyll-environment-variables
   - jekyll-sitemap
+  - jekyll-seo-tag
 
+description: |
+  HTCSS is a specialized workload management system for compute-intensive jobs.
+  Built to be flexible, expressive, and compatible with Grid and Cloud computing
+  environments HTCSS was made to increase your Computational Throughput.
+twitter:
+  username: HTCondor
+  card: summary_large_image
+social:
+  name: HTCSS
+  links:
+    - https://twitter.com/HTCondor
+    - https://github.com/htcondor
+    - https://www.linkedin.com/school/uwmadison/
+webmaster_verifications:
+  google: lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ

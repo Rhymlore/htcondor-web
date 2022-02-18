@@ -1,62 +1,34 @@
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="HTCondor Homepage">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/favicons/apple-touch-icon.png' | relative_url }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicons/favicon-32x32.png' | relative_url }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicons/favicon-16x16.png' | relative_url }}">
-    <link rel="manifest" href="{{ '/assets/images/favicons/site.webmanifest' | relative_url }}">
-    <link rel="mask-icon" href="{{ '/assets/images/favicons/safari-pinned-tab.svg' | relative_url }}" color="#d31145">
-    <link rel="shortcut icon" href="{{ '/assets/images/favicons/favicon.ico' | relative_url }}">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="{{ '/assets/images/favicons/browserconfig.xml' | relative_url }}">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="HTCSS">
-    <meta name="description" content="HTCSS is a specialized workload management system for compute-intensive jobs. Built to be flexible, expressive, and compatible with Grid and Cloud computing environments HTCSS was made to increase your Computational Throughput.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://htcondor.org/">
-    <meta property="og:title" content="HTCSS">
-    <meta property="og:description" content="HTCSS is a specialized workload management system for compute-intensive jobs. Built to be flexible, expressive, and compatible with Grid and Cloud computing environments HTCSS was made to increase your Computational Throughput.">
-    <meta property="og:image" content="https://htcondor.org/assets/images/Twitter_Image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://htcondor.org/">
-    <meta property="twitter:title" content="HTCSS">
-    <meta property="twitter:description" content="HTCSS is a specialized workload management system for compute-intensive jobs. Built to be flexible, expressive, and compatible with Grid and Cloud computing environments HTCSS was made to increase your Computational Throughput.">
-    <meta property="twitter:image" content="https://htcondor.org/assets/images/Twitter_Image.jpg">
-
-    <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
 
     <script src="{{ '/assets/js/sitewide.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/header.js' | relative_url }}" type="text/javascript" defer></script>
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
+
     {% for js in include.js %}
         <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
     {% endfor %}
 
     {% if jekyll.environment == 'production' %}
 
-    <meta name="google-site-verification" content="lCkv5T7d4arQ-RPy5tUh6QyB5b3g6dlYtGxotDj1anQ" />
-    {% unless page.canonical %}
-        <link rel="canonical" href="https://htcondor.org{{page.url}}">
+        {% if site.production_key == "htcondor_org" %}
+            {% seo %}
+        {% endif %}
+
+        {% unless page.canonical %}
+            <link rel="canonical" href="https://htcondor.org{{page.url}}">
+        {% else %}
+            <link rel="canonical" href="{{ page.canonical }}">
+        {% endunless %}
+
+        {% if site.google_analytics %}
+            {% include analytics.html %}
+        {% endif %}
+
     {% else %}
-        <link rel="canonical" href="{{ page.canonical }}">
-    {% endunless %}
 
-    {% if site.google_analytics %}
-    {% include analytics.html %}
-    {% endif %}
-
-    {% else %}
-
-    <meta name="robots" content="noindex">
+        <meta name="robots" content="noindex">
 
     {% endif %}
 
