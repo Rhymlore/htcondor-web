@@ -1,7 +1,7 @@
 <a href="{{ data.url | relative_url }}">
     <div class="card h-100">
         {% if data.card_src %}
-            <img height="250" alt="{{ data.card_alt }}" src="{{ data.card_src | relative_url }}" class="card-img-top">
+            <img alt="{{ data.card_alt }}" src="{{ data.card_src | relative_url }}" class="card-img-top">
         {% endif %}
         <div class="card-body border-top">
             <h3><a class="text-decoration-none" href="{{ data.url | relative_url }}">{{ data.title }}</a></h3>
