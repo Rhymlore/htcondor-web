@@ -1,7 +1,7 @@
 {% include get/featured-users.liquid %}
 {% assign features_with_banners = featured-users | where_exp: "feature", "feature.banner_src != nil" %}
 
-{% assign week = "now" |  date: "%V" | plus: 6 %}
+{% assign week = "now" |  date: "%V" | plus: 0 %}
 
 {% assign index = week |  modulo: features_with_banners.size %}
 
