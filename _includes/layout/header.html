@@ -82,7 +82,7 @@
             </div>
             <div id="community-desktop-drawer" class="drawer row justify-content-center" hidden>
 
-                {% include /get/user_story.liquid id="/featured-users/banq" %}
+                {% include /get/user_story.liquid id="/featured-users/Banq" %}
                 {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
                 {% assign dropdowns = community[0].dropdowns %}
                 {% include layout/dropdown-tables.html dropdowns=dropdowns %}
@@ -102,7 +102,7 @@
                 </div>
                 <div class="d-none d-xl-block col-xl-4 my-2">
                     <div class="card h-100">
-                        <img src="{{ user_story.card_image | relative_url }}" class="card-img-top" alt="Card Image">
+                        <img src="{{ user_story.card_src | relative_url }}" class="card-img-top" alt="Card Image">
                         <div class="card-body d-flex flex-column">
                             <h5><a class="text-decoration-none" href="{{ user_story.url | relative_url }}">{{ user_story.title }}</a></h5>
                             <hr/>

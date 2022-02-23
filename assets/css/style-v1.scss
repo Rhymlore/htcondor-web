@@ -147,3 +147,22 @@ footer {
 .z-99 {
   z-index: 99;
 }
+
+// Card image caps
+.card-img-top {
+  height: 20vw;
+  object-fit: cover;
+  max-height: 250px;
+}
+
+#news-container{
+  .newsDate {
+    font-style: italic;
+    color: grey;
+    margin: 0 !important;
+    padding: 0;
+  }
+  img {
+    max-width: 100%;
+  }
+}

@@ -1,17 +1,17 @@
-{% assign user_stories = site.featured-users | sort: "date" | reverse %}
+{% include get/featured-users.liquid %}
 
 {% if include.id != "" %}
-    {% assign user_stories = user_stories | where: "id", include.id %}
-    {% assign user_story = user_stories[0] %}
+    {% assign featured-users = featured-users | where: "id", include.id %}
+    {% assign user_story = featured-users[0] %}
 {% else %}
     {% if include.hero_image %}
-        {% assign user_stories = user_stories | where_exp: "hero-image", "hero-image != nil" %}
+        {% assign featured-users = featured-users | where_exp: "hero-image", "hero-image != nil" %}
     {% endif %}
 
     {% if include.index %}
-        {% assign user_story = user_stories[include.index] %}
+        {% assign user_story = featured-users[include.index] %}
     {% else %}
-        {% assign user_story = user_stories[0] %}
+        {% assign user_story = featured-users[0] %}
     {% endif %}
 {% endif %}
 
