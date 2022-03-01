@@ -5,22 +5,15 @@
 /* ********* Standard/default header and footer ************************* */
 /* Stretch header to edges */
 body {background-color: white; padding: 0; margin: 0; border: 0;}
-#content { margin-left: 1em; margin-right: 1em; }
-
-#footer {font-size: .67em; clear: both;}
 
 hr {clear: both;}
 
 /* ********* Page header ************************************************ */
 
-#header {
-          background-color: rgb(61,92,122);
-		  color: white;
-          padding: 0px;
-          border: 2px #a0b5f4 solid;
-          margin: 0px;
-          display: block;
-        }
+#text {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 #iconHeader {
 	position: relative;
@@ -30,28 +23,6 @@ hr {clear: both;}
 	margin: 0;
 	float: left;
 }
-
-#header a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-  display: inline;
-}
-
-#header a:visited {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-  display: inline;
-}
-
-#header a:hover {
-  color: rgb(255,204,0);
-  background-color: transparent;
-  text-decoration: underline;
-  display: inline;
-}
-
 
 #title {font-weight: bold;
         font-size: 1.10em;
@@ -331,11 +302,14 @@ table.report td, table.report th {
 
 /* Nicely format code blocks */
 pre.code {
-        margin-left: 2em;
         background-color: #DDD;
         border: 1px solid #666;
 		padding-left: 0.5em;
 		overflow: auto;
+}
+
+pre {
+    margin-top: 1em;
 }
 
 span.comment {
