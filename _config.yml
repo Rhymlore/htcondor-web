@@ -26,6 +26,9 @@ collections:
   featured-users:
     permalink: /featured-users/:path:output_ext
     output: true
+  htcondorweekredirects:
+    permalink: /HTCondorWeek:name
+    output: true
 
 defaults:
   -
