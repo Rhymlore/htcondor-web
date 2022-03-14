@@ -1,0 +1,77 @@
+---
+layout: default
+
+title: HTCONDOR-2022-0003
+summary: |
+    When a user authenticates to an HTCondor daemon using the CLAIMTOBE
+    method, the user can then impersonate any entity when issuing additional
+    commands to that daemon.
+cve:
+    link: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-26110
+    title: CVE-2022-26110
+component: All daemons
+vulnerable_versions: All versions
+platform: All platforms
+availability: Not known to be publicly exploited
+fix_available: 8.8.16, 9.0.10, 9.6.0
+status: Verified
+access_required:
+    summary: READ access to any daemon
+    content: |
+        An attacker need only have READ-level authorization to a vulnerable
+        daemon using the CLAIMTOBE authentication method.
+        This means they are able to run tools like condor_q or condor_status.
+        Many pools do not restrict who can issue READ-level commands, and
+        CLAIMTOBE is allowed for READ-level commands in the default
+        configuration.
+        Thus, it is likely that an attacker could execute this command remotely
+        from an untrusted network, unless prevented by a firewall or other
+        network-level access controls.
+host_type_required: Submit or Execute host
+effort_required:
+    summary: Medium
+    content: |
+        An attacker would need to write custom tools and be familiar with
+        HTCondor's internal communication APIs to carry out a successful
+        attack.
+impact_consequences:
+    summary: High
+    content: |
+        This attack allows a user to impersonate any user, administrator, or
+        daemon, and issue any command they are authorized for to the vulnerable
+        daemon.
+fixed_date: 2022-03-15
+credit: Jaime Frey
+workaround: |
+    Upgrading all HTCondor daemons to version 8.8.16, 9.0.10, or 9.6.0 fully
+    addresses this vulnerability.
+    <p>
+    If upgrading isn't possible, you can work around this issue by not allowing the CLAIMTOBE
+    authentication method. This means overriding the default list of
+    authentication methods for READ authorization  (which includes
+    CLAIMTOBE by default).
+    On linux and macOS, add this to your configuration files:
+    <div style="text-indent: 3em;">
+        <pre>SEC_READ_AUTHENTICATION_METHODS = FS,IDTOKENS,KERBEROS,SCITOKENS,SSL</pre>
+    </div>
+    <p>
+    On Windows, add this to your configuration files:
+    <div style="text-indent: 3em;">
+        <pre>SEC_READ_AUTHENTICATION_METHODS = NTSSPI,IDTOKENS,KERBEROS,SCITOKENS,SSL
+    </div>
+
+    <p>
+    If you installed HTCondor with the <code>get_htcondor</code> tool,
+    then <code>SEC_READ_AUTHENTICATION_METHODS</code> has already been
+    set to exclude CLAIMTOBE.
+    <p>
+    You must also check the other <code>SEC_&lt;level&gt;_AUTHENTICATION_METHODS</code>
+    configuration parameters and ensure that CLAIMTOBE isn't mentioned.
+    If the following command doesn't print any output, then you are safe:
+    <div style="text-indent: 3em;">
+        <pre>condor_config_val -summary | grep -i CLAIMTOBE</pre>
+    </div>
+full_details: Embargoed until future notice.
+---
+
+{% include vulnerability.html %}
