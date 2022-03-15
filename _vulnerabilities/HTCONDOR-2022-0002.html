@@ -1,0 +1,80 @@
+---
+layout: default
+
+title: HTCONDOR-2022-0002
+summary: |
+    A piece of secret information is sent over the network in the clear if
+    the administrator has configured weaker encryption protocols or if
+    some of the HTCondor daemons are version 8.8 or earlier.
+    An attacker could use this secret information to control the slot of
+    another user, including running their own code as that user.
+    An attacker could also impersonate a condor_negotiator and
+    condor_startd, tricking the condor_schedd into sending them the jobs
+    of any user.
+cve:
+    link: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45104
+    title: CVE-2021-45104
+component: Schedd daemon
+vulnerable_versions: 8.9.3 and above
+platform: All platforms
+availability: Not known to be publicly exploited
+fix_available: 9.0.10, 9.6.0
+status: Verified
+access_required:
+    summary: Ability to capture network traffic between Schedd and Startd or Collector
+    content: |
+        An attacker must be able to capture network traffic between a
+        condor_schedd and a condor_startd or condor_collector.
+        The HTCondor daemons must be configured to use BLOWFISH or 3DES
+        encryption (the default is AES in 9.0 and above) and match password
+        authentication enabled (the default) to be vulnerable.
+        A condor_schedd communicating to a version 8.8 peer is most likely to
+        be vulnerable.
+host_type_required: N/A
+effort_required:
+    summary: High
+    content: |
+        A good understanding of the HTCondor network protocol and access to
+        network traffic.
+impact_consequences:
+    summary: High
+    content: |
+        Using the secret information, an attacker could manipulate a user's
+        running job, including evicting that job or replacing that job with
+        one that executes the attacker's own code.
+        The attacker could impersonate a condor_startd and cause the
+        condor_schedd to send them a user's jobs for execution, allowing the
+        attacker to read private data and return bogus results.
+fixed_date: 2022-03-15
+credit: Brian Bockelman, Jaime Frey
+workaround: |
+    Upgrading all HTCondor daemons to version 9.0.10 or 9.6.0 fully
+    addresses this vulnerability.
+    <p>
+    If upgrading isn't possible, the easiest workaround is to ensure all machines are running HTCondor
+    9.0.0 or above, and that the <code>SEC_XXX_ENCRYPTION_METHODS</code>
+    configuration parameters are either unset or list "AES" as the first
+    entry.
+    <p>
+    If some machines cannot be upgraded to 9.0.0 or above, then you can
+    configure all machines to use encryption for all communications.
+    To do this, set <code>SEC_DEFAULT_ENCRYPTION=REQUIRED</code> and ensure no other
+    <code>SEC_XXX_ENCRYPTION</code> parameters set a different value.
+    In 9.0 and above, the configuration templates <code>use SECURITY: strong</code>
+    and <code>use SECURITY: recommended_v9_0</code> also enable encryption.
+    <p>
+    If some of your execute or central manager machines cannot be upgraded
+    to 9.0.0 or above and their configuration cannot be altered to require
+    encryption, you can disable match password authentication on your
+    submit machines.
+    To do this, set <code>SEC_ENABLE_MATCH_PASSWORD_AUTHENTICATION=False</code> in
+    the configuration files.
+    Be advised that this may require additional configuration for
+    authentication and authorization between your submit and execute
+    machines.
+    It can also put significant extra load on your submit machines in a
+    large pool (thousands of nodes).
+full_details: Embargoed until future notice.
+---
+
+{% include vulnerability.html %}
