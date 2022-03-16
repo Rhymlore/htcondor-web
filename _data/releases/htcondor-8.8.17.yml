@@ -1,0 +1,6 @@
+content: |
+  - Fixed a memory leak in the Job Router
+date: 2022-03-16
+release_number: 8.8.17
+release_type: HTCondor
+sort_key: 08.08.017
