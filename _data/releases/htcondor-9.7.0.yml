@@ -1,0 +1,11 @@
+content: |
+  - Support environment variables, other application elements in ARC REST jobs
+  - Container universe supports Singularity jobs with hard-coded command
+  - DAGMan submits jobs directly (does not shell out to condor_submit)
+  - Meaningful error message and sub-code for file transfer failures
+  - Add file transfer statistics for file transfer plugins
+  - Add named list policy knobs for SYSTEM_PERIODIC_ policies
+date: 2022-03-15
+release_number: 9.7.0
+release_type: HTCondor
+sort_key: 09.07.00

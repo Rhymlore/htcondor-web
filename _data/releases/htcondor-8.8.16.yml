@@ -1,0 +1,10 @@
+content: |
+  This release contains an important fix for a security issue.
+  Affected users should update as soon as possible.
+
+  More details on the security issue are in the Vulnerability Report:
+  - [https://htcondor.org/security/vulnerabilities/HTCONDOR-2022-0003](https://htcondor.org/security/vulnerabilities/HTCONDOR-2022-0003)
+date: 2022-03-15
+release_number: 8.8.16
+release_type: HTCondor
+sort_key: 08.08.016
