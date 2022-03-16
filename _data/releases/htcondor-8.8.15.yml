@@ -6,5 +6,6 @@ content: '
 
   '
 date: '2021-07-29'
-release_type: htcondor
-version_number: 8.8.15
+release_number: 8.8.15
+release_type: HTCondor
+sort_key: 08.08.15

@@ -12,5 +12,6 @@ content: '
 
   '
 date: '2018-10-31'
-release_type: htcondor
-version_number: 8.7.10
+release_number: 8.7.10
+release_type: HTCondor
+sort_key: 08.07.10

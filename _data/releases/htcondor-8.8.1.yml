@@ -18,5 +18,6 @@ content: '
 
   '
 date: '2019-02-19'
-release_type: htcondor
-version_number: 8.8.1
+release_number: 8.8.1
+release_type: HTCondor
+sort_key: 08.08.01

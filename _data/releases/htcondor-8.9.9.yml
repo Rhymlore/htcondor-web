@@ -16,5 +16,6 @@ content: '
 
   '
 date: '2020-10-26'
-release_type: htcondor
-version_number: 8.9.9
+release_number: 8.9.9
+release_type: HTCondor
+sort_key: 08.09.09
