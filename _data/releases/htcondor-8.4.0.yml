@@ -20,5 +20,6 @@ content: '
 
   '
 date: '2015-09-14'
-release_type: htcondor
-version_number: 8.4.0
+release_number: 8.4.0
+release_type: HTCondor
+sort_key: 08.04.00

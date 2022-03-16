@@ -20,5 +20,6 @@ content: '
 
   '
 date: '2020-05-07'
-release_type: htcondor
-version_number: 8.8.9
+release_number: 8.8.9
+release_type: HTCondor
+sort_key: 08.08.09

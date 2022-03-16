@@ -12,5 +12,6 @@ content: '
 
   '
 date: '2016-03-24'
-release_type: htcondor
-version_number: 8.5.3
+release_number: 8.5.3
+release_type: HTCondor
+sort_key: 08.05.03

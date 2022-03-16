@@ -12,5 +12,6 @@ content: '
 
   '
 date: '2015-12-21'
-release_type: htcondor
-version_number: 8.5.1
+release_number: 8.5.1
+release_type: HTCondor
+sort_key: 08.05.01

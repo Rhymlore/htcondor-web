@@ -7,5 +7,6 @@ content: "\n- Fixed a memory leak triggered by the python htcondor.Schedd().quer
   \ could hang when using shared port on Windows \n- Fixed a bug with the -xml option\
   \ on condor_q and condor_status\n"
 date: '2016-07-05'
-release_type: htcondor
-version_number: 8.4.8
+release_number: 8.4.8
+release_type: HTCondor
+sort_key: 08.04.08

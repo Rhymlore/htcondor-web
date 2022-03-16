@@ -8,5 +8,6 @@ content: '
 
   '
 date: '2015-08-13'
-release_type: htcondor
-version_number: 8.2.9
+release_number: 8.2.9
+release_type: HTCondor
+sort_key: 08.02.09
