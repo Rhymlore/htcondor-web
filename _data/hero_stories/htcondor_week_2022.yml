@@ -9,8 +9,6 @@ additional_image:
   src: assets/images/HTCondor_Week.svg
   alt: HTCondor Week
 buttons:
-  - href: https://agenda.hep.wisc.edu/event/1733/page/35-registration
-    text: Register Now
   - href: /news/htcondor-week-2022/
     text: Learn More
 
