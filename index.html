@@ -42,8 +42,8 @@ js_extension:
         <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-2 order-2">
             {% capture content %}
                 <div class="ms-n2">
-                    {% assign sorted_news = site.news | reverse %}
-                    {% for news in sorted_news limit: 4 %}
+                    {% include get/news_articles.liquid %}
+                    {% for news in news_articles limit: 4 %}
                         <div class="">
                             {% include /cards/title-date.liquid
                                 title=news.title

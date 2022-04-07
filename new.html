@@ -5,7 +5,7 @@ title: What's new with HTCSS?
 
 
 
-{% assign news_articles = site.news | sort | reverse %}
+{% include get/news_articles.liquid %}
 
 <div class="row">
     {% for news in news_articles limit:16 %}
