@@ -3,7 +3,7 @@ layout: subpage
 title: HTCSS News Archive
 ---
 
-{% assign news_articles = site.news | sort | reverse %}
+{% include get/news_articles.liquid %}
 
 <div class="row">
     {% for news in news_articles %}
