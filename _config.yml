@@ -31,20 +31,17 @@ collections:
     output: true
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
     values:
       layout: "default"
       image: https://htcondor.org/assets/images/Twitter_Image.jpg
-  -
-    scope:
+  - scope:
       path: ""
       type: "vulnerabilities"
     values:
       layout: vulnerabilities
-  -
-    scope:
+  - scope:
       path: "/news"
     values:
       layout: "news"
@@ -52,6 +49,13 @@ defaults:
       type: "featured-users"
     values:
       layout: "featured-users"
+  - scope:
+      type: "wiki-pages"
+    values:
+      css_extension:
+        - href: /assets/css/cvstrac.10.css
+        - href: /assets/css/cvstrac.tj.css
+        - href: /assets/css/diff2html.css
 
 sass:
   style: compressed
