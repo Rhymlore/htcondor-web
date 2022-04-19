@@ -14,6 +14,6 @@ layout: news
 link: null
 og_title: Condor 6.7.14 released!
 release_number: 6.7.14
-release_type: HTCondor
+release_type: htcondor
 sort_key: 06.07.14
 title: Condor 6.7.14 released!

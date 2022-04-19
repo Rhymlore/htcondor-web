@@ -8,5 +8,5 @@ content: "\n- Fixed a memory leak triggered by the python htcondor.Schedd().quer
   \ on condor_q and condor_status\n"
 date: '2016-07-05'
 release_number: 8.4.8
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.04.08

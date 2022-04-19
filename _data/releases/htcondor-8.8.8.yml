@@ -13,5 +13,5 @@ content: '
   '
 date: '2020-04-06'
 release_number: 8.8.8
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.08.08

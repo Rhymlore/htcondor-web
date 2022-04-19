@@ -11,6 +11,6 @@ layout: news
 link: null
 og_title: 'HTCondor Security Release: 8.2.1'
 release_number: 8.2.1
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.02.01
 title: 'HTCondor Security Release: 8.2.1'

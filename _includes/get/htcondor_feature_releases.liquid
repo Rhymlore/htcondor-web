@@ -1,5 +1,5 @@
 {% include /get/releases.liquid %}
-{% assign releases = releases | where: "release_type", "HTCondor"%}
+{% assign releases = releases | where: "release_type", "htcondor"%}
 
 {% assign htcondor_feature_releases = "" | split : "" %}
 

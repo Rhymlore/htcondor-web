@@ -8,6 +8,6 @@ layout: news
 link: null
 og_title: 'Condor Security Releases: 7.8.2 and 7.6.8'
 release_number: 7.8.2
-release_type: HTCondor
+release_type: htcondor
 sort_key: 07.08.02
 title: 'Condor Security Releases: 7.8.2'

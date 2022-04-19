@@ -7,5 +7,5 @@ content: |
   - Since CentOS 8 has reached end of life, we build and test on Rocky Linux 8
 date: 2022-01-13
 release_number: 9.5.0
-release_type: HTCondor
+release_type: htcondor
 sort_key: 09.05.00

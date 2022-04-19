@@ -4,5 +4,5 @@ content: |
   - The OAUTH credmon is now packaged for Enterprise Linux 8
 date: 2022-01-13
 release_number: 9.0.9
-release_type: HTCondor
+release_type: htcondor
 sort_key: 09.00.09

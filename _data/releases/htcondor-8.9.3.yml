@@ -23,5 +23,5 @@ content: '
   '
 date: '2019-09-17'
 release_number: 8.9.3
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.09.03

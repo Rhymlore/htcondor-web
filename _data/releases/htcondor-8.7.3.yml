@@ -11,5 +11,5 @@ content: '
   '
 date: '2017-09-12'
 release_number: 8.7.3
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.07.03

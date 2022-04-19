@@ -6,5 +6,5 @@ content: '
   '
 date: '2015-03-05'
 release_number: 8.3.4
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.03.04

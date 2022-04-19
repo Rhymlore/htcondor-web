@@ -10,5 +10,5 @@ content: '
   '
 date: '2014-12-23'
 release_number: 8.3.2
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.03.02

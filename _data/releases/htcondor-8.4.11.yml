@@ -11,5 +11,5 @@ content: '
   '
 date: '2017-01-23'
 release_number: 8.4.11
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.04.11

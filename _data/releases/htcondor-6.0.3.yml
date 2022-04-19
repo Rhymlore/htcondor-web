@@ -15,6 +15,6 @@ layout: news
 link: downloads/
 og_title: Condor Version 6.0.3 Released
 release_number: 6.0.3
-release_type: HTCondor
+release_type: htcondor
 sort_key: 06.00.03
 title: Condor Version 6.0.3 Released

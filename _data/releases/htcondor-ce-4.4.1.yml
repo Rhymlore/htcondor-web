@@ -11,6 +11,6 @@ layout: news
 link: null
 og_title: HTCondor-CE 4.4.1 released!
 release_number: 4.4.1
-release_type: HTCondor-CE
+release_type: htcondor-ce
 sort_key: 04.04.01
 title: HTCondor-CE 4.4.1 released!

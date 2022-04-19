@@ -11,5 +11,5 @@ content: '
   '
 date: '2015-10-12'
 release_number: 8.5.0
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.05.00

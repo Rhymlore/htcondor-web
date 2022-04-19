@@ -8,6 +8,6 @@ layout: news
 link: null
 og_title: Condor 7.7.6 released
 release_number: 7.7.6
-release_type: HTCondor
+release_type: htcondor
 sort_key: 07.07.06
 title: Condor 7.7.6 released
