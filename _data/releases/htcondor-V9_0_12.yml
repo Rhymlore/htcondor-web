@@ -1,0 +1,7 @@
+content: "- Fix bug in parallel universe that could cause the schedd to crash\r\n\
+  - Fix rare crash where a daemon tries to use a discarded security session"
+date: '2022-04-19'
+release_number: 9.0.12
+release_type: htcondor
+sort_key: 09.00.12
+title: HTCondor 9.0.12
