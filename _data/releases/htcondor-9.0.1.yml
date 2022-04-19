@@ -20,6 +20,6 @@ layout: news
 link: null
 og_title: HTCondor 9.0.1 released!
 release_number: 9.0.1
-release_type: HTCondor
+release_type: htcondor
 sort_key: 09.00.01
 title: HTCondor 9.0.1 released!

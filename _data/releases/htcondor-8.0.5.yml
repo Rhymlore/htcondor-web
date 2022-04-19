@@ -11,6 +11,6 @@ layout: news
 link: null
 og_title: HTCondor 8.0.5 released!
 release_number: 8.0.5
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.00.05
 title: HTCondor 8.0.5 released!

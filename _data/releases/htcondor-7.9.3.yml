@@ -11,6 +11,6 @@ layout: news
 link: null
 og_title: HTCondor 7.9.3 released!
 release_number: 7.9.3
-release_type: HTCondor
+release_type: htcondor
 sort_key: 07.09.03
 title: HTCondor 7.9.3 released!

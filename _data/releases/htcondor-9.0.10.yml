@@ -8,5 +8,5 @@ content: |
   - [https://htcondor.org/security/vulnerabilities/HTCONDOR-2022-0003](https://htcondor.org/security/vulnerabilities/HTCONDOR-2022-0003)
 date: 2022-03-15
 release_number: 9.0.10
-release_type: HTCondor
+release_type: htcondor
 sort_key: 09.00.10

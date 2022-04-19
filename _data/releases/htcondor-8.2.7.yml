@@ -13,5 +13,5 @@ content: '
   '
 date: '2015-02-10'
 release_number: 8.2.7
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.02.07

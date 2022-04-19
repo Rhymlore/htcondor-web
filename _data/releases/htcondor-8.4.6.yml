@@ -15,5 +15,5 @@ content: '
   '
 date: '2016-04-21'
 release_number: 8.4.6
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.04.06

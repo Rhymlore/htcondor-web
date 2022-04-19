@@ -12,6 +12,6 @@ layout: news
 link: null
 og_title: 'Condor Security Release: 7.6.9'
 release_number: 7.6.9
-release_type: HTCondor
+release_type: htcondor
 sort_key: 07.06.09
 title: 'Condor Security Release: 7.6.9'

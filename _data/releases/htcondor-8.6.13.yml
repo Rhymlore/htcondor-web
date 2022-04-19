@@ -15,5 +15,5 @@ content: '
   '
 date: '2018-10-31'
 release_number: 8.6.13
-release_type: HTCondor
+release_type: htcondor
 sort_key: 08.06.13

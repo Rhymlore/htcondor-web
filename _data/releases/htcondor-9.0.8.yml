@@ -3,7 +3,7 @@ og_title: HTCondor 9.0.8 released!
 link:
 date: 2021-12-02
 layout: news
-release_type: HTCondor
+release_type: htcondor
 release_number: 9.0.8
 sort_key: 09.00.08
 content: |

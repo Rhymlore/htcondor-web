@@ -11,6 +11,6 @@ layout: news
 link: null
 og_title: Condor 6.8.2 released!
 release_number: 6.8.2
-release_type: HTCondor
+release_type: htcondor
 sort_key: 06.08.02
 title: Condor 6.8.2 released!

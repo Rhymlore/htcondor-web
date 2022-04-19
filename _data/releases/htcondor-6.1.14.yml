@@ -10,6 +10,6 @@ layout: news
 link: downloads/
 og_title: Condor Version 6.1.14 released!
 release_number: 6.1.14
-release_type: HTCondor
+release_type: htcondor
 sort_key: 06.01.14
 title: Condor Version 6.1.14 released!
