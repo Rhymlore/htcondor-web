@@ -1,0 +1,6 @@
+content: '- Fix recent bug where jobs may go on hold without a hold reason or code'
+date: '2022-04-21'
+release_number: 9.7.1
+release_type: htcondor
+sort_key: 09.07.01
+title: HTCondor 9.7.1
