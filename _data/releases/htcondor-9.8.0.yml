@@ -1,0 +1,8 @@
+content: "- Support for Heterogeneous GPUs, some configuration required\r\n- Allow\
+  \ HTCondor to utilize grid sites requiring multi-factor authentication\r\n- Technology\
+  \ preview: bring your own resources from HPC clusters\r\n"
+date: '2022-04-21'
+release_number: 9.8.0
+release_type: htcondor
+sort_key: 09.08.00
+title: HTCondor 9.8.0
