@@ -1,0 +1,6 @@
+content: '- Fix HTCondor startup failure with certain complex network configurations'
+date: '2022-04-26'
+release_number: 9.8.1
+release_type: htcondor
+sort_key: 09.08.01
+title: HTCondor 9.8.1
