@@ -82,15 +82,15 @@
             </div>
             <div id="community-desktop-drawer" class="drawer row justify-content-center" hidden>
 
-                {% include /get/user_story.liquid id="/featured-users/Banq" %}
+                {% include /get/user_story.liquid id="/featured-users/Natzke" %}
                 {% assign community = site.data.header-links.nav_items | where: "id", "community" %}
                 {% assign dropdowns = community[0].dropdowns %}
                 {% include layout/dropdown-tables.html dropdowns=dropdowns %}
 
                 <div class="d-none d-md-block col-lg-4 my-2">
                     <a href="{{ '/featured-users.html' | relative_url }}"><b>Featured Users</b></a>
-                    {% assign sorted_user_stories = site.featured-users | sort: "date" | reverse %}
-                    {% for user_story in sorted_user_stories limit: 4 %}
+                    {% include get/featured-users.liquid %}
+                    {% for user_story in featured-users limit: 4 %}
                     <div class="my-2">
                         {% include /cards/title-date.liquid
                         title=user_story.title

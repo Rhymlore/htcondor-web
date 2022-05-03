@@ -5,4 +5,11 @@
         {% assign news_articles = news_articles | push: story %}
     {% endif %}
 {% endfor %}
+
+{% include get/featured-users.liquid %}
+
+{% for article in featured-users %}
+    {% assign news_articles = news_articles | push: article %}
+{% endfor %}
+
 {% assign news_articles = news_articles | sort: "date" | reverse %}
