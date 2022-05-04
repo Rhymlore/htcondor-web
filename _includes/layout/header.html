@@ -43,8 +43,8 @@
         <div class="container-xxl">
             <div id="software-desktop-drawer" class="drawer row justify-content-center" hidden>
 
-                {% include /get/software_news.liquid %}
-                {% assign news = software_news %}
+                {% include /get/news_articles.liquid %}
+                {% assign news = news_articles[0] %}
 
                 {% assign software = site.data.header-links.nav_items | where: "id", "software" %}
                 {% assign dropdowns = software[0].dropdowns %}
