@@ -19,7 +19,7 @@ OSG Connect access point when we begin.
 - An HTCondor job submit file (example.submit).
 - An XRAC allocation for Expanse.
 - An XSEDE account and password.
-- A name for your Brides 2 annex (example).  By convention,
+- A name for your Expanse annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
 #### Assumptions
@@ -72,7 +72,7 @@ Notes on the output of this command:
 
 To run your job on Expanse, you will need to create an "annex" there;
 an annex is a named set of leased resources.  The following command will
-submit a request to lease an annex named `example` to the queue named `normal`
+submit a request to lease an annex named `example` to the queue named `compute`
 on Expanse.  Project `PROJECT_ID` will be charged for resources used (by
 default, two machines).  The **text in bold** is emphasized to distinguish
 it from XSEDE's log-in prompt.
@@ -88,7 +88,7 @@ grant you access to Expanse.
 
 <pre><code><b>Thank you.</b>
 
-Requesting annex named 'example' from queue 'RM' on Expanse...
+Requesting annex named 'example' from queue 'compute' on Expanse...
 </code></pre>
 
 The tool will display an indented log of the request progress, because

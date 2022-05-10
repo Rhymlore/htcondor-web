@@ -1,10 +1,10 @@
 ---
 layout: Markdown
-title: Run a Job on Stampede 2 Using an XRAC Allocation
+title: Run a Job on Anvil Using an XRAC Allocation
 ---
 
 This recipe assumes that you have decided to use your XRAC allocation
-for Stampede 2 to run one of your HTCondor jobs.  It takes you step by
+for Anvil to run one of your HTCondor jobs.  It takes you step by
 step through the process of Bringing Your Own Resource (BYOR) in the
 form of an XRAC allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
@@ -17,27 +17,27 @@ OSG Connect access point when we begin.
 
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
-- An XRAC allocation for Stampede 2.
+- An XRAC allocation for Anvil.
 - An XSEDE account and password.
-- A name for your Stampede 2 annex (example).  By convention,
+- A name for your Anvil annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
 #### Assumptions
 
-* You want to run the job described above on Stampede 2.
+* You want to run the job described above on Anvil.
 * The job described above does not require more than 96 GB of RAM, more than
-  68 cores, a GPU, or more than 48 hours to complete when run on Stampede 2.
+  68 cores, a GPU, or more than 48 hours to complete when run on Anvil.
 
 #### Preparation
 
 First, you will need to determine the project ID of your allocation on
-Stampede 2.  If you already know your project ID, you can skip this
+Anvil.  If you already know your project ID, you can skip this
 section.  If not, log in to login.xsede.org in a terminal and run the
 following command.  (Don't copy the `$`; in this and other examples
 further down the page, the `$` just signifies something you type in,
 rather than something that the computer prints out.)
 
-	$ gsissh stampede2 /usr/local/etc/taccinfo
+	$ gsissh anvil mybalance
 
 Choose one of the rows in the top half of the table (there may be only
 one row) and remember the entry in the NAME column.  For the rest of
@@ -54,7 +54,7 @@ Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 ##### 2. Submit the Job
 
 Submit the job on the access point, indicating that you want it to run
-on your own resource (the Stampede 2 allocation, in this case) with the
+on your own resource (the Anvil allocation, in this case) with the
 `--annex-name` option:
 
     $ htcondor job submit example.submit \
@@ -65,30 +65,30 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Stampede 2; it is simply
-  a label for the Stampede 2 resources we will be provisioning
+- Note that the annex name does say anything about Anvil; it is simply
+  a label for the Anvil resources we will be provisioning
   in the next step.
 
 ##### 3. Lease the Resources
 
-To run your job on Stampede 2, you will need to create an "annex" there;
+To run your job on Anvil, you will need to create an "annex" there;
 an annex is a named set of leased resources.  The following command will
-submit a request to lease an annex named `example` to the queue named `normal`
-on Stampede 2.  Project `PROJECT_ID` will be charged for resources used (by
+submit a request to lease an annex named `example` to the queue named `standard`
+on Anvil.  Project `PROJECT_ID` will be charged for resources used (by
 default, two nodes).  The **text in bold** is emphasized to distinguish
 it from XSEDE's log-in prompt.
 
-<pre><code>$ htcondor annex create example normal@stampede2 --project PROJECT_ID
-<b>This command will access Stampede 2 via XSEDE.  To proceed, enter your
+<pre><code>$ htcondor annex create example standard@anvil --project PROJECT_ID
+<b>This command will access Anvil via XSEDE.  To proceed, enter your
 XSEDE user name and password at the prompt below; to cancel, hit CTRL-C.</b>
 </code></pre>
 
 You will need to log into XSEDE at this prompt.  Logging into XSEDE will
-grant you access to Stampede 2.
+grant you access to Anvil.
 
 <pre><code><b>Thank you.</b>
 
-Requesting annex named 'example' from queue 'normal' on Stampede 2...
+Requesting annex named 'example' from queue 'standard' on Anvil...
 </code></pre>
 
 The tool will display an indented log of the request progress, because
@@ -96,7 +96,7 @@ it may take a while.  Once the request is done, it will display:
 
 	... requested.
 
-It may take some time for Stampede 2 to establish the requested annex.
+It may take some time for Anvil to establish the requested annex.
 
 ##### 4. Confirm that the Resources are Available
 
@@ -111,7 +111,7 @@ Check on the status of the annex to make sure it has started up correctly.
 	You made 1 resource request(s) for this annex, of which 1 are pending, 0
 	are established, and 0 have retired.
 
-Give Stampede 2 a few more minutes to grant your request and then check again.
+Give Anvil a few more minutes to grant your request and then check again.
 
 	$ htcondor annex status example
 	Annex 'example' is established.
@@ -153,8 +153,7 @@ sure that it's the one we just submitted.  Instead, let's ask the job
 itself what resources it is running on.
 
 	$ htcondor job resources 123
-	Job is using annex 'example', resource slot1_1@c469-033.stampede2.
-	tacc.utexas.edu.
+	Job is using annex 'example', resource slot1_1@a000.anvil.rcac.purdue.edu.
 
 ##### 6. Terminate the Resource Lease
 
