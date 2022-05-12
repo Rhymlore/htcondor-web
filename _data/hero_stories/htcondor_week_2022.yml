@@ -1,14 +1,13 @@
-title: HTCondor Week 2022 Registration Open
+title: HTCondor Week 2022 May 23-26
 excerpt: |
-  Registration for HTCondor Week 2022 is open now. The registration deadline for in-person attendee is May 10, 2022, and the cost is $90 per day. For virtual-only attendance, registration is a flat $25 fee for the whole week.
+  The schedule for HTCondor Week 2022 has been released, and registration is still open for online only registrants!
 
-
-  We'd love to have you give a talk at HTCondor Week. Talks are 20-30 minutes long and are a great way to share your ideas and get feedback from the community. If you have a compelling use of HTCondor you'd like to share, consider submitting your abstract!
+  Please join us at the annual event that gives collaborators and users the chance to exchange ideas and experiences, to learn about the latest research, to experience live demos, and to influence our short and long term research and development directions
 banner_src: /assets/images/HTCondor_Week_Banner.png
 additional_image:
   src: assets/images/HTCondor_Week.svg
   alt: HTCondor Week
 buttons:
-  - href: /news/htcondor-week-2022/
-    text: Learn More
+  - href: https://agenda.hep.wisc.edu/event/1733/overview
+    text: View Event Page
 
