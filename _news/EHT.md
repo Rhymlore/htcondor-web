@@ -15,4 +15,4 @@ of the Milky Way, only the second image of its kind in history. EHT, a collabora
 across the globe, harnesses the power of the OSG Consortium's Open Science Pool (OSPool) to process their vast amounts of both experimental and simulated 
 data. As a bedrock technology behind the OSPool, the HTCondor Software Suite helped unlock this mystery in our very own galaxy.
 
-Read the [complete article](https://osg-htc.org/spotlights/EHT.html) to learn more about the role of computation in EHT's groundbreaking discovery. 
+Read the [complete article](https://morgridge.org/story/high-throughput-computing-as-an-enabler-of-black-hole-science/) to learn more about the role of computation in EHT's groundbreaking discovery. 
