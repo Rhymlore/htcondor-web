@@ -1,5 +1,3 @@
-{% comment %}
-
 {% include get/featured-users.liquid %}
 {% assign features_with_banners = featured-users | where_exp: "feature", "feature.banner_src != nil" %}
 
@@ -9,7 +7,3 @@
 
 
 {% assign hero_story = features_with_banners[index] %}
-
-{% endcomment %}
-
-{% assign hero_story = site.data.hero_stories.htcondor_week_2022 %}
