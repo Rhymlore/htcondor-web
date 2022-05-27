@@ -6,7 +6,6 @@ on:
 
 jobs:
   Delete-Preview-Branch:
-    if: ${{ github.repository_owner == 'path-cc' }}
     runs-on: ubuntu-18.04
     env:
       preview_url: https://github.com/htcondor/web-preview.git
