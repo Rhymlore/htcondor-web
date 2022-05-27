@@ -1,0 +1,10 @@
+content: "- Schedd and startd cron jobs can now log output upon non-zero exit\r\n\
+  - condor_config_val now produces correct syntax for multi-line values\r\n- The condor_run\
+  \ tool now reports submit errors and warnings to the terminal\r\n- Fix issue where\
+  \ Kerberos authentication would fail within DAGMan\r\n- Fix HTCondor startup failure\
+  \ with certain complex network configurations"
+date: '2022-05-27'
+release_number: 9.0.13
+release_type: htcondor
+sort_key: 09.00.13
+title: HTCondor 9.0.13
