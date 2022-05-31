@@ -1,0 +1,10 @@
+content: "- A new authentication method for remote HTCondor administration\r\n- Several\
+  \ changes to improve the security of connections\r\n- Fix issue where DAGMan direct\
+  \ submission failed when using Kerberos\r\n- The submission method is now recorded\
+  \ in the job ClassAd\r\n- Singularity jobs can now pull from Docker style repositories\r\
+  \n- The OWNER authorization level has been folded into the ADMINISTRATOR level"
+date: '2022-05-31'
+release_number: 9.9.0
+release_type: htcondor
+sort_key: 09.09.00
+title: HTCondor 9.9.0
