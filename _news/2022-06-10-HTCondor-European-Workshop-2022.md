@@ -30,3 +30,14 @@ Registration and abstract submission will be opened in due course; a dedicated m
 as well as a link to the workshop posted on the website.
 
 If you have any questions, please contact <hepix-2022condorworkshop-support@hepix.org>
+
+We are looking forward to a rich, productive workshop, and we hope to meet many of you 
+at our first in-person workshop for three years!
+
+Best regards,
+
+Chris Brew (STFC - RAL) and Christoph Beyer (DESY)  
+Co-Chairs of workshop organising committee
+
+Todd Tannenbaum  
+HTCondor Technical Lead, Center for High Throughput Computing, Univ of Wisconsin-Madison
