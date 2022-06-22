@@ -8,7 +8,7 @@ convenient than taking your jobs to those resources.
 
 #### Bringing an XSEDE (XRAC) Allocation to the OS Pool
 
-If you have an XSEDE (XRAC) Allocation for time on the Stampede 2,
+If you have an XSEDE (XRAC) Allocation for time on the Anvil, Stampede 2,
 Bridge 2, or Expanse systems, you can use the `htcondor` command line
 tool on `login04.osgconnect.net` or `login05.osgconnect.net` to run
 jobs there.  You'll need an account from the
