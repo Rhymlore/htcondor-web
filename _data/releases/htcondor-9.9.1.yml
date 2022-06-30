@@ -1,0 +1,6 @@
+content: '- Fix bug where jobs would not match when using a child collector'
+date: '2022-06-30'
+release_number: 9.9.1
+release_type: htcondor
+sort_key: 09.09.01
+title: HTCondor 9.9.1
