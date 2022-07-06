@@ -29,6 +29,9 @@ collections:
   htcondorweekredirects:
     permalink: /HTCondorWeek:name
     output: true
+  event_summaries:
+    permalink: /event_summary/:path:output_ext
+    output: true
 
 defaults:
   - scope:
@@ -36,6 +39,11 @@ defaults:
     values:
       layout: "default"
       image: https://htcondor.org/assets/images/Twitter_Image.jpg
+  - scope:
+      path: ""
+      type: "event_summaries"
+    values:
+      layout: event_summary
   - scope:
       path: ""
       type: "vulnerabilities"

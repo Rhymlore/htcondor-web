@@ -1,0 +1,31 @@
+---
+    layout: Markdown
+---
+
+{% assign contributions_by_date = page.results[0].contributions | where_exp: "c", "c.startDate != nil" | group_by_exp: "c", "c.startDate.date" | sort: "name" %}
+{% for contribution_group in contributions_by_date %}
+    <div class="mb-4 card">
+        <div class="card-body">
+            <h2 class="">{{ contribution_group.name | date: "%A" }}</h2>
+            <hr>
+            {% assign contributions = contribution_group.items %}
+            {% for contribution in contributions %}
+                <span class="d-block fs-4 mb-2">{{ contribution.title }}</span>
+                {% if contribution.description %}
+                    <p>{{contribution.description | newline_to_br }}</p>
+                {% endif %}
+                <b>Speaker(s):</b>
+                {% for speaker in contribution.speakers %}
+                    {{ speaker.first_name }} {{ speaker.last_name }} {% if speaker.affiliation != '' %}( {{speaker.affiliation}} ){% endif %}
+                {% endfor %}
+                <div class="row mt-3 mb-4">
+                    {% for attachment in contribution.folders[0].attachments %}
+                        <div class="col-auto mb-2 pe-0">
+                            <a class="btn btn-outline-secondary" href="{{ attachment.download_url }}">{{ attachment.title }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
