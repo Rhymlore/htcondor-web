@@ -19,7 +19,7 @@ Version 2.0, January 2004
 <br/><a HREF="http://www.apache.org/licenses/">http://www.apache.org/licenses/</a>
 
 <p>
-Copyright &#169; 1990-2012 HTCondor Team, Computer Sciences Department, University of Wisconsin-Madison, WI.
+Copyright &#169; 1990-2022 HTCondor Team, Center for High Throughput Computing, Computer Sciences Department, University of Wisconsin-Madison, WI.
 </p>
 
 <p>
@@ -276,56 +276,11 @@ END OF TERMS AND CONDITIONS
 <h2 ID="notices">Notices</h2>
 
 <ul>
-<li>This product includes software developed by and/or derived from the
-Globus Toolkit, used under the terms of the Apache License Version 2.0.
-Copyright (c) 1999 University of Chicago and
-The University of Southern California. 
-Globus Toolkit license information can be found at  
-http://toolkit.globus.org/toolkit/legal/
-</li>
-
-<li>This product includes software developed by the OpenSSL Project
-for use in the OpenSSL Toolkit.
-Complete conditions and disclaimers for OpenSSL can be found at
-http://www.openssl.org/source/license.html
-</li>
-
-<li>Some distributions of HTCondor include a compiled, unmodified version
-of the GNU C library. The complete source code to GNU glibc can be
-found at http://www.gnu.org/software/libc/.
-</li>
-
-<li>
-Some distributions of HTCondor include software developed by the 
-Info-ZIP Project (http://www.info-zip.org/).  Complete conditions 
-and disclaimers for Info-ZIP can be found at 
-http://www.info-zip.org/doc/LICENSE
-</li>
-
 <li>
 Some distributions of HTCondor include MAKEMSI software developed by 
 Dennis Bareis (http://dennisbareis.com/makemsi.htm).  Complete 
 conditions and disclaimers for MAKEMSI can be found at 
 http://makemsi-manual.dennisbareis.com/disclaimer.htm
-</li>
-
-<li>
-Part of the software embedded in older versions of this product 
-(specifically HTCondor v8.7.8 and earlier) may contain gSoap software.
-Starting with HTCondor v8.7.9 all gSoap software was removed.
-Portions created by gSOAP are Copyright (C) 2001-2004 Robert A. van
-Engelen, Genivia inc. All Rights Reserved.
-THE SOFTWARE IN THIS PRODUCT WAS IN PART PROVIDED BY GENIVIA INC AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </li>
 
 </ul>
