@@ -16,7 +16,7 @@ Additional license <a href="#notices">notices</a> for HTCondor can be found at t
 
 <h2 id="apache">Apache License</h2>
 Version 2.0, January 2004
-<br/><a HREF="http://www.apache.org/licenses/">http://www.apache.org/licenses/</a>
+<br/><a HREF="https://www.apache.org/licenses/">https://www.apache.org/licenses/</a>
 
 <p>
 Copyright &#169; 1990-2022 HTCondor Team, Center for High Throughput Computing, Computer Sciences Department, University of Wisconsin-Madison, WI.
@@ -29,7 +29,7 @@ You may obtain a copy of the License at
 </p>
 
 <p>
-<a HREF="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+<a HREF="https://www.apache.org/licenses/LICENSE-2.0">https://www.apache.org/licenses/LICENSE-2.0</a>
 </p>
 
 <p>
@@ -278,9 +278,9 @@ END OF TERMS AND CONDITIONS
 <ul>
 <li>
 Some distributions of HTCondor include MAKEMSI software developed by 
-Dennis Bareis (http://dennisbareis.com/makemsi.htm).  Complete 
+Dennis Bareis (<a HREF="https://dennisbareis.com/makemsi.htm">https://dennisbareis.com/makemsi.htm</a>).  Complete 
 conditions and disclaimers for MAKEMSI can be found at 
-http://makemsi-manual.dennisbareis.com/disclaimer.htm
+<a HREF="https://makemsi-manual.dennisbareis.com/disclaimer.htm">https://makemsi-manual.dennisbareis.com/disclaimer.htm</a>
 </li>
 
 </ul>
