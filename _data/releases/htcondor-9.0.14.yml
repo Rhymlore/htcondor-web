@@ -1,0 +1,11 @@
+content: "- SciToken mapping failures are now recorded in the daemon logs\r\n- Fix\
+  \ bug that stopped file transfers when output and error are the same\r\n- Ensure\
+  \ that the Python bindings version matches the installed HTCondor\r\n- $(OPSYSANDVER)\
+  \ now expand properly in job transforms\r\n- Fix bug where context managed Python\
+  \ htcondor.SecMan sessions would crash\r\n- Fix bug where remote CPU times would\
+  \ rarely be set to zero"
+date: '2022-07-13'
+release_number: 9.0.14
+release_type: htcondor
+sort_key: 09.00.14
+title: HTCondor 9.0.14
