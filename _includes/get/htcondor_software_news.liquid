@@ -1,0 +1,3 @@
+{% include get/news_articles.liquid %}
+
+{% assign htcondor_software_news = news_articles | where_exp : "article", "article.software == 'htcondor'" %}
