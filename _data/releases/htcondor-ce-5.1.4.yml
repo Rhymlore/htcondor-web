@@ -1,0 +1,21 @@
+content: '
+
+  Highlights of this release are:
+
+  - Fix whole node job glidein CPUs and GPUs expressions that caused held jobs
+
+  - Fix bug where default CERequirements were being ignored
+
+  - Pass whole node request from GlideinWMS to the batch system
+
+  - Since CentOS 8 has reached end of life, we build and test on Rocky Linux 8
+
+  '
+date: 2022-04-12
+layout: news
+link: null
+og_title: HTCondor-CE 5.1.4 released!
+release_number: 5.1.4
+release_type: htcondor-ce
+sort_key: 05.01.04
+title: HTCondor-CE 5.1.4 released!

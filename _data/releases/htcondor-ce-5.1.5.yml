@@ -1,0 +1,19 @@
+content: '
+
+  Highlights of this release are:
+
+  - Rename AuthToken attributes in the routed job to better support accounting
+
+  - Prevent GSI environment from pointing the job to the wrong certificates
+
+  - Fix issue where HTCondor-CE would need port 9618 open to start up
+
+  '
+date: 2022-06-06
+layout: news
+link: null
+og_title: HTCondor-CE 5.1.5 released!
+release_number: 5.1.5
+release_type: htcondor-ce
+sort_key: 05.01.05
+title: HTCondor-CE 5.1.5 released!
