@@ -1,0 +1,8 @@
+{% include get/news_articles.liquid %}
+{% include get/featured-users.liquid %}
+
+{% for article in featured-users %}
+    {% assign news_articles = news_articles | push: article %}
+{% endfor %}
+
+{% assign news_articles = news_articles | sort: "date" | reverse %}

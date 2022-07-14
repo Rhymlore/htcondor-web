@@ -6,10 +6,11 @@
     {% endif %}
 {% endfor %}
 
-{% include get/featured-users.liquid %}
-
-{% for article in featured-users %}
-    {% assign news_articles = news_articles | push: article %}
+{% include get/site-specific-articles.liquid %}
+{% for article in site-specific-articles %}
+    {% if article.type == "news" %}
+        {% assign news_articles = news_articles | push: article %}
+    {% endif %}
 {% endfor %}
 
 {% assign news_articles = news_articles | sort: "date" | reverse %}
