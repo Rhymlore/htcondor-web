@@ -15,6 +15,9 @@
     - path: /htcondor/release-plan/
       class:
       label: Release Plan
+    - path: /htcondor/news/
+      class:
+      label: News
     - path: "https://htcondor.readthedocs.io/en/latest/version-history/"
       class:
       label: Full Release Notes&#11023;
