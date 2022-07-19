@@ -1,0 +1,6 @@
+content: '- ActivationSetupDuration is now correct for jobs that checkpoint'
+date: '2022-07-18'
+release_number: 9.10.1
+release_type: htcondor
+sort_key: 09.10.01
+title: HTCondor 9.10.1

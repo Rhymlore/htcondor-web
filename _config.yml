@@ -12,7 +12,7 @@ highlighter: none
 collections:
   news:
     output: true
-    permalink: /news/:path/
+    permalink: /news/:title/
   vulnerabilities:
     output: true
     permalink: /security/vulnerabilities/:path:output_ext

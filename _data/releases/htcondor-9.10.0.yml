@@ -1,0 +1,9 @@
+content: "- With collector administrator access, can manage all HTCondor pool daemons\r\
+  \n- SciTokens can now be used for authentication with ARC CE servers\r\n- Preliminary\
+  \ support for ARM and POWER RC on AlmaLinux 8\r\n- Prevent negative values when\
+  \ using huge files with a file transfer plugin"
+date: '2022-07-15'
+release_number: 9.10.0
+release_type: htcondor
+sort_key: 09.10.00
+title: HTCondor 9.10.0
