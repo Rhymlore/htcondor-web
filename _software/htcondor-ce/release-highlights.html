@@ -11,13 +11,16 @@ title: HTCondor-CE Release Highlights
                 <h3>Latest Releases</h3>
             </div>
             <div class="col-auto d-flex ps-sm-0">
-                <b class="my-auto"><a class="text-muted" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Detailed Notes &#11023;</a></b>
+                <b class="my-auto"><a class="text-secondary" href="https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history">Detailed Notes &#11023;</a></b>
             </div>
         </div>
-
         {% include /get/htcondor_ce_releases_recent.liquid %}
         {% for release in htcondor_ce_releases_recent %}
-        <b>{{ release.release_number }}</b>
+        <div class="d-flex flex-row">
+            <b>{{ release.release_number }}</b>
+            <span class="px-1">-</span>
+            <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
         <div>
             {{ release.content | markdownify }}
         </div>
@@ -26,7 +29,11 @@ title: HTCondor-CE Release Highlights
         <div class="collapse" id="old-release-highlights">
             {% include /get/htcondor_ce_releases_old.liquid %}
             {% for release in htcondor_ce_releases_old %}
-            <b>{{ release.release_number }}</b>
+            <div class="d-flex flex-row">
+                <b>{{ release.release_number }}</b>
+                <span class="px-1">-</span>
+                <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+            </div>
             <div>
                 {{ release.content | markdownify }}
             </div>
