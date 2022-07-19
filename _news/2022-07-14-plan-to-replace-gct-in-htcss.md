@@ -13,7 +13,7 @@ The HTCondor Software Suite (HTCSS) is working to retire the use of the Grid Com
 - GSI authentication
 - Proxy delegation
 
-- The Center for High Throughput Computing plans to gradually reduce use of GCT with support fully ending by March 2023 (6 months after the release of HTCondor 10.0.0); at that point, only proxy delegation and ARC CE submission (through the REST API) will be supported.
+The Center for High Throughput Computing plans to gradually reduce use of GCT with support fully ending by March 2023 (6 months after the release of HTCondor 10.0.0); at that point, only proxy delegation and ARC CE submission (through the REST API) will be supported.
 
 __NOTE__: This primarily impacts the submission of "pilot jobs" in grid computing setups; payload jobs that include an X509 credential that needs to be delegated (for access to data sources, for instance) is still supported as HTCondor now implements proxy delegation independently of the GCT.
 
