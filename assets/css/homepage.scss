@@ -19,14 +19,6 @@
     z-index: 0;
 }
 
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    #hero-content-container {
-        -webkit-backdrop-filter: blur(15px);
-        backdrop-filter: blur(15px);
-        background-color: rgba(255, 255, 255, .4);
-    }
-}
-
 // Work with software-display.js to create the software display
 #desktop-software-brief-container {
     min-height: 600px;
