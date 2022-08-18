@@ -1,0 +1,9 @@
+content: "- Singularity now mounts /tmp and /var/tmp under the scratch directory\r\
+  \n- Fix bug where Singularity jobs go on hold at the first checkpoint\r\n- Fix bug\
+  \ where gridmanger deletes the X.509 proxy file instead of the copy\r\n- Fix file\
+  \ descriptor leak when using SciTokens for authentication"
+date: '2022-08-16'
+release_number: 9.0.16
+release_type: htcondor
+sort_key: 09.00.16
+title: HTCondor 9.0.16

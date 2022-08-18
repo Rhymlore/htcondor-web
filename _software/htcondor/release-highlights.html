@@ -15,18 +15,34 @@ title: HTCondor Release Highlights
         <h3>Feature Channel</h3>
       </div>
       <div class="col-auto d-flex ps-sm-0">
-        <b class="my-auto"><a class="text-muted" href="https://htcondor.readthedocs.io/en/latest/version-history/development-release-series-91.html">Detailed Notes &#11023;</a></b>
+        <b class="my-auto"><a class="text-secondary" href="https://htcondor.readthedocs.io/en/latest/version-history/development-release-series-91.html">Detailed Notes &#11023;</a></b>
       </div>
     </div>
+    <div class="my-2">
+      <p class="">
+        Feature releases distribute HTCondor's new features and also incorporates bug fixes.
+        Most people should use choose this channel and stay up-to-date with HTCondor's
+        latest features.
+      </p>
+    </div>
+    <hr/>
     {% include /get/htcondor_feature_releases_recent.liquid %}
     {% for release in htcondor_feature_releases_recent %}
       {% include /get/doc_link.liquid %}
       {% if doc_link %}
-      <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+        <div class="d-flex flex-row">
+          <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+          <span class="px-1">-</span>
+          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
       {% else %}
-      <b>{{ release.release_number }}</b>
+        <div class="d-flex flex-row">
+          <b>{{ release.release_number }}</b>
+          <span class="px-1">-</span>
+          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
       {% endif %}
-      <div>
+      <div class="mt-2">
         {{ release.content | markdownify }}
       </div>
     {% endfor %}
@@ -34,15 +50,14 @@ title: HTCondor Release Highlights
     <div class="collapse" id="old-feature-release-highlights">
       {% include /get/htcondor_feature_releases_old.liquid %}
       {% for release in htcondor_feature_releases_old %}
-      {% include /get/doc_link.liquid %}
-      {% if doc_link %}
-        <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
-      {% else %}
-        <b>{{ release.release_number }}</b>
-      {% endif %}
-      <div>
-        {{ release.content | markdownify }}
-      </div>
+        <div class="d-flex flex-row">
+          <b>{{ release.release_number }}</b>
+          <span class="px-1">-</span>
+          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
+        <div class="mt-2">
+          {{ release.content | markdownify }}
+        </div>
       {% endfor %}
     </div>
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-feature-release-highlights" role="button" aria-expanded="false" aria-controls="old-feature-release-highlights">
@@ -57,18 +72,48 @@ title: HTCondor Release Highlights
         <h3>Long Term Support Channel</h3>
       </div>
       <div class="col-auto d-flex ps-sm-0">
-        <b class="my-auto"><a class="text-muted" href="https://htcondor.readthedocs.io/en/latest/version-history/stable-release-series-90.html">Detailed Notes &#11023;</a></b>
+        <b class="my-auto"><a class="text-secondary" href="https://htcondor.readthedocs.io/en/latest/version-history/stable-release-series-90.html">Detailed Notes &#11023;</a></b>
       </div>
     </div>
+    <div class="my-2">
+      <p>
+        Long Term Support (LTS) releases only bug fixes to a particular, fixed set of
+        features from the current LTS channel.  As a result, each LTS channel tends to
+        become more stable over time; read the <a href="https://htcondor.readthedocs.io/en/latest/version-history/">release notes</a>
+        from the current channel to make sure you aren't missing any features you
+        need.
+      </p>
+      <p>
+        If you can't regularly upgrade your machines, this may be the channel
+        for you.
+      </p>
+      <p class="">
+        Periodically, we will update the set of features that we support with
+        bug fixes and start a new LTS channel.  This will not the change the set
+        of features available to an existing or automatically-updated installation of
+        a LTS channel; you have to make the decision to change manually.  However,
+        after a time, we will stop issuing additional bug fixes for older LTS
+        channels.
+      </p>
+    </div>
+    <hr/>
     {% include /get/htcondor_lts_releases_recent.liquid %}
     {% for release in htcondor_lts_releases_recent %}
       {% include /get/doc_link.liquid %}
       {% if doc_link %}
-        <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+        <div class="d-flex flex-row">
+          <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+          <span class="px-1">-</span>
+          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
       {% else %}
-        <b>{{ release.release_number }}</b>
+        <div class="d-flex flex-row">
+          <b>{{ release.release_number }}</b>
+          <span class="px-1">-</span>
+          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+        </div>
       {% endif %}
-      <div>
+      <div class="mt-2">
         {{ release.content | markdownify }}
       </div>
     {% endfor %}
@@ -76,8 +121,12 @@ title: HTCondor Release Highlights
     <div class="collapse" id="old-lts-release-highlights">
       {% include /get/htcondor_lts_releases_old.liquid %}
       {% for release in htcondor_lts_releases_old %}
-      <b>{{ release.release_number }}</b>
-      <div>
+      <div class="d-flex flex-row">
+        <b>{{ release.release_number }}</b>
+        <span class="px-1">-</span>
+        <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+      </div>
+      <div class="mt-2">
         {{ release.content | markdownify }}
       </div>
       {% endfor %}

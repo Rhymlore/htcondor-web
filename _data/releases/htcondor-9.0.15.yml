@@ -1,0 +1,6 @@
+content: '- Report resources provisioned by the Slurm batch scheduler when available'
+date: '2022-07-21'
+release_number: 9.0.15
+release_type: htcondor
+sort_key: 09.00.15
+title: HTCondor 9.0.15
