@@ -1,0 +1,12 @@
+content: "- Modified GPU attributes to support the new 'require_gpus' submit command\r\
+  \n- Add (PREEMPT|HOLD)_IF_DISK_EXCEEDED configuration templates\r\n- ADVERTISE authorization\
+  \ levels now also provide READ authorization\r\n- Periodic release expressions no\
+  \ longer apply to manually held jobs\r\n- If a #! interpreter doesn't exist, a proper\
+  \ hold and log message appears\r\n- Can now set the Singularity target directory\
+  \ with 'container_target_dir'\r\n- If SciToken and X.509 available, uses SciToken\
+  \ for arc job authentication"
+date: '2022-08-25'
+release_number: 9.11.0
+release_type: htcondor
+sort_key: 09.11.00
+title: HTCondor 9.11.0
