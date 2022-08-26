@@ -1,12 +1,12 @@
 ---
 layout: Markdown
-title: Run a Job on Expanse Using an XRAC Allocation
+title: Run a Job on Expanse Using an Expanse Allocation
 ---
 
-This recipe assumes that you have decided to use your XRAC allocation
+This recipe assumes that you have decided to use your allocation
 for Expanse to run one of your HTCondor jobs.  It takes you step by
 step through the process of Bringing Your Own Resource (BYOR) in the
-form of an XRAC allocation to an OSG Connect access point and using that
+form of an allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
 of resources leased from that allocation as an "annex."
 
@@ -17,9 +17,10 @@ OSG Connect access point when we begin.
 
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
-- An XRAC allocation for Expanse.
-- Command-line login access to Expanse (see [SDSC's instructions for gaining access](https://www.sdsc.edu/support/user_guides/expanse.html#access)).
-  We'll use "LOGIN_NAME" to refer to your login name on Expanse.
+- An allocation for Expanse.
+- Command-line login access to Expanse
+  (see [SDSC's instructions for gaining access](https://www.sdsc.edu/support/user_guides/expanse.html#access)).
+  We'll use `LOGIN_NAME` to refer to your login name on Expanse.
 - A name for your Expanse annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
@@ -33,7 +34,7 @@ OSG Connect access point when we begin.
 
 First, you will need to determine the project ID of your allocation on
 Expanse.  If you already know your project ID, you can skip this
-section.  If not, log in to login.expanse.sdsc.edu in a terminal and run the
+section.  If not, log in to `login.expanse.sdsc.edu` in a terminal and run the
 following command.  (Don't copy the `$`; in this and other examples
 further down the page, the `$` just signifies something you type in,
 rather than something that the computer prints out.)
@@ -41,7 +42,7 @@ rather than something that the computer prints out.)
 	$ module load sdsc; expanse-client user
 
 There will be one or more lines; pick an entry from the `PROJECT` column.
-For the rest of these instructions, we'll use PROJECT_ID where you need to
+For the rest of these instructions, we'll use `PROJECT_ID` where you need to
 put that entry.
 
 #### Instructions
@@ -76,14 +77,12 @@ an annex is a named set of leased resources.  The following command will
 submit a request to lease an annex named `example` to the queue named `compute`
 on Expanse.  Project `PROJECT_ID` will be charged for resources used (by
 default, two machines).  The **text in bold** is emphasized to distinguish
-it from XSEDE's log-in prompt.
-
-<!-- TODO update the code samples -->
+it from Expanse's log-in prompt.
 
 <pre><code>
 $ htcondor annex create example compute@expanse --project PROJECT_ID --login-name LOGIN_NAME
-<b>This command will access Expanse via XSEDE.  To proceed, enter your
-XSEDE user name and password at the prompt below; to cancel, hit CTRL-C.</b>
+<b>This command will access the system named 'Expanse' via SSH.  To proceed, follow the
+prompts from that system below; to cancel, hit CTRL-C.</b>
 </code></pre>
 
 You will need to log into Expanse at this prompt.
@@ -179,7 +178,7 @@ explicitly to avoid wasting our allocation.
 	Annex requests that are still in progress have not been affected.
 
 At this point our workflow is completed, and our job has run
-successfully on our XSEDE allocation.
+successfully on our allocation.
 
 ##### Reference
 

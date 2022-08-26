@@ -6,10 +6,10 @@ title: Bringing Your Own Resources
 You can bring your own resources to an OS Pool access point.  This can be more
 convenient than taking your jobs to those resources.
 
-#### Bringing an XSEDE (XRAC) Allocation to the OS Pool
+#### Bringing an HPC Allocation to the OS Pool
 
-If you have an XSEDE (XRAC) Allocation for time on the Anvil, Stampede 2,
-Bridge 2, or Expanse systems, you can use the `htcondor` command line
+If you have an allocation for time on the Anvil, Stampede 2,
+Bridges 2, or Expanse systems, you can use the `htcondor` command line
 tool on `login04.osgconnect.net` or `login05.osgconnect.net` to run
 jobs there.  In order to get started, you'll need an account on the HPC site,
 with the ability to log in to the site via the command line.
