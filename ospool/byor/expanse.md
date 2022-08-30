@@ -5,7 +5,7 @@ title: Run a Job on Expanse Using an Expanse Allocation
 
 This recipe assumes that you have decided to use your allocation
 for Expanse to run one of your HTCondor jobs.  It takes you step by
-step through the process of Bringing Your Own Resource (BYOR) in the
+step through the process of Bringing Your Own Capacity (BYOC) in the
 form of an allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
 of resources leased from that allocation as an "annex."
@@ -27,8 +27,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Expanse.
-* The job described above does not require more than XX GB of RAM, more than
-  XX cores, a GPU, or more than XX hours to complete when run on Expanse.
+* The job described above fits within the capabilities of the Expanse queue
+    you wish to run it on.
 
 #### Preparation
 
