@@ -1,6 +1,8 @@
 ---
 layout: Markdown
 title: Bringing Your Own Resources
+head_extension: |
+    <meta name="robots" content="noindex">
 ---
 
 You can bring your own resources to an OS Pool access point.  This can be more

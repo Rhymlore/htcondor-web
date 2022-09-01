@@ -1,6 +1,8 @@
 ---
 layout: Markdown
 title: an example job
+head_extension: |
+    <meta name="robots" content="noindex">
 ---
 
 You can copy and paste the following submit file; name the file

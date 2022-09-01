@@ -1,6 +1,8 @@
 ---
 layout: Markdown
 title: Run a Job on Stampede 2 Using an XRAC Allocation
+head_extension: |
+  <meta name="robots" content="noindex">
 ---
 
 This recipe assumes that you have decided to use your XRAC allocation

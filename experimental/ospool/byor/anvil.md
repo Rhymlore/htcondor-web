@@ -1,12 +1,14 @@
 ---
 layout: Markdown
-title: Run a Job on Expanse Using an Expanse Allocation
+title: Run a Job on Anvil Using an XRAC Allocation
+head_extension: |
+  <meta name="robots" content="noindex">
 ---
 
-This recipe assumes that you have decided to use your allocation
-for Expanse to run one of your HTCondor jobs.  It takes you step by
-step through the process of Bringing Your Own Capacity (BYOC) in the
-form of an allocation to an OSG Connect access point and using that
+This recipe assumes that you have decided to use your XRAC allocation
+for Anvil to run one of your HTCondor jobs.  It takes you step by
+step through the process of Bringing Your Own Resource (BYOR) in the
+form of an XRAC allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
 of resources leased from that allocation as an "annex."
 
@@ -17,37 +19,36 @@ OSG Connect access point when we begin.
 
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
-- An allocation for Expanse.
-- Command-line login access to Expanse
-  (see [SDSC's instructions for gaining access](https://www.sdsc.edu/support/user_guides/expanse.html#access)).
-  We'll use `LOGIN_NAME` to refer to your login name on Expanse.
-- A name for your Expanse annex (example).  By convention,
+- An XRAC allocation for Anvil.
+- An XSEDE account and password.
+- A name for your Anvil annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
 #### Assumptions
 
-* You want to run the job described above on Expanse.
-* The job described above fits within the capabilities of the Expanse queue
-    you wish to run it on.
+* You want to run the job described above on Anvil.
+* The job described above does not require more than 96 GB of RAM, more than
+  68 cores, a GPU, or more than 48 hours to complete when run on Anvil.
 
 #### Preparation
 
 First, you will need to determine the project ID of your allocation on
-Expanse.  If you already know your project ID, you can skip this
-section.  If not, log in to `login.expanse.sdsc.edu` in a terminal and run the
+Anvil.  If you already know your project ID, you can skip this
+section.  If not, log in to login.xsede.org in a terminal and run the
 following command.  (Don't copy the `$`; in this and other examples
 further down the page, the `$` just signifies something you type in,
 rather than something that the computer prints out.)
 
-	$ module load sdsc; expanse-client user
+	$ gsissh anvil mybalance
 
-There will be one or more lines; pick an entry from the `PROJECT` column.
-For the rest of these instructions, we'll use `PROJECT_ID` where you need to
-put that entry.
+Choose one of the rows in the top half of the table (there may be only
+one row) and remember the entry in the NAME column.  For the rest of
+these instructions, we'll use PROJECT_ID where you need to put that
+entry.
 
 #### Instructions
 
-##### 1. Log into the OS Connect Access Point
+##### 1. Log into the OSG Connect Access Point
 
 Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 `login05.osgconnect.net`) using your OSG Connect account and password.
@@ -55,7 +56,7 @@ Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 ##### 2. Submit the Job
 
 Submit the job on the access point, indicating that you want it to run
-on your own resource (the Expanse allocation, in this case) with the
+on your own resource (the Anvil allocation, in this case) with the
 `--annex-name` option:
 
     $ htcondor job submit example.submit \
@@ -66,30 +67,30 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Expanse; it is simply
-  a label for the Expanse resources we will be provisioning
+- Note that the annex name does say anything about Anvil; it is simply
+  a label for the Anvil resources we will be provisioning
   in the next step.
 
 ##### 3. Lease the Resources
 
-To run your job on Expanse, you will need to create an "annex" there;
+To run your job on Anvil, you will need to create an "annex" there;
 an annex is a named set of leased resources.  The following command will
-submit a request to lease an annex named `example` to the queue named `compute`
-on Expanse.  Project `PROJECT_ID` will be charged for resources used (by
-default, two machines).  The **text in bold** is emphasized to distinguish
-it from Expanse's log-in prompt.
+submit a request to lease an annex named `example` to the queue named `standard`
+on Anvil.  Project `PROJECT_ID` will be charged for resources used (by
+default, two nodes).  The **text in bold** is emphasized to distinguish
+it from XSEDE's log-in prompt.
 
-<pre><code>
-$ htcondor annex create example compute@expanse --project PROJECT_ID --login-name LOGIN_NAME
-<b>This command will access the system named 'Expanse' via SSH.  To proceed, follow the
-prompts from that system below; to cancel, hit CTRL-C.</b>
+<pre><code>$ htcondor annex create example standard@anvil --project PROJECT_ID
+<b>This command will access Anvil via XSEDE.  To proceed, enter your
+XSEDE user name and password at the prompt below; to cancel, hit CTRL-C.</b>
 </code></pre>
 
-You will need to log into Expanse at this prompt.
+You will need to log into XSEDE at this prompt.  Logging into XSEDE will
+grant you access to Anvil.
 
 <pre><code><b>Thank you.</b>
 
-Requesting annex named 'example' from queue 'compute' on Expanse...
+Requesting annex named 'example' from queue 'standard' on Anvil...
 </code></pre>
 
 The tool will display an indented log of the request progress, because
@@ -97,7 +98,7 @@ it may take a while.  Once the request is done, it will display:
 
 	... requested.
 
-It may take some time for Expanse to establish the requested annex.
+It may take some time for Anvil to establish the requested annex.
 
 ##### 4. Confirm that the Resources are Available
 
@@ -105,22 +106,22 @@ Check on the status of the annex to make sure it has started up correctly.
 
 	$ htcondor annex status example
 	Annex 'example' is not established.
-	You requested 2 machines for this annex, of which 0 are in established
+	You requested 2 nodes for this annex, of which 0 are in established
 	annexes.
-	There are 0 CPUs in the established machines, of which 0 are busy.
+	There are 0 CPUs in the established nodes, of which 0 are busy.
 	1 jobs must run on this annex, and 0 currently are.
 	You made 1 resource request(s) for this annex, of which 1 are pending, 0
 	are established, and 0 have retired.
 
-Give Expanse a few more minutes to grant your request and then check again.
+Give Anvil a few more minutes to grant your request and then check again.
 
 	$ htcondor annex status example
 	Annex 'example' is established.
 	Its oldest established request is about 0.29 hours old and will retire in
 	0.71 hours.
-	You requested 2 machines for this annex, of which 2 are in established
+	You requested 2 nodes for this annex, of which 2 are in established
 	annexes.
-	There are 136 CPUs in the established machines, of which 0 are busy.
+	There are 136 CPUs in the established nodes, of which 0 are busy.
 	1 jobs must run on this annex, and 0 currently are.
 	You made 1 resource request(s) for this annex, of which 0 are pending, 1
 	are established, and 0 have retired.
@@ -142,9 +143,9 @@ the annex itself:
 	Annex 'example' is established.
 	Its oldest established request is about 0.69 hours old and will retire in
 	0.31 hours.
-	You requested 2 machines for this annex, of which 2 are in established
+	You requested 2 nodes for this annex, of which 2 are in established
 	annexes.
-	There are 136 CPUs in the established machines, of which 1 are busy.
+	There are 136 CPUs in the established nodes, of which 1 are busy.
 	1 jobs must run on this annex, and 1 currently are.
 	You made 1 resource request(s) for this annex, of which 0 are pending,
 	1 are established, and 0 have retired.
@@ -154,7 +155,7 @@ sure that it's the one we just submitted.  Instead, let's ask the job
 itself what resources it is running on.
 
 	$ htcondor job resources 123
-	Job is using annex 'example', resource slot1_1@c01.expanse.sdsc.edu
+	Job is using annex 'example', resource slot1_1@a000.anvil.rcac.purdue.edu.
 
 ##### 6. Terminate the Resource Lease
 
@@ -178,7 +179,7 @@ explicitly to avoid wasting our allocation.
 	Annex requests that are still in progress have not been affected.
 
 At this point our workflow is completed, and our job has run
-successfully on our allocation.
+successfully on our XSEDE allocation.
 
 ##### Reference
 
@@ -186,4 +187,4 @@ You can run either of the following commands for an up-to-date summary
 of their corresponding options.
 
 	$ htcondor job --help
-	$ htcondor annex --help
+	$ htcodnor annex --help
