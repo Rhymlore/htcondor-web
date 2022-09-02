@@ -10,7 +10,7 @@ You can copy and paste the following submit file; name the file
 the `busybox.sif` file to run; see below.
 
 	universe                = container
-	# wget https://htcondor.org/ospool/byor/busybox.sif
+	# singularity pull busybox.sif docker://busybox:latest
 	container_image         = busybox.sif
 	executable              = /bin/sleep
 	arguments               = 1200
@@ -22,7 +22,8 @@ the `busybox.sif` file to run; see below.
 
 	queue 1
 
-You can download `busybox.sif` using `wget`; run this command in the same
-directory that you created the submit file in.
+You can use `singularity pull` to obtain `busybox.sif` from Docker Hub;
+run this command in the same directory that you created the submit file in:
 
-	$ wget https://htcondor.org/ospool/byor/busybox.sif
+	$ singularity pull busybox.sif docker://busybox:latest
+
