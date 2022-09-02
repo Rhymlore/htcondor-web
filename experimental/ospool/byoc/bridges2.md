@@ -6,7 +6,7 @@ head_extension: |
 ---
 
 This recipe assumes that you have decided to use your allocation
-for Bridges 2 to run one of your HTCondor jobs.  It takes you step by
+for Bridges-2 to run one of your HTCondor jobs.  It takes you step by
 step through the process of Bringing Your Own Capacity (BYOC) in the
 form of an allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
@@ -34,7 +34,7 @@ OSG Connect access point when we begin.
 #### Preparation
 
 First, you will need to determine the project ID of your allocation on
-Bridges 2.  If you already know your project ID, you can skip this
+Bridges-2.  If you already know your project ID, you can skip this
 section.  If not, log in to `bridges2.psc.edu` in a terminal and run the
 following command.  (Don't copy the `$`; in this and other examples
 further down the page, the `$` just signifies something you type in,
@@ -49,7 +49,7 @@ value.
 
 #### Instructions
 
-##### 1. Log into the OS Connect Access Point
+##### 1. Log into the OSG Connect Access Point
 
 Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 `login05.osgconnect.net`) using your OSG Connect account and password.
@@ -57,7 +57,7 @@ Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 ##### 2. Submit the Job
 
 Submit the job on the access point, indicating that you want it to run
-on your own resource (the Bridges 2 allocation, in this case) with the
+on your own resource (the Bridges-2 allocation, in this case) with the
 `--annex-name` option:
 
     $ htcondor job submit example.submit \
@@ -113,7 +113,7 @@ Check on the status of the annex to make sure it has started up correctly.
 	You made 1 resource request(s) for this annex, of which 1 are pending, 0
 	are established, and 0 have retired.
 
-Give Bridges 2 a few more minutes to grant your request and then check again.
+Give Bridges-2 a few more minutes to grant your request and then check again.
 
 	$ htcondor annex status example
 	Annex 'example' is established.

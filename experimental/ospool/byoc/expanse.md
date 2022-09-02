@@ -1,6 +1,6 @@
 ---
 layout: Markdown
-title: Run a Job on Expanse Using an Expanse Allocation
+title: Run a Job on Expanse Using an Allocation
 head_extension: |
   <meta name="robots" content="noindex">
 ---

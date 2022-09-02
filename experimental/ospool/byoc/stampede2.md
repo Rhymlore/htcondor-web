@@ -5,7 +5,7 @@ head_extension: |
   <meta name="robots" content="noindex">
 ---
 
-This recipe assumes that you have decided to use your XRAC allocation
+This recipe assumes that you have decided to use your allocation
 for Stampede2 to run one of your HTCondor jobs.  It takes you step by
 step through the process of Bringing Your Own Capacity (BYOC) in the
 form of an allocation to an OSG Connect access point and using that
