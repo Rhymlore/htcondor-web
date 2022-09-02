@@ -1,14 +1,14 @@
 ---
 layout: Markdown
-title: Run a Job on Anvil Using an XRAC Allocation
+title: Run a Job on Anvil Using an Allocation
 head_extension: |
   <meta name="robots" content="noindex">
 ---
 
-This recipe assumes that you have decided to use your XRAC allocation
+This recipe assumes that you have decided to use your allocation
 for Anvil to run one of your HTCondor jobs.  It takes you step by
-step through the process of Bringing Your Own Resource (BYOR) in the
-form of an XRAC allocation to an OSG Connect access point and using that
+step through the process of Bringing Your Own Capacity (BYOC) in the
+form of an allocation to an OSG Connect access point and using that
 resource to run your HTCondor job.  In what follows, we refer to the set
 of resources leased from that allocation as an "annex."
 
@@ -19,8 +19,9 @@ OSG Connect access point when we begin.
 
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
-- An XRAC allocation for Anvil.
-- An XSEDE account and password.
+- An allocation for Anvil.
+- Command-line login access to Anvil (see [Purdue's instructions for gaining access](https://www.rcac.purdue.edu/knowledge/anvil/access).
+  We'll use `LOGIN_NAME` to refer to your login name on Anvil.
 - A name for your Anvil annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
@@ -34,16 +35,16 @@ OSG Connect access point when we begin.
 
 First, you will need to determine the project ID of your allocation on
 Anvil.  If you already know your project ID, you can skip this
-section.  If not, log in to login.xsede.org in a terminal and run the
+section.  If not, log in to `anvil.rcac.purdue.edu` in a terminal and run the
 following command.  (Don't copy the `$`; in this and other examples
 further down the page, the `$` just signifies something you type in,
 rather than something that the computer prints out.)
 
-	$ gsissh anvil mybalance
+	$ mybalance
 
 Choose one of the rows in the top half of the table (there may be only
 one row) and remember the entry in the NAME column.  For the rest of
-these instructions, we'll use PROJECT_ID where you need to put that
+these instructions, we'll use `PROJECT_ID` where you need to put that
 entry.
 
 #### Instructions
@@ -78,15 +79,14 @@ an annex is a named set of leased resources.  The following command will
 submit a request to lease an annex named `example` to the queue named `standard`
 on Anvil.  Project `PROJECT_ID` will be charged for resources used (by
 default, two nodes).  The **text in bold** is emphasized to distinguish
-it from XSEDE's log-in prompt.
+it from Anvil's log-in prompt.
 
-<pre><code>$ htcondor annex create example standard@anvil --project PROJECT_ID
-<b>This command will access Anvil via XSEDE.  To proceed, enter your
-XSEDE user name and password at the prompt below; to cancel, hit CTRL-C.</b>
+<pre><code>$ htcondor annex create example standard@anvil --project PROJECT_ID --login-name LOGIN_NAME
+<b>This command will access the system named 'Anvil' via SSH.  To proceed, follow the
+prompts from that system below; to cancel, hit CTRL-C.</b>
 </code></pre>
 
-You will need to log into XSEDE at this prompt.  Logging into XSEDE will
-grant you access to Anvil.
+You will need to log into Anvil at this prompt.
 
 <pre><code><b>Thank you.</b>
 
@@ -179,7 +179,7 @@ explicitly to avoid wasting our allocation.
 	Annex requests that are still in progress have not been affected.
 
 At this point our workflow is completed, and our job has run
-successfully on our XSEDE allocation.
+successfully on our allocation.
 
 ##### Reference
 
@@ -187,4 +187,4 @@ You can run either of the following commands for an up-to-date summary
 of their corresponding options.
 
 	$ htcondor job --help
-	$ htcodnor annex --help
+	$ htcondor annex --help
