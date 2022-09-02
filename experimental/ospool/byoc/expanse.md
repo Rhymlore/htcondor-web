@@ -49,7 +49,7 @@ put that entry.
 
 #### Instructions
 
-##### 1. Log into the OS Connect Access Point
+##### 1. Log into the OSG Connect Access Point
 
 Log into an OSG Connect access point (e.g., `login04.osgconnect.net` or
 `login05.osgconnect.net`) using your OSG Connect account and password.
