@@ -1,6 +1,6 @@
 ---
 layout: Markdown
-title: Bringing Your Own Resources
+title: Bringing Your Own Capacity
 head_extension: |
     <meta name="robots" content="noindex">
 ---
