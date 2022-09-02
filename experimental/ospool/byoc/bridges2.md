@@ -1,6 +1,6 @@
 ---
 layout: Markdown
-title: Run a Job on Bridges 2 Using an Allocation
+title: Run a Job on Bridges-2 Using an Allocation
 head_extension: |
   <meta name="robots" content="noindex">
 ---
@@ -19,16 +19,16 @@ OSG Connect access point when we begin.
 
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
-- An allocation for Bridges 2.
-- Command-line login access to Bridges 2 (see [PSC's instructions for gaining access](https://www.psc.edu/resources/bridges-2/user-guide-2-2/#connecting-to-bridges-2)).
+- An allocation for Bridges-2.
+- Command-line login access to Bridges-2 (see [PSC's instructions for gaining access](https://www.psc.edu/resources/bridges-2/user-guide-2-2/#connecting-to-bridges-2)).
     We'll use `LOGIN_NAME` to refer to your login name on Bridges-2
-- A name for your Bridges 2 annex (example).  By convention,
+- A name for your Bridges-2 annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
 
 #### Assumptions
 
-* You want to run the job described above on Bridges 2.
-- The job described above fits within the capabilities of the Bridges 2 queue
+* You want to run the job described above on Bridges-2.
+- The job described above fits within the capabilities of the Bridges-2 queue
     you wish to run it on.
 
 #### Preparation
@@ -68,16 +68,16 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Bridges 2; it is simply
-  a label for the Bridges 2 resources we will be provisioning
+- Note that the annex name does say anything about Bridges-2; it is simply
+  a label for the Bridges-2 resources we will be provisioning
   in the next step.
 
 ##### 3. Lease the Resources
 
-To run your job on Bridges 2, you will need to create an "annex" there;
+To run your job on Bridges-2, you will need to create an "annex" there;
 an annex is a named set of leased resources.  The following command will
 submit a request to lease an annex named `example` to the queue named `RM`
-on Bridges 2.  Project `PROJECT_ID` will be charged for resources used (by
+on Bridges-2.  Project `PROJECT_ID` will be charged for resources used (by
 default, two machines).  The **text in bold** is emphasized to distinguish
 it from Bridges-2's log-in prompt.
 
@@ -98,7 +98,7 @@ it may take a while.  Once the request is done, it will display:
 
 	... requested.
 
-It may take some time for Bridges 2 to establish the requested annex.
+It may take some time for Bridges-2 to establish the requested annex.
 
 ##### 4. Confirm that the Resources are Available
 
@@ -187,4 +187,4 @@ You can run either of the following commands for an up-to-date summary
 of their corresponding options.
 
 	$ htcondor job --help
-	$ htcodnor annex --help
+	$ htcondor annex --help
