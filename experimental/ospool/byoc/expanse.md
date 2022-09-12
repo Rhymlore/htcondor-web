@@ -29,7 +29,7 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Expanse.
-* The job described above fits within the capabilities of the Expanse queue
+* The job described above fits within the capabilities of the [Expanse queue](https://www.sdsc.edu/support/user_guides/expanse.html#running)
     you wish to run it on.
 
 #### Preparation
