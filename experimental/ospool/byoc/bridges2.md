@@ -28,7 +28,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Bridges-2.
-- The job described above fits within the capabilities of the [Bridges-2 queue](https://www.psc.edu/resources/bridges-2/user-guide-2-2/#partitions)
+- The job described above fits within the capabilities of the
+    [Bridges-2 partition (queue)](https://www.psc.edu/resources/bridges-2/user-guide-2-2/#partitions)
     you wish to run it on.
 
 #### Preparation

@@ -28,7 +28,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Anvil.
-* The job described above fits within the capabilities of the [Anvil queue](https://www.rcac.purdue.edu/knowledge/anvil/run/partitions)
+* The job described above fits within the capabilities of the
+    [Anvil partition (queue)](https://www.rcac.purdue.edu/knowledge/anvil/run/partitions)
     you wish to run it on.
 
 #### Preparation

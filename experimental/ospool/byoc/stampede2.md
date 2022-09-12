@@ -29,7 +29,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Stampede2.
-* The job described above fits within the capabilities of the [Stampede2 queue](https://portal.tacc.utexas.edu/user-guides/stampede2#slurm-partitions-queues)
+* The job described above fits within the capabilities of the
+    [Stampede2 partition (queue)](https://portal.tacc.utexas.edu/user-guides/stampede2#slurm-partitions-queues)
     you wish to run it on.
 
 #### Preparation
