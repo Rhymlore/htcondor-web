@@ -69,7 +69,7 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Stampede2; it is simply
+- Note that the annex name does not say anything about Stampede2; it is simply
   a label for the Stampede2 resources we will be provisioning
   in the next step.
 
