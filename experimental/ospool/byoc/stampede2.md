@@ -29,8 +29,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Stampede2.
-* The job described above does not require more than 96 GB of RAM, more than
-  68 cores, a GPU, or more than 48 hours to complete when run on Stampede2.
+* The job described above fits within the capabilities of the Stampede2 queue
+    you wish to run it on.
 
 #### Preparation
 
