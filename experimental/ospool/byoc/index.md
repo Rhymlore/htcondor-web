@@ -13,8 +13,8 @@ convenient than taking your jobs to those resources.
 If you have an allocation for time on the Anvil, Stampede2,
 Bridges-2, or Expanse systems, you can use the `htcondor` command line
 tool on `login04.osgconnect.net` or `login05.osgconnect.net` to run
-jobs there.  In order to get started, you'll need an account on the HPC site,
-with the ability to log in to the site via the command line.
+jobs there.  In order to get started, you'll need an account on the HPC system,
+with the ability to log in to the system via the command line.
 You will also need a job that will run on one of the listed systems.
 (You can download an [example job](example_job) for testing.)
 
