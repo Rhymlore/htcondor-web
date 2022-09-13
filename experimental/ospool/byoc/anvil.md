@@ -28,8 +28,9 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Anvil.
-* The job described above does not require more than 96 GB of RAM, more than
-  68 cores, a GPU, or more than 48 hours to complete when run on Anvil.
+* The job described above fits within the capabilities of the
+    [Anvil partition (queue)](https://www.rcac.purdue.edu/knowledge/anvil/run/partitions)
+    you wish to run it on.
 
 #### Preparation
 
@@ -68,7 +69,7 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Anvil; it is simply
+- Note that the annex name does not say anything about Anvil; it is simply
   a label for the Anvil resources we will be provisioning
   in the next step.
 

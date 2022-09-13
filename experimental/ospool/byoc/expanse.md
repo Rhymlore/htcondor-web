@@ -29,7 +29,8 @@ OSG Connect access point when we begin.
 #### Assumptions
 
 * You want to run the job described above on Expanse.
-* The job described above fits within the capabilities of the Expanse queue
+* The job described above fits within the capabilities of the
+    [Expanse partition (queue)](https://www.sdsc.edu/support/user_guides/expanse.html#running)
     you wish to run it on.
 
 #### Preparation
@@ -68,7 +69,7 @@ Notes on the output of this command:
 - 123 is the JOB_ID assigned by the access point to the placed job.
 - Placing the job with the annex name specified means that the job
   won't run anywhere other than the annex.
-- Note that the annex name does say anything about Expanse; it is simply
+- Note that the annex name does not say anything about Expanse; it is simply
   a label for the Expanse resources we will be provisioning
   in the next step.
 
