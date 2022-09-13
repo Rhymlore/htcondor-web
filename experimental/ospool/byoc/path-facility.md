@@ -20,7 +20,7 @@ OSG Connect access point when we begin.
 - An OSG Connect account and password
 - An HTCondor job submit file (example.submit).
 - Credits for the PATh facility.
-- Command-line login access to the PATH facility.  (see [the PATh facility's instructions for gaining access] (https://path-cc.io/facility/registration.html#login).
+- Command-line login access to the PATH facility.  (see [the PATh facility's instructions for gaining access](https://path-cc.io/facility/registration.html#login)).
   We'll use `LOGIN_NAME` to refer to your login name on the PATh facility.
 - A name for your PATh facility annex (example).  By convention,
   this is the name of the submit file you want to run, without its extension.
@@ -34,7 +34,7 @@ OSG Connect access point when we begin.
 
 First, you will need to know the `AccountingGroup` (FIXME) of your credits on
 the PATh facility.  There's presently no tool to determine this by logging
-in to the PATH facility.
+in to the PATH facility.  (FIXME)
 
 #### Instructions
 
