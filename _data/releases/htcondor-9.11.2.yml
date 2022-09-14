@@ -1,0 +1,6 @@
+content: '- In 9.11.0, STARTD_NOCLAIM_SHUTDOWN restarted instead. Now, it shuts down.'
+date: '2022-09-14'
+release_number: 9.11.2
+release_type: htcondor
+sort_key: 09.11.02
+title: HTCondor 9.11.2
