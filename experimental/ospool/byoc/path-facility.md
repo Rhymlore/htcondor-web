@@ -32,9 +32,9 @@ OSG Connect access point when we begin.
 
 #### Preparation
 
-First, you will need to know the `AccountingGroup` (FIXME) of your credits on
+First, you will need to know the project name associated with your credits on
 the PATh facility.  There's presently no tool to determine this by logging
-in to the PATH facility.  (FIXME)
+in to the PATH facility.
 
 #### Instructions
 
@@ -68,7 +68,7 @@ Notes on the output of this command:
 To run your job on the PATh facility, you will need to create an "annex" there;
 an annex is a named set of leased resources.  The following command will
 submit a request to lease an annex named `example` from the PATh facility.
-The accounting group `AccountingGroup` will be charged for resources used (by
+Project `PROJECT_ID` will be charged for resources used (by
 default, two nodes).  The **text in bold** is emphasized to distinguish
 it from the PATh facility's log-in prompt.
 
