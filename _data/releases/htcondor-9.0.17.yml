@@ -1,0 +1,11 @@
+content: "- Fix file descriptor leak when schedd fails to launch scheduler jobs\r\n\
+  - Fix failure to forward batch grid universe job's refreshed X.509 proxy\r\n- Fix\
+  \ DAGMan failure when the DONE keyword appeared in the JOB line\r\n- Fix HTCondor's\
+  \ handling of extremely large UIDs on Linux\r\n- Fix bug where OAUTH tokens lose\
+  \ their scope and audience upon refresh\r\n- Support for Apptainer in addition to\
+  \ Singularity"
+date: '2022-09-29'
+release_number: 9.0.17
+release_type: htcondor
+sort_key: 09.00.17
+title: HTCondor 9.0.17
