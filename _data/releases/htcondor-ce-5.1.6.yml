@@ -1,0 +1,23 @@
+content: '
+
+  Highlights of this release are:
+
+  - HTCondor-CE now uses the C++ Collector plugin for payload job traceability
+
+  - Fix HTCondor-CE mapfiles to be compliant with PCRE2 and HTCondor 9.10.0+
+
+  - Add support for multiple APEL accounting scaling factors
+
+  - Suppress spurious log message about a missing negotiator
+
+  - Fix crash in HTCondor-CE View
+
+  '
+date: 2022-10-05
+layout: news
+link: null
+og_title: HTCondor-CE 5.1.6 released!
+release_number: 5.1.6
+release_type: htcondor-ce
+sort_key: 05.01.06
+title: HTCondor-CE 5.1.6 released!
