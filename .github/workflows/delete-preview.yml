@@ -6,7 +6,7 @@ on:
 
 jobs:
   Delete-Preview-Branch:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       preview_url: https://github.com/htcondor/web-preview.git
 
