@@ -1,0 +1,7 @@
+content: "- Improvements to job hooks and the ability to save stderr from a job hook\r\
+  \n- Fix bug where Apptainer only systems couldn't run with Docker style images"
+date: '2022-11-11'
+release_number: 10.1.1
+release_type: htcondor
+sort_key: 10.01.01
+title: HTCondor 10.1.1
