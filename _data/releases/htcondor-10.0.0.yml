@@ -1,0 +1,14 @@
+content: "- Users can prevent runaway jobs by specifying an allowed duration\r\n-\
+  \ Able to extend submit commands and create job submit templates\r\n- Initial implementation\
+  \ of htcondor <noun> <verb> command line interface\r\n- Initial implementation of\
+  \ Job Sets in the htcondor CLI tool\r\n- Add Container Universe\r\n- Support for\
+  \ heterogeneous GPUs\r\n- Improved File transfer error reporting\r\n- GSI Authentication\
+  \ method has been removed\r\n- HTCondor now utilizes ARC-CE's REST interface\r\n\
+  - Support for ARM and PowerPC for Enterprise Linux 8\r\n- For IDTOKENS, signing\
+  \ key not required on every execution point\r\n- Trust on first use ability for\
+  \ SSL connections\r\n- Improvements against replay attacks"
+date: '2022-11-11'
+release_number: 10.0.0
+release_type: htcondor
+sort_key: 10.00.00
+title: HTCondor 10.0.0
