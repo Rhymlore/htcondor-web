@@ -19,7 +19,7 @@ collections:
     layout: vulnerabilities
   wiki-pages:
     permalink: /wiki-archive/pages/:path/
-    output: true
+    output: false
   software:
     permalink: /:path/
     output: true

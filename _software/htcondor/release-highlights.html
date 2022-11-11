@@ -50,11 +50,20 @@ title: HTCondor Release Highlights
     <div class="collapse" id="old-feature-release-highlights">
       {% include /get/htcondor_feature_releases_old.liquid %}
       {% for release in htcondor_feature_releases_old %}
-        <div class="d-flex flex-row">
-          <b>{{ release.release_number }}</b>
-          <span class="px-1">-</span>
-          <span>{{ release.date  | date: "%B %e, %Y" }}</span>
-        </div>
+        {% include /get/doc_link.liquid %}
+        {% if doc_link %}
+          <div class="d-flex flex-row">
+            <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+            <span class="px-1">-</span>
+            <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+          </div>
+          {% else %}
+          <div class="d-flex flex-row">
+            <b>{{ release.release_number }}</b>
+            <span class="px-1">-</span>
+            <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+          </div>
+        {% endif %}
         <div class="mt-2">
           {{ release.content | markdownify }}
         </div>
