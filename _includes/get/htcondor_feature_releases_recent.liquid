@@ -2,11 +2,21 @@
 
 {% assign htcondor_feature_releases_recent = "" | split : "" %}
 
+{% assign max_release_number = 0 %}
+{% for release in htcondor_feature_releases %}
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+    {% assign first_release_number = release_numbers[0] |  plus : 0 %}
+    {% if first_release_number > max_release_number %}
+        {% assign max_release_number = first_release_number %}
+    {% endif %}
+{% endfor %}
+
 {% for release in htcondor_feature_releases %}
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
 
-    {% if release_numbers[0] == "10"  %}
+    {% assign first_release_number = release_numbers[0] |  plus : 0 %}
+    {% if first_release_number == max_release_number %}
         {% assign htcondor_feature_releases_recent = htcondor_feature_releases_recent | push: release %}
     {% endif %}
 
