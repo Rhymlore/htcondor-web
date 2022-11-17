@@ -1,6 +1,6 @@
 {% include get/featured-users.liquid %}
 
-{% assign 3_months_ago = "now" |  date: "%s" | minus: 7884000 %}
+{% assign 3_months_ago = "now" |  date: "%s" | minus: 15768000 %}
 {% assign features = "" | split : "" %}
 {% for feature in featured-users %}
     {% assign feature_date = feature.date |  date: "%s" |  plus: 0 %}
