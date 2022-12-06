@@ -30,8 +30,8 @@ __NOTE__: This primarily impacts the submission of "pilot jobs" in grid computin
 - November 2021: HTCondor 9.3.0 default build has GCT removed (i.e. binaries distributed will not include GCT).
   - GSI authentication between HTCondor daemons and tools will no longer work.
   - Submission to the ARC CE gridftp interface will no longer work (grid universe type 'nordugrid').
-- September 2022: HTCondor 10.0.0 is released with GCT removed.
-- March 2023: Support for HTCondor 9.0.x release series ends. No supported HTCondor code relies on GCT.
+- November 2022: HTCondor 10.0.0 is released with GCT removed.
+- May 2023: Support for HTCondor 9.0.x release series ends. No supported HTCondor code relies on GCT.
 
 CHTC is interested in feedback on the above timeline and in working with HTCSS stakeholders to build a transition plan.
 
