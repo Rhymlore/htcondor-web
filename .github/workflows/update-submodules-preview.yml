@@ -14,7 +14,7 @@ jobs:
 
       - name: Pull down submodules
         run: |
-          git checkout -b preview-update-submodules
+          git checkout -B preview-update-submodules
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git submodule update --remote --merge
@@ -24,7 +24,7 @@ jobs:
 
   call-create-preview:
     needs: Update-Submodules
-    uses: path-cc/path-cc.github.io/.github/workflows/deploy-preview.yml@master
+    uses: htcondor/htcondor-web/.github/workflows/deploy-preview.yml@master
     secrets: inherit
     with:
       branch: "preview-update-submodules"
