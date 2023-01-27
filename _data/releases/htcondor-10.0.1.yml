@@ -1,0 +1,12 @@
+content: "- Add Ubuntu 22.04 (Jammy Jellyfish) support\r\n- Add file transfer plugin\
+  \ that supports stash:// and osdf:// URLs\r\n- Fix bug where cgroup memory limits\
+  \ were not enforced on Debian and Ubuntu\r\n- Fix bug where forcibly removing DAG\
+  \ jobs could crash the condor_schedd\r\n- Fix bug where Docker repository images\
+  \ cannot be run under Singularity\r\n- Fix issue where blahp scripts were missing\
+  \ on Debian and Ubuntu platforms\r\n- Fix bug where curl file transfer plugins would\
+  \ fail on Enterprise Linux 8"
+date: '2023-01-05'
+release_number: 10.0.1
+release_type: htcondor
+sort_key: 10.00.01
+title: HTCondor 10.0.1

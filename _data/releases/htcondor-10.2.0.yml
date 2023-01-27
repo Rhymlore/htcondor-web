@@ -1,0 +1,10 @@
+content: "- Preliminary support for Enterprise Linux 9\r\n- Preliminary support for\
+  \ cgroups v2\r\n- Can now set minimum floor for number of CPUs that a submitter\
+  \ gets\r\n- Improved validity testing of Singularity/Apptainer runtinme\r\n- Improvements\
+  \ to jobs hooks, including new PREPARE_JOB_BEFORE_TRANSFER hook\r\n- OpenCL jobs\
+  \ now work inside Singularity, if OpenCL drivers are on the host"
+date: '2023-01-05'
+release_number: 10.2.0
+release_type: htcondor
+sort_key: 10.02.00
+title: HTCondor 10.2.0
