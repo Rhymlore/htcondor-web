@@ -1,0 +1,6 @@
+content: '- Fixed bugs with configuration knob SINGULARITY_USE_PID_NAMESPACES'
+date: '2023-02-09'
+release_number: 10.2.2
+release_type: htcondor
+sort_key: 10.02.02
+title: HTCondor 10.2.2
