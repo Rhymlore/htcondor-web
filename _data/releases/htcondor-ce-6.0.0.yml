@@ -1,0 +1,21 @@
+content: '
+
+  Highlights of this release are:
+
+  - Align HTCondor-CE security configuration with HTCondor defaults
+
+  - Add example configuration on how to ban users
+
+  - Add condor_ce_transform_ads command
+
+  - Improve essential directory checking and creation at startup
+
+  '
+date: 2023-02-20
+layout: news
+link: null
+og_title: HTCondor-CE 6.0.0 released!
+release_number: 6.0.0
+release_type: htcondor-ce
+sort_key: 06.00.00
+title: HTCondor-CE 6.0.0 released!
