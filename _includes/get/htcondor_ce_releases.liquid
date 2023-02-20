@@ -7,9 +7,7 @@
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
 
-    {% if release_numbers[1] != "0"  %}
-        {% assign htcondor_ce_releases = htcondor_ce_releases | push: release %}
-    {% endif %}
+    {% assign htcondor_ce_releases = htcondor_ce_releases | push: release %}
 
 {% endfor %}
 
