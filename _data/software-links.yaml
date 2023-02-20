@@ -35,6 +35,6 @@
     - path: /htcondor-ce/release-highlights/
       class:
       label: Release Highlights
-    - path: "https://htcondor.com/htcondor-ce/v5/releases/#htcondor-ce-5-version-history"
+    - path: "https://htcondor.com/htcondor-ce/v6/releases/#htcondor-ce-6-version-history"
       class:
       label: Full Release Notes&#11023;
