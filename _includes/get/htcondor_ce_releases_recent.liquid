@@ -6,7 +6,7 @@
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
 
-    {% if release_numbers[0] == "5"  %}
+    {% if release_numbers[0] == "6"  %}
         {% assign htcondor_ce_releases_recent = htcondor_ce_releases_recent | push: release %}
     {% endif %}
 
