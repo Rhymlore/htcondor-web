@@ -1,0 +1,6 @@
+content: '- Add a count of unmaterialized jobs to condor_schedd statistics'
+date: '2023-02-21'
+release_number: 10.2.3
+release_type: htcondor
+sort_key: 10.02.03
+title: HTCondor 10.2.3
