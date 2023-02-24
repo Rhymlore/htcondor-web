@@ -1,0 +1,6 @@
+content: '- Improved counting of unmaterialized jobs in the condor_schedd'
+date: '2023-02-24'
+release_number: 10.2.4
+release_type: htcondor
+sort_key: 10.02.04
+title: HTCondor 10.2.4
