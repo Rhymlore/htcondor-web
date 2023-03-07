@@ -1,0 +1,10 @@
+content: "- Now evicts OOM killed jobs when they are under their requested memory\r\
+  \n- HTCondor glideins can now use cgroups if one has been prepared\r\n- Can write\
+  \ job information an AP history file for every execution attempt\r\n- Can now specify\
+  \ a lifetime for condor_gangliad metrics\r\n- The condor_schedd now advertises a\
+  \ count of unmaterialized jobs"
+date: '2023-03-06'
+release_number: 10.3.0
+release_type: htcondor
+sort_key: 10.03.00
+title: HTCondor 10.3.0
