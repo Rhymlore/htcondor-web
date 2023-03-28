@@ -25,6 +25,13 @@ a:hover {
   color: $secondary;
 }
 
+a.hover-primary:hover {
+  transition-property: color;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+  color: $primary !important;
+}
+
 .hover-border {
   border: 1px solid white;
 }
