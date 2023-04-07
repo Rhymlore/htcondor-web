@@ -1,0 +1,7 @@
+content: "- DAGMan no longer carries the entire environment into the DAGMan job\r\n\
+  - Allows EGI CheckIn tokens to be used the with SciTokens authentication"
+date: '2023-04-07'
+release_number: 10.4.0
+release_type: htcondor
+sort_key: 10.04.00
+title: HTCondor 10.4.0
