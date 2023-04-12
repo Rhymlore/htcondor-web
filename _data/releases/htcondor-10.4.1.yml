@@ -1,0 +1,6 @@
+content: '- Preliminary support for Ubuntu 20.04 (Focal Fossa) on PowerPC (ppc64el)'
+date: '2023-04-12'
+release_number: 10.4.1
+release_type: htcondor
+sort_key: 10.04.01
+title: HTCondor 10.4.1
