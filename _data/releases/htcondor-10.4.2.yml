@@ -1,0 +1,7 @@
+content: "- Fix bug where remote submission of batch grid universe jobs fail\r\n-\
+  \ Fix bug where HTCondor-CE fails to handle jobs after HTCondor restarts"
+date: '2023-05-02'
+release_number: 10.4.2
+release_type: htcondor
+sort_key: 10.04.02
+title: HTCondor 10.4.2
