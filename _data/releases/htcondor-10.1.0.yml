@@ -1,5 +1,5 @@
 content: '- Release HTCondor 10.0.0 bug fixes into 10.1.0'
-date: '2022-11-11'
+date: '2022-11-10'
 release_number: 10.1.0
 release_type: htcondor
 sort_key: 10.01.00
