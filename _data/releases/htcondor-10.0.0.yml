@@ -7,7 +7,7 @@ content: "- Users can prevent runaway jobs by specifying an allowed duration\r\n
   - Support for ARM and PowerPC for Enterprise Linux 8\r\n- For IDTOKENS, signing\
   \ key not required on every execution point\r\n- Trust on first use ability for\
   \ SSL connections\r\n- Improvements against replay attacks"
-date: '2022-11-11'
+date: '2022-11-10'
 release_number: 10.0.0
 release_type: htcondor
 sort_key: 10.00.00

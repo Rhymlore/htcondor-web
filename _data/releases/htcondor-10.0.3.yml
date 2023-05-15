@@ -2,7 +2,7 @@ content: "- GPU metrics continues to be reported after the startd is reconfigure
   \n- Fixed issue where GPU metrics could be wildly over-reported\r\n- Fixed issue\
   \ that kept jobs from running when installed on Debian or Ubuntu\r\n- Fixed DAGMan\
   \ problem when retrying a proc failure in a multi-proc node"
-date: '2023-04-07'
+date: '2023-04-06'
 release_number: 10.0.3
 release_type: htcondor
 sort_key: 10.00.03
