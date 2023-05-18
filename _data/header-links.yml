@@ -92,6 +92,8 @@ nav_items:
       - name: CHTC
         id: chtc
         dropdown_items:
+          - name: Website &#11023;
+            url: https://chtc.cs.wisc.edu
           - name: Staff &#11023;
             url: https://chtc.cs.wisc.edu/people
           - name: Jobs &#11023;
