@@ -20,7 +20,7 @@
     <script src="{{ '/assets/js/bootstrap.js' | relative_url }}" type="text/javascript"></script>
 
     {% for js in include.js %}
-        <script src="{{ js.src | relative_url }}" type="text/javascript" {{ js.loading}}></script>
+        <script src="{{ js.src | relative_url }}" type="{{ js.type | default: 'text/javascript' }}" {{ js.loading}}></script>
     {% endfor %}
 
     {% if jekyll.environment == 'production' %}

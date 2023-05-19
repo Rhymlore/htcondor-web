@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-{% include layout/head.html title=page.title head=page.head_extension js=page.js_extension css=page.css_extension %}
-<body class="d-flex flex-column">
+---
+layout: bare-default
+---
 
 <!-- For non-visual user agents: -->
 <a id="skip-link" href="#main-copy">Skip to main content.</a>
@@ -11,6 +10,3 @@
     {{ content }}
 </main>
 {% include layout/footer.html %}
-
-</body>
-</html>
