@@ -1,0 +1,13 @@
+content: "- Provides script to assist updating from HTCondor version 9 to version\
+  \ 10\r\n- Fixes a bug where rarely an output file would not be transferred back\r\
+  \n- Fixes counting of submitted jobs, so MAX_JOBS_SUBMITTED works correctly\r\n\
+  - Fixes SSL Authentication failure when PRIVATE_NETWORK_NAME was set\r\n- Fixes\
+  \ rare crash when SSL or SCITOKENS authentication was attempted\r\n- Can allow client\
+  \ to present an X.509 proxy during SSL authentication\r\n- Fixes issue where a users\
+  \ jobs were ignored by the HTCondor-CE on restart\r\n- Fixes issues where some events\
+  \ that HTCondor-CE depends on were missing"
+date: '2023-05-30'
+release_number: 10.0.4
+release_type: htcondor
+sort_key: 10.00.04
+title: HTCondor 10.0.4
