@@ -1,6 +1,5 @@
-content: '
-- Fix bug than could cause the collector audit plugin to crash'
-date: '2023-05-09'
+content: '- Fix bug than could cause the collector audit plugin to crash'
+date: '2023-05-30'
 release_number: 10.4.3
 release_type: htcondor
 sort_key: 10.04.03
