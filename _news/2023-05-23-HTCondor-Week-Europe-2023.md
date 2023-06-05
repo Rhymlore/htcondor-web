@@ -48,7 +48,7 @@ The workshop will cover both using and administering HTCondor; topics will be ch
 
 We would very much like to know about your use of HTCondor, in you project, your experience and your plans. Hence you are warmly encouraged to propose a short presentation.
 
-If you have any questions, please contact [hepix-2023condorworkshop-support@hepix.org](hepix-2023condorworkshop-support@hepix.org).
+If you have any questions, please contact [hepix-2023condorworkshop-support@hepix.org](mailto:hepix-2023condorworkshop-support@hepix.org).
 
 We are looking forward to a rich, productive workshop.
 
