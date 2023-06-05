@@ -1,0 +1,13 @@
+content: "- Can now define DAGMan save points to be able to rerun DAGs from there\r\
+  \n- Expand default list of environment variables passed to the DAGMan manager\r\n\
+  - Administrators can prevent users using \"getenv = true\" in submit files\r\n-\
+  \ Improved throughput when submitting a large number of ARC-CE jobs\r\n- Execute\
+  \ events contain the slot name, sandbox path, resource quantities\r\n- Can add attributes\
+  \ of the execution point to be recorded in the user log\r\n- Enhanced condor_transform_ads\
+  \ tool to ease offline job transform testing\r\n- Fixed a bug where memory limits\
+  \ over 2 GiB might not be correctly enforced"
+date: '2023-06-05'
+release_number: 10.5.0
+release_type: htcondor
+sort_key: 10.05.00
+title: HTCondor 10.5.0
