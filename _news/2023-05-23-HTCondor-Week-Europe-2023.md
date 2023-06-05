@@ -34,7 +34,7 @@ We are very pleased to announce that the 2023 European HTCondor Workshop will be
 
 To allow ease of travel to and from the venue the meeting will start at on Tuesday morning and run until lunchtime on the Friday.
 
-Registration is now open at the meeting Indico site: https://indico.cern.ch/event/1274213/
+Registration is now open at the meeting Indico site: [https://indico.cern.ch/event/1274213/](https://indico.cern.ch/event/1274213/)
 
 There will be a small workshop fee of €160 to cover lunches, teas and coffees, and a social dinner on the Thursday evening.
 
@@ -48,7 +48,7 @@ The workshop will cover both using and administering HTCondor; topics will be ch
 
 We would very much like to know about your use of HTCondor, in you project, your experience and your plans. Hence you are warmly encouraged to propose a short presentation.
 
-If you have any questions, please contact hepix-2023condorworkshop-support@hepix.org.
+If you have any questions, please contact [hepix-2023condorworkshop-support@hepix.org](hepix-2023condorworkshop-support@hepix.org).
 
 We are looking forward to a rich, productive workshop.
 
