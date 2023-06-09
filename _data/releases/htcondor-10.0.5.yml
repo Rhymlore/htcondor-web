@@ -1,0 +1,7 @@
+content: "- Rename upgrade9to10checks.py script to condor_upgrade_check \r\n- Fix\
+  \ spurious warning from condor_upgrade_check about regexes with spaces"
+date: '2023-06-09'
+release_number: 10.0.5
+release_type: htcondor
+sort_key: 10.00.05
+title: HTCondor 10.0.5
