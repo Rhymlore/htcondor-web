@@ -19,7 +19,7 @@ We have an exciting group of speakers for this year’s Throughput Computing 202
 
 The call of abstracts has been extended. Please visit the [Call for Abstracts](https://agenda.hep.wisc.edu/event/2014/abstracts/) page to learn how to sign up to give a talk, talk content and length, and how to submit your presentation.
 
-*The submission deadline has been extended to June 12th, 2023*
+*The submission deadline has been extended to June 19th, 2023*
 
 ### Full Event Page
 
