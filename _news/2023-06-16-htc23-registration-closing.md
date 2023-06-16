@@ -1,10 +1,10 @@
 ---
-title: Registration Closing for Throughput Computing 2023
+title: Registration Extended for Throughput Computing 2023
 link:
 layout: news
 ---
 
-**Registration for [Throughput Computing 2023](https://agenda.hep.wisc.edu/event/2014/) is closing on July 15th!**
+**Registration for [Throughput Computing 2023](https://agenda.hep.wisc.edu/event/2014/) has been extended to July 20th!**
 
 ### Announced Speakers
 
