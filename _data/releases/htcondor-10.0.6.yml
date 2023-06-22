@@ -1,0 +1,11 @@
+content: "- In SSL Authentication, use the identity instead of the X.509 proxy subject\r\
+  \n- Can use environment variable to locate the client's SSL X.509 credential\r\n\
+  - ClassAd aggregate functions now tolerate undefined values\r\n- Fix Python binding\
+  \ bug where accounting ads were omitted from the result\r\n- The Python bindings\
+  \ now properly report the HTCondor version\r\n- remote_initial_dir works when submitting\
+  \ a grid batch job remotely via ssh\r\n- Add a ClassAd stringlist subset match function"
+date: '2023-06-22'
+release_number: 10.0.6
+release_type: htcondor
+sort_key: 10.00.06
+title: HTCondor 10.0.6
