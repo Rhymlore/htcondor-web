@@ -1,0 +1,10 @@
+content: "- Administrators can enable and disable job submission for a specific user\r\
+  \n- Work around memory leak in libcurl on EL7 when using the ARC-CE GAHP\r\n- Container\
+  \ images may now be transferred via a file transfer plugin\r\n- Add ClassAd stringlist\
+  \ subset match function\r\n- Add submit file macro '$(JobId)' which expands to full\
+  \ ID of the job\r\n- The job's executable is no longer renamed to 'condor_exec.exe'"
+date: '2023-06-30'
+release_number: 10.6.0
+release_type: htcondor
+sort_key: 10.06.00
+title: HTCondor 10.6.0
