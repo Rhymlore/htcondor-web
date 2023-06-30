@@ -71,8 +71,8 @@ nav_items:
       - name: HTCondor Week
         id: htcondor-week
         dropdown_items:
-          - name: Most Recent
-            url: https://agenda.hep.wisc.edu/event/1733/
+          - name: Throughput Computing 2023
+            url: https://path-cc.io/events/throughput-computing-2023/
           - name: Workshop Archives
             url: /past_condor_weeks.html
       - name: Featured Users
