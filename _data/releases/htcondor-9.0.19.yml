@@ -1,0 +1,6 @@
+content: |
+  - Remove limit on certificate chain length in SSL authentication
+date: 2023-06-30
+release_number: 9.0.19
+release_type: htcondor
+sort_key: 09.00.19

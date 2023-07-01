@@ -1,0 +1,7 @@
+content: |
+  - Can configure clients to present an X.509 proxy during SSL authentication
+  - Provides script to assist updating from HTCondor version 9 to version 10
+date: 2023-06-22
+release_number: 9.0.18
+release_type: htcondor
+sort_key: 09.00.18
