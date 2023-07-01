@@ -1,5 +1,5 @@
 content: '- Fix issue with grid batch jobs interacting with older Slurm versions'
-date: '2023-06-30'
+date: '2023-06-06'
 release_number: 10.5.1
 release_type: htcondor
 sort_key: 10.05.01

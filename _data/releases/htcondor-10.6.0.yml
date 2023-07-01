@@ -3,7 +3,7 @@ content: "- Administrators can enable and disable job submission for a specific 
   \ images may now be transferred via a file transfer plugin\r\n- Add ClassAd stringlist\
   \ subset match function\r\n- Add submit file macro '$(JobId)' which expands to full\
   \ ID of the job\r\n- The job's executable is no longer renamed to 'condor_exec.exe'"
-date: '2023-06-30'
+date: '2023-06-29'
 release_number: 10.6.0
 release_type: htcondor
 sort_key: 10.06.00
