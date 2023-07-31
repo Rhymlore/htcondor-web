@@ -1,0 +1,10 @@
+content: "- Support for Debian 12 (Bookworm)\r\n- Can run defrag daemons with different\
+  \ policies on distinct sets of nodes\r\n- Added want_io_proxy submit command\r\n\
+  - Apptainer is now included in the HTCondor tarballs\r\n- Fix 10.5.0 bug where reported\
+  \ CPU time is very low when using cgroups v1\r\n- Fix 10.5.0 bug where .job.ad and\
+  \ .machine.ad were missing for local jobs"
+date: '2023-07-31'
+release_number: 10.7.0
+release_type: htcondor
+sort_key: 10.07.00
+title: HTCondor 10.7.0
