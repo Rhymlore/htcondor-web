@@ -1,0 +1,8 @@
+content: "- Avoid kernel panic on some Enterprise Linux 8 systems\r\n- Fix bug where\
+  \ early termination of service nodes could crash DAGMan\r\n- Limit email about long\
+  \ file transfer queue to once daily\r\n- Various fixes to condor_adstash"
+date: '2023-09-14'
+release_number: 10.0.8
+release_type: htcondor
+sort_key: 10.00.08
+title: HTCondor 10.0.8
