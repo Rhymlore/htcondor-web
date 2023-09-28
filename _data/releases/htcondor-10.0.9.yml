@@ -1,0 +1,8 @@
+content: "- The condor_upgrade_check script now provides guidance on updating to 23.0\r\
+  \n- The htchirp Python binding now properly locates the chirp configuration\r\n\
+  - Fix bug that prevented deletion of HTCondor passwords on Windows"
+date: '2023-09-28'
+release_number: 10.0.9
+release_type: htcondor
+sort_key: 10.00.09
+title: HTCondor 10.0.9
