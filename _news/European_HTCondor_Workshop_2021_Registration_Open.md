@@ -16,7 +16,7 @@ timezones) but everyone worldwide is welcomed to attend and participate.
 See the full announcement at <a href="https://www-auth.cs.wisc.edu/lists/htcondor-world/2021/msg00013.shtml">https://www-auth.cs.wisc.edu/lists/htcondor-world/2021/msg00013.shtml</a>.
 
 Registration is free and open now at
-<a href="https://indico.cern.ch/e/htcondor2021">https://indico.cern.ch/e/htcondor2021</a>.
+<a href="https://indico.cern.ch/event/1059494/">https://indico.cern.ch/e/htcondor2021</a>.
 
 We are also looking for speakers to submit abstracts; we'd like to hear about
 your project and how you are using HTCondor. Abstracts are accepted via the

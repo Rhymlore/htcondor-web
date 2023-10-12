@@ -278,9 +278,7 @@ END OF TERMS AND CONDITIONS
 <ul>
 <li>
 Some distributions of HTCondor include MAKEMSI software developed by 
-Dennis Bareis (<a HREF="https://dennisbareis.com/makemsi.htm">https://dennisbareis.com/makemsi.htm</a>).  Complete 
-conditions and disclaimers for MAKEMSI can be found at 
-<a HREF="https://makemsi-manual.dennisbareis.com/disclaimer.htm">https://makemsi-manual.dennisbareis.com/disclaimer.htm</a>
+Dennis Bareis.
 </li>
 
 </ul>

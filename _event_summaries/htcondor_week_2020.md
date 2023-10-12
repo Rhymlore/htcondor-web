@@ -984,7 +984,7 @@ results:
       attachments:
       - _type: attachment
         description: ''
-        download_url: https://agenda.hep.wisc.edu/event/1440/contributions/7846/attachments/1933/2171/go
+        download_url: 
         id: 2171
         is_protected: false
         link_url: coatsworth@cs.wisc.eduhttps://github.com/htcondor/htcondor-python-bindings-tutorials

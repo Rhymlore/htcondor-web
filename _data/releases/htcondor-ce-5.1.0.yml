@@ -18,10 +18,6 @@ content: '
 
   - Use the GlobalJobID attribute as the APEL record lrmsID
 
-
-  Please refer to the [update instructions](https://htcondor.github.io/htcondor-ce/v5/releases/#updating-to-htcondor-ce-5\)
-  to update to this version.
-
   '
 date: 2021-04-14
 layout: news

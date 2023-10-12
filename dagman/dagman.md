@@ -39,7 +39,7 @@ HTCondor is fully documented in the <a
 href="https://htcondor.readthedocs.io/en/latest">HTCondor manual</a>.
 <!-- Note:  the link below will break if the manual sections change! -->
 The <a
-href="https://htcondor.readthedocs.io/en/latest/users-manual/dagman-workflows.html">
+href="https://htcondor.readthedocs.io/en/latest/automated-workflows/index.html">
 DAGMan Workflows section</a>
 describes DAGMan in great detail.
 </p>

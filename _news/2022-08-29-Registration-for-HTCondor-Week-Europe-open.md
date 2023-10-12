@@ -16,7 +16,7 @@ The workshop will be an excellent occasion for learning from the sources (the de
 If you consider attending, we would very much like to know about your project, your experience and your plans. Hence you are warmly encouraged to propose a short presentation. Details on how to submit abstracts will follow.
 
 If you have any questions, please contact
-[hepix-2022condorworkshop-support@hepix.org](hepix-2022condorworkshop-support@hepix.org)
+[hepix-2022condorworkshop-support@hepix.org](mailto:hepix-2022condorworkshop-support@hepix.org)
 
 We are looking forward to a rich, productive workshop, and we hope to meet many of you at our first in-person workshop in three years!
 

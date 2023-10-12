@@ -42,7 +42,7 @@ Kent Cramer
 <hr>
 
 <p>
-<a name="Alumni"></a>
+<span name="Alumni"></span>
 <b>Alumni</b><br/>
 Dakota Chambers<br/>
 Neil Van Lysel<br/>

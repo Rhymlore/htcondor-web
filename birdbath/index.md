@@ -4,7 +4,7 @@ title: BirdBath
 ---
 
 <img src="{{ '/assets/images/birdbath.gif' | relative_url }}" align="right" height="239" />
-<a name="top"></a>
+<span name="top"></span>
 
 <!-- Now just status, and no one should be using 6.7.5 anyway...
 <h2>BirdBath Merged</h2>
@@ -45,16 +45,16 @@ WSDL files for HTCondor 6.7.5:
 -->
 
 <!-- Not just developer code anymore...
-<a name="notice">
+<span name="notice">
 <b>Notice:</b> This is pre-release developer snapshot software. It
 does not necessarily live up to the standards of HTCondor production
 software. It is not recommended that these daemons be run in a
 production HTCondor pool. It is entirely possible that the APIs will
 change before this software is included in a HTCondor release.
-</a>
+</span>
 -->
 
-<a name="overview"></a>
+<span name="overview"></span>
 <h3>Overview</h3>
 
 <p>
@@ -76,7 +76,7 @@ HTCondor manual.
 
 </p>
 
-<a name="status"></a>
+<a span="status"></span>
 <h3>Status</h3>
 
 <p>
@@ -155,9 +155,9 @@ developer series as of 6.7.5, and is part of the 6.8 stable series.
 -->
 
 <!-- No one should be downloading this stuff...
-<a name="download">
+<span name="download">
 <h3>Download</h3>
-</a>
+</span>
 
 <p>
 
@@ -330,9 +330,9 @@ Old version:
 -->
 
 <!-- It's in the manual...
-<a name="installation">
+<span name="installation">
 <h3>Installation</h3>
-</a>
+</span>
 
 All these instructions assume that you have a working HTCondor 6.7
 installation.
@@ -382,9 +382,9 @@ installation.
 -->
 
 <!-- In the manual, also it's obsolete information...
-<a name="security_concerns">
+<span name="security_concerns">
 <h3>Security Concerns</h3>
-</a>
+</span>
 
 <p>
 
@@ -403,9 +403,9 @@ lock-down the SOAP Schedd.
 -->
 
 <!-- In the manual...
-<a name="lock-down_options">
+<span name="lock-down_options">
 <h4>Lock-down Options:</h4>
-</a>
+</span>
 
 <ul>
   <li>
@@ -453,7 +453,7 @@ lock-down the SOAP Schedd.
 </p>
 -->
 
-<a name="examples"></a>
+<span name="examples"></span>
 <h3>Examples</h3>
 
 <ul>
@@ -484,9 +484,9 @@ created ZSI are working on some fixes to make the patch unnecessary.
 
 </p>
 
-<a name="collector_example">
+<span name="collector_example">
 <h4>Querying the Collector:</h4>
-</a>
+</span>
 
 <p>
 
@@ -501,7 +501,7 @@ href="http://pywebsvcs.sourceforge.net">ZSI</a>.
   </li>
 </ul>
 
-<a name="schedd_example"></a>
+<span name="schedd_example"></span>
 <h4>Interacting with the Schedd:</h4>
 
 <p>
@@ -546,7 +546,7 @@ helper library and some examples of how to use it.
 </ul>
 -->
 
-<a name="known_bugs"></a>
+<span name="known_bugs"></span>
 <h3>Known Issues</h3>
 
 <ul>
@@ -568,7 +568,7 @@ helper library and some examples of how to use it.
   </li>
 </ul>
 
-<a name="problems"></a>
+<span name="problems"></span>
 <h3>Problems?</h3>
 
 <p>

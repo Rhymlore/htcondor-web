@@ -8,9 +8,6 @@ content: 'Highlights of this release are:
   - Fixed RPM dependency issue when installing for non-HTCondor batch systems
 
 
-  Please refer to the [update instructions](https://htcondor.github.io/htcondor-ce/v5/releases/#updating-to-htcondor-ce-5\)
-  to update to this version.
-
   '
 date: 2021-05-27
 layout: news

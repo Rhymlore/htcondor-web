@@ -15,4 +15,4 @@ It's a way to give back to the community in return for what you received
 from it.
 
 To register and/or submit an abstract to be a speaker, please visit:
-<a href="https://indico.cern.ch/e/htcondor2021">https://indico.cern.ch/e/htcondor2021</a>
+<a href="https://indico.cern.ch/event/1059494/">https://indico.cern.ch/e/htcondor2021</a>

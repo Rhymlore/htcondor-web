@@ -4,15 +4,15 @@ title: Old HTCondor Team Pictures
 ---
 
 <h2>2020</h2>
-<p>The HTCondor Team at <a href="https://research.cs.wisc.edu/htcondor/HTCondorWeek2020/">HTCondor Week 2020</a>, May 2020.</p>
+<p>The HTCondor Team at HTCondor Week 2020, May 2020.</p>
 <p class="photo"><img width="768" src="{{ '/assets/images/team-2020.jpg' | relative_url}}" alt="HTCondor Team May 2020"></p>
 
 <h2>2019</h2>
-<p>The HTCondor Team at <a href="https://research.cs.wisc.edu/htcondor/HTCondorWeek2019/">HTCondor Week 2019</a>, May 2019.</p>
+<p>The HTCondor Team at HTCondor Week 2019, May 2019.</p>
 <p class="photo"><img width="768" src="{{ '/assets/images/team-2019.jpg' | relative_url}}" alt="HTCondor Team May 2019"></p>
 
 <h2>2018</h2>
-<p>The HTCondor Team at <a href="https://research.cs.wisc.edu/htcondor/HTCondorWeek2018/">HTCondor Week 2018</a>, May 2018.</p>
+<p>The HTCondor Team at HTCondor Week 2018, May 2018.</p>
 <p class="photo"><img width="768" src="{{ '/assets/images/team-2018.jpg' | relative_url}}" alt="HTCondor Team May 2018"></p>
 
 <h2>2017</h2>
