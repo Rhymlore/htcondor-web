@@ -76,7 +76,7 @@ HTCondor manual.
 
 </p>
 
-<a span="status"></span>
+<span name="status"></span>
 <h3>Status</h3>
 
 <p>

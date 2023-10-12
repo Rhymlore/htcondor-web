@@ -987,9 +987,9 @@ results:
         download_url: 
         id: 2171
         is_protected: false
-        link_url: coatsworth@cs.wisc.eduhttps://github.com/htcondor/htcondor-python-bindings-tutorials
+        link_url: https://github.com/htcondor/htcondor-python-bindings-tutorials
         modified_dt: '2020-05-19T14:00:00+00:00'
-        title: coatsworth@cs.wisc.eduhttps://github.com/htcondor/htcondor-python-bindings-tutorials
+        title: HTCondor Python Bindings Tutorials
         type: link
       - _type: attachment
         description: ''
@@ -998,7 +998,7 @@ results:
         is_protected: false
         link_url: https://mybinder.org/v2/gh/htcondor/htcondor-python-bindings-tutorials/master?urlpath=lab/tree/users/Submitting-and-Managing-Jobs.ipynb
         modified_dt: '2020-05-19T14:00:00+00:00'
-        title: https://mybinder.org/v2/gh/htcondor/htcondor-python-bindings-tutorials/master?urlpath=lab/tree/users/Submitting-and-Managing-Jobs.ipynb
+        title: Submitting and Managing Jobs
         type: link
       default_folder: false
       description: ''
