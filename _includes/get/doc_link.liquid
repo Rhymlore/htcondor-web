@@ -14,7 +14,7 @@
     {% endif %}
 {% elsif first_release_number > 9 %}
     {%  if second_release_number == 0 %}
-        {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: first_release_number | append: "_0/version-history/lts-versions-" | append: first_release_number | append: "-0.html#version-" | append: first_release_number | append: "-0-" | append: third_release_number %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: first_release_number | append: ".0/version-history/lts-versions-" | append: first_release_number | append: "-0.html#version-" | append: first_release_number | append: "-0-" | append: third_release_number %}
     {% elsif second_release_number > 0 %}
         {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: first_release_number | append: "_x/version-history/feature-versions-" | append: first_release_number | append: "-x.html#version-" | append: first_release_number | append: "-" | append: second_release_number | append: "-" | append: third_release_number %}
     {% endif %}
