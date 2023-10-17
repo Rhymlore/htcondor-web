@@ -7,6 +7,14 @@ title: HTCondor Download
 {% include get/htcondor_feature_release.liquid %}
 {% include get/htcondor_lts_release.liquid %}
 
+{% assign release_numbers = htcondor_feature_release.release_number | strip | split: "." %}
+{% assign htcondor_feature_release_first_number = release_numbers[0] |  times: 1 %}
+
+{% assign release_numbers = htcondor_lts_release.release_number | strip | split: "." %}
+{% assign htcondor_lts_release_first_number = release_numbers[0] |  times: 1 %}
+
+
+
 <div id="feature-channel" class="mb-4 card">
     <div class="card-body">
         <h3><span class="text-secondary">{{ htcondor_feature_release.release_number }}</span> Feature Release</h3>
@@ -60,7 +68,7 @@ title: HTCondor Download
             Consultation of the <a href="https://htcondor.readthedocs.io/en/lts/version-history/lts-versions-10-0.html">Detailed Notes</a> recommended prior to upgrading.
         </p>
         <div>
-            <a class="btn btn-primary me-3" href="https://htcondor.readthedocs.io/en/v10_0/getting-htcondor/index.html">Installation Guide</a>
+            <a class="btn btn-primary me-3" href="https://htcondor.readthedocs.io/en/{{htcondor_lts_release_first_number}}.0/getting-htcondor/index.html">Installation Guide</a>
             <a class="btn btn-primary" href="{{ '/htcondor/release-highlights/index.html#long-term-support-channel' | relative_url }}">Release Notes</a>
         </div>
     </div>

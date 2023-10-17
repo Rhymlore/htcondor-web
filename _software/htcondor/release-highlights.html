@@ -4,6 +4,16 @@ software: HTCondor
 title: HTCondor Release Highlights
 ---
 
+{% include get/htcondor_feature_release.liquid %}
+{% include get/htcondor_lts_release.liquid %}
+
+{% assign release_numbers = htcondor_feature_release.release_number | strip | split: "." %}
+{% assign htcondor_feature_release_first_number = release_numbers[0] |  times: 1 %}
+
+{% assign release_numbers = htcondor_lts_release.release_number | strip | split: "." %}
+{% assign htcondor_lts_release_first_number = release_numbers[0] |  times: 1 %}
+
+
 <div class="py-2">
   <a class="btn btn-primary" href="#feature-channel">Feature Channel</a>
   <a class="btn btn-primary" href="#long-term-support-channel">Long Term Support Channel</a>
@@ -130,14 +140,23 @@ title: HTCondor Release Highlights
     <div class="collapse" id="old-lts-release-highlights">
       {% include /get/htcondor_lts_releases_old.liquid %}
       {% for release in htcondor_lts_releases_old %}
-      <div class="d-flex flex-row">
-        <b>{{ release.release_number }}</b>
-        <span class="px-1">-</span>
-        <span>{{ release.date  | date: "%B %e, %Y" }}</span>
-      </div>
-      <div class="mt-2">
-        {{ release.content | markdownify }}
-      </div>
+        {% include /get/doc_link.liquid %}
+          {% if doc_link %}
+            <div class="d-flex flex-row">
+              <b><a class="text-decoration-none" href="{{ doc_link }}">{{ release.release_number }}</a></b>
+              <span class="px-1">-</span>
+              <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+            </div>
+          {% else %}
+            <div class="d-flex flex-row">
+              <b>{{ release.release_number }}</b>
+              <span class="px-1">-</span>
+              <span>{{ release.date  | date: "%B %e, %Y" }}</span>
+            </div>
+          {% endif %}
+          <div class="mt-2">
+            {{ release.content | markdownify }}
+          </div>
       {% endfor %}
     </div>
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#old-lts-release-highlights" role="button" aria-expanded="false" aria-controls="old-lts-release-highlights">

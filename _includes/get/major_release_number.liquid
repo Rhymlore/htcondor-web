@@ -1,0 +1,16 @@
+{% assign releases = releases | default: include.releases %}
+{% assign major_release_number = 0 %}
+
+{% for release in releases %}
+
+    {% assign release_numbers = release.release_number | strip | split: "." %}
+    {% assign first_number = release_numbers[0] |  times: 1 %}
+
+    {% if first_number > major_release_number %}
+
+        {% assign major_release_number = first_number %}
+
+    {% endif %}
+
+{% endfor %}
+

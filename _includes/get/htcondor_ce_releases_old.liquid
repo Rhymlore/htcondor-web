@@ -1,12 +1,16 @@
 {% include /get/htcondor_ce_releases.liquid %}
 
+{% assign releases = htcondor_ce_releases %}
+{% include get/major_release_number.liquid %}
+
 {% assign htcondor_ce_releases_old = "" | split : "" %}
 
 {% for release in htcondor_ce_releases %}
 
     {% assign release_numbers = release.release_number | strip | split: "." %}
+    {% assign first_number = release_numbers[0] |  times: 1 %}
 
-    {% if release_numbers[0] != "6"  %}
+    {% if first_number != major_release_number  %}
         {% assign htcondor_ce_releases_old = htcondor_ce_releases_old | push: release %}
     {% endif %}
 
