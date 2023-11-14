@@ -66,8 +66,16 @@ js_extension:
         <div class="col-12 col-md-6 col-lg-4 mb-4 order-lg-2 order-2">
             {% capture content %}
                 <div class="ms-n2">
+                    {% assign skipped_article = false %}
+
                     {% include get/all_news.liquid %}
                     {% for news in news_articles limit: 4 %}
+
+                        {% if news.title == featured-users[0].title %}
+                            {% assign skipped_article = true %}
+                            {% continue %}
+                        {% endif %}
+
                         <div class="">
                             {% include /cards/title-date.liquid
                                 title=news.title
@@ -76,6 +84,20 @@ js_extension:
                             %}
                         </div>
                     {% endfor %}
+
+
+                    {% if skipped_article == true %}
+                        {% for news in news_articles limit: 1 offset: continue %}
+                            <div class="">
+                                {% include /cards/title-date.liquid
+                                    title=news.title
+                                    date=news.date
+                                    href=news.url
+                                %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                 </div>
             {% endcapture %}
             {% include /cards/title-subtitle-content.html
