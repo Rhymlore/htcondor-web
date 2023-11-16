@@ -24,10 +24,34 @@ function getScale(zoom){
 }
 
 function create_marker(location, iconScale){
-    return [...Array(9).keys()]
-        .map(x => x-5)
-        .map(x => L.marker([location[0], location[1] + (x*360)], {icon: getIcon(iconScale)}))
+    // Define jitter in degrees, 10 miles is approximately 1/69 degrees of latitude
+    const jitterRangeLat = 10 / 69;
+    // Longitude varies, use the cosine of the latitude (in radians)
+    const jitterRangeLng = jitterRangeLat / Math.cos(location[0] * Math.PI / 180);
+
+    // Create an array to hold the markers
+    let markers = [];
+
+    // Adjust this value if you want more or fewer markers
+    const numberOfMarkers = 1; // For example, if you only want one marker per location
+
+    for (let i = 0; i < numberOfMarkers; i++) {
+        // Generate a random jitter within the range for latitude and longitude
+        const jitterLat = (Math.random() - 0.5) * jitterRangeLat;
+        const jitterLng = (Math.random() - 0.5) * jitterRangeLng;
+
+        // Apply jitter and ensure the latitude and longitude are within bounds
+        const newLat = Math.min(Math.max(location[0] + jitterLat, -90), 90);
+        const newLng = ((location[1] + jitterLng + 180) % 360) - 180;
+
+        // Create a marker with jitter applied and add it to the array
+        markers.push(L.marker([newLat, newLng], {icon: getIcon(iconScale)}));
+    }
+
+    // Return the array of markers
+    return markers;
 }
+
 
 async function get_spreadsheet_values(){
     let res = await fetch("https://chtc.github.io/data-cache/data/htcss_user_registry.csv")
