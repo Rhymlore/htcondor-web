@@ -4,6 +4,10 @@ software: HTCondor-CE
 title: HTCondor-CE Release Highlights
 ---
 
+{% include /get/htcondor_ce_releases.liquid %}
+{% assign releases = htcondor_ce_releases %}
+{% include get/major_release_number.liquid %}
+
 <div class="mb-4 card">
     <div class="card-body">
         <div class="row">
@@ -11,7 +15,7 @@ title: HTCondor-CE Release Highlights
                 <h3>Latest Releases</h3>
             </div>
             <div class="col-auto d-flex ps-sm-0">
-                <b class="my-auto"><a class="text-secondary" href="https://htcondor.com/htcondor-ce/v6/releases/#htcondor-ce-6-version-history">Detailed Notes &#11023;</a></b>
+                <b class="my-auto"><a class="text-secondary" href="https://htcondor.com/htcondor-ce/v{{ major_release_number }}/releases/#htcondor-ce-{{ major_release_number }}-version-history">Detailed Notes &#11023;</a></b>
             </div>
         </div>
         {% include /get/htcondor_ce_releases_recent.liquid %}

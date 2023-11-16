@@ -4,7 +4,14 @@ software: HTCondor
 title: HTCondor Documentation
 ---
 
+{% include get/htcondor_feature_release.liquid %}
+{% include get/htcondor_lts_release.liquid %}
 
+{% assign release_numbers = htcondor_feature_release.release_number | strip | split: "." %}
+{% assign htcondor_feature_release_first_number = release_numbers[0] |  times: 1 %}
+
+{% assign release_numbers = htcondor_lts_release.release_number | strip | split: "." %}
+{% assign htcondor_lts_release_first_number = release_numbers[0] |  times: 1 %}
 
 <div id="feature-channel" class="mb-4 card">
     <div class="card-body">
@@ -40,10 +47,10 @@ title: HTCondor Documentation
             It then suggests extensions that you can apply to your particular jobs.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/v10_0/users-manual/quick-start-guide.html">
+            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/{{htcondor_lts_release_first_number}}.0/users-manual/quick-start-guide.html">
                 User Quick Start Guide
             </a>
-            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/v10_0/getting-htcondor/admin-quick-start.html">
+            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/{{htcondor_lts_release_first_number}}.0/getting-htcondor/admin-quick-start.html">
                 Admin Quick Start Guide
             </a>
         </p>
@@ -52,7 +59,7 @@ title: HTCondor Documentation
             The HTCondor Manual may be viewed online or downloaded to your site.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/v10_0/">
+            <a class="btn btn-primary" href="https://htcondor.readthedocs.io/en/{{htcondor_lts_release_first_number}}.0/">
                 HTCondor Manual
             </a>
         </p>

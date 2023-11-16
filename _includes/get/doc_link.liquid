@@ -12,10 +12,16 @@
     {% elsif second_release_number > 0 %}
         {% assign doc_link = "https://htcondor.readthedocs.io/en/v9_1/version-history/development-release-series-91.html#version-9-" | append: second_release_number | append: "-" | append: third_release_number %}
     {% endif %}
-{% elsif first_release_number > 9 %}
+{% elsif first_release_number == 10 %}
     {%  if second_release_number == 0 %}
         {% assign doc_link = "https://htcondor.readthedocs.io/en/" | append: first_release_number | append: ".0/version-history/lts-versions-" | append: first_release_number | append: "-0.html#version-" | append: first_release_number | append: "-0-" | append: third_release_number %}
     {% elsif second_release_number > 0 %}
         {% assign doc_link = "https://htcondor.readthedocs.io/en/v" | append: first_release_number | append: "_x/version-history/feature-versions-" | append: first_release_number | append: "-x.html#version-" | append: first_release_number | append: "-" | append: second_release_number | append: "-" | append: third_release_number %}
+    {% endif %}
+{% elsif first_release_number > 10 %}
+    {%  if second_release_number == 0 %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/" | append: "lts/version-history/lts-versions-" | append: first_release_number | append: "-0.html#version-" | append: first_release_number | append: "-0-" | append: third_release_number %}
+    {% elsif second_release_number > 0 %}
+        {% assign doc_link = "https://htcondor.readthedocs.io/en/" | append: first_release_number | append: "_x/version-history/feature-versions-" | append: first_release_number | append: "-x.html#version-" | append: first_release_number | append: "-" | append: second_release_number | append: "-" | append: third_release_number %}
     {% endif %}
 {% endif %}
