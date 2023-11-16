@@ -3,6 +3,11 @@ layout: software-page
 software: HTCondor-CE
 title: HTCondor-CE Documentation
 ---
+
+{% include /get/htcondor_ce_releases.liquid %}
+{% assign releases = htcondor_ce_releases %}
+{% include get/major_release_number.liquid %}
+
 <p>HTCondor-CE provides extensive documentation on installation, configuration, troubleshooting and more.</p>
 
 
@@ -12,7 +17,7 @@ title: HTCondor-CE Documentation
             For more details and a full reference to HTCondor-CE's capabilities and configuration, see the HTCondor-CE Manual.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v6/installation/htcondor-ce/">
+            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v{{ major_release_number }}/installation/htcondor-ce/">
                 HTCondor-CE Manual
             </a>
         </p>
@@ -20,7 +25,7 @@ title: HTCondor-CE Documentation
             This guide provides enough guidance to install HTCondor-CE on a host.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v6/installation/htcondor-ce/">
+            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v{{ major_release_number }}/installation/htcondor-ce/">
                 Installation
             </a>
         </p>
@@ -28,7 +33,7 @@ title: HTCondor-CE Documentation
             This guide provides detailed guidance on the configuring of authentication, Local Batch Systems, Job Routers, and others.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v6/configuration/authentication/">
+            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v{{ major_release_number }}/configuration/authentication/">
                 Configuration
             </a>
         </p>
@@ -36,7 +41,7 @@ title: HTCondor-CE Documentation
             This guide provides troubleshooting help with common issues and misconceptions.
         </p>
         <p>
-            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v6/troubleshooting/common-issues/">
+            <a class="btn btn-primary" href="https://htcondor.com/htcondor-ce/v{{ major_release_number }}/troubleshooting/common-issues/">
                 Troubleshooting
             </a>
         </p>

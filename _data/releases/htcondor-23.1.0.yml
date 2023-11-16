@@ -1,0 +1,13 @@
+content: "- Add HTCondor Python wheels in PyPI for the aarch64 CPU architecture\r\n\
+  - Enhanced filtering with 'condor_watch_q'\r\n- The Access Point can now be told\
+  \ to use a non-standard ssh port when sending jobs to a remote scheduling system\
+  \ (such as Slurm).\r\n- Laid groundwork to allow an Execution Point running without\
+  \ root access to accurately limit the job's usage of CPU and Memory in real time\
+  \ via Linux kernel cgroups; this is particularly interesting for glidein pools.\r\
+  \n- HTCondor file transfers using HTTPS can now utilize CA certificates in a non-standard\
+  \ location"
+date: '2023-10-31'
+release_number: 23.1.0
+release_type: htcondor
+sort_key: 23.01.00
+title: HTCondor 23.1.0
